@@ -24,7 +24,7 @@ public class Brand {
     String brandName;
 
     @Column(nullable = false)
-    Instant createAt;
+    Instant createdAt;
 
     String description;
 

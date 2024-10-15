@@ -1,13 +1,14 @@
-import "./App.css";
-import { Button } from "@/components/ui/button";
 
+import AdminAside from './components/admin-com/AdminAside.jsx';
+// import ManagerAside from "./ManagerAside";
+// import DiscountManagement from "./DiscountManagement";
+import DemoGrid from "./pages/DemoGrid.jsx";
 function App() {
   return (
-    <div>
-      <div className="mt-16 px-20">
-        <Button>Click me</Button>
-      </div>
-    </div>
+    // <ManagerAside/>
+    <AdminAside/>
+    // <DiscountManagement/>
+    // <DemoGrid/>
   );
 }
 

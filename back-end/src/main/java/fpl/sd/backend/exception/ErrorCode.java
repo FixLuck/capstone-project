@@ -20,7 +20,7 @@ public enum ErrorCode {
     INVALID_KEY(999, "Invalid Message Key", HttpStatus.BAD_REQUEST),
     UNAUTHENTICATED(401, "Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(403, "You do not have permissions", HttpStatus.FORBIDDEN),
-
+    EMAIL_ALREADY_EXISTS(409, "Email Already Exists", HttpStatus.CONFLICT),
 
     // Brand-related errors
     BRAND_NOT_FOUND(404, "Brand Not Found", HttpStatus.NOT_FOUND),
@@ -30,6 +30,9 @@ public enum ErrorCode {
     BRAND_LOGO_INVALID(400, "Invalid Brand Logo URL", HttpStatus.BAD_REQUEST),
     BRAND_INACTIVE(403, "This brand is inactive", HttpStatus.FORBIDDEN),
 
+
+    //Role-related errors
+    ROLE_ALREADY_EXISTS(409, "Role already exists", HttpStatus.CONFLICT),
     ;
 
     private final int code;

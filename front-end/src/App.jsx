@@ -1,11 +1,13 @@
 import "./App.css";
-import { Button } from "@/components/ui/button";
+import MemberManager from "@/MemberTable";
+import MemberChange from "./MemberChange";
 
 function App() {
   return (
     <div>
       <div className="mt-16 px-20">
-        <Button>Click me</Button>
+        <MemberChange/>
+        <MemberManager/>
       </div>
     </div>
   );

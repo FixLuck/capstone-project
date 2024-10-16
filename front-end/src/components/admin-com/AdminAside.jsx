@@ -17,11 +17,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import './index.css';
+import '../../index.css';
+
 
 export function AdminAside() {
   return (
-    <aside className="w-64 h-screen">
+    <aside className="h-screen">
       <Card className="card w-full h-full max-w-sm mx-auto bg-teal-500 p-5">
         <CardHeader>
           <CardTitle></CardTitle>

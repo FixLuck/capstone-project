@@ -1,5 +1,6 @@
 package fpl.sd.backend.entity;
 
+import fpl.sd.backend.constant.OrderConstants;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,39 +16,28 @@ import java.util.List;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class User {
+public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
+    @Column(nullable = false)
+    Double originalTotal;
 
     @Column(nullable = false)
-    String username;
+    Instant orderDate;
+
+    @Enumerated(EnumType.STRING)
+    OrderConstants.OrderStatus orderStatus;
 
     @Column(nullable = false)
-    String password;
-    @Column(nullable = false)
-    String email;
+    Double discountAmount;
 
     @Column(nullable = false)
-    String address;
-
-    @Column(nullable = false)
-    String phone;
-
-    @Column(nullable = false)
-    @Builder.Default
-    boolean isActive = true;
-
-    @Column(nullable = false)
-    Instant createdAt;
-
-
-    Instant updatedAt;
+    Double finalTotal;
 
     @ManyToOne
-    Role role;
+    User user;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    List<CustomerOrder> customerOrders = new ArrayList<>();
-
+    @OneToMany(mappedBy = "order")
+    List<OrderDetail> orderDetails = new ArrayList<>();
 }

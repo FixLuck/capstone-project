@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import './index.css';
+import '../index.css';
 export function DemoGrid() {
     return (
         //dang lam quen voi code grid bo cuc web (demo)

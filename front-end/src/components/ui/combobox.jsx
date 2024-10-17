@@ -1,8 +1,7 @@
-
-import { Check, ChevronsUpDown } from "lucide-react"
-
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import React from "react";  // You need to import React here
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -10,37 +9,32 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
-const frameworks = [
+const frameworksSortDiscount = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "newest",
+    label: "Newest",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "oldest",
+    label: "Oldest",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-]
+    value: "biggest",
+    label: "Biggest",
+  }
 
-export function ComboboxDemo() {
+];
+
+
+
+export function ComboboxSortDiscount() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
 
@@ -54,18 +48,18 @@ export function ComboboxDemo() {
           className="w-[200px] justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            ? frameworksSortDiscount.find((framework) => framework.value === value)?.label
+            : "Sort by"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder="Search for option" />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>No option found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {frameworksSortDiscount.map((framework) => (
                 <CommandItem
                   key={framework.value}
                   value={framework.value}
@@ -90,3 +84,4 @@ export function ComboboxDemo() {
     </Popover>
   )
 }
+

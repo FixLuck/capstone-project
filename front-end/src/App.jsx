@@ -1,13 +1,13 @@
 
 import AdminAside from './components/admin-com/AdminAside.jsx';
 // import ManagerAside from "./ManagerAside";
-// import DiscountManagement from "./DiscountManagement";
-import DemoGrid from "./pages/DemoGrid.jsx";
+import DiscountManagement from "./pages/DiscountManagement.jsx";
+// import DemoGrid from "./pages/DemoGrid.jsx";
 function App() {
   return (
     // <ManagerAside/>
-    <AdminAside/>
-    // <DiscountManagement/>
+    // <AdminAside/>
+    <DiscountManagement/>
     // <DemoGrid/>
   );
 }

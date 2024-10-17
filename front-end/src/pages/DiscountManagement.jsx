@@ -161,6 +161,87 @@ export function DiscountManagement() {
                     </label>
                   </TableCell>
                 </TableRow>
+
+                <TableRow>
+                  <TableCell>
+                    <Select onValueChange={handleSelection}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Edit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Action</SelectLabel>
+                          <SelectItem value="edit">Edit</SelectItem>
+                          <SelectItem value="delete">Delete</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                  <TableCell>Paid</TableCell>
+                  <TableCell>Credit Card</TableCell>
+                  <TableCell>30/10/2024</TableCell>
+                  <TableCell>30/10/2025</TableCell>
+                  <TableCell>
+                    <Checkbox id="terms2" />
+                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
+                      Still active
+                    </label>
+                  </TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>
+                    <Select onValueChange={handleSelection}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Edit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Action</SelectLabel>
+                          <SelectItem value="edit">Edit</SelectItem>
+                          <SelectItem value="delete">Delete</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                  <TableCell>Paid</TableCell>
+                  <TableCell>Credit Card</TableCell>
+                  <TableCell>30/10/2024</TableCell>
+                  <TableCell>30/10/2025</TableCell>
+                  <TableCell>
+                    <Checkbox id="terms2" />
+                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
+                      Still active
+                    </label>
+                  </TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>
+                    <Select onValueChange={handleSelection}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Edit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Action</SelectLabel>
+                          <SelectItem value="edit">Edit</SelectItem>
+                          <SelectItem value="delete">Delete</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                  <TableCell>Paid</TableCell>
+                  <TableCell>Credit Card</TableCell>
+                  <TableCell>30/10/2024</TableCell>
+                  <TableCell>30/10/2025</TableCell>
+                  <TableCell>
+                    <Checkbox id="terms2" />
+                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
+                      Still active
+                    </label>
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>
@@ -241,5 +322,7 @@ export function DiscountManagement() {
     </div>
   );
 }
+
+
 
 export default DiscountManagement;

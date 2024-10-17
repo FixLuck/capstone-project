@@ -2,7 +2,7 @@ package fpl.sd.backend.service;
 
 
 import fpl.sd.backend.dto.request.UserCreateRequest;
-import fpl.sd.backend.dto.request.UserResponse;
+import fpl.sd.backend.dto.response.UserResponse;
 import fpl.sd.backend.dto.request.UserUpdateRequest;
 import fpl.sd.backend.entity.User;
 import fpl.sd.backend.exception.AppException;

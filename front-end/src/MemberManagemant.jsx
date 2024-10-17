@@ -30,9 +30,21 @@
   import { Button } from "@/components/ui/button";
   import { Input } from "@/components/ui/input";
   import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-  function MemberTable() {
+  function MemberManagemant() {
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const handleSelection = (value) => {
+      setSelectedOption(value);
+  
+      // Open the dialog if 'edit' is selected
+      if (value === "edit") {
+        setIsDialogOpen(true);
+      }
+    };
     return (
       <div>
+        <div className="sm:col-span-2 sm:block hidden">
+          <AdminAside />
+        </div>
         {/* Head */}
         <div className="flex justify-between items-center">
           {/* Pagination */}
@@ -94,7 +106,7 @@
           <TableBody>
             <TableRow>
               <TableCell className="font-medium">
-              <Select>
+              <Select onValueChange={handleSelection}>
                 <SelectTrigger className="gap-2">
                   <label><FontAwesomeIcon icon={faEdit} /></label>
                   <SelectValue placeholder = "|"/>
@@ -134,8 +146,45 @@
             </SelectContent>
           </Select>
         </div>
+        {/* Dialog for editing discount */}
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogTrigger asChild>
+          <Button style={{ display: 'none' }}>Open Dialog</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle align="center">Edit Member</DialogTitle>
+          </DialogHeader>
+          <Card className="w-1/2 border border-gray-400 rounded-lg p-4">
+            <CardHeader>
+              <CardDescription>Chỉnh sửa và thêm thành viên</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid w-full gap-4">
+                <div className="grid gap-2 items-start space-y-2">
+                  <Label>Member ID</Label>
+                  <Input id="member_id" type="text" className="bg-gray-300" disabled />
+                </div>
+                <div className="grid gap-2 items-start space-y-2">
+                  <Label>Username</Label>
+                  <Input id="username" type="text" />
+                </div>
+                <div className="flex flex-col items-start space-y-2">
+                  <Label>Password</Label>
+                  <Input id="password" type="password" />
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="mr-4" variant="secondary">Back</Button>
+              <Button className="mr-4" variant="secondary">Add</Button>
+              <Button className="mr-4" variant="secondary">Save</Button>     
+            </CardFooter>
+          </Card>
+        </DialogContent>
+      </Dialog>
       </div>
     );
   }
 
-export default MemberTable;
+export default MemberManagemant;

@@ -1,13 +1,11 @@
 import "./App.css";
-import MemberManager from "@/MemberTable";
-import MemberChange from "./MemberChange";
+import MemberManagemant from "@/MemberManagemant";
 
 function App() {
   return (
     <div>
       <div className="mt-16 px-20">
-        <MemberChange/>
-        <MemberManager/>
+        <MemberManagemant/>
       </div>
     </div>
   );

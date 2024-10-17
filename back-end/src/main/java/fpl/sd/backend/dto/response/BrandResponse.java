@@ -1,4 +1,4 @@
-package fpl.sd.backend.dto.request;
+package fpl.sd.backend.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

@@ -16,7 +16,7 @@ import java.time.Instant;
 public class ShoeVariant {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String variantId;
+    String id;
 
     @Column(nullable = false)
     Instant createdAt;

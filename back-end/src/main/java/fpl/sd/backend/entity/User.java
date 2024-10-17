@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +18,7 @@ import java.time.Instant;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String userId;
+    String id;
 
     @Column(nullable = false)
     String username;
@@ -44,5 +46,8 @@ public class User {
 
     @ManyToOne
     Role role;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    List<CustomerOrder> customerOrders = new ArrayList<>();
 
 }

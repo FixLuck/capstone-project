@@ -6,6 +6,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +19,7 @@ import java.time.Instant;
 public class Shoe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int shoeId;
+    int id;
 
     @Column(nullable = false)
     String name;
@@ -33,9 +35,9 @@ public class Shoe {
     double fakePrice;
 
     @Column(nullable = false)
-    Instant createAt;
+    Instant createdAt;
 
-    Instant updateAt;
+    Instant updatedAt;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -47,5 +49,14 @@ public class Shoe {
 
     @ManyToOne
     Brand brand;
+
+    @OneToMany(mappedBy = "shoe", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    List<ShoeImage> shoeImages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "shoe", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    List<ShoeVariant> shoeVariants = new ArrayList<>();
+
+    @OneToMany(mappedBy = "shoe")
+    List<OrderDetail> orderDetails = new ArrayList<>();
 
 }

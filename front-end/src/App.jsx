@@ -1,4 +1,5 @@
 import "./App.css";
+
 // import MemberManager from "@/MemberTable";
 // import MemberChange from "./pages/admin-pages/MemberChange.jsx";
 
@@ -16,6 +17,18 @@ import { createBrowserRouter } from 'react-router-dom';
 import AdminAside from './components/admin-com/AdminAside.jsx';
 // import ManagerAside from "./ManagerAside";
 import DiscountManagement from "./pages/admin-pages/DiscountManagement.jsx";
+
+import MemberManager from "@/MemberTable";
+import MemberChange from "./MemberChange";
+
+import MemberManagemant from "@/MemberManagemant";
+
+
+import { createBrowserRouter } from 'react-router-dom';
+import AdminAside from './components/admin-com/AdminAside.jsx';
+// import ManagerAside from "./ManagerAside";
+import DiscountManagement from "./pages/DiscountManagement.jsx";
+
 import RootLayout from './pages/RootLayout.jsx';
 import HomePage from './pages/shop-pages/HomePage.jsx';
 // import DemoGrid from "./pages/DemoGrid.jsx";
@@ -34,28 +47,23 @@ const router = createBrowserRouter([
     children: [
       {index: true, element: <HomePage/>},
       {path: 'shoes', element: <ListShoePage/>},
-      {path: 'add-shoe', element: <AddShoePage/>}
+      {path: 'add-shoe', element: <AddShoePage/>},
+      {path: 'admin', element: <AdminAside/>},
+      {path: 'member', element: <MemberManagemant/>},
     ]
   }
 ])
 
+
 function App() {
   return (
-    <div>
-      <div className="mt-16 px-20">
-        <MemberManagemant/>
-      </div>
+    
       
-    <WelcomeAdmin/>
+
 
 <RouterProvider router={router}>
 
 </RouterProvider>
-    </div>
-    // <ManagerAside/>
-    // <AdminAside/>
-    // <DiscountManagement/>
-    // <DemoGrid/>
 
 
   );

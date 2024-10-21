@@ -17,8 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../../index.css';
-
 
 export function AdminAside() {
   return (
@@ -43,19 +43,47 @@ export function AdminAside() {
           </DropdownMenu>
           <nav className="mt-12">
             <ul>
-              <li className="mb-3"><a href="#" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">chào mừng</a></li>
-              <li className="mb-3"><a href="#" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">quản lý giày</a></li>
-              <li className="mb-3"><a href="#" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">quản lý discount</a></li>
-              <li className="mb-3"><a href="#" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">lịch sử mua hàng</a></li>
-              <li className="mb-3"><a href="#" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">quản lý tài khoản</a></li>
-              <li className="mb-3"><a href="#" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">thống kê doanh thu</a></li>
+              <li className="mb-3">
+                <Link to="/" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                  chào mừng
+                </Link>
+              </li>
+              <li className="mb-3">
+                <Link to="/manage-shoes" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                  quản lý giày
+                </Link>
+              </li>
+              <li className="mb-3">
+                <Link to="/discount-management" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                  quản lý discount
+                </Link>
+              </li>
+              <li className="mb-3">
+                <Link to="/purchase-history" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                  lịch sử mua hàng
+                </Link>
+              </li>
+              <li className="mb-3">
+                <Link to="/account-management" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                  quản lý tài khoản
+                </Link>
+              </li>
+              <li className="mb-3">
+                <Link to="/revenue-stats" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                  thống kê doanh thu
+                </Link>
+              </li>
             </ul>
           </nav>
         </CardContent>
-        <CardFooter >
+        <CardFooter>
           <nav className="mt-12">
             <ul>
-              <li className="mt-10"><a href="#" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">log out</a></li>
+              <li className="mt-10">
+                <Link to="/logout" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                  log out
+                </Link>
+              </li>
             </ul>
           </nav>
         </CardFooter>

@@ -15,6 +15,14 @@ import java.time.Instant;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ShoeImage {
 
+    public ShoeImage(String publicId, String url, Instant createdAt, Instant updatedAt, Shoe shoe) {
+        this.publicId = publicId;
+        this.url = url;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.shoe = shoe;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

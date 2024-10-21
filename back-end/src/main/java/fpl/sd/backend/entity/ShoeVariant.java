@@ -14,6 +14,16 @@ import java.time.Instant;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ShoeVariant {
+
+    public ShoeVariant(Instant createdAt, Instant updatedAt, String sku, int stockQuantity, Shoe shoe, SizeChart sizeChart) {
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.sku = sku;
+        this.stockQuantity = stockQuantity;
+        this.shoe = shoe;
+        this.sizeChart = sizeChart;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
 <<<<<<< HEAD

@@ -10,12 +10,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BrandResponse {
-    int brandId;
-    String brandName;
-    String createdAt;
-    String description;
-    String logoUrl;
-    boolean isActive;
-
+public class SizeChartResponse {
+    int id;
+    int sizeNumber;
 }

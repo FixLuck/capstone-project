@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 import "./App.css";
-<<<<<<< HEAD
 import MemberManager from "@/MemberTable";
 import MemberChange from "./MemberChange";
-=======
->>>>>>> 5865d34bea58693a654f7c96fa4522eb9a9cc324
 =======
 import MemberManagemant from "@/MemberManagemant";
 >>>>>>> dat-branch
@@ -37,25 +33,18 @@ const router = createBrowserRouter([
 ])
 function App() {
   return (
-<<<<<<< HEAD
     <div>
       <div className="mt-16 px-20">
         <MemberManagemant/>
       </div>
     </div>
-=======
     // <ManagerAside/>
     // <AdminAside/>
     // <DiscountManagement/>
     // <DemoGrid/>
-<<<<<<< HEAD
->>>>>>> 5865d34bea58693a654f7c96fa4522eb9a9cc324
-=======
-
     <RouterProvider router={router}>
 
     </RouterProvider>
->>>>>>> d99303e7908fbd90c8ba0c8f965e8e9a04c1f09e
   );
 }
 

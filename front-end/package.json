@@ -10,33 +10,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-=======
-    "@hookform/resolvers": "^3.9.0",
->>>>>>> d99303e7908fbd90c8ba0c8f965e8e9a04c1f09e
     "@radix-ui/react-checkbox": "^1.1.2",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "@radix-ui/react-label": "^2.1.0",
-=======
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-popover": "^1.1.2",
     "@radix-ui/react-select": "^2.1.2",
->>>>>>> 5865d34bea58693a654f7c96fa4522eb9a9cc324
-=======
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-select": "^2.1.2",
->>>>>>> dat-branch
     "@radix-ui/react-slot": "^1.1.0",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",

@@ -33,6 +33,10 @@ public enum ErrorCode {
 
     //Role-related errors
     ROLE_ALREADY_EXISTS(409, "Role already exists", HttpStatus.CONFLICT),
+
+
+    //Product-related errors
+    PRODUCT_NOT_FOUND(404, "Product Not Found", HttpStatus.NOT_FOUND),
     ;
 
     private final int code;

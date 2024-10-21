@@ -2,7 +2,11 @@ package fpl.sd.backend.service;
 
 
 import fpl.sd.backend.dto.request.UserCreateRequest;
+<<<<<<< HEAD
 import fpl.sd.backend.dto.response.UserResponse;
+=======
+import fpl.sd.backend.dto.request.UserResponse;
+>>>>>>> dat-branch
 import fpl.sd.backend.dto.request.UserUpdateRequest;
 import fpl.sd.backend.entity.User;
 import fpl.sd.backend.exception.AppException;

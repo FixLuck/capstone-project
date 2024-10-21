@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ManagerAside from "@/components/manager-com/ManagerAside";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
   Popover,

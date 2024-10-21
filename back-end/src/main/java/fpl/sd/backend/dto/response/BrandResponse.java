@@ -14,7 +14,6 @@ public class BrandResponse {
     int brandId;
     String brandName;
     String createdAt;
-
     String description;
     String logoUrl;
     boolean isActive;

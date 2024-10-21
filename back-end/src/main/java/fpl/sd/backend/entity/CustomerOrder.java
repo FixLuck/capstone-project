@@ -40,4 +40,7 @@ public class CustomerOrder {
 
     @OneToMany(mappedBy = "order")
     List<OrderDetail> orderDetails = new ArrayList<>();
+
+    @ManyToOne
+    Discount discount;
 }

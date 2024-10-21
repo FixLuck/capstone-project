@@ -6,6 +6,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,4 +43,7 @@ public class Discount {
 
     @Builder.Default
     boolean isActive = true;
+
+    @OneToMany(mappedBy = "discount")
+    List<CustomerOrder> customerOrders = new ArrayList<>();
 }

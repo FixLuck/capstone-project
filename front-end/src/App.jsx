@@ -13,6 +13,7 @@ import AddShoePage from './pages/admin-pages/AddShoePage.jsx';
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,10 +28,6 @@ const router = createBrowserRouter([
 ])
 function App() {
   return (
-    // <ManagerAside/>
-    // <AdminAside/>
-    // <DiscountManagement/>
-    // <DemoGrid/>
 
     <RouterProvider router={router}>
 

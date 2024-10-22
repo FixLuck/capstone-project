@@ -1,3 +1,9 @@
+import "./App.css";
+import MemberManager from "@/MemberTable";
+import MemberChange from "./MemberChange";
+
+import MemberManagemant from "@/MemberManagemant";
+
 
 import { createBrowserRouter } from 'react-router-dom';
 import AdminAside from './components/admin-com/AdminAside.jsx';
@@ -28,7 +34,6 @@ const router = createBrowserRouter([
 ])
 function App() {
   return (
-
     <RouterProvider router={router}>
 
     </RouterProvider>

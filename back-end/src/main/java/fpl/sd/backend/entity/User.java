@@ -5,6 +5,11 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+=======
+>>>>>>> dat-branch
 
 @Getter
 @Setter
@@ -16,7 +21,11 @@ import java.time.Instant;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+<<<<<<< HEAD
+    String id;
+=======
     String userId;
+>>>>>>> dat-branch
 
     @Column(nullable = false)
     String username;
@@ -45,4 +54,10 @@ public class User {
     @ManyToOne
     Role role;
 
+<<<<<<< HEAD
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    List<CustomerOrder> customerOrders = new ArrayList<>();
+
+=======
+>>>>>>> dat-branch
 }

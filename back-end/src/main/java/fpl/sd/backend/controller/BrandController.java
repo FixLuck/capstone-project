@@ -2,7 +2,7 @@ package fpl.sd.backend.controller;
 
 import fpl.sd.backend.dto.ApiResponse;
 import fpl.sd.backend.dto.request.BrandCreateRequest;
-import fpl.sd.backend.dto.request.BrandResponse;
+import fpl.sd.backend.dto.response.BrandResponse;
 import fpl.sd.backend.service.BrandService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;

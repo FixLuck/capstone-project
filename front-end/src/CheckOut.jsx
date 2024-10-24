@@ -57,9 +57,9 @@ function CheckOut() {
                     </CardHeader>
                     <CardContent class="flex items-center justify-center">
                       <div class="w-full flex flex-col space-y-4">
-                          <button class="bg-black text-white rounded p-2">Cast</button>
-                          <button class="bg-black text-white rounded p-2">Credit Card</button>
-                          <button class="bg-black text-white rounded p-2">Wallet</button>
+                          <Button class="bg-black text-white rounded p-2">Cast</Button>
+                          <Button class="bg-black text-white rounded p-2">Credit Card</Button>
+                          <Button class="bg-black text-white rounded p-2">Wallet</Button>
                       </div>  
                     </CardContent>
                     <CardFooter>
@@ -80,7 +80,7 @@ function CheckOut() {
                                 placeholder="Promo Code" 
                                 class="border border-gray-300 rounded p-2 w-40 h-10"
                             />
-                            <button class="bg-green-500 text-white rounded h-10 px-4">Apply</button>
+                            <Button class="bg-green-500 text-white rounded h-10 px-4">Apply</Button>
                         </div>
                       </CardContent>
                       <CardFooter>

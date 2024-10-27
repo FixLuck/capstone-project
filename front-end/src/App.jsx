@@ -4,6 +4,7 @@ import CheckOut from "./CheckOut";
 import UserLogin from "./UserLogin";
 import SignUp from "./SignUp";
 import Profile from "./Profile";
+import Notifacation from "./Notifacation";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         {/*<MemberManagemant/>*/} 
         {/*<CheckOut/>*/}
         {/*<UserLogin/>*/}
-        <Profile/>
+        {/*<Profile/>*/}
+        <Notifacation/>
         {/*<SignUp/>*/}
       </div>
     </div>

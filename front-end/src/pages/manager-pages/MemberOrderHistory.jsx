@@ -48,6 +48,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import ManagerAside from "@/components/manager-com/ManagerAside";
 
 export function MemberOrderHistory() {
   const [selectedOption, setSelectedOption] = useState("");
@@ -70,7 +71,7 @@ export function MemberOrderHistory() {
   return (
     <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
       <div className="sm:col-span-2 sm:block hidden">
-        <AdminAside />
+        <ManagerAside></ManagerAside>
       </div>
       <div className="sm:col-span-10">
         <h1 className="mt-5 text-lg" align="center">

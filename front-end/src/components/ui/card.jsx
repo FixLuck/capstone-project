@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 
 
@@ -54,14 +54,6 @@
 //   }
   // Card.jsx
 
-
-  
-
-
-
-=======
-
->>>>>>> 7d89114ea6c1409a4d7707cf1b57df0d536e3f1d
 import * as React from "react"
 
 import { cn } from "@/lib/utils"

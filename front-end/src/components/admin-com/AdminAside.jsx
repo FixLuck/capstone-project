@@ -59,7 +59,7 @@ export function AdminAside() {
                 </Link>
               </li>
               <li className="mb-3">
-                <Link to="/purchase-history" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
+                <Link to="/member-order-history" className="hover:bg-red-400 text-emerald-50 transition-colors duration-200">
                   lịch sử mua hàng
                 </Link>
               </li>

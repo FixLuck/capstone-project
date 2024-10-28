@@ -56,7 +56,6 @@ public class Shoe {
     @OneToMany(mappedBy = "shoe", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     List<ShoeVariant> shoeVariants = new ArrayList<>();
 
-    @OneToMany(mappedBy = "shoe")
-    List<OrderDetail> orderDetails = new ArrayList<>();
+
 
 }

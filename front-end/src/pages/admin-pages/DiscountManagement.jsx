@@ -217,6 +217,7 @@ export function DiscountManagement() {
                   </TableCell>
                 </TableRow>
 
+
                 <TableRow>
                   <TableCell>
                     <Select onValueChange={handleSelection}>
@@ -243,6 +244,7 @@ export function DiscountManagement() {
                     </label>
                   </TableCell>
                 </TableRow>
+
 
               </TableBody>
             </Table>

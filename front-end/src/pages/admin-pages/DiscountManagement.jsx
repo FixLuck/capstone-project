@@ -163,7 +163,6 @@ export function DiscountManagement() {
                 </TableRow>
 
 
-
                 <TableRow>
                   <TableCell>
                     <Select onValueChange={handleSelection}>
@@ -327,6 +326,4 @@ export function DiscountManagement() {
     </div>
   );
 }
-
-
 export default DiscountManagement;

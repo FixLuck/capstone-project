@@ -1,4 +1,5 @@
 import "./App.css";
+
 // import MemberManagemant from "./pages/admin-pages/MemberManagemant.jsx";
 import WelcomeAdmin from "./pages/admin-pages/WelcomeAdmin.jsx";
 // import { createBrowserRouter } from 'react-router-dom';
@@ -12,6 +13,12 @@ import WelcomeAdmin from "./pages/admin-pages/WelcomeAdmin.jsx";
 // import AddShoePage from './pages/admin-pages/AddShoePage.jsx';
 import OrderHistory from "./pages/shop-pages/OrderHistory.jsx";
 import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory.jsx";
+
+
+
+import MemberManagemant from "@/MemberManagemant";
+
+
 
 import Cart from "./pages/shop-pages/Cart";
 
@@ -43,20 +50,34 @@ import Cart from "./pages/shop-pages/Cart";
 // ])
 
 
+
 function App() {
   return (
     
-<Cart/>
+
+
+    <RouterProvider router={router}>
+
+    </RouterProvider>
 
 
 
 
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <RootLayout/>,
+//     errorElement: <ErrorPage/>,
+//     children: [
+//       {index: true, element: <HomePage/>},
+//       {path: 'shoes', element: <ListShoePage/>},
+//       {path: 'add-shoe', element: <AddShoePage/>}
+//     ]
+//   }
+// ])
 
-  );
+//   );
 }
 
 export default App;
 // phải để trg return
-    // <RouterProvider router={router}>
-
-    // </RouterProvider>

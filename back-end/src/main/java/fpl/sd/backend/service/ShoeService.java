@@ -118,6 +118,10 @@ public class ShoeService {
                     shoeVariant.setCreatedAt(Instant.now());
                     shoeVariant.setSizeChart(size);
                     String sku = skuGenerators.generateSKU(brand.getBrandName(), request.getName(), size.getSizeNumber());
+
+                    if (shoeVariantRepository.existsBySku(sku)) {
+                        throw new AppException(ErrorCode.SKU_ALREADY_EXISTS);
+                    }
                     shoeVariant.setShoe(newShoe);
                     shoeVariant.setSku(sku);
                     return shoeVariant;

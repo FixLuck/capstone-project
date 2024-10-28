@@ -161,7 +161,7 @@ export function DiscountManagement() {
                     </label>
                   </TableCell>
                 </TableRow>
-<<<<<<< HEAD
+
 
                 <TableRow>
                   <TableCell>
@@ -243,8 +243,7 @@ export function DiscountManagement() {
                     </label>
                   </TableCell>
                 </TableRow>
-=======
->>>>>>> dat-branch
+
               </TableBody>
             </Table>
           </div>
@@ -325,10 +324,4 @@ export function DiscountManagement() {
     </div>
   );
 }
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> dat-branch
 export default DiscountManagement;

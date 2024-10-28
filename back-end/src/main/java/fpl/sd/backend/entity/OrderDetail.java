@@ -21,12 +21,11 @@ public class OrderDetail {
     private CustomerOrder order;
 
     @ManyToOne
-    @MapsId("shoeId")
-    @JoinColumn(name = "shoe_id", nullable = false)
-    private Shoe shoe;
+    @MapsId("variantId")
+    @JoinColumn(name = "shoe_variant_id", nullable = false)
+    private ShoeVariant variant;
 
     @Column(nullable = false)
     int quantity;
-
 
 }

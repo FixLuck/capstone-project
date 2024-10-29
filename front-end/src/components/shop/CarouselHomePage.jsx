@@ -30,7 +30,7 @@ export default function CarouselHomePage() {
             <div className='p-1'>
               <Card>
                 <CardContent className="flex items-center justify-center p-6">
-                    <img className='mx-auto w-2/3 object-cover' src={`/carousel-images/${image}`} alt="" />
+                    <img className='mx-auto h-[600px] w-full object-contain' src={`/carousel-images/${image}`} alt=""/>
                 </CardContent>
               </Card>
             </div>

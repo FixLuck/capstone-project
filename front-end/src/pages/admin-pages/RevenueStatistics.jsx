@@ -45,7 +45,7 @@ import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import AdminAside from './components/admin-com/AdminAside.jsx';
+import AdminAside from '../../components/admin-com/AdminAside.jsx';
 import { ComboboxSortRevenue } from "@/components/ui/combobox";
 import {
     Popover,
@@ -96,7 +96,6 @@ function RevenueStatistics() {
             {/* SearchBar */}
             <div className="flex items-center space-x-4">
               <div className="flex items-center h-10">
-                <Label className="m-2" htmlFor="revStart">Start Day</Label>
                 <Popover id="revStart" className="mb-2">
                 <PopoverTrigger asChild>
                     <Button
@@ -119,8 +118,6 @@ function RevenueStatistics() {
                     />
                 </PopoverContent>
                 </Popover>
-
-                <Label className="m-2" htmlFor="revEnd">End Day</Label>
                 <Popover id="revEnd" className="mb-2">
                 <PopoverTrigger asChild>
                     <Button

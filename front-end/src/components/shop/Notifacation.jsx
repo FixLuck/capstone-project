@@ -15,7 +15,7 @@ function Notifacation() {
         <div className="w-full h-full p-4">
             <Card className="w-full h-4/5 border-0">
             <CardHeader>
-                <CardDescription className="font-bold text-center">Bạn có thông báo quan trọng!!!</CardDescription>
+                <CardDescription className="font-bold text-center text-red-500">You have an important notice !!!</CardDescription>
             </CardHeader>
             <CardContent className="flex items-center h-4/5">
                 <img src="https://short.com.vn/W4Ty" alt="Thông báo quan trọng" className="w-1/3 h-auto mr-2" />

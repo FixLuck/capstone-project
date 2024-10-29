@@ -17,7 +17,7 @@ const App = () => {
             <Route index element={<WelcomeAdmin />} />
             <Route path="discount-management" element={<DiscountManagement />} />
             <Route path="member-order-history" element={<MemberOrderHistory />} />
-            <Route path="member-management" element={<MemberManagemant />} />
+            <Route path="account-management" element={<MemberManagemant />} />
           </Route>
         </Routes>
 

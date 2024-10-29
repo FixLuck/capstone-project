@@ -28,7 +28,10 @@ public class ShoeVariant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+
+
     String id;
+
 
     @Column(nullable = false)
     Instant createdAt;

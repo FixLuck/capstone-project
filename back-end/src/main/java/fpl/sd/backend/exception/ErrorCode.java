@@ -40,9 +40,17 @@ public enum ErrorCode {
     PRODUCT_NOT_FOUND(404, "Product Not Found", HttpStatus.NOT_FOUND),
 
 
+    DISCOUNT_NOT_FOUND(404, "Discount Not Found", HttpStatus.NOT_FOUND),
+    DISCOUNT_ALREADY_EXISTS(409, "Discount already exists", HttpStatus.CONFLICT),
+
     //Order-related errors
     ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
+
     ;
+
+
+
+
 
     private final int code;
     private final String message;

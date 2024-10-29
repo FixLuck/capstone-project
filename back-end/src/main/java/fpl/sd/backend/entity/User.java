@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -52,6 +57,5 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     List<CustomerOrder> customerOrders = new ArrayList<>();
-
 
 }

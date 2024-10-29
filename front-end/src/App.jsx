@@ -10,15 +10,7 @@ import RevenueStatistics from "./RevenueStatistics";
 function App() {
   return (
     <div>
-      <div className="mt-16 px-20">
-        {/*<MemberManagemant/>*/} 
-        {/*<CheckOut/>*/}
-        {/*<UserLogin/>*/}
-        {/*<Profile/>*/}
-        {/*<Notifacation/>*/}
-        <RevenueStatistics/>
-        {/*<SignUp/>*/}
-      </div>
+      
     </div>
   );
 }

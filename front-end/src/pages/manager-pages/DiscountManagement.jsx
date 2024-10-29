@@ -48,6 +48,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import ManagerAside from "@/components/manager-com/ManagerAside";
 
 export function DiscountManagement() {
   const [selectedOption, setSelectedOption] = useState("");
@@ -70,7 +71,7 @@ export function DiscountManagement() {
   return (
     <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
       <div className="sm:col-span-2 sm:block hidden">
-        <AdminAside />
+        <ManagerAside />
       </div>
       <div className="sm:col-span-10">
         <h1 className="mt-5 text-lg" align="center">
@@ -161,7 +162,7 @@ export function DiscountManagement() {
                     </label>
                   </TableCell>
                 </TableRow>
-<<<<<<< HEAD
+
 
                 <TableRow>
                   <TableCell>
@@ -217,6 +218,7 @@ export function DiscountManagement() {
                   </TableCell>
                 </TableRow>
 
+
                 <TableRow>
                   <TableCell>
                     <Select onValueChange={handleSelection}>
@@ -243,8 +245,8 @@ export function DiscountManagement() {
                     </label>
                   </TableCell>
                 </TableRow>
-=======
->>>>>>> dat-branch
+
+
               </TableBody>
             </Table>
           </div>
@@ -325,10 +327,4 @@ export function DiscountManagement() {
     </div>
   );
 }
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> dat-branch
 export default DiscountManagement;

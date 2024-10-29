@@ -29,6 +29,7 @@ public enum ErrorCode {
     BRAND_DESCRIPTION_TOO_LONG(400, "Brand description is too long", HttpStatus.BAD_REQUEST),
     BRAND_LOGO_INVALID(400, "Invalid Brand Logo URL", HttpStatus.BAD_REQUEST),
     BRAND_INACTIVE(403, "This brand is inactive", HttpStatus.FORBIDDEN),
+    SKU_ALREADY_EXISTS(500, "Sku Already Exists", HttpStatus.CONFLICT),
 
 
     //Role-related errors
@@ -37,6 +38,10 @@ public enum ErrorCode {
 
     //Product-related errors
     PRODUCT_NOT_FOUND(404, "Product Not Found", HttpStatus.NOT_FOUND),
+
+
+    //Order-related errors
+    ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
     ;
 
     private final int code;

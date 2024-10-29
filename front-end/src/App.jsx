@@ -1,4 +1,18 @@
 import "./App.css";
+import MemberManagemant from "./MemberManagemant";
+import CheckOut from "./CheckOut";
+import UserLogin from "./UserLogin";
+import SignUp from "./SignUp";
+import Profile from "./Profile";
+import Notifacation from "./Notifacation";
+import RevenueStatistics from "./RevenueStatistics";
+
+function App() {
+  return (
+    <div>
+      
+    </div>
+  );
 import "./App.jsx";
 
 // import WelcomeAdmin from "./pages/admin-pages/WelcomeAdmin.jsx";
@@ -83,6 +97,7 @@ function App() {
   )
 
 
+>>>>>>> d8fbddc9ed858f9a14af2c8eb1d0fc3314f984fb
 }
 
 export default App;

@@ -46,7 +46,7 @@ const router = createBrowserRouter([
   //   children: [
   //     {index: true, element: <HomePage/>},
   //     {path: 'shoes', element: <ListShoePage/>},
-  //     {path: 'add-shoe', element: <AddShoePage/>},
+  //     {path: 'add-shoe', elem cent: <AddShoePage/>},
   //     {path: 'cart', element: <Cart/>},
   //     {path: 'order-history', element: <OrderHistory/>},
 
@@ -97,7 +97,6 @@ function App() {
   )
 
 
->>>>>>> d8fbddc9ed858f9a14af2c8eb1d0fc3314f984fb
 }
 
 export default App;

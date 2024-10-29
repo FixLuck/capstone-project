@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30e8454b-0c78-4c8f-9bf4-5d36b0e0ccaf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/DiscountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountCreateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountUpdateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/DiscountResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/DiscountMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/DiscountRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/DiscountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/ShoeVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/ShoeVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/SizeChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/SizeChart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/BrandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/BrandMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="30e8454b-0c78-4c8f-9bf4-5d36b0e0ccaf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,24 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.BackEndApplication.executor": "Run",
-    "git-widget-placeholder": "hung-branch",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BackEndApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;hung-branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />

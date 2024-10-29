@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,7 +28,10 @@ public class ShoeVariant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String variantId;
+
+
+    String id;
+
 
     @Column(nullable = false)
     Instant createdAt;
@@ -44,4 +49,7 @@ public class ShoeVariant {
 
     @ManyToOne
     SizeChart sizeChart;
+
+    @OneToMany(mappedBy = "variant")
+    List<OrderDetail> orderDetails = new ArrayList<>();
 }

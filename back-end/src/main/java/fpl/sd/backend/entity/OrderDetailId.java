@@ -15,5 +15,5 @@ import java.io.Serializable;
 @Embeddable
 public class OrderDetailId implements Serializable {
     String orderId;
-    Integer shoeId;
+    String variantId;
 }

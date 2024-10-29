@@ -22,6 +22,7 @@ public class Role {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+
     RoleConstants.Role roles;
 
     @OneToMany(mappedBy = "role", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

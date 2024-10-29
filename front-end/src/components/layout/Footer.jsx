@@ -4,7 +4,7 @@ import { Input } from '../ui/input'
 
 export default function Footer() {
   return (
-    <footer className='pt-14 pb-32 bg-white'>
+    <footer className='pt-14 pb-32 bg-white mt-4'>
       <div className='relative z-10 container grid lg:grid-cols-4 gap-8 mx-auto'>
         <div>
           <h4 className='font-bold text-2xl'>SUPER TEAM IN VIETNAM</h4>

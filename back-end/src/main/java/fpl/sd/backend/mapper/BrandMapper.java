@@ -1,5 +1,4 @@
 package fpl.sd.backend.mapper;
-
 import fpl.sd.backend.dto.request.BrandCreateRequest;
 import fpl.sd.backend.dto.response.BrandResponse;
 import fpl.sd.backend.entity.Brand;

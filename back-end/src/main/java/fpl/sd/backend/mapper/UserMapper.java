@@ -1,5 +1,4 @@
 package fpl.sd.backend.mapper;
-
 import fpl.sd.backend.dto.request.UserCreateRequest;
 import fpl.sd.backend.dto.response.UserResponse;
 import fpl.sd.backend.entity.User;

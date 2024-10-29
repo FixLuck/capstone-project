@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface ShoeVariantRepository extends JpaRepository<ShoeVariant, String> {
     List<ShoeVariant> findShoeVariantByShoeId(Integer shoeId);
     Optional<ShoeVariant> findShoeVariantBySku(String sku);
+    boolean existsBySku(String sku);
 }

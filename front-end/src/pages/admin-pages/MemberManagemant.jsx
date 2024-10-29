@@ -46,7 +46,7 @@
   import { Input } from "@/components/ui/input";
   import { Label } from "@/components/ui/label";
   import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-  import AdminAside from './components/admin-com/AdminAside.jsx';
+  import AdminAside from '../../components/admin-com/AdminAside.jsx';
 
   function MemberManagemant() {
     const [selectedOption, setSelectedOption] = useState("");

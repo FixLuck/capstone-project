@@ -17,8 +17,6 @@ public class SizeChart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
-
     @Column(nullable = false)
     double sizeNumber;
 

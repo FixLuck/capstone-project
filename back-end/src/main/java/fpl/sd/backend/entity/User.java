@@ -5,8 +5,15 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
+
 import java.util.ArrayList;
 import java.util.List;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 @Getter
 @Setter
@@ -18,7 +25,8 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String userId;
+    String id;
+
 
     @Column(nullable = false)
     String username;

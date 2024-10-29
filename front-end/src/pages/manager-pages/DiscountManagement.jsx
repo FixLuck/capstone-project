@@ -48,6 +48,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import ManagerAside from "@/components/manager-com/ManagerAside";
 
 export function DiscountManagement() {
   const [selectedOption, setSelectedOption] = useState("");
@@ -70,7 +71,7 @@ export function DiscountManagement() {
   return (
     <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
       <div className="sm:col-span-2 sm:block hidden">
-        <AdminAside />
+        <ManagerAside />
       </div>
       <div className="sm:col-span-10">
         <h1 className="mt-5 text-lg" align="center">
@@ -161,6 +162,91 @@ export function DiscountManagement() {
                     </label>
                   </TableCell>
                 </TableRow>
+
+
+                <TableRow>
+                  <TableCell>
+                    <Select onValueChange={handleSelection}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Edit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Action</SelectLabel>
+                          <SelectItem value="edit">Edit</SelectItem>
+                          <SelectItem value="delete">Delete</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                  <TableCell>Paid</TableCell>
+                  <TableCell>Credit Card</TableCell>
+                  <TableCell>30/10/2024</TableCell>
+                  <TableCell>30/10/2025</TableCell>
+                  <TableCell>
+                    <Checkbox id="terms2" />
+                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
+                      Still active
+                    </label>
+                  </TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>
+                    <Select onValueChange={handleSelection}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Edit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Action</SelectLabel>
+                          <SelectItem value="edit">Edit</SelectItem>
+                          <SelectItem value="delete">Delete</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                  <TableCell>Paid</TableCell>
+                  <TableCell>Credit Card</TableCell>
+                  <TableCell>30/10/2024</TableCell>
+                  <TableCell>30/10/2025</TableCell>
+                  <TableCell>
+                    <Checkbox id="terms2" />
+                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
+                      Still active
+                    </label>
+                  </TableCell>
+                </TableRow>
+
+
+                <TableRow>
+                  <TableCell>
+                    <Select onValueChange={handleSelection}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Edit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Action</SelectLabel>
+                          <SelectItem value="edit">Edit</SelectItem>
+                          <SelectItem value="delete">Delete</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                  <TableCell>Paid</TableCell>
+                  <TableCell>Credit Card</TableCell>
+                  <TableCell>30/10/2024</TableCell>
+                  <TableCell>30/10/2025</TableCell>
+                  <TableCell>
+                    <Checkbox id="terms2" />
+                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
+                      Still active
+                    </label>
+                  </TableCell>
+                </TableRow>
+
+
               </TableBody>
             </Table>
           </div>
@@ -241,5 +327,4 @@ export function DiscountManagement() {
     </div>
   );
 }
-
 export default DiscountManagement;

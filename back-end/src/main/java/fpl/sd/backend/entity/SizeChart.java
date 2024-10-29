@@ -16,11 +16,8 @@ import java.util.List;
 public class SizeChart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
     int id;
-=======
-    int sizeId;
->>>>>>> dat-branch
+
 
     @Column(nullable = false)
     double sizeNumber;

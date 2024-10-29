@@ -22,11 +22,7 @@ public class Role {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-<<<<<<< HEAD
     RoleConstants.Role roles;
-=======
-    RoleConstants.Role role;
->>>>>>> dat-branch
 
     @OneToMany(mappedBy = "role", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     List<User> users = new ArrayList<>();

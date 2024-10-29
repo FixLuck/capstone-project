@@ -37,7 +37,17 @@ public enum ErrorCode {
 
     //Product-related errors
     PRODUCT_NOT_FOUND(404, "Product Not Found", HttpStatus.NOT_FOUND),
+
+
+    //Discount-related errors
+    DISCOUNT_NOT_FOUND(404, "Discount Not Found", HttpStatus.NOT_FOUND),
+    DISCOUNT_ALREADY_EXISTS(409, "Discount already exists", HttpStatus.CONFLICT),
+
     ;
+
+
+
+
 
     private final int code;
     private final String message;

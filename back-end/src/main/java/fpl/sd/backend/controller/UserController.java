@@ -3,11 +3,7 @@ package fpl.sd.backend.controller;
 
 import fpl.sd.backend.dto.ApiResponse;
 import fpl.sd.backend.dto.request.UserCreateRequest;
-<<<<<<< HEAD
 import fpl.sd.backend.dto.response.UserResponse;
-=======
-import fpl.sd.backend.dto.request.UserResponse;
->>>>>>> dat-branch
 import fpl.sd.backend.dto.request.UserUpdateRequest;
 import fpl.sd.backend.service.UserService;
 import jakarta.validation.Valid;

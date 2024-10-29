@@ -2,11 +2,7 @@ package fpl.sd.backend.service;
 
 
 import fpl.sd.backend.dto.request.UserCreateRequest;
-<<<<<<< HEAD
 import fpl.sd.backend.dto.response.UserResponse;
-=======
-import fpl.sd.backend.dto.request.UserResponse;
->>>>>>> dat-branch
 import fpl.sd.backend.dto.request.UserUpdateRequest;
 import fpl.sd.backend.entity.User;
 import fpl.sd.backend.exception.AppException;
@@ -52,7 +48,7 @@ public class UserService {
 
     public UserResponse getUserById(String id){
         return userMapper.toUserResponse(userRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("User with id " + id + " not found")));
+                .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND)));
     }
 
 //    public UserResponse updateUser(String id, UserUpdateRequest request){

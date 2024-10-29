@@ -26,11 +26,7 @@ public class ShoeVariant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-<<<<<<< HEAD
-    String id;
-=======
     String variantId;
->>>>>>> dat-branch
 
     @Column(nullable = false)
     Instant createdAt;

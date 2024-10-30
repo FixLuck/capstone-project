@@ -17,6 +17,7 @@ import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 function UserLogin() {
     return (
+        //Code chức năng để đăng nhập tài khoản người dùng, code chức năng để đăng xuất 
         <div className="flex items-center justify-center h-screen" style={{ backgroundImage: "url('https://short.com.vn/kd9s')", backgroundSize: "cover"}}>
             <div className="w-full max-w-full md:max-w-lg p-6 bg-white rounded-lg shadow-md">
                 <h1 className="mt-5 text-lg font-bold text-center text-black">Login</h1>

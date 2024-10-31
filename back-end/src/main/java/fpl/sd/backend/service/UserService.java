@@ -48,7 +48,7 @@ public class UserService {
 
     public UserResponse getUserById(String id){
         return userMapper.toUserResponse(userRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("User with id " + id + " not found")));
+                .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND)));
     }
 
 //    public UserResponse updateUser(String id, UserUpdateRequest request){

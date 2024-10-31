@@ -21,6 +21,5 @@ public class UserResponse {
     String phone;
     boolean isActive;
     String createdAt;
-
     String updatedAt;
 }

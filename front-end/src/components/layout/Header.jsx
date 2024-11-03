@@ -19,7 +19,7 @@ export default function Header() {
         </div>
         <div className="flex gap-5">
           <UserDropDown/>
-          <ShoppingBag/>
+          <Link to={"/cart"}><ShoppingBag/></Link> 
         </div>
       </div>
     </header>

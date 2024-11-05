@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 
 function SignUp() {
     return (
+        //Code chức năng để đăng kí người dùng mới
         <div className="flex items-center justify-center h-screen" style={{ backgroundImage: "url('https://short.com.vn/kd9s')", backgroundSize: "cover"}}>
             <div className="w-full max-w-full md:max-w-lg p-6 bg-white rounded-lg shadow-md">
                 <h1 className="mt-5 text-lg font-bold text-center text-black">Register</h1>

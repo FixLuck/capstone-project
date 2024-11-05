@@ -68,11 +68,8 @@ export function DiscountManagement() {
   };
 
   return (
-    <div className="grid gap-4 sm:grid-cols-12 grid-cols-1 h-screen">
-      <div className="sm:col-span-2 sm:block hidden h-screen">
-        <AdminAside />
-      </div>
-      <div className="sm:col-span-10">
+   
+      <div >
         <h1 className="mt-5 text-lg" align="center">
           Discount Management
         </h1>
@@ -323,7 +320,7 @@ export function DiscountManagement() {
           </DialogContent>
         </Dialog>
       </div>
-    </div>
+
   );
 }
 export default DiscountManagement;

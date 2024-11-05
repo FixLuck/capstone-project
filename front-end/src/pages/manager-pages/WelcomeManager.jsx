@@ -27,14 +27,8 @@ import ManagerAside from "@/components/manager-com/ManagerAside";
 export function WelcomeManager() {
     return (
      
-      <div className="grid  sm:grid-cols-12 grid-cols-1 h-screen">
-        {/* Sidebar */}
-        <div className="sm:col-span-2 sm:block hidden h-full">
-          <ManagerAside />
-        </div>
-
-        {/* Main content */}
-        <div className="sm:col-span-10 h-full">
+     
+        <div >
           <h1 align="center" className="mt-5">Welcome Manager</h1>
 
           {/* Welcome Image */}
@@ -42,7 +36,7 @@ export function WelcomeManager() {
             <img className="mt-5 w-full" src="public/admin-images/welcome.png" alt="Welcome" />
           </div>
         </div>
-      </div>
+
 
     );
 }

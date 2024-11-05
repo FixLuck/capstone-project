@@ -72,11 +72,8 @@ function RevenueStatistics() {
     };
 
   return (
-    <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
-      <div className="sm:col-span-2 sm:block hidden">
-        <AdminAside />
-      </div>
-        <div className="sm:col-span-10">
+    
+        <div >
         <h1 className="mt-5 text-lg text-black-500 font-bold" align="center">
             Revenue Statistics
         </h1>
@@ -211,7 +208,7 @@ function RevenueStatistics() {
         </div>
         {/* Dialog for editing discount */}
       </div>
-    </div>
+
   );
 }
 

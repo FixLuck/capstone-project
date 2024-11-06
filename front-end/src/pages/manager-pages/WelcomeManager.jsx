@@ -26,7 +26,8 @@ import ManagerAside from "@/components/manager-com/ManagerAside";
 
 export function WelcomeManager() {
     return (
-      <div className="grid gap-4 sm:grid-cols-12 grid-cols-1 h-screen bg-white">
+     
+      <div className="grid  sm:grid-cols-12 grid-cols-1 h-screen">
         {/* Sidebar */}
         <div className="sm:col-span-2 sm:block hidden h-full">
           <ManagerAside />
@@ -42,6 +43,7 @@ export function WelcomeManager() {
           </div>
         </div>
       </div>
+
     );
 }
 

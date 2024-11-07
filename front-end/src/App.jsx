@@ -57,7 +57,12 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
         {path: 'member-order-history', element: <MemberOrderHistory/>},
         {path: 'account-management', element: <MemberManagemant/>},
         {path: 'revenue-stats', element: <RevenueStatistics/>},
+
         {path: 'list-shoes', element: <ListManageShoePage/>},
+
+        {path: 'profile', element: <Profile/>},
+          
+
         ]
       },
       {

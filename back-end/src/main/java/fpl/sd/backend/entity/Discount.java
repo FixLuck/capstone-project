@@ -33,6 +33,9 @@ public class Discount {
     String code;
 
     @Column(nullable = false)
+    Double minimumOrderAmount ;
+
+    @Column(nullable = false)
     String description;
 
     Double fixedAmount;

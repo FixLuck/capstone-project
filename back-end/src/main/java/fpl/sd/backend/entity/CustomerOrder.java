@@ -1,6 +1,7 @@
 package fpl.sd.backend.entity;
 
 import fpl.sd.backend.constant.OrderConstants;
+import fpl.sd.backend.dto.response.OrderDto;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -43,4 +44,21 @@ public class CustomerOrder {
 
     @ManyToOne
     Discount discount;
+
+    public OrderDto getOrderDto() {
+        OrderDto orderDto = new OrderDto();
+
+        orderDto.setOrderId(id);
+        orderDto.setOrderDate(orderDate);
+        orderDto.setOrderStatus(orderStatus.toString());
+        orderDto.setDiscountAmount(discountAmount);
+        orderDto.setFinalTotal(finalTotal);
+        orderDto.setOriginalTotal(originalTotal);
+        orderDto.setUsername(user.getUsername());
+        if(discount!=null){
+            orderDto.setCouponName(discount.getCode());
+        }
+        return orderDto;
+    }
+
 }

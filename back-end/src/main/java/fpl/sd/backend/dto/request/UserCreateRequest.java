@@ -19,8 +19,5 @@ public class UserCreateRequest {
     String password;
     @NotBlank(message = "Email is mandatory")
     String email;
-    @NotBlank(message = "Address is mandatory")
-    String address;
-    @NotBlank(message = "Phone is mandatory")
-    String phone;
+
 }

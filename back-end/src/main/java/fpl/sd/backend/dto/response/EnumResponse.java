@@ -1,16 +1,17 @@
 package fpl.sd.backend.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CartItemResponse {
-    String variantId;
-    int quantity;
-    double price;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class EnumResponse {
+    String name;
+    String value;
 }

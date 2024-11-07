@@ -25,6 +25,9 @@ import DiscountManagement from "./pages/manager-pages/DiscountManagement";
 import MemberOrderHistory from "./pages/manager-pages/MemberOrderHistory";
 import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import { LogIn } from "lucide-react";
+import DetailShoePage from "./pages/shop-pages/DetailShoePage";
+import ShoeList from "./pages/admin-pages/ShoeList";
+import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 
     const router = createBrowserRouter([
       {
@@ -34,6 +37,7 @@ import { LogIn } from "lucide-react";
         children: [
         {index: true, element: <HomePage/>},
         {path: 'shoes', element: <ListShoePage/>},
+        {path: 'shoes/:id', element: <DetailShoePage/>},
         {path: 'add-shoe', element: <AddShoePage/>},
         {path: 'cart', element: <Cart/>},
         {path: 'order-history', element: <OrderHistory/>},
@@ -53,8 +57,12 @@ import { LogIn } from "lucide-react";
         {path: 'member-order-history', element: <MemberOrderHistory/>},
         {path: 'account-management', element: <MemberManagemant/>},
         {path: 'revenue-stats', element: <RevenueStatistics/>},
+
+        {path: 'list-shoes', element: <ListManageShoePage/>},
+
         {path: 'profile', element: <Profile/>},
           
+
         ]
       },
       {

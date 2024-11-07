@@ -52,11 +52,12 @@ import {
 } from "@/components/ui/popover";
 export function Cart() {
   return (
-    <div className="bg-white max-w-7xl mx-auto p-4">
-      <h1 className="" align="center">
-        Cart
-      </h1>
-      <div className="mt-10 p-10">
+
+
+    <div className="bg-white h-full mb-10 p-10">
+        <h1 className="" align="center"></h1>
+        <div className="mt-10 p-10">
+
         <Table className="">
           <TableCaption>A list of your cart.</TableCaption>
           <TableHeader>

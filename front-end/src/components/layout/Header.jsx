@@ -18,8 +18,15 @@ export default function Header() {
           <Link to={"/posts"}>Posts</Link>
         </div>
         <div className="flex gap-5">
+
+          <UserDropDown />
+          <Link to={"/cart"}>
+            <ShoppingBag />
+          </Link>
+
           <UserDropDown/>
-          <ShoppingBag/>
+          <Link to={"/cart"}><ShoppingBag/></Link> 
+
         </div>
       </div>
     </header>

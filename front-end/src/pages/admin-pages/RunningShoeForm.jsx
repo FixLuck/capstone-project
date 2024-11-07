@@ -10,8 +10,9 @@ import VariantShoe from "./VariantShoe";
 import { useState } from "react";
 import axios from "axios";
 import api from "@/config/axios";
-
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   name: z.string().min(2, { message: "Required" }),
@@ -30,6 +31,8 @@ const schema = z.object({
 });
 
 export default function RunningShoeForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     selectedFiles: [],
     images: [],
@@ -60,7 +63,6 @@ export default function RunningShoeForm() {
           formData
         );
 
-        
         images.push({
           url: response.data.secure_url,
           publicId: response.data.public_id,
@@ -103,7 +105,7 @@ export default function RunningShoeForm() {
     defaultValues: {
       name: "",
       price: 10,
-      description: "",
+      description: "Mô tả giày đang được cập nhật",
       status: "true",
       fakePrice: 20,
       gender: "UNISEX",
@@ -113,6 +115,8 @@ export default function RunningShoeForm() {
   });
 
   const onSubmit = async (data) => {
+    const toastId = toast.loading("Creating product...");
+
     try {
       const uploadedImages = await uploadImages(formData.selectedFiles);
       const finalData = {
@@ -122,25 +126,53 @@ export default function RunningShoeForm() {
       };
 
       console.log(finalData);
-      
 
       try {
         const response = await api.post("/shoes", finalData);
         if (response.status === 200) {
           console.log("Product created successfully:", response.data);
+
+          toast.update(toastId, {
+            render: "Product created successfully",
+            type: "success",
+            isLoading: false,
+            autoClose: 3000,
+          });
+
+
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
         }
       } catch (error) {
         console.error("Error creating product:", error);
+
+        toast.update(toastId, {
+          render: error.response?.data?.message || "Error creating product",
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
-      
     } catch (error) {
       console.error("Form submission error:", error);
     }
   };
 
   return (
-    
     <div className="max-w-2xl mx-auto p-4">
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <h1 className="text-2xl font-bold mb-4">Running Shoes Product Form</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
         <div className="space-y-2">

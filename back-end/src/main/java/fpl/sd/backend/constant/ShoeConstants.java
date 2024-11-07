@@ -1,5 +1,11 @@
 package fpl.sd.backend.constant;
 
+import fpl.sd.backend.dto.response.EnumResponse;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ShoeConstants {
 
     public enum Gender {
@@ -26,5 +32,18 @@ public class ShoeConstants {
             }
         }
         return null;
+    }
+
+
+    public static List<EnumResponse> getAllGenderResponses() {
+        return Arrays.stream(Gender.values())
+                .map(gender -> new EnumResponse(gender.name(), gender.name().toLowerCase()))
+                .toList();
+    }
+
+    public static List<EnumResponse> getAllCategoryResponses() {
+        return Arrays.stream(Category.values())
+                .map(category -> new EnumResponse(category.name(), category.name().toLowerCase()))
+                .toList();
     }
 }

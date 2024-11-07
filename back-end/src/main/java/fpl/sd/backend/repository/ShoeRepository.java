@@ -13,4 +13,6 @@ public interface ShoeRepository extends JpaRepository<Shoe, Integer> {
     List<Shoe> findShoesByGender(ShoeConstants.Gender gender);
     List<Shoe> findShoesByBrand(Brand brand);
     List<Shoe> findShoesByCategory(ShoeConstants.Category category);
+
+    List<Shoe> findShoesByNameContainingIgnoreCase(String shoeName);
 }

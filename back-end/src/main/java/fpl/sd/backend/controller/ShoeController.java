@@ -1,13 +1,12 @@
 package fpl.sd.backend.controller;
 
+import fpl.sd.backend.constant.ShoeConstants;
 import fpl.sd.backend.dto.ApiResponse;
 import fpl.sd.backend.dto.request.ShoeCreateRequest;
-import fpl.sd.backend.dto.response.ImageResponse;
+import fpl.sd.backend.dto.request.ShoeUpdateRequest;
+import fpl.sd.backend.dto.response.EnumResponse;
 import fpl.sd.backend.dto.response.ShoeResponse;
-import fpl.sd.backend.dto.response.VariantResponse;
-import fpl.sd.backend.service.ShoeImageService;
 import fpl.sd.backend.service.ShoeService;
-import fpl.sd.backend.service.ShoeVariantService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -22,8 +21,6 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ShoeController {
     ShoeService shoeService;
-    ShoeVariantService shoeVariantService;
-    ShoeImageService shoeImageService;
 
     @GetMapping
     public ApiResponse<List<ShoeResponse>> getAllShoes() {
@@ -87,24 +84,45 @@ public class ShoeController {
 
     }
 
-    @GetMapping("/{shoeId}/variants")
-    public ApiResponse<List<VariantResponse>> getVariantsByShoeId(@PathVariable int shoeId) {
-        return ApiResponse.<List<VariantResponse>>builder()
+    @PutMapping("/{id}")
+    public ApiResponse<ShoeResponse> updateShoe(@PathVariable("id") int id, @RequestBody ShoeUpdateRequest request) {
+        return ApiResponse.<ShoeResponse>builder()
                 .flag(true)
                 .code(200)
                 .message("OK")
-                .result(shoeVariantService.getVariantsByShoeId(shoeId))
+                .result(shoeService.updateShoe(request, id))
                 .build();
     }
 
-    @GetMapping("/{shoeId}/images")
-    public ApiResponse<List<ImageResponse>> getShoeImagesByShoeId(@PathVariable int shoeId) {
-        return ApiResponse.<List<ImageResponse>>builder()
+    @GetMapping("/shop")
+    public ApiResponse<List<ShoeResponse>> getShoesByName(@RequestParam(value = "name", required = false) String name) {
+        return ApiResponse.<List<ShoeResponse>>builder()
                 .flag(true)
                 .code(200)
                 .message("OK")
-                .result(shoeImageService.getShoeImagesByShoeId(shoeId))
+                .result(shoeService.getShoesByName(name))
                 .build();
-
     }
+
+    @GetMapping("/categories")
+    public ApiResponse<List<EnumResponse>> getShoeCategories() {
+        return ApiResponse.<List<EnumResponse>>builder()
+                .flag(true)
+                .code(200)
+                .message("OK")
+                .result(ShoeConstants.getAllCategoryResponses())
+                .build();
+    }
+
+    @GetMapping("/genders")
+    public ApiResponse<List<EnumResponse>> getShoeGenders() {
+        return ApiResponse.<List<EnumResponse>>builder()
+                .flag(true)
+                .code(200)
+                .message("OK")
+                .result(ShoeConstants.getAllGenderResponses())
+                .build();
+    }
+
+
 }

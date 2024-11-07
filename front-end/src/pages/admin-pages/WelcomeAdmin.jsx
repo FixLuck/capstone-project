@@ -25,14 +25,9 @@ import { Import } from "lucide-react";
 
 export function WelcomeAdmin() {
     return (
-      <div className="grid gap-4 sm:grid-cols-12 grid-cols-1 h-screen bg-white">
-        {/* Sidebar */}
-        <div className="sm:col-span-2 sm:block hidden h-full">
-          <AdminAside />
-        </div>
+     
 
-        {/* Main content */}
-        <div className="sm:col-span-10 h-full">
+        <div>
           <h1 align="center" className="mt-5">Welcome Admin</h1>
 
           {/* Welcome Image */}
@@ -40,7 +35,7 @@ export function WelcomeAdmin() {
             <img className="mt-5 w-full" src="public/admin-images/welcome.png" alt="Welcome" />
           </div>
         </div>
-      </div>
+
     );
 }
 

@@ -14,11 +14,9 @@ import AdminAside from '../../components/admin-com/AdminAside.jsx';
 
 function CheckOut() {
   return (
-    <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
-      <div className="sm:col-span-2 sm:block hidden">
-        <AdminAside />
-      </div>
-          <div className="sm:col-span-10">
+    <div >
+
+          <div className="mt-5 mb-5 bg-white p-5">
           <h1 className="mt-5 text-lg text-black-500 font-bold" align="center">
             Check Out
           </h1>
@@ -57,7 +55,7 @@ function CheckOut() {
                     </CardHeader>
                     <CardContent class="flex items-center justify-center">
                       <div class="w-full flex flex-col space-y-4">
-                          <Button class="bg-black text-white rounded p-2">Cast</Button>
+                          <Button class="bg-black text-white rounded p-2">Cash</Button>
                           <Button class="bg-black text-white rounded p-2">Credit Card</Button>
                           <Button class="bg-black text-white rounded p-2">Wallet</Button>
                       </div>  

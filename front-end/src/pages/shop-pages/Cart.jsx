@@ -54,6 +54,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Link } from "react-router-dom";
 export function Cart() {
   return (
     <div className="bg-white h-full mb-10 p-10">
@@ -110,8 +111,10 @@ export function Cart() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-12 grid-cols-1 mt-2">
-        <div className="sm:col-span-8 ms-10"><Button>Continue Shopping</Button></div>
-        <div className="sm:col-span-4 "><Button>Checkout</Button></div>
+        <div className="sm:col-span-8 ms-10">
+          <Link to={'/'}><Button>Continue Shopping</Button></Link></div>
+        <div className="sm:col-span-4 ">
+          <Link to={'/checkout'}><Button>Checkout</Button></Link></div>
         </div>
         
     </div>

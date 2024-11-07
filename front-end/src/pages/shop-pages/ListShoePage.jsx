@@ -79,6 +79,16 @@ export default function ListShoePage() {
               <AccordionContent>WOMEN</AccordionContent>
               <AccordionContent>UNISEX</AccordionContent>
             </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>Size</AccordionTrigger>
+              <AccordionContent>6</AccordionContent>
+              <AccordionContent>7</AccordionContent>
+              <AccordionContent>8</AccordionContent>
+              <AccordionContent>9</AccordionContent>
+              <AccordionContent>10</AccordionContent>
+              <AccordionContent>11</AccordionContent>
+              <AccordionContent>12</AccordionContent>
+            </AccordionItem>
           </Accordion>
         </div>
         <div className="flex-col">

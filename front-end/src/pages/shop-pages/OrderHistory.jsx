@@ -68,7 +68,7 @@ export function OrderHistory() {
   };
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 mb-5 bg-white p-5">
         <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
             <div className="sm:col-span-4 mt-3">
               <Pagination>

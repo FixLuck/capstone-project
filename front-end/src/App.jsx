@@ -8,7 +8,7 @@ import RevenueStatistics from "./pages/admin-pages/RevenueStatistics";
 import "./App.jsx";
 import WelcomeAdmin from "./pages/admin-pages/WelcomeAdmin.jsx";
 import { createBrowserRouter } from 'react-router-dom';
-import AdminAside from './components/admin-com/AdminAside.jsx';
+
 import RootLayout from './pages/RootLayout.jsx';
 import HomePage from './pages/shop-pages/HomePage.jsx';
 import { RouterProvider } from 'react-router-dom';
@@ -40,6 +40,8 @@ import { LogIn } from "lucide-react";
         {path: 'login', element: <UserLogin/>},
         {path: 'register', element: <SignUp/>},
         {path: 'users', element: <Profile/>},
+        {path: 'orders', element: <OrderHistory/>},
+        {path: 'checkout', element: <CheckOut/>},
         {path: 'logout', element: <UserLogin/>}
         ]
       },

@@ -2,13 +2,13 @@ import "./App.css";
 import "./App.jsx";
 
 // import WelcomeAdmin from "./pages/admin-pages/WelcomeAdmin.jsx";
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 // import AdminAside from './components/admin-com/AdminAside.jsx';
 // import DiscountManagement from "./pages/admin-pages/DiscountManagement.jsx";
 // import RootLayout from './pages/RootLayout.jsx';
 // import HomePage from './pages/shop-pages/HomePage.jsx';
-import { RouterProvider } from 'react-router-dom';
-import ErrorPage from './pages/ErrorPage.jsx';
+import { RouterProvider } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage.jsx";
 // import ListShoePage from './pages/shop-pages/ListShoePage.jsx';
 // import AddShoePage from './pages/admin-pages/AddShoePage.jsx';
 // import OrderHistory from "./pages/shop-pages/OrderHistory.jsx";
@@ -22,8 +22,6 @@ import DiscountManagement from "./pages/manager-pages/DiscountManagement";
 import MemberOrderHistory from "./pages/manager-pages/MemberOrderHistory";
 import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 
-
-
 const router = createBrowserRouter([
   // {
   //   path: "/",
@@ -35,7 +33,6 @@ const router = createBrowserRouter([
   //     {path: 'add-shoe', element: <AddShoePage/>},
   //     {path: 'cart', element: <Cart/>},
   //     {path: 'order-history', element: <OrderHistory/>},
-
 
   //   ]
   // },
@@ -49,40 +46,22 @@ const router = createBrowserRouter([
   //     {path: 'member-order-history', element: <MemberOrderHistory/>},
   //     {path: 'member-managemant', element: <MemberManagemant/>},
 
-
-      
   //   ]
   // },
   {
     path: "/manager",
-    element: <RootLayoutManager/>,
-    errorElement: <ErrorPage/>,
+    element: <RootLayoutManager />,
+    errorElement: <ErrorPage />,
     children: [
-      {index: true, element: <WelcomeManager/>},
-      {path: 'discount-management', element: <DiscountManagement/>},
-      {path: 'member-order-history', element: <MemberOrderHistory/>},
-
-
-      
-    ]
-  }
-]
-  );
-
+      { index: true, element: <WelcomeManager /> },
+      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "member-order-history", element: <MemberOrderHistory /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    
-
-
-    <RouterProvider router={router}>
-
-    </RouterProvider>
-
-
-  )
-
-
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

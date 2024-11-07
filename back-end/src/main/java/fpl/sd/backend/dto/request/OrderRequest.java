@@ -29,7 +29,7 @@ public class OrderRequest {
 
     @NotBlank(message = "User ID is required")
     String userId;
-//    int discountId;
+    int discountId;
 
     @NotNull(message = "Cart items cannot be null")
     @Size(min = 1, message = "At least one cart item is required")

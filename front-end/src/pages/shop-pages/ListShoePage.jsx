@@ -109,23 +109,9 @@ export default function ListShoePage() {
             </AccordionItem>
             <AccordionItem value="item-3">
               <AccordionTrigger>Gender</AccordionTrigger>
-              {genders.map((gender, index) => (
-                <AccordionContent key={index}>
-                  <Link to={`/shoes?gender=${gender.value}`}>
-                    {gender.name}
-                  </Link>
-                </AccordionContent>
-              ))}
-            </AccordionItem>
-            <AccordionItem value="item-4">
-              <AccordionTrigger>Size</AccordionTrigger>
-              <AccordionContent>6</AccordionContent>
-              <AccordionContent>7</AccordionContent>
-              <AccordionContent>8</AccordionContent>
-              <AccordionContent>9</AccordionContent>
-              <AccordionContent>10</AccordionContent>
-              <AccordionContent>11</AccordionContent>
-              <AccordionContent>12</AccordionContent>
+              <AccordionContent>MAN</AccordionContent>
+              <AccordionContent>WOMEN</AccordionContent>
+              <AccordionContent>UNISEX</AccordionContent>
             </AccordionItem>
           </Accordion>
         </div>

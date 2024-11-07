@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Pagination,
   PaginationContent,
@@ -55,11 +57,51 @@ export function Cart() {
   return (
 
 
+
+
     <div className="bg-white h-full mb-10 p-10">
         <h1 className="" align="center"></h1>
         <div className="mt-10 p-10">
 
+
         <Table className="">
+          <TableCaption>A list of your cart.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[250px]">Image</TableHead>
+              <TableHead className="w-[250px]">Product Name</TableHead>
+              <TableHead className="w-[150px]">Quantity</TableHead>
+              <TableHead className="w-[200px]">Unit Price</TableHead>
+              <TableHead className="w-[200px]">Total Price</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <div>image here</div>
+              </TableCell>
+              <TableCell>
+                <div>
+                  <div>kd 15</div>
+                  <div>size 9 male</div>
+                </div>
+              </TableCell>
+              <TableCell>
+                <Input
+                  className="bg-white"
+                  type="number"
+                  min={0}
+                  defaultValue={1}
+                  max={10}
+                />
+              </TableCell>
+              <TableCell>150$</TableCell>
+              <TableCell>300$</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
+      <div className="mt-10 m-10">
           <TableCaption>A list of your cart.</TableCaption>
           <TableHeader>
             <TableRow>
@@ -105,14 +147,25 @@ export function Cart() {
               placeholder="Discount code"
             ></Input>
           </CardContent>
+          <CardContent>
+            <Input
+              className="bg-white "
+              id="discount"
+              placeholder="Discount code"
+            ></Input>
+          </CardContent>
         </Card>
       </div>
+      </div>
 
+      <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
       <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
         <div className="sm:col-span-8"></div>
         <div className="sm:col-span-4 me-10">
           <Textarea className="bg-white" placeholder="Total" />
+          <Textarea className="bg-white" placeholder="Total" />
         </div>
+      </div>
       </div>
 
         <div className="grid gap-4 sm:grid-cols-12 grid-cols-1 mt-2">
@@ -125,4 +178,6 @@ export function Cart() {
     
   );
 }
+}
 export default Cart;
+

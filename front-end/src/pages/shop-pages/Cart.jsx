@@ -55,10 +55,8 @@ import {
 import { Link } from "react-router-dom";
 export function Cart() {
   return (
-
-
-
-
+    <div>
+<div>
     <div className="bg-white h-full mb-10 p-10">
         <h1 className="" align="center"></h1>
         <div className="mt-10 p-10">
@@ -175,9 +173,10 @@ export function Cart() {
           <Link to={'/checkout'}><Button>Checkout</Button></Link></div>
         </div>
       </div>
+   
+  
     
   );
 }
-}
-export default Cart;
 
+export default Cart;

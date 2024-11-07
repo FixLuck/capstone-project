@@ -28,4 +28,7 @@ public class OrderDetail {
     @Column(nullable = false)
     int quantity;
 
+    @Column(nullable = false)
+    double price;
+
 }

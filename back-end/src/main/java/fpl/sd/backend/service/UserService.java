@@ -12,6 +12,8 @@ import fpl.sd.backend.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -33,8 +35,10 @@ public class UserService {
         }
     }
     public UserResponse createUser(UserCreateRequest request){
-        User user = userMapper.toUser(request);
         validateUserCreateRequest(request);
+        User user = userMapper.toUser(request);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setCreatedAt(Instant.now());
         userRepository.save(user);
         return userMapper.toUserResponse(user);
@@ -51,26 +55,6 @@ public class UserService {
                 .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND)));
     }
 
-//    public UserResponse updateUser(String id, UserUpdateRequest request){
-//        User user = userRepository.findById(id)
-//                .orElseThrow(()-> new RuntimeException("User with id " + id + " not found"));
-//
-//        if(!request.getUsername().equals(user.getUsername())&&userRepository.existsByUsername(request.getUsername())){
-//            throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
-//        }
-//        if(!request.getEmail().equals(user.getEmail())&&userRepository.existsByEmail(request.getEmail())){
-//            throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
-//        }
-//        user.setUsername(request.getUsername());
-//        user.setEmail(request.getEmail());
-//        user.setPassword(request.getPassword());
-//        user.setUpdatedAt(Instant.now());
-//        user.setPhone(request.getPhone());
-//        user.setAddress(request.getAddress());
-//        user.setActive(request.getIsActive());
-//        userRepository.save(user);
-//        return userMapper.toUserResponse(user);
-//    }
     public UserResponse updateUser(String id, UserUpdateRequest request) {
         User user = userRepository.findById(id)
             .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
@@ -81,13 +65,11 @@ public class UserService {
                 throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
             }
 
-    // Kiểm tra xem email đã tồn tại hay chưa
     if (request.getEmail() != null && !request.getEmail().equals(user.getEmail()) &&
             userRepository.existsByEmail(request.getEmail())) {
         throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
     }
 
-    // Cập nhật thông tin người dùng
     if (request.getUsername() != null) {
         user.setUsername(request.getUsername());
     }
@@ -103,8 +85,8 @@ public class UserService {
     if (request.getAddress() != null) {
         user.setAddress(request.getAddress());
     }
-    if (request.getIsActive() != null) {
-        user.setActive(request.getIsActive());
+    if (request.getActive() != null) {
+        user.setActive(request.getActive());
     }
 
     user.setUpdatedAt(Instant.now());

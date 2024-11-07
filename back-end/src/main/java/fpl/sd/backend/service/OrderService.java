@@ -1,23 +1,24 @@
 package fpl.sd.backend.service;
 
+import fpl.sd.backend.constant.DiscountConstants;
 import fpl.sd.backend.constant.OrderConstants;
 import fpl.sd.backend.dto.request.OrderRequest;
 import fpl.sd.backend.dto.response.CartItemResponse;
+import fpl.sd.backend.dto.response.OrderDto;
 import fpl.sd.backend.dto.response.OrderResponse;
 import fpl.sd.backend.entity.*;
 import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
 import fpl.sd.backend.mapper.OrderMapper;
-import fpl.sd.backend.repository.CustomerOrderRepository;
-import fpl.sd.backend.repository.OrderDetailRepository;
-import fpl.sd.backend.repository.ShoeVariantRepository;
-import fpl.sd.backend.repository.UserRepository;
+import fpl.sd.backend.repository.*;
+import jakarta.validation.ValidationException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,7 @@ public class OrderService {
     ShoeVariantRepository shoeVariantRepository;
     CustomerOrderRepository orderRepository;
     OrderDetailRepository orderDetailRepository;
-
+    DiscountRepository discountRepository;
 
     public OrderResponse createOrder(OrderRequest request) {
         CustomerOrder newOrder = orderMapper.toCustomerOrder(request);
@@ -83,5 +84,42 @@ public class OrderService {
         OrderResponse orderResponse = orderMapper.toOrderResponse(savedOrder);
         orderResponse.setCartItems(cartItemsResponse);
         return orderResponse;
+    }
+
+    public boolean couponIsExpired(Discount discount ) {
+        Date currentdate = new Date();
+        Date expirationDate = Date.from(discount.getEndDate());
+        return currentdate.after(expirationDate);
+    }
+
+
+    public OrderDto applyDiscount(String userId, String code) {
+        CustomerOrder order = orderRepository.findByUserIdAndOrderStatus(userId, OrderConstants.OrderStatus.PENDING);
+        Discount discount = discountRepository.findByCode(code).orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
+
+        if(couponIsExpired(discount)) {
+            throw new ValidationException("Discount has been expired");
+        }
+
+        if(discount.getMinimumOrderAmount() > order.getOriginalTotal()){
+                throw new AppException(ErrorCode.MINIMUM_AMOUNT_NOT_MET);
+            }
+
+        double discountAmount = 0.0;
+        double finalTotal;
+        if(discount.getDiscountType() == DiscountConstants.DiscountType.PERCENTAGE){
+            discountAmount = ((discount.getPercentage()/100.0) * order.getOriginalTotal());
+        }else if(discount.getDiscountType() == DiscountConstants.DiscountType.FIXED_AMOUNT){
+            discountAmount = discount.getFixedAmount();
+        }
+
+        finalTotal = order.getOriginalTotal() - discountAmount;
+
+        order.setFinalTotal(finalTotal);
+        order.setDiscountAmount(discountAmount);
+        order.setDiscount(discount);
+
+        orderRepository.save(order);
+        return order.getOrderDto();
     }
 }

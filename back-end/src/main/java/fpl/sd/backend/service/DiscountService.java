@@ -51,7 +51,6 @@ public class DiscountService {
         Discount discount = discountRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
 
-        // Cập nhật các trường nếu chúng không null
         if (request.getCode() != null) {
             discount.setCode(request.getCode());
         }
@@ -64,6 +63,9 @@ public class DiscountService {
         if (request.getStartDate() != null) {
             discount.setStartDate(request.getStartDate());
         }
+        if(request.getMinimumOrderAmount() !=null){
+            discount.setMinimumOrderAmount(request.getMinimumOrderAmount());
+        }
         if (request.getEndDate() != null) {
             discount.setEndDate(request.getEndDate());
         }
@@ -73,12 +75,11 @@ public class DiscountService {
         if (request.getFixAmount() != null) {
             discount.setFixedAmount(request.getFixAmount());
         }
-        if (request.getIsActive() != null) {
-            if (discount.isActive() != request.getIsActive()) {
-                discount.setActive(request.getIsActive());
+        if (request.getActive() != null) {
+            if (discount.isActive() != request.getActive()) {
+                discount.setActive(request.getActive());
             }
         }
-
         discountRepository.save(discount);
         return discountMapper.toDiscountResponse(discount);
     }

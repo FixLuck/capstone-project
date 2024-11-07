@@ -25,9 +25,11 @@ public class DiscountUpdateRequest {
 
     String description;
 
+    Double minimumOrderAmount ;
+
     Double fixAmount;
 
     DiscountConstants.DiscountType discountType;
 
-    Boolean isActive;
+    Boolean Active;
 }

@@ -2,16 +2,16 @@ package fpl.sd.backend.controller;
 
 import fpl.sd.backend.dto.ApiResponse;
 import fpl.sd.backend.dto.request.OrderRequest;
+import fpl.sd.backend.dto.response.OrderDto;
 import fpl.sd.backend.dto.response.OrderResponse;
+import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.service.OrderService;
 import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,5 +30,31 @@ public class OrderController {
                 .build();
 
     }
+
+    @GetMapping("/{userId}/{coupon}")
+    public ApiResponse<?> applyCoupon(@PathVariable String userId, @PathVariable String coupon) {
+        try {
+            OrderDto orderDto = orderService.applyDiscount(userId, coupon);
+            return ApiResponse.<OrderDto>builder()
+                    .code(200)
+                    .flag(true)
+                    .message("Apply Successfully")
+                    .result(orderDto)
+                    .build();
+        } catch (ValidationException ex) {
+            return ApiResponse.builder()
+                    .code(400)
+                    .flag(false)
+                    .message("Discount has expired")
+                    .build();
+        } catch (AppException ex) {
+            return ApiResponse.builder()
+                    .code(404)
+                    .flag(false)
+                    .message(ex.getMessage())
+                    .build();
+        }
+    }
+
 
 }

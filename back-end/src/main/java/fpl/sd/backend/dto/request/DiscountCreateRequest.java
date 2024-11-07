@@ -31,6 +31,8 @@ public class DiscountCreateRequest {
     @NotBlank(message = "Discount code is mandatory")
     String code;
 
+    Double minimumOrderAmount ;
+
     @NotBlank(message = "Description is mandatory")
     String description;
 

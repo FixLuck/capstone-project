@@ -52,6 +52,8 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
         {path: 'login', element: <UserLogin/>},
         {path: 'register', element: <SignUp/>},
         {path: 'users', element: <Profile/>},
+        {path: 'orders', element: <OrderHistory/>},
+        {path: 'checkout', element: <CheckOut/>},
         {path: 'logout', element: <UserLogin/>}
         ]
       },

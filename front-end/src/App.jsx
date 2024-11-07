@@ -57,12 +57,8 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
         {path: 'member-order-history', element: <MemberOrderHistory/>},
         {path: 'account-management', element: <MemberManagemant/>},
         {path: 'revenue-stats', element: <RevenueStatistics/>},
-
-        {path: 'list-shoes', element: <ListManageShoePage/>},
-
+        {path: 'manage-shoes', element: <ListManageShoePage/>},
         {path: 'profile', element: <Profile/>},
-          
-
         ]
       },
       {
@@ -73,8 +69,6 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
           {index: true, element: <WelcomeManager/>},
           {path: 'discount-management', element: <DiscountManagement/>},
           {path: 'member-order-history', element: <MemberOrderHistory/>},
-
-
           
         ]
       }
@@ -85,17 +79,8 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 
 function App() {
   return (
-    
-
-
     <RouterProvider router={router}>
-
     </RouterProvider>
-
-
   )
-
-
 }
-
 export default App;

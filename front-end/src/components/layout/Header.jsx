@@ -24,9 +24,6 @@ export default function Header() {
             <ShoppingBag />
           </Link>
 
-          <UserDropDown/>
-          <Link to={"/cart"}><ShoppingBag/></Link> 
-
         </div>
       </div>
     </header>

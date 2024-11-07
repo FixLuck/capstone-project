@@ -2,6 +2,7 @@ package fpl.sd.backend.service;
 
 import fpl.sd.backend.constant.ShoeConstants;
 import fpl.sd.backend.dto.request.ShoeCreateRequest;
+import fpl.sd.backend.dto.request.ShoeUpdateRequest;
 import fpl.sd.backend.dto.response.ShoeResponse;
 import fpl.sd.backend.entity.*;
 import fpl.sd.backend.exception.AppException;
@@ -11,10 +12,12 @@ import fpl.sd.backend.mapper.ShoeMapper;
 import fpl.sd.backend.mapper.ShoeVariantMapper;
 import fpl.sd.backend.repository.*;
 import fpl.sd.backend.utils.SKUGenerators;
+import fpl.sd.backend.utils.ShoeHelper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+
 
 import java.time.Instant;
 import java.util.List;
@@ -33,25 +36,19 @@ public class ShoeService {
     ShoeVariantRepository shoeVariantRepository;
     ShoeImageMapper imageMapper;
     ShoeVariantMapper shoeVariantMapper;
+    ShoeHelper shoeHelper;
 
     public List<ShoeResponse> getAllShoes() {
         List<Shoe> shoes = shoeRepository.findAll();
         return shoes.stream()
-                .map(shoe -> {
-                    ShoeResponse response = shoeMapper.toShoeResponse(shoe);
-                    List<ShoeImage> images = shoeImageRepository.findAllByShoeId(shoe.getId());
-                    response.setImages(images.stream()
-                            .map(imageMapper::toImageResponse)
-                            .toList());
-                    return response;
-                })
+                .map(shoeHelper::getShoeResponse)
                 .toList();
     }
 
     public ShoeResponse getShoeById(int id) {
         Shoe shoe = shoeRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
-        return shoeMapper.toShoeResponse(shoe);
+        return shoeHelper.getShoeResponse(shoe);
     }
 
     public List<ShoeResponse> getShoesByGender(String gender) {
@@ -61,7 +58,7 @@ public class ShoeService {
         }
         List<Shoe> shoes = shoeRepository.findShoesByGender(genderEnum);
         return shoes.stream()
-                .map(shoeMapper::toShoeResponse)
+                .map(shoeHelper::getShoeResponse)
                 .toList();
     }
 
@@ -71,7 +68,7 @@ public class ShoeService {
 
         List<Shoe> shoes = shoeRepository.findShoesByBrand(brand);
         return shoes.stream()
-                .map(shoeMapper::toShoeResponse)
+                .map(shoeHelper::getShoeResponse)
                 .toList();
     }
 
@@ -84,7 +81,7 @@ public class ShoeService {
         List<Shoe> shoes = shoeRepository.findShoesByCategory(categoryEnum);
 
         return shoes.stream()
-                .map(shoeMapper::toShoeResponse)
+                .map(shoeHelper::getShoeResponse)
                 .toList();
     }
 
@@ -117,7 +114,9 @@ public class ShoeService {
                             .orElseThrow(() -> new AppException(ErrorCode.INVALID_KEY));
                     shoeVariant.setCreatedAt(Instant.now());
                     shoeVariant.setSizeChart(size);
-                    String sku = skuGenerators.generateSKU(brand.getBrandName(), request.getName(), size.getSizeNumber());
+                    String sku = skuGenerators.generateSKU(brand.getBrandName(),
+                            request.getName(),
+                            size.getSizeNumber());
 
                     if (shoeVariantRepository.existsBySku(sku)) {
                         throw new AppException(ErrorCode.SKU_ALREADY_EXISTS);
@@ -132,6 +131,35 @@ public class ShoeService {
         return shoeMapper.toShoeResponse(newShoe);
 
     }
+
+    public List<ShoeResponse> getShoesByName(String name) {
+        List<Shoe> shoes = shoeRepository.findShoesByNameContainingIgnoreCase(name);
+        return shoes.stream()
+                .map(shoeHelper::getShoeResponse)
+                .toList();
+    }
+
+    public ShoeResponse updateShoe(ShoeUpdateRequest request, int shoeId) {
+        Shoe selectedShoe = shoeRepository.findById(shoeId)
+                .orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_FOUND));
+
+        selectedShoe.setUpdatedAt(Instant.now());
+        selectedShoe.setName(request.getName());
+        selectedShoe.setPrice(request.getPrice());
+        selectedShoe.setFakePrice(request.getFakePrice());
+        selectedShoe.setGender(ShoeConstants.getGenderFromString(request.getGender()));
+        selectedShoe.setCategory(ShoeConstants.getCategoryFromString(request.getCategory()));
+        selectedShoe.setStatus(request.isStatus());
+
+        shoeRepository.save(selectedShoe);
+
+        return shoeMapper.toShoeResponse(selectedShoe);
+
+    }
+
+
+
+
 
 
 

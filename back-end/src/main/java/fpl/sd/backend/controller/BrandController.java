@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/brands")
 @RequiredArgsConstructor
+@CrossOrigin(value = "*")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class BrandController {
     BrandService brandService;

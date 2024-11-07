@@ -53,6 +53,7 @@ import { LogIn } from "lucide-react";
         {path: 'member-order-history', element: <MemberOrderHistory/>},
         {path: 'account-management', element: <MemberManagemant/>},
         {path: 'revenue-stats', element: <RevenueStatistics/>},
+        {path: 'profile', element: <Profile/>},
           
         ]
       },

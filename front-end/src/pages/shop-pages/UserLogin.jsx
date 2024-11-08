@@ -16,6 +16,31 @@ import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 
 function UserLogin() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');  // Reset any previous error
+
+        try {
+            const response = await axios.post('/api/v1/login', { email, password });
+
+            if (response.data.success) {
+                localStorage.setItem('authToken', response.data.token);
+                window.location.href = '/dashboard';
+            } else {
+                setError('Invalid email or password');
+            }
+        } catch (err) {
+            setError('Something went wrong. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
     return (
         //Code chức năng để đăng nhập tài khoản người dùng, code chức năng để đăng xuất 
         <div className="flex items-center justify-center h-screen" style={{ backgroundImage: "url('https://short.com.vn/kd9s')", backgroundSize: "cover"}}>
@@ -30,12 +55,25 @@ function UserLogin() {
                             <div className="grid w-full gap-6">
                                 <div className="grid gap-2">
                                     <Label>Email</Label>
-                                    <Input id="email" type="email" className="border rounded-md p-2 w-full" />
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        className="border rounded-md p-2 w-full"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
                                 </div>
                                 <div className="grid gap-2">
                                     <Label>Password</Label>
-                                    <Input id="password" type="password" className="border rounded-md p-2 w-full" />
+                                    <Input
+                                        id="password"
+                                        type="password"
+                                        className="border rounded-md p-2 w-full"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
                                 </div>
+                                <div className="text-red-500">{error}</div>
                                 <div className="flex justify-between items-center mt-4">
                                     <div className="flex items-center">
                                         <Checkbox id="remember" />
@@ -47,7 +85,13 @@ function UserLogin() {
                         </CardContent>
                         <CardFooter className="flex items-center justify-center">
                         <div className="w-full flex flex-col space-y-4">
-                            <Button className="w-full bg-black text-white rounded p-2 hover:bg-gray-500">Login</Button>
+                            <Button
+                                    className="w-full bg-black text-white rounded p-2 hover:bg-gray-500"
+                                    onClick={handleLogin}
+                                    disabled={loading}
+                            >
+                                    {loading ? 'Logging in...' : 'Login'}
+                            </Button>
                             <div className="flex justify-between">
                                 <Button className="w-full bg-yellow-500 text-white rounded p-2 hover:bg-gray-500"><FontAwesomeIcon icon={faGoogle} className="mr-2" />Google</Button>
                                 <Button className="ml-2 w-full bg-blue-500 text-white rounded p-2 hover:bg-gray-500"><FontAwesomeIcon icon={faFacebook} className="mr-2" />Facebook</Button>

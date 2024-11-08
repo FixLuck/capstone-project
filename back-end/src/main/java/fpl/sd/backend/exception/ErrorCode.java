@@ -21,6 +21,7 @@ public enum ErrorCode {
     UNAUTHENTICATED(401, "Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(403, "You do not have permissions", HttpStatus.FORBIDDEN),
     EMAIL_ALREADY_EXISTS(409, "Email Already Exists", HttpStatus.CONFLICT),
+    UNAUTHENTICATED_USER(401, "Unauthenticated User", HttpStatus.UNAUTHORIZED),
 
     // Brand-related errors
     BRAND_NOT_FOUND(404, "Brand Not Found", HttpStatus.NOT_FOUND),
@@ -39,10 +40,11 @@ public enum ErrorCode {
     //Product-related errors
     PRODUCT_NOT_FOUND(404, "Product Not Found", HttpStatus.NOT_FOUND),
 
-
+    //Discount-related errors
     DISCOUNT_NOT_FOUND(404, "Discount Not Found", HttpStatus.NOT_FOUND),
     DISCOUNT_ALREADY_EXISTS(409, "Discount already exists", HttpStatus.CONFLICT),
-
+    COUPON_INVALID(400, "Invalid Coupon", HttpStatus.BAD_REQUEST),
+    MINIMUM_AMOUNT_NOT_MET(400, "The order total does not meet the minimum amount required for this discount.", HttpStatus.BAD_REQUEST),
     //Order-related errors
     ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
 

@@ -69,11 +69,8 @@ export function MemberOrderHistory() {
   };
 
   return (
-    <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
-      <div className="sm:col-span-2 sm:block hidden">
-        <ManagerAside></ManagerAside>
-      </div>
-      <div className="sm:col-span-10">
+    
+      <div >
         <h1 className="mt-5 text-lg" align="center">
           Members Order History
         </h1>
@@ -209,7 +206,7 @@ export function MemberOrderHistory() {
 
 
       </div>
-    </div>
+
   );
 }
 

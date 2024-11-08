@@ -19,6 +19,7 @@ public class DiscountResponse {
     Instant startDate;
     Instant endDate;
     String code;
+    Double minimumOrderAmount ;
     String description;
     Double fixedAmount;
     DiscountConstants.DiscountType discountType;

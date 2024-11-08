@@ -91,7 +91,10 @@ export default function ListShoePage() {
               <AccordionTrigger>Brand</AccordionTrigger>
               {brands.map((brand) => (
                 <AccordionContent key={brand.id}>
-                  <Link to={`/shoes?brand=${brand.brandId}`} className="hover:underline">
+                  <Link
+                    to={`/shoes?brand=${brand.brandId}`}
+                    className="hover:underline"
+                  >
                     {brand.brandName}
                   </Link>
                 </AccordionContent>
@@ -101,7 +104,10 @@ export default function ListShoePage() {
               <AccordionTrigger>Category</AccordionTrigger>
               {categories.map((category, index) => (
                 <AccordionContent key={index}>
-                  <Link to={`/shoes?category=${category.value}`} className="hover:underline">
+                  <Link
+                    to={`/shoes?category=${category.value}`}
+                    className="hover:underline"
+                  >
                     {category.name}
                   </Link>
                 </AccordionContent>
@@ -111,7 +117,10 @@ export default function ListShoePage() {
               <AccordionTrigger>Gender</AccordionTrigger>
               {genders.map((gender, index) => (
                 <AccordionContent key={index}>
-                  <Link to={`/shoes?gender=${gender.value}`} className="hover:underline"  >
+                  <Link
+                    to={`/shoes?gender=${gender.value}`}
+                    className="hover:underline"
+                  >
                     {gender.name}
                   </Link>
                 </AccordionContent>

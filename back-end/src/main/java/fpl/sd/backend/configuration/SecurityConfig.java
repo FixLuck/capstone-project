@@ -18,9 +18,11 @@ import javax.crypto.spec.SecretKeySpec;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final String[] PUBLIC_ENDPOINTS = { "/users",
-                                                "/auth/token",
-                                                "/auth/introspect"};
+    private final String[] PUBLIC_ENDPOINTS = {"/users",
+            "/auth/token",
+            "/auth/introspect",
+            "/shoes/**",
+            "/brands/**"};
 
     @Value("${jwt.signerKey}")
     private String SIGNER_KEY;
@@ -28,24 +30,24 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-            httpSecurity.authorizeHttpRequests(request ->
-                    request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
-                            .anyRequest()
-                            .authenticated());
+        httpSecurity.authorizeHttpRequests(request ->
+                request.requestMatchers(PUBLIC_ENDPOINTS).permitAll()
+                        .anyRequest()
+                        .authenticated());
 
-            httpSecurity.oauth2ResourceServer(oauth2 ->
-                    oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder()))
+        httpSecurity.oauth2ResourceServer(oauth2 ->
+                oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder()))
 
-            );
+        );
 
-            httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        httpSecurity.csrf(AbstractHttpConfigurer::disable);
 
         return httpSecurity.build();
     }
 
     @Bean
-    JwtDecoder jwtDecoder(){
-        SecretKeySpec secretKeySpec = new SecretKeySpec(SIGNER_KEY.getBytes(),"HS512");
+    JwtDecoder jwtDecoder() {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(SIGNER_KEY.getBytes(), "HS512");
 
         return NimbusJwtDecoder
                 .withSecretKey(secretKeySpec)

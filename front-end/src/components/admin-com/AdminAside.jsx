@@ -41,7 +41,9 @@ export function AdminAside() {
               <Link to="/admin/profile">
               <DropdownMenuItem className="p-2 hover:text-red-400 hover:text-lg transition-colors duration-200">Profile</DropdownMenuItem>
               </Link>
+              <Link to="/logout">
               <DropdownMenuItem className="p-2  hover:text-red-400 hover:text-lg transition-colors duration-200">Log out</DropdownMenuItem>
+              </Link>
             </DropdownMenuContent>
           </DropdownMenu>
           <nav className="mt-12">

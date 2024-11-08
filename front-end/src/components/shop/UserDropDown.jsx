@@ -20,8 +20,11 @@ export default function UserDropDown() {
         <DropdownMenuContent className="-translate-x-1/3">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          <Link to={"/users"}><DropdownMenuItem className='cursor-pointer'>Profile</DropdownMenuItem></Link>  
           <Link to={"/login"}><DropdownMenuItem className='cursor-pointer'>Login</DropdownMenuItem></Link>
           <Link to={"/register"}><DropdownMenuItem className='cursor-pointer'>Register</DropdownMenuItem></Link>
+          <Link to={"/orders"}><DropdownMenuItem className='cursor-pointer'>Orders History</DropdownMenuItem></Link>
+          <Link to={"/logout"}><DropdownMenuItem className='cursor-pointer'>Logout</DropdownMenuItem></Link>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

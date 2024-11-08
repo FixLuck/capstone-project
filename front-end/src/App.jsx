@@ -65,6 +65,33 @@ const router = createBrowserRouter([
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenueStatistics /> },
+
+      { path: "list-shoes", element: <ListManageShoePage /> },
+
+      { path: "profile", element: <Profile /> },
+    ],
+  },
+  {
+    path: "/manager",
+    element: <RootLayoutManager />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <WelcomeManager /> },
+      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "member-order-history", element: <MemberOrderHistory /> },
+    ],
+  },
+
+  {
+    path: "/admin",
+    element: <RootLayoutAdmin />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <WelcomeAdmin /> },
+      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "member-order-history", element: <MemberOrderHistory /> },
+      { path: "account-management", element: <MemberManagemant /> },
+      { path: "revenue-stats", element: <RevenueStatistics /> },
       { path: "manage-shoes", element: <ListManageShoePage /> },
       { path: "profile", element: <Profile /> },
     ],

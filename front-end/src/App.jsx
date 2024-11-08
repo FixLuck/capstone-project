@@ -85,8 +85,41 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
           {path: 'member-order-history', element: <MemberOrderHistory/>},
 
 
+<<<<<<< HEAD
         ]
       },
+=======
+
+const router = createBrowserRouter([
+  // {
+  //   path: "/",
+  //   element: <RootLayout/>,
+  //   errorElement: <ErrorPage/>,
+  //   children: [
+  //     {index: true, element: <HomePage/>},
+  //     {path: 'shoes', element: <ListShoePage/>},
+  //     {path: 'add-shoe', elem cent: <AddShoePage/>},
+  //     {path: 'cart', element: <Cart/>},
+  //     {path: 'order-history', element: <OrderHistory/>},
+
+
+  //   ]
+  // },
+  // {
+  //   path: "/admin",
+  //   element: <RootLayoutAdmin/>,
+  //   errorElement: <ErrorPage/>,
+  //   children: [
+  //     {index: true, element: <WelcomeAdmin/>},
+  //     {path: 'discount-management', element: <DiscountManagement/>},
+  //     {path: 'member-order-history', element: <MemberOrderHistory/>},
+  //     {path: 'member-managemant', element: <MemberManagemant/>},
+
+
+      
+  //   ]
+  // },
+>>>>>>> dat-branch
   {
     path: "/admin",
     element: <RootLayoutAdmin/>,
@@ -128,9 +161,12 @@ function App() {
   )
 
 
+<<<<<<< HEAD
 =======
   return <RouterProvider router={router}></RouterProvider>;
 >>>>>>> 89b8a85574dfdb7c503c56af9abf89b338389ee5
+=======
+>>>>>>> dat-branch
 }
 
 export default App;

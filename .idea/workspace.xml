@@ -5,8 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/system/DBInitialize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/config/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/config/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -30,17 +50,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-        &quot;lastFilter&quot;: {
-        &quot;state&quot;: &quot;OPEN&quot;,
-        &quot;assignee&quot;: &quot;TienHung1011&quot;
-        }
-        }</component>
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;TienHung1011&quot;
+  }
+}</component>
   <component name="GithubPullRequestsUISettings">{
-        &quot;selectedUrlAndAccountId&quot;: {
-        &quot;url&quot;: &quot;https://github.com/FixLuck/capstone-project.git&quot;,
-        &quot;accountId&quot;: &quot;b88c65bc-7ccc-4dd1-ba02-2804b183f36a&quot;
-        }
-        }</component>
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FixLuck/capstone-project.git&quot;,
+    &quot;accountId&quot;: &quot;b88c65bc-7ccc-4dd1-ba02-2804b183f36a&quot;
+  }
+}</component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
@@ -59,25 +79,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.back-end [clean].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.BackEndApplication.executor": "Run",
-    "git-widget-placeholder": "man-branch",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.back-end [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BackEndApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;man-branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="fpl.sd.backend.dto.response" />
@@ -126,7 +146,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="30e8454b-0c78-4c8f-9bf4-5d36b0e0ccaf" name="Changes" comment="" />
+      <changelist id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
       <created>1729087695816</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -153,6 +173,8 @@
       <workItem from="1730895743883" duration="8836000" />
       <workItem from="1730957305571" duration="8716000" />
       <workItem from="1730985261787" duration="1515000" />
+      <workItem from="1731069592323" duration="3804000" />
+      <workItem from="1731285994638" duration="17368000" />
     </task>
     <servers />
   </component>

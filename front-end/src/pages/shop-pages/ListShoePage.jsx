@@ -26,12 +26,40 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFilterOptions } from "@/store/filter";
 import { useShopFilters } from "@/hooks/useShopFilters";
+import { cartActions } from "@/store";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ListShoePage() {
   const [shoes, setShoes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [prevFilters, setPrevFilters] = useState({});
   const [initialLoad, setInitialLoad] = useState(true);
+
+  const handleAddToCart = (shoe) => {
+    const size =
+      shoe.variants && shoe.variants[0] && shoe.variants[0].size
+        ? shoe.variants[0].size // If size is directly available
+        : shoe.variants && shoe.variants[0] && shoe.variants[0].sku
+        ? shoe.variants[0].sku.split("-").pop() // If size is in SKU
+        : "6";
+
+    const itemToAdd = {
+      productId: shoe.id,
+      price: shoe.price * 1000,
+      imageUrl: shoe.images[0].url,
+      variantId: shoe.variants[0].id,
+      size: size,
+      name: shoe.name,
+    };
+
+    dispatch(cartActions.addItemToCart(itemToAdd));
+    console.log(itemToAdd);
+    localStorage.setItem("cartItems", JSON.stringify(itemToAdd));
+
+    toast.success("Item added to cart", {
+      autoClose: 2000,
+    });
+  };
 
   const dispatch = useDispatch();
   const {
@@ -84,13 +112,25 @@ export default function ListShoePage() {
 
   return (
     <main className="container mx-auto bg-white rounded-sm">
+      <ToastContainer
+        position="bottom-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <div className="flex p-4">
         <div className="w-1/3 me-4">
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>Brand</AccordionTrigger>
-              {brands.map((brand) => (
-                <AccordionContent key={brand.id}>
+              {brands.map((brand, index) => (
+                <AccordionContent key={index}>
                   <Link
                     to={`/shoes?brand=${brand.brandId}`}
                     className="hover:underline"
@@ -165,6 +205,7 @@ export default function ListShoePage() {
                   <Button
                     variant="destructive"
                     className="cursor-pointer hover:text-stone-950"
+                    onClick={() => handleAddToCart(shoe)}
                   >
                     <FiShoppingBag className="w-6 h-6" />
                   </Button>

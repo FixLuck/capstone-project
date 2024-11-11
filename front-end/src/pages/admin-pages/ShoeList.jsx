@@ -13,6 +13,9 @@ import { useEffect } from "react";
 import api from "@/config/axios";
 import { Button } from "@/components/ui/button";
 import UpdateShoeForm from "./UpdateShoeForm";
+import { Link } from "react-router-dom";
+
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 export default function ShoeList() {
   const [shoes, setShoes] = React.useState([]);
@@ -28,8 +31,15 @@ export default function ShoeList() {
 
   return (
     <div>
+      <Button variant="outline" className="hover:bg-green-600 hover:text-white">
+        <Link to={"/admin/manage-shoes/new"} className="flex p-4 align-items-center">
+          <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
+          <span>Add</span>
+        </Link>
+      </Button>
+
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>A list of your recent shoes.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Shoe ID</TableHead>

@@ -52,6 +52,8 @@ const router = createBrowserRouter([
       { path: "login", element: <UserLogin /> },
       { path: "register", element: <SignUp /> },
       { path: "users", element: <Profile /> },
+      { path: "orders", element: <OrderHistory /> },
+      { path: "checkout", element: <CheckOut /> },
       { path: "logout", element: <UserLogin /> },
     ],
   },
@@ -67,42 +69,6 @@ const router = createBrowserRouter([
       { path: "revenue-stats", element: <RevenueStatistics /> },
       { path: "list-shoes", element: <ListManageShoePage /> },
       { path: "profile", element: <Profile /> },
-    ],
-  },
-  {
-    path: "/manager",
-    element: <RootLayoutManager />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <WelcomeManager /> },
-      { path: "discount-management", element: <DiscountManagement /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
-    ],
-  },
-
-  {
-    path: "/admin",
-    element: <RootLayoutAdmin />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <WelcomeAdmin /> },
-      { path: "discount-management", element: <DiscountManagement /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
-      { path: "account-management", element: <MemberManagemant /> },
-      { path: "revenue-stats", element: <RevenueStatistics /> },
-      { path: "manage-shoes", element: <ListManageShoePage />, },
-      { path: "manage-shoes/new", element: <AddShoePage />, },
-      { path: "profile", element: <Profile /> },
-    ],
-  },
-  {
-    path: "/manager",
-    element: <RootLayoutManager />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <WelcomeManager /> },
-      { path: "discount-management", element: <DiscountManagement /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
     ],
   },
   {

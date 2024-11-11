@@ -29,7 +29,8 @@ export default function Header() {
 
             <NavigationMenuItem>
               <NavigationMenuTrigger className="text-orange-500">
-                Shop
+                <Link to={"/shoes"}>Shop</Link>
+                
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="flex gap-12 flex-wrap">

@@ -62,6 +62,10 @@ function SignUp() {
                         <CardContent>
                             <div className="grid w-full gap-6">
                                 <div className="grid gap-2">
+                                    <Label>Username</Label>
+                                    <Input type="email" id="email" className="border rounded-md p-2 w-full" />
+                                </div>
+                                <div className="grid gap-2">
                                     <Label>Email Address</Label>
                                     <Input
                                         type="email"

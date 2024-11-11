@@ -4,70 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30e8454b-0c78-4c8f-9bf4-5d36b0e0ccaf" name="Changes" comment="">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/AuthenticationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/IntrospectRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/AuthenticationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/IntrospectResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/OrderDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" afterDir="false" />
+    <list default="true" id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/system/DBInitialize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountCreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountUpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/OrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/OrderRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/UserCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/UserCreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/UserUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/UserUpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/DiscountResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/DiscountResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/CustomerOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/CustomerOrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/DiscountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/test/java/fpl/sd/backend/BackEndApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/test/java/fpl/sd/backend/BackEndApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/App.jsx" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/PageResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/ShoeUpdateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/EnumResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/constant/ShoeConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/constant/ShoeConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/BrandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/ShoeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/ShoeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/CartItemRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/CartItemRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/ShoeCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/ShoeCreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/CartItemResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/CartItemResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/OrderDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/BrandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/BrandMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/ShoeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/ShoeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/ShoeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/ShoeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/utils/SKUGenerators.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/utils/SKUGenerators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/utils/ShoeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/utils/ShoeHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/config/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/config/axios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/HomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" afterDir="false" />
->>>>>>> main
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,8 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -107,11 +66,11 @@
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
+        &quot;isMigrated&quot;: true
+        }</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
+        &quot;associatedIndex&quot;: 0
+        }</component>
   <component name="ProjectId" id="2nWTBIVpIkH8FyWNatvriqnTDxH" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -120,26 +79,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.BackEndApplicationTests.hash.executor": "Run",
-    "Maven.back-end [clean].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.BackEndApplication.executor": "Run",
-    "git-widget-placeholder": "hung-branch",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
-=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Maven.back-end [clean].executor&quot;: &quot;Run&quot;,
@@ -149,7 +88,6 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.BackEndApplication.executor&quot;: &quot;Run&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;git-widget-placeholder&quot;: &quot;man-branch&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -158,9 +96,8 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
->>>>>>> main
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="fpl.sd.backend.dto.response" />
@@ -209,7 +146,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="30e8454b-0c78-4c8f-9bf4-5d36b0e0ccaf" name="Changes" comment="" />
+      <changelist id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
       <created>1729087695816</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -222,21 +159,22 @@
       <workItem from="1730009311854" duration="2360000" />
       <workItem from="1730130821386" duration="60000" />
       <workItem from="1730165474377" duration="496000" />
-<<<<<<< HEAD
       <workItem from="1730359469760" duration="2173000" />
       <workItem from="1730361673582" duration="8667000" />
       <workItem from="1730371372320" duration="162000" />
       <workItem from="1730371668290" duration="1158000" />
       <workItem from="1730535008701" duration="10018000" />
       <workItem from="1730981395750" duration="3544000" />
-=======
       <workItem from="1730429165725" duration="1817000" />
       <workItem from="1730435216165" duration="5342000" />
       <workItem from="1730683852306" duration="6910000" />
       <workItem from="1730701298369" duration="6365000" />
       <workItem from="1730873312662" duration="10167000" />
       <workItem from="1730895743883" duration="8836000" />
->>>>>>> main
+      <workItem from="1730957305571" duration="8716000" />
+      <workItem from="1730985261787" duration="1515000" />
+      <workItem from="1731069592323" duration="3804000" />
+      <workItem from="1731285994638" duration="17368000" />
     </task>
     <servers />
   </component>

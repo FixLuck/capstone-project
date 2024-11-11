@@ -22,10 +22,10 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 // import RunningShoeForm from "./pages/admin-pages/RunningShoeForm";
 // import Cart from "./pages/shop-pages/Cart";
 import WelcomeAdmin from "./pages/admin-pages/WelcomeAdmin.jsx";
-import RootLayout from './pages/RootLayout.jsx';
-import HomePage from './pages/shop-pages/HomePage.jsx';
-import ListShoePage from './pages/shop-pages/ListShoePage.jsx';
-import AddShoePage from './pages/admin-pages/AddShoePage.jsx';
+import RootLayout from "./pages/RootLayout.jsx";
+import HomePage from "./pages/shop-pages/HomePage.jsx";
+import ListShoePage from "./pages/shop-pages/ListShoePage.jsx";
+import AddShoePage from "./pages/admin-pages/AddShoePage.jsx";
 import OrderHistory from "./pages/shop-pages/OrderHistory.jsx";
 import MemberManagemant from "./pages/admin-pages/MemberManagemant";
 import RootLayoutAdmin from "./pages/RootLayoutAdmin";
@@ -37,100 +37,39 @@ import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 
-    const router = createBrowserRouter([
-      {
-        path: "/",
-        element: <RootLayout/>,
-        errorElement: <ErrorPage/>,
-        children: [
-        {index: true, element: <HomePage/>},
-        {path: 'shoes', element: <ListShoePage/>},
-        {path: 'shoes/:id', element: <DetailShoePage/>},
-        {path: 'add-shoe', element: <AddShoePage/>},
-        {path: 'cart', element: <Cart/>},
-        {path: 'order-history', element: <OrderHistory/>},
-        {path: 'login', element: <UserLogin/>},
-        {path: 'register', element: <SignUp/>},
-        {path: 'users', element: <Profile/>},
-        {path: 'orders', element: <OrderHistory/>},
-        {path: 'checkout', element: <CheckOut/>},
-        {path: 'logout', element: <UserLogin/>}
-        ]
-      },
-      {
-        path: "/admin",
-        element: <RootLayoutAdmin/>,
-        errorElement: <ErrorPage/>,
-        children: [
-        {index: true, element: <WelcomeAdmin/>},
-        {path: 'discount-management', element: <DiscountManagement/>},
-        {path: 'member-order-history', element: <MemberOrderHistory/>},
-        {path: 'account-management', element: <MemberManagemant/>},
-        {path: 'revenue-stats', element: <RevenueStatistics/>},
-
-        {path: 'list-shoes', element: <ListManageShoePage/>},
-
-        {path: 'profile', element: <Profile/>},
-          
-
-        ]
-      },
-      {
-        path: "/manager",
-        element: <RootLayoutManager/>,
-        errorElement: <ErrorPage/>,
-        children: [
-          {index: true, element: <WelcomeManager/>},
-          {path: 'discount-management', element: <DiscountManagement/>},
-          {path: 'member-order-history', element: <MemberOrderHistory/>},
-
-
-<<<<<<< HEAD
-        ]
-      },
-=======
-
 const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <RootLayout/>,
-  //   errorElement: <ErrorPage/>,
-  //   children: [
-  //     {index: true, element: <HomePage/>},
-  //     {path: 'shoes', element: <ListShoePage/>},
-  //     {path: 'add-shoe', elem cent: <AddShoePage/>},
-  //     {path: 'cart', element: <Cart/>},
-  //     {path: 'order-history', element: <OrderHistory/>},
-
-
-  //   ]
-  // },
-  // {
-  //   path: "/admin",
-  //   element: <RootLayoutAdmin/>,
-  //   errorElement: <ErrorPage/>,
-  //   children: [
-  //     {index: true, element: <WelcomeAdmin/>},
-  //     {path: 'discount-management', element: <DiscountManagement/>},
-  //     {path: 'member-order-history', element: <MemberOrderHistory/>},
-  //     {path: 'member-managemant', element: <MemberManagemant/>},
-
-
-      
-  //   ]
-  // },
->>>>>>> dat-branch
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "shoes", element: <ListShoePage /> },
+      { path: "shoes/:id", element: <DetailShoePage /> },
+      { path: "add-shoe", element: <AddShoePage /> },
+      { path: "cart", element: <Cart /> },
+      { path: "order-history", element: <OrderHistory /> },
+      { path: "login", element: <UserLogin /> },
+      { path: "register", element: <SignUp /> },
+      { path: "users", element: <Profile /> },
+      { path: "orders", element: <OrderHistory /> },
+      { path: "checkout", element: <CheckOut /> },
+      { path: "logout", element: <UserLogin /> },
+    ],
+  },
   {
     path: "/admin",
-    element: <RootLayoutAdmin/>,
-    errorElement: <ErrorPage/>,
+    element: <RootLayoutAdmin />,
+    errorElement: <ErrorPage />,
     children: [
-      {index: true, element: <WelcomeAdmin/>},
-      {path: 'discount-management', element: <DiscountManagement/>},
-      {path: 'member-order-history', element: <MemberOrderHistory/>},
-      {path: 'member-managemant', element: <MemberManagemant/>},
-
-    ]
+      { index: true, element: <WelcomeAdmin /> },
+      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "member-order-history", element: <MemberOrderHistory /> },
+      { path: "account-management", element: <MemberManagemant /> },
+      { path: "revenue-stats", element: <RevenueStatistics /> },
+      { path: "list-shoes", element: <ListManageShoePage /> },
+      { path: "profile", element: <Profile /> },
+    ],
   },
   {
     path: "/manager",
@@ -144,29 +83,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-          
- 
-
-
 function App() {
-<<<<<<< HEAD
-  return (
-    
-
-    <RouterProvider router={router}>
-
-    </RouterProvider>
-
-
-  )
-
-
-<<<<<<< HEAD
-=======
   return <RouterProvider router={router}></RouterProvider>;
->>>>>>> 89b8a85574dfdb7c503c56af9abf89b338389ee5
-=======
->>>>>>> dat-branch
 }
-
 export default App;

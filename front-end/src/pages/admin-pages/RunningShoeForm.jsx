@@ -141,7 +141,7 @@ export default function RunningShoeForm() {
 
 
           setTimeout(() => {
-            navigate("/");
+            navigate("/admin/manage-shoes");
           }, 4000);
         }
       } catch (error) {

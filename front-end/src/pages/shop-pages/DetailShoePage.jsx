@@ -4,6 +4,9 @@ import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useParams } from "react-router-dom";
 import api from "@/config/axios";
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/store";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function DetailShoePage() {
   const params = useParams();
@@ -14,6 +17,8 @@ export default function DetailShoePage() {
   const [selectedVariant, setSelectedVariant] = React.useState(null);
   const [shoe, setShoe] = React.useState(null);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchShoe = async () => {
       try {
@@ -22,9 +27,9 @@ export default function DetailShoePage() {
         console.log(data.result);
         setShoe(data.result);
 
-        if (data.result?.variant?.length > 0) {
-          setSelectedSize(data.result?.variant[0]?.size);
-        }
+        // if (data.result?.variant?.length > 0) {
+        //   setSelectedVariant(data.result.variants[0]);
+        // }
       } catch (error) {
         console.log(error);
       }
@@ -33,16 +38,31 @@ export default function DetailShoePage() {
   }, [id]);
 
   const imagesShoe = shoe?.images;
-  console.log(imagesShoe);
 
-  const images = [
-    "/api/placeholder/600/600",
-    "/api/placeholder/200/200",
-    "/api/placeholder/200/200",
-    "/api/placeholder/200/200",
-  ];
+  const handleAddToCart = () => {
+    if (!selectedVariant) {
+      toast.error("Please select a size before adding to cart.", {
+        autoClose: 2000,
+      });
+      return;
+    }
 
-  const sizes = ["S", "M", "L", "XL", "XXL"];
+    const cartItem = {
+      id: shoe.id,
+      name: shoe.name,
+      price: shoe.price,
+      image: shoe.images[0].url,
+      quantity: quantity,
+      variantId: selectedVariant.id,
+      size: selectedVariant.sku.split('-').pop(),
+      totalPrice: shoe.price * quantity
+    };
+
+    dispatch(cartActions.addItemToCart(cartItem));
+    toast.success("Item added to cart", {
+      autoClose: 2000,
+    })
+  };
 
   const handleQuantityChange = (type) => {
     if (type === "increment") {
@@ -64,6 +84,18 @@ export default function DetailShoePage() {
 
   return (
     <div className="max-w-7xl mx-auto p-4">
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image section */}
         <div className="space-y-4">
@@ -119,7 +151,7 @@ export default function DetailShoePage() {
                       }
                       disabled={variant.stockQuantity === 0}
                     >
-                      {variant.sku.split('-').pop()}
+                      {variant.sku.split("-").pop()}
                     </button>
                   ))}
                 </div>
@@ -143,7 +175,12 @@ export default function DetailShoePage() {
                 </div>
               </div>
               <div className="flex gap-2 pt-4">
-                <Button className="flex-1 ">Add to cart</Button>
+                <Button
+                  className="flex-1 "
+                  onClick={() => handleAddToCart(shoe)}
+                >
+                  Add to cart
+                </Button>
                 <Button variant="destructive" className="flex-1 ">
                   Buy now
                 </Button>

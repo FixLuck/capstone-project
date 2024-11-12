@@ -121,6 +121,7 @@
                     <TableHead>Member Password</TableHead>
                     <TableHead>Member Phone</TableHead>
                     <TableHead>Member Email</TableHead>
+                    <TableHead>Member Address</TableHead>
                     <TableHead>Role</TableHead>
                     <TableHead className="text-center">Active</TableHead>
                   </TableRow>
@@ -147,6 +148,7 @@
                     <TableHead>***********</TableHead>
                     <TableCell>0123456789</TableCell> 
                     <TableCell>anguyenvan@gmail.com</TableCell>
+                    <TableCell>Quận 12</TableCell>
                     <TableCell>Admin</TableCell>
                     <TableCell className="text-center"><Checkbox id="terms" /></TableCell>
                   </TableRow>

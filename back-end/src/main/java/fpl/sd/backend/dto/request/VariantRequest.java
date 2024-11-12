@@ -13,4 +13,5 @@ public class VariantRequest {
     int sizeId;
     int stockQuantity;
     int shoeId;
+    String variantId;
 }

@@ -4,7 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
@@ -15,7 +14,6 @@
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/index.html" afterDir="false" />
-=======
     <list default="true" id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/RoleRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/system/DBInitialize.java" afterDir="false" />
@@ -25,13 +23,11 @@
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" afterDir="false" />
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
       <change beforePath="$PROJECT_DIR$/front-end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/components/admin-com/AdminAside.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/admin-com/AdminAside.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" afterDir="false" />
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/components/ui/button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/ui/button.jsx" afterDir="false" />
@@ -48,25 +44,22 @@
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/DiscountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/DiscountManagement.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/MemberOrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/MemberOrderHistory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/WelcomeManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/WelcomeManager.jsx" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/config/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/config/axios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" afterDir="false" />
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
+
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/CheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/CheckOut.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" afterDir="false" />
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderHistory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/SignUp.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" afterDir="false" />
-=======
+
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/store/index.js" afterDir="false" />
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,8 +86,6 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
-<<<<<<< HEAD
-=======
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
         &quot;isMigrated&quot;: true
@@ -102,7 +93,6 @@
   <component name="ProjectColorInfo">{
         &quot;associatedIndex&quot;: 0
         }</component>
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
   <component name="ProjectId" id="2nWTBIVpIkH8FyWNatvriqnTDxH" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -111,7 +101,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -129,7 +118,6 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
-=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Maven.back-end [clean].executor&quot;: &quot;Run&quot;,
@@ -212,11 +200,8 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< HEAD
       <changelist id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="" />
-=======
       <changelist id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
       <created>1729087695816</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -241,18 +226,15 @@
       <workItem from="1730701298369" duration="6365000" />
       <workItem from="1730873312662" duration="10167000" />
       <workItem from="1730895743883" duration="8836000" />
-<<<<<<< HEAD
       <workItem from="1731220379145" duration="71000" />
       <workItem from="1731220563668" duration="1878000" />
       <workItem from="1731222712960" duration="118000" />
       <workItem from="1731223773832" duration="216000" />
       <workItem from="1731224038297" duration="650000" />
-=======
       <workItem from="1730957305571" duration="8716000" />
       <workItem from="1730985261787" duration="1515000" />
       <workItem from="1731069592323" duration="3804000" />
       <workItem from="1731285994638" duration="17368000" />
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
     </task>
     <servers />
   </component>

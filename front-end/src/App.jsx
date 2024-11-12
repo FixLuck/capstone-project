@@ -17,8 +17,8 @@ import MemberManagemant from "./pages/admin-pages/MemberManagemant";
 import RootLayoutAdmin from "./pages/RootLayoutAdmin";
 import Cart from "./pages/shop-pages/Cart";
 import RootLayoutManager from "./pages/RootLayoutManager";
-import DiscountManagement from "./pages/manager-pages/DiscountManagement";
-import MemberOrderHistory from "./pages/manager-pages/MemberOrderHistory";
+import DiscountManagement from "./pages/admin-pages/DiscountManagement";
+import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory";
 import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
@@ -61,6 +61,7 @@ const router = createBrowserRouter([
       { path: 'profile', element: <Profile /> },
       {path: 'add-discount', element: <AddDiscountPage />}
     ]
+
   },
   {
     path: "/manager",

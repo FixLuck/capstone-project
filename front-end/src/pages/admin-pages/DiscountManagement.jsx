@@ -48,8 +48,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useEffect } from "react";
+import api from "@/config/axios";
+import { Link } from "react-router-dom";
 
-export function DiscountManagement() {
+export  function DiscountManagement() {
+
   const [selectedOption, setSelectedOption] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const options = ["newest", "oldest"];
@@ -66,11 +70,20 @@ export function DiscountManagement() {
       setIsDialogOpen(true);
     }
   };
+  const [discounts, setDiscounts] = React.useState([]);
+  useEffect(() => {
+    const fetchDiscounts = async () => {
+      const { data } = await api.get("discounts");
+      setDiscounts(data.result);
+    };
+
+    fetchDiscounts();
+  }, []);
 
   return (
    
       <div >
-        <h1 className="mt-5 text-lg" align="center">
+        <h1 className="mt-5 text-4xl font-bold" align="center">
           Discount Management
         </h1>
 
@@ -123,126 +136,41 @@ export function DiscountManagement() {
               <TableCaption>A list of your recent discounts.</TableCaption>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-10">Edit</TableHead>
+                  <TableHead className="w-[100px]">Edit</TableHead>
                   <TableHead>ID</TableHead>
-                  <TableHead>Percentage</TableHead>
+                  <TableHead>Code</TableHead>
+                  <TableHead>Discount Type</TableHead>
                   <TableHead>Start Day</TableHead>
                   <TableHead>End Day</TableHead>
                   <TableHead>Active</TableHead>
                 </TableRow>
               </TableHeader>
+
               <TableBody>
-                <TableRow>
+              {discounts.map((discount, index) => (
+                <TableRow key={discount.id}>
                   <TableCell>
                     <Select onValueChange={handleSelection}>
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-[90px]">
                         <SelectValue placeholder="Edit" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Action</SelectLabel>
-                          <SelectItem value="edit">Edit</SelectItem>
-                          <SelectItem value="delete">Delete</SelectItem>
+                          <SelectItem value="edit" className="text-yellow-500">Edit</SelectItem>
+                          <SelectItem value="delete" className="text-red-500">Delete</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
                   </TableCell>
-                  <TableCell>Paid</TableCell>
-                  <TableCell>Credit Card</TableCell>
-                  <TableCell>30/10/2024</TableCell>
-                  <TableCell>30/10/2025</TableCell>
-                  <TableCell>
-                    <Checkbox id="terms2" />
-                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
-                      Still active
-                    </label>
-                  </TableCell>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{discount.code}</TableCell>
+                  <TableCell>{discount.discountType}</TableCell>
+                  <TableCell>{discount.startDate}</TableCell>
+                  <TableCell>{discount.endDate}</TableCell>
+                  <TableCell>{discount.isActive}</TableCell>
                 </TableRow>
-
-
-                <TableRow>
-                  <TableCell>
-                    <Select onValueChange={handleSelection}>
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Edit" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Action</SelectLabel>
-                          <SelectItem value="edit">Edit</SelectItem>
-                          <SelectItem value="delete">Delete</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell>Paid</TableCell>
-                  <TableCell>Credit Card</TableCell>
-                  <TableCell>30/10/2024</TableCell>
-                  <TableCell>30/10/2025</TableCell>
-                  <TableCell>
-                    <Checkbox id="terms2" />
-                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
-                      Still active
-                    </label>
-                  </TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>
-                    <Select onValueChange={handleSelection}>
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Edit" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Action</SelectLabel>
-                          <SelectItem value="edit">Edit</SelectItem>
-                          <SelectItem value="delete">Delete</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell>Paid</TableCell>
-                  <TableCell>Credit Card</TableCell>
-                  <TableCell>30/10/2024</TableCell>
-                  <TableCell>30/10/2025</TableCell>
-                  <TableCell>
-                    <Checkbox id="terms2" />
-                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
-                      Still active
-                    </label>
-                  </TableCell>
-                </TableRow>
-
-
-                <TableRow>
-                  <TableCell>
-                    <Select onValueChange={handleSelection}>
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Edit" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Action</SelectLabel>
-                          <SelectItem value="edit">Edit</SelectItem>
-                          <SelectItem value="delete">Delete</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell>Paid</TableCell>
-                  <TableCell>Credit Card</TableCell>
-                  <TableCell>30/10/2024</TableCell>
-                  <TableCell>30/10/2025</TableCell>
-                  <TableCell>
-                    <Checkbox id="terms2" />
-                    <label htmlFor="terms2" className="text-sm font-medium leading-none">
-                      Still active
-                    </label>
-                  </TableCell>
-                </TableRow>
-
-
+                ))}
               </TableBody>
             </Table>
           </div>

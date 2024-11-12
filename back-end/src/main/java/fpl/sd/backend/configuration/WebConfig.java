@@ -12,18 +12,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig {
     @Bean
 
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                System.out.println("CORS Configuration is being applied!");
-                registry.addMapping("/api/**")
-                    .allowedOrigins("http://localhost:5173")
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                    .allowedHeaders("*")
-                    .allowCredentials(true);
-            }
-        };
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                System.out.println("CORS Configuration is being applied!");
+//                registry.addMapping("/api/**")
+//                    .allowedOrigins("http://localhost:5173")
+//                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//                    .allowedHeaders("*")
+//                    .allowCredentials(true);
+//            }
+//        };
 
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();

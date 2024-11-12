@@ -24,7 +24,6 @@ import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import CheckOut from "./pages/shop-pages/CheckOut";
 
-<<<<<<< HEAD
     const router = createBrowserRouter([
       {
         path: "/",
@@ -75,28 +74,6 @@ import CheckOut from "./pages/shop-pages/CheckOut";
 
         ]
       },
-=======
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <HomePage /> },
-      { path: "shoes", element: <ListShoePage /> },
-      { path: "shoes/:id", element: <DetailShoePage /> },
-      { path: "add-shoe", element: <AddShoePage /> },
-      { path: "cart", element: <Cart /> },
-      { path: "order-history", element: <OrderHistory /> },
-      { path: "login", element: <UserLogin /> },
-      { path: "register", element: <SignUp /> },
-      { path: "users", element: <Profile /> },
-      { path: "orders", element: <OrderHistory /> },
-      { path: "checkout", element: <CheckOut /> },
-      { path: "logout", element: <UserLogin /> },
-    ],
-  },
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
   {
     path: "/admin",
     element: <RootLayoutAdmin />,
@@ -124,7 +101,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-<<<<<<< HEAD
   return (
     
 
@@ -136,8 +112,5 @@ function App() {
   )
 
 
-=======
-  return <RouterProvider router={router}></RouterProvider>;
->>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
 }
 export default App;

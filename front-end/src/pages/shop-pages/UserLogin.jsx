@@ -29,7 +29,6 @@ const schema = z.object({
 });
 
 function UserLogin() {
-
   const navigate = useNavigate();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -120,8 +119,6 @@ function UserLogin() {
                     </a>
                   </div>
                   </div>
-   
-    
               </CardContent>
               <CardFooter className="flex items-center justify-center">
                 <div className="w-full flex flex-col space-y-4">

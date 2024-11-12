@@ -10,20 +10,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import axios from "axios";
+import api from "@/config/axios";
+import { authActions } from "@/store";
 
 function SignUp() {
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    // Hàm gửi yêu cầu đăng ký
     const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setError(''); // Reset lỗi trước khi gửi yêu cầu
+        setError('');  // Reset lỗi trước khi gửi yêu cầu
 
         if (password !== confirmPassword) {
             setError("Passwords do not match!");
@@ -31,19 +33,31 @@ function SignUp() {
             return;
         }
 
+        // Kiểm tra email hợp lệ
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError("Please enter a valid email.");
+            setLoading(false);
+            return;
+        }
+
         try {
-            const response = await axios.post("http://localhost:8080/api/v1/users", {
+            const response = await api.post('users', {
+                username,
                 email,
                 password
             });
 
             if (response.data.success) {
-                window.location.href = '/login';
+                navigate("/login");
             } else {
-                setError("Registration failed. Please try again.");
+                setError(response.data.message || "Registration failed. Please try again.");
             }
         } catch (err) {
-            setError("Something went wrong. Please try again.");
+            if (err.response && err.response.data) {
+                setError(err.response.data.message || "Something went wrong. Please try again.");
+            } else {
+                setError("Something went wrong. Please try again.");
+            }
         } finally {
             setLoading(false);
         }
@@ -65,11 +79,25 @@ function SignUp() {
                         <CardContent>
                             <div className="grid w-full gap-6">
                                 <div className="grid gap-2">
+<<<<<<< HEAD
+                                    <Label htmlFor="username">Username</Label>
+                                    <Input
+                                        type="username"
+                                        id="username"
+                                        className="border rounded-md p-2 w-full"
+                                        value={email}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                    />
+                                </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="email">Email</Label>
+=======
                                     <Label>Username</Label>
                                     <Input type="email" id="email" className="border rounded-md p-2 w-full" />
                                 </div>
                                 <div className="grid gap-2">
                                     <Label>Email Address</Label>
+>>>>>>> 3db4d5bc963568cfb92cd81d29d43515cf304e19
                                     <Input
                                         type="email"
                                         id="email"
@@ -79,7 +107,7 @@ function SignUp() {
                                     />
                                 </div>
                                 <div className="grid gap-2">
-                                    <Label>Password</Label>
+                                    <Label htmlFor="password">Password</Label>
                                     <Input
                                         type="password"
                                         id="password"
@@ -88,8 +116,8 @@ function SignUp() {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <div className="grid gap-2">
-                                    <Label>Confirm Password</Label>
+                                <div className="grid gap-2">s
+                                    <Label htmlfor="confirmPassword">Confirm Password</Label>
                                     <Input
                                         type="password"
                                         id="confirmPassword"

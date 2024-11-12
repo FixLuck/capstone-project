@@ -36,6 +36,7 @@ import MemberOrderHistory from "./pages/manager-pages/MemberOrderHistory";
 import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
+import CheckOut from "./pages/shop-pages/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -67,7 +68,8 @@ const router = createBrowserRouter([
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenueStatistics /> },
-      { path: "list-shoes", element: <ListManageShoePage /> },
+      { path: "manage-shoes", element: <ListManageShoePage /> },
+      { path: "manage-shoes/new", element: <AddShoePage /> },
       { path: "profile", element: <Profile /> },
     ],
   },

@@ -16,15 +16,22 @@ import api from "@/config/axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { Checkbox } from "@/components/ui/checkbox";
+import VariantShoeOnUpdateForm from "./VariantShoeOnUpdateForm";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { set } from "date-fns";
 
 const schema = z.object({
   name: z.string().min(2, { message: "Required" }),
   price: z.number().min(10, { message: "Required" }),
   description: z.string().min(10),
-  status: z.boolean(),
+  status: z
+    .enum(["true", "false"], {
+      invalid_type_error: "Status must be a boolean",
+      required_error: "Status is required",
+    })
+    .transform((value) => value === "true"),
   fakePrice: z.number().min(10, { message: "Required" }),
   gender: z.string(),
   category: z.string(),
@@ -42,26 +49,90 @@ export default function UpdateShoeForm({ shoeId }) {
   });
 
   const [shoe, setShoe] = React.useState({});
+  const [updatedVariants, setUpdatedVariants] = React.useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleVariantChange = (variantId, quantity) => {
+    setUpdatedVariants((prev) => ({
+      ...prev,
+      [variantId]: quantity,
+    }));
+  };
 
   useEffect(() => {
     const fetchShoe = async () => {
       const { data } = await api.get(`shoes/${shoeId}`);
       setShoe(data.result);
       reset(data.result);
+
+      const initialVariants = {};
+      data.result.variants?.forEach((variant) => {
+        initialVariants[variant.id] = variant.stockQuantity;
+      });
+      setUpdatedVariants(initialVariants);
     };
     fetchShoe();
   }, [shoeId, reset]);
 
-  const [status, setStatus] = useState(shoe.status)
-
-  //   console.log(shoe);
-
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    setIsLoading(true);
+    const toastId = toast.loading("Updating product...");
+    try {
+      const formData = {
+        ...data,
+        variants: shoe.variants.map((variant) => ({
+          variantId: variant.id,
+          stockQuantity: updatedVariants[variant.id] ?? variant.stockQuantity,
+        })),
+      };
+      console.log(formData);
+      try {
+        const response = await api.put(`shoes/${shoeId}`, formData);
+        if (response.status === 200) {
+          console.log("Product updated successfully:", response.data);
+          toast.update(toastId, {
+            render: "Product updated successfully",
+            type: "success",
+            isLoading: false,
+            autoClose: 2000,
+          });
+          setIsLoading(false);
+          setTimeout(() => {
+            navigate("/admin/manage-shoes");
+          }, 4000);
+        } else {
+          toast.update(toastId, {
+            render: "Failed to update product",
+            type: "error",
+            isLoading: false,
+            autoClose: 2000,
+          });
+          setIsLoading(false)
+        }
+      } catch (error) {
+        console.error("Error updating product:", error);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <Dialog className='min-h-screen'>
+    <Dialog className="min-h-screen">
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <DialogTrigger asChild>
         <Button
           variant="outline"
@@ -153,34 +224,45 @@ export default function UpdateShoeForm({ shoeId }) {
               </select>
             </div>
             <div className="space-y-2">
-            <Label htmlFor="brandId">Brand:</Label>
-            <select
-              {...register("brandId", { valueAsNumber: true })}
-              className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
-            >
-              <option value="1">Nike</option>
-              <option value="2">Adidas</option>
-              <option value="3">Puma</option>
-              <option value="4">Reebok</option>
-            </select>
-          </div>
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2">
-              <Switch
-                id="status"
-                {...register("status")}
-                onCheckedChange={(e) => setStatus(prev => !prev)}
-                value={status}
-              />
-              <Label htmlFor="status">Active Status</Label>
+              <Label htmlFor="brandId">Brand:</Label>
+              <select
+                {...register("brandId", { valueAsNumber: true })}
+                className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
+              >
+                <option value="1">Nike</option>
+                <option value="2">Adidas</option>
+                <option value="3">Puma</option>
+                <option value="4">Reebok</option>
+              </select>
             </div>
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="status">Status:</Label>
+            <select
+              {...register("status")}
+              className="block w-1/3 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
+            >
+              <option value="">Select status</option>
+              <option value="true">Active</option>
+              <option value="false">Inactive</option>
+            </select>
+            {errors.status?.message && (
+              <p className="text-red-600">{errors.status?.message}</p>
+            )}
+          </div>
+
+          <VariantShoeOnUpdateForm
+            variants={shoe.variants}
+            onVariantChange={handleVariantChange}
+            updatedVariants={updatedVariants}
+          />
 
           <Separator className="my-4" />
 
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? "Loading..." : "Save changes"}
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

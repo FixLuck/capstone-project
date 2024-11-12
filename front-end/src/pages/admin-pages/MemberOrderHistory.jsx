@@ -49,11 +49,123 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+export function OrderHistory() {
+  const orders = [
+    {
+      id: '#12526',
+      username: 'user1',
+      productName: 'Sport Shoes',
+      payment: 'Paid',
+      status: 'Pending',
+      total: '$20',
+    },
+    {
+      id: '#52689',
+      username: 'user2',
+      productName: 'Watch',
+      payment: 'COD',
+      status: 'Cancelled',
+      total: '$20',
+    },
+    {
+      id: '#52648',
+      username: 'user3',
+      productName: 'Headphone',
+      payment: 'COD',
+      status: 'Cancelled',
+      total: '$20',
+    },
+    {
+      id: '#23845',
+      username: 'user4',
+      productName: 'COCO Perfume',
+      payment: 'Paid',
+      status: 'Received',
+      total: '$20',
+    },
+  ];
+
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-4 text-center">Order History</h1>
+
+      {/* Filter Section */}
+      <div className="flex items-center space-x-4 mb-6 p-5">
+        <div className="flex space-x-2">
+          <button className="text-blue-500 font-medium">All Order(50)</button>
+          <button className="text-gray-500">Pending(10)</button>
+          <button className="text-gray-500">Completed(8)</button>
+          <button className="text-gray-500">Cancelled(22)</button>
+        </div>
+      </div>
+
+      {/* Search and Date Filter */}
+      <div className="flex items-center space-x-4 mb-6">
+        <Input placeholder="Search..." className="w-full max-w-xs" />
+        <div className="flex items-center space-x-2">
+          <Button variant="outline" className="flex items-center space-x-2">
+            <CalendarIcon className="w-5 h-5" />
+            <span>From</span>
+          </Button>
+          <Button variant="outline" className="flex items-center space-x-2">
+            <CalendarIcon className="w-5 h-5" />
+            <span>To</span>
+          </Button>
+        </div>
+        <Button variant="outline" className="flex items-center space-x-1">
+          <span>Sort By</span>
+          <span className="w-5 h-5">🔽</span>
+        </Button>
+      </div>
+
+      {/* Order Table */}
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <table className="min-w-full bg-white">
+          <thead className="bg-gray-100 text-gray-600">
+            <tr>
+              <th className="py-3 px-4 text-left">Id</th>
+              <th className="py-3 px-4 text-left">Username</th>
+              <th className="py-3 px-4 text-left">Product Name</th>
+              <th className="py-3 px-4 text-left">Payment</th>
+              <th className="py-3 px-4 text-left">Status</th>
+              <th className="py-3 px-4 text-left">Total</th>
+              <th className="py-3 px-4 text-left">Invoice</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order, index) => (
+              <tr key={index} className="border-t border-gray-200">
+                <td className="py-3 px-4 text-blue-500">{order.id}</td>
+                <td className="py-3 px-4">{order.username}</td>
+                <td className="py-3 px-4">{order.productName}</td>
+                <td className="py-3 px-4 text-green-500">{order.payment}</td>
+                <td
+                  className={`py-3 px-4 ${
+                    order.status === 'Pending'
+                      ? 'text-yellow-500'
+                      : order.status === 'Received'
+                      ? 'text-green-500'
+                      : 'text-red-500'
+                  }`}
+                >
+                  {order.status}
+                </td>
+                <td className="py-3 px-4">{order.total}</td>
+                <td className="py-3 px-4 text-blue-500">🖶</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 export function MemberOrderHistory() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const options = ["newest", "oldest"];
-  
+
   // Separate state for start date and end date
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -68,146 +180,11 @@ export function MemberOrderHistory() {
   };
 
   return (
-   
-      <div>
-        <h1 className="mt-5 text-lg" align="center">
-          Members Order History
-        </h1>
-
-        <div className="mt-5">
-          <div className="grid gap-4 sm:grid-cols-10 grid-cols-1">
-            <div className="sm:col-span-4 mt-3">
-              <Pagination>
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPrevious href="#" />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                    <PaginationLink href="#">2</PaginationLink>
-                    <PaginationLink href="#">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationEllipsis />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNext href="#" />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-
-            <div className="sm:col-span-5">
-              <div className="grid gap-4 sm:grid-cols-6 grid-cols-1">
-                <div className="sm:col-span-4">
-                  <div className="relative mt-1">
-                    <div className="grid gap-4 sm:grid-cols-4 grid-cols-1">
-                    <div className="sm:col-span-2">
-                    <Popover id="disStart" className="mb-2">
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !startDate && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {startDate ? format(startDate, "PPP") : <span>Pick a start date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar
-                    mode="single"
-                    selected={startDate}
-                    onSelect={setStartDate}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-                    </div>
-                    <div className="sm:col-span-2">
-                    <Popover id="disEnd" className="mb-2">
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !endDate && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {endDate ? format(endDate, "PPP") : <span>Pick an end date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar
-                    mode="single"
-                    selected={endDate}
-                    onSelect={setEndDate}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-                    </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="sm:col-span-1">
-                  <Button className="bg-green-500 text-indigo-50" variant="default">
-                    Save to Excel
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 p-5">
-          <Table>
-              <TableCaption>A list of all members purchases.</TableCaption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Status</TableHead>
-                  <TableHead>UserName</TableHead>
-                  <TableHead>Order ID</TableHead>
-                  <TableHead>Order Date</TableHead>
-                  <TableHead>Discount ID</TableHead>
-                  <TableHead>Total Amount</TableHead>
-                  <TableHead>Details</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                  <Checkbox id="terms" />
-                        <label
-                            htmlFor="terms"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                            Done
-                        </label>
-                  </TableCell>
-                  <TableCell>john45</TableCell>
-                  <TableCell>1</TableCell>
-                  <TableCell>30/10/2024</TableCell>
-                  <TableCell>christmas30</TableCell>
-                  <TableCell>285$</TableCell>
-                  <TableCell><a href="#" className="text-indigo-500">Details</a></TableCell>
-                </TableRow>
-
-                
-
-              </TableBody>
-            </Table>
-          </div>
-        </div>
-
-
-      </div>
-
+    <div>
+      <OrderHistory />
+      {/* Các thành phần khác nếu cần */}
+    </div>
   );
 }
-
 
 export default MemberOrderHistory;

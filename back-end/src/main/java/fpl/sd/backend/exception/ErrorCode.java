@@ -48,7 +48,7 @@ public enum ErrorCode {
     //Order-related errors
     ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
 
-    ;
+    ORDER_NOT_FOUND(404,"Order not found" ,HttpStatus.NOT_FOUND );
 
 
 

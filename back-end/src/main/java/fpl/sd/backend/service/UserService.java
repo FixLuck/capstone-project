@@ -26,15 +26,16 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
 
-    public void validateUserCreateRequest(UserCreateRequest request)  {
-        if(userRepository.existsByUsername(request.getUsername())){
+    public void validateUserCreateRequest(UserCreateRequest request) {
+        if (userRepository.existsByUsername(request.getUsername())) {
             throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
         }
-        if (userRepository.existsByEmail(request.getEmail())){
+        if (userRepository.existsByEmail(request.getEmail())) {
             throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
         }
     }
-    public UserResponse createUser(UserCreateRequest request){
+
+    public UserResponse createUser(UserCreateRequest request) {
         validateUserCreateRequest(request);
         User user = userMapper.toUser(request);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
@@ -43,58 +44,56 @@ public class UserService {
         userRepository.save(user);
         return userMapper.toUserResponse(user);
     }
-    public List<UserResponse> getAllUsers(){
+
+    public List<UserResponse> getAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream()
                 .map(userMapper::toUserResponse)
                 .toList();
     }
 
-    public UserResponse getUserById(String id){
+    public UserResponse getUserById(String id) {
         return userMapper.toUserResponse(userRepository.findById(id)
-                .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND)));
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND)));
     }
 
     public UserResponse updateUser(String id, UserUpdateRequest request) {
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-    // Kiểm tra xem username đã tồn tại hay chưa
+        // Kiểm tra xem username đã tồn tại hay chưa
         if (request.getUsername() != null && !request.getUsername().equals(user.getUsername()) &&
-            userRepository.existsByUsername(request.getUsername())) {
-                throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
-            }
+                userRepository.existsByUsername(request.getUsername())) {
+            throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
+        }
 
-    if (request.getEmail() != null && !request.getEmail().equals(user.getEmail()) &&
-            userRepository.existsByEmail(request.getEmail())) {
-        throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
+        if (request.getEmail() != null && !request.getEmail().equals(user.getEmail()) &&
+                userRepository.existsByEmail(request.getEmail())) {
+            throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
+        }
+
+        if (request.getUsername() != null) {
+            user.setUsername(request.getUsername());
+        }
+        if (request.getEmail() != null) {
+            user.setEmail(request.getEmail());
+        }
+        if (request.getPassword() != null) {
+            user.setPassword(request.getPassword());
+        }
+        if (request.getPhone() != null) {
+            user.setPhone(request.getPhone());
+        }
+        if (request.getAddress() != null) {
+            user.setAddress(request.getAddress());
+        }
+        if (request.getActive() != null) {
+            user.setActive(request.getActive());
+        }
+
+        user.setUpdatedAt(Instant.now());
+        userRepository.save(user);
+        return userMapper.toUserResponse(user);
     }
 
-    if (request.getUsername() != null) {
-        user.setUsername(request.getUsername());
-    }
-    if (request.getEmail() != null) {
-        user.setEmail(request.getEmail());
-    }
-    if (request.getPassword() != null) {
-        user.setPassword(request.getPassword());
-    }
-    if (request.getPhone() != null) {
-        user.setPhone(request.getPhone());
-    }
-    if (request.getAddress() != null) {
-        user.setAddress(request.getAddress());
-    }
-    if (request.getActive() != null) {
-        user.setActive(request.getActive());
-    }
-
-    user.setUpdatedAt(Instant.now());
-    userRepository.save(user);
-    return userMapper.toUserResponse(user);
-}
-
-    public UserResponse getUserByUsername(String username) {
-
-    }
 }

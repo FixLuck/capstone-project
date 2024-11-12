@@ -99,7 +99,7 @@ export default function UpdateShoeForm({ shoeId }) {
           });
           setIsLoading(false);
           setTimeout(() => {
-            navigate("/admin/manage-shoes");
+            navigate("/admin");
           }, 4000);
         } else {
           toast.update(toastId, {

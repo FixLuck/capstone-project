@@ -108,7 +108,4 @@ public class AuthenticationService {
                .orElse("");
    }
 
-    public String getUsernameFromToken(String substring) {
-
-    }
 }

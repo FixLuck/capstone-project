@@ -5,67 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/DiscountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/DiscountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/DiscountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/index.html" afterDir="false" />
-    <list default="true" id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/VariantUpdateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/SizeResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/SizeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/ShoeVariantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/ShoeVariantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/ShoeUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/ShoeUpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/App.jsx" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/admin-com/AdminAside.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/admin-com/AdminAside.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/ui/button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/ui/button.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/RootLayoutAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/RootLayoutAdmin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/RootLayoutManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/RootLayoutManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/DiscountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/DiscountManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberManagemant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberManagemant.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RevenueStatistics.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RevenueStatistics.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/WelcomeAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/WelcomeAdmin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/DiscountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/DiscountManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/MemberOrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/MemberOrderHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/WelcomeManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/WelcomeManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ShoppingBag.jsx" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/UpdateShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/UpdateShoeForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/VariantShoe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/VariantShoe.jsx" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ShoeList.jsx" afterDir="false" />
-
-
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/CheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/CheckOut.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/SignUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" afterDir="false" />
-
-
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/store/cart-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/store/cart-slice.js" afterDir="false" />
     </list>
+    <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,9 +55,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BackEndApplication.executor": "Run",
     "Maven.back-end [clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -126,51 +75,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-
-  <component name="PropertiesComponent">
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.back-end [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BackEndApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;man-branch&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="fpl.sd.backend.dto.response" />
       <recent name="fpl.sd.backend.dto.request" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BackEndApplication">
+  <component name="RunManager" selected="Spring Boot.BackEndApplication">
     <configuration name="BackEndApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fpl.sd.backend.BackEndApplication" />
       <module name="back-end" />
@@ -201,9 +112,9 @@
       </method>
     </configuration>
     <configuration name="BackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="back-end" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="fpl.sd.backend.BackEndApplication" />
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -270,7 +181,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -281,9 +191,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/capstone_project$BackEndApplication.ic" NAME="BackEndApplication Coverage Results" MODIFIED="1731132205276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-
   </component>
 </project>

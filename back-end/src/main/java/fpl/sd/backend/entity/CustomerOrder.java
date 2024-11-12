@@ -1,6 +1,7 @@
 package fpl.sd.backend.entity;
 
 import fpl.sd.backend.constant.OrderConstants;
+import fpl.sd.backend.dto.response.CartItemResponse;
 import fpl.sd.backend.dto.response.OrderDto;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -55,9 +57,23 @@ public class CustomerOrder {
         orderDto.setFinalTotal(finalTotal);
         orderDto.setOriginalTotal(originalTotal);
         orderDto.setUsername(user.getUsername());
-        if (discount != null) {
+
+        if(discount!=null){
+            orderDto.setDiscountId(discount.getId());
             orderDto.setCouponName(discount.getCode());
         }
+        List<CartItemResponse> cartItemResponses = orderDetails.stream()
+                .map(orderDetail -> {
+                    CartItemResponse cartItemResponse = new CartItemResponse();
+                    cartItemResponse.setVariantId(orderDetail.getVariant().getId());
+                    cartItemResponse.setQuantity(orderDetail.getQuantity());
+                    cartItemResponse.setPrice(orderDetail.getPrice());
+                    return cartItemResponse;
+                })
+                .collect(Collectors.toList());
+
+        orderDto.setCartItems(cartItemResponses);
+
         return orderDto;
     }
 

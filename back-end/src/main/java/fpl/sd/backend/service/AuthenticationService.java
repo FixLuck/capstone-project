@@ -107,4 +107,8 @@ public class AuthenticationService {
                .map(role -> "ROLE_" + role.getRoles())
                .orElse("");
    }
+
+    public String getUsernameFromToken(String substring) {
+
+    }
 }

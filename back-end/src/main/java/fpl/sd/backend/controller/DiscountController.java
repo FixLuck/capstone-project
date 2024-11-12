@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(value = "*")
 @RestController
 @RequestMapping("/discounts")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 @FieldDefaults(makeFinal = true,level = AccessLevel.PRIVATE)
 public class DiscountController {
     DiscountService discountService;

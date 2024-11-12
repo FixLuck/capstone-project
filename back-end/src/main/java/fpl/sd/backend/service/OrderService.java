@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -93,9 +94,11 @@ public class OrderService {
     }
 
 
-    public OrderDto applyDiscount(String userId, String code) {
-        CustomerOrder order = orderRepository.findByUserIdAndOrderStatus(userId, OrderConstants.OrderStatus.PENDING);
-        Discount discount = discountRepository.findByCode(code).orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
+    public OrderDto applyDiscount(String userId,String orderId, String code) {
+        CustomerOrder order = orderRepository.findByIdAndUserIdAndOrderStatus(orderId,userId, OrderConstants.OrderStatus.PENDING)
+                .orElseThrow(()-> new AppException(ErrorCode.ORDER_NOT_FOUND));
+        Discount discount = discountRepository.findByCode(code)
+                .orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
 
         if(couponIsExpired(discount)) {
             throw new ValidationException("Discount has been expired");

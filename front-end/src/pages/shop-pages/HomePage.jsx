@@ -29,9 +29,7 @@ export default function HomePage() {
     <div className="container mx-auto justify-center ">
       <CarouselHomePage/>
       <ListBrand/>
-      <HotShoeList/>
-      <HotShoeList/>
-      <HotShoeList/>
+
     </div>
   );
 }

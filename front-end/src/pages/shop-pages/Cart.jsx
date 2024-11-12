@@ -10,6 +10,12 @@ import { selectItems } from "@/store/cart-slice";
 import { Link } from "react-router-dom";
 import { formatterToVND } from "../../utils/formatter";
 
+
+
+
+
+
+
 export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
@@ -62,7 +68,6 @@ export default function Cart() {
   return (
     <div className="container mx-auto p-6 bg-white rounded-md">
       <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
-
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           {items.map((item, index) => (

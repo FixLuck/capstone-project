@@ -94,7 +94,4 @@ public class UserService {
     return userMapper.toUserResponse(user);
 }
 
-    public UserResponse getUserByUsername(String username) {
-
-    }
 }

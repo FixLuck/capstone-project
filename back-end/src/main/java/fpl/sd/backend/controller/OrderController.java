@@ -1,6 +1,7 @@
 package fpl.sd.backend.controller;
 
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.request.ApplyDiscountRequest;
 import fpl.sd.backend.dto.request.OrderRequest;
 import fpl.sd.backend.dto.response.OrderDto;
 import fpl.sd.backend.dto.response.OrderResponse;
@@ -31,14 +32,39 @@ public class OrderController {
 
     }
 
-    @GetMapping("/{userId}/{coupon}")
-    public ApiResponse<?> applyCoupon(@PathVariable String userId, @PathVariable String coupon) {
+//    @GetMapping("/{userId}/{coupon}")
+//    public ApiResponse<?> applyCoupon(@PathVariable String userId, @PathVariable String coupon) {
+//        try {
+//            OrderDto orderDto = orderService.applyDiscount(userId, coupon);
+//            return ApiResponse.<OrderDto>builder()
+//                    .code(200)
+//                    .flag(true)
+//                    .message("Apply Successfully")
+//                    .result(orderDto)
+//                    .build();
+//        } catch (ValidationException ex) {
+//            return ApiResponse.builder()
+//                    .code(400)
+//                    .flag(false)
+//                    .message("Discount has expired")
+//                    .build();
+//        } catch (AppException ex) {
+//            return ApiResponse.builder()
+//                    .code(404)
+//                    .flag(false)
+//                    .message(ex.getMessage())
+//                    .build();
+//        }
+//    }
+
+    @PostMapping("/apply-discount")
+    public ApiResponse<?> applyDiscount(@RequestBody @Valid ApplyDiscountRequest request) {
         try {
-            OrderDto orderDto = orderService.applyDiscount(userId, coupon);
+            OrderDto orderDto = orderService.applyDiscount(request.getUserId(), request.getOrderId(),request.getDiscount());
             return ApiResponse.<OrderDto>builder()
                     .code(200)
                     .flag(true)
-                    .message("Apply Successfully")
+                    .message("Apply successfully")
                     .result(orderDto)
                     .build();
         } catch (ValidationException ex) {

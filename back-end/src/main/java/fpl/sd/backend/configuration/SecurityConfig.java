@@ -11,6 +11,9 @@ import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.spec.SecretKeySpec;
 
@@ -20,7 +23,9 @@ public class SecurityConfig {
 
     private final String[] PUBLIC_ENDPOINTS = { "/users",
                                                 "/auth/token",
-                                                "/auth/introspect"};
+                                                "/auth/introspect",
+                                                "/apply-discount",
+                                                "/discounts"};
 
     @Value("${jwt.signerKey}")
     private String SIGNER_KEY;
@@ -30,6 +35,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
             httpSecurity.authorizeHttpRequests(request ->
                     request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
+                            .requestMatchers(HttpMethod.GET, PUBLIC_ENDPOINTS).permitAll()
                             .anyRequest()
                             .authenticated());
 
@@ -52,4 +58,5 @@ public class SecurityConfig {
                 .macAlgorithm(MacAlgorithm.HS512)
                 .build();
     }
+
 }

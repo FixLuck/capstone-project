@@ -55,7 +55,7 @@ public class CustomerOrder {
         orderDto.setFinalTotal(finalTotal);
         orderDto.setOriginalTotal(originalTotal);
         orderDto.setUsername(user.getUsername());
-        if(discount!=null){
+        if (discount != null) {
             orderDto.setCouponName(discount.getCode());
         }
         return orderDto;

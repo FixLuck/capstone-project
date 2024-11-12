@@ -21,6 +21,6 @@ public class ShoeUpdateRequest {
     String gender;
     String category;
 
-    List<ImageRequest> images;
+//    List<ImageRequest> images;
     List<VariantRequest> variants;
 }

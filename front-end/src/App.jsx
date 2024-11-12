@@ -36,6 +36,7 @@ import MemberOrderHistory from "./pages/manager-pages/MemberOrderHistory";
 import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
+import CheckOut from "./pages/shop-pages/CheckOut";
 
     const router = createBrowserRouter([
       {
@@ -43,7 +44,7 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
         element: <RootLayout/>,
         errorElement: <ErrorPage/>,
         children: [
-        {index: true, element: <HomePage/>},
+          
         {path: 'shoes', element: <ListShoePage/>},
         {path: 'shoes/:id', element: <DetailShoePage/>},
         {path: 'add-shoe', element: <AddShoePage/>},
@@ -116,7 +117,6 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 
 
 function App() {
-<<<<<<< HEAD
   return (
     
 
@@ -128,9 +128,6 @@ function App() {
   )
 
 
-=======
-  return <RouterProvider router={router}></RouterProvider>;
->>>>>>> 89b8a85574dfdb7c503c56af9abf89b338389ee5
 }
 
 export default App;

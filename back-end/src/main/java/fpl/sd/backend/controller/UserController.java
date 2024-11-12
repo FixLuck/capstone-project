@@ -6,21 +6,25 @@ import fpl.sd.backend.dto.request.UserCreateRequest;
 import fpl.sd.backend.dto.response.UserResponse;
 import fpl.sd.backend.dto.request.UserUpdateRequest;
 import fpl.sd.backend.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
+import fpl.sd.backend.service.AuthenticationService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(value = "*")
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserController {
     UserService userService;
-
+    AuthenticationService authenticationService;
+    
     @PostMapping
     public ApiResponse<UserResponse> addUser(@RequestBody @Valid UserCreateRequest user) {
         return ApiResponse.<UserResponse>builder()
@@ -59,6 +63,42 @@ public class UserController {
                 .message("User updated successfully")
                 .result(updateUser)
                 .build();
+    }
+
+    @GetMapping("/me")
+    public ApiResponse<UserResponse> getCurrentUser(HttpServletRequest request) {
+        // Lấy token từ header Authorization
+        String token = request.getHeader("Authorization");
+
+        // Kiểm tra xem token có hợp lệ không
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ApiResponse.<UserResponse>builder()
+                    .flag(false)
+                    .code(401)
+                    .message("Token is missing or invalid")
+                    .build();
+        }
+
+        try {
+            // Lấy username từ token (bỏ phần "Bearer ")
+            String username = authenticationService.getUsernameFromToken(token.substring(7));  
+
+            // Lấy thông tin người dùng từ database bằng username
+            UserResponse user = userService.getUserByUsername(username);
+
+            return ApiResponse.<UserResponse>builder()
+                    .flag(true)
+                    .code(200)
+                    .message("User data retrieved successfully")
+                    .result(user)
+                    .build();
+        } catch (Exception e) {
+            return ApiResponse.<UserResponse>builder()
+                    .flag(false)
+                    .code(500)
+                    .message("Failed to retrieve user data: " + e.getMessage())
+                    .build();
+        }
     }
 
 }

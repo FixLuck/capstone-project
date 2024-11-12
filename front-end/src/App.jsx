@@ -24,7 +24,6 @@ import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import CheckOut from "./pages/shop-pages/CheckOut";
 import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
-
 const router = createBrowserRouter([
   {
     path: "/",

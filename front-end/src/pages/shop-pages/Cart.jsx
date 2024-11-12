@@ -11,11 +11,6 @@ import { Link } from "react-router-dom";
 import { formatterToVND } from "../../utils/formatter";
 
 
-
-
-
-
-
 export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
@@ -52,7 +47,6 @@ export default function Cart() {
   };
 
   const totals = calculateTotals();
-
   if (!items.length) {
     return (
       <div className="container mx-auto p-6 bg-white rounded-md">
@@ -185,4 +179,5 @@ export default function Cart() {
       </div>
     </div>
   );
+
 }

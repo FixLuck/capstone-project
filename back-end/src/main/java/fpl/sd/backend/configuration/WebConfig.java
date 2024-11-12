@@ -13,29 +13,18 @@ public class WebConfig {
     @Bean
 
 
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                System.out.println("CORS Configuration is being applied!");
-                registry.addMapping("/api/**")
-                    .allowedOrigins("http://localhost:5173")
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                    .allowedHeaders("*")
-                    .allowCredentials(true);
-            }
-        };
-
-    public CorsFilter corsFilter() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://localhost:5173");
-        corsConfiguration.addAllowedMethod("*");
-        corsConfiguration.addAllowedHeader("*");
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return new CorsFilter(source);
-
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                System.out.println("CORS Configuration is being applied!");
+//                registry.addMapping("/api/**")
+//                    .allowedOrigins("http://localhost:5173")
+//                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//                    .allowedHeaders("*")
+//                    .allowCredentials(true);
+//            }
+//        };
 
     public CorsFilter corsFilter () {
             CorsConfiguration corsConfiguration = new CorsConfiguration();

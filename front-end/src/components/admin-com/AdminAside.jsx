@@ -54,7 +54,7 @@ export function AdminAside() {
                 </Link>
               </li>
               <li className="mb-3">
-                <Link to="/admin/list-shoes" className="hover:text-red-400 hover:text-lg text-emerald-50 transition-colors duration-200">
+                <Link to="/admin/manage-shoes" className="hover:text-red-400 hover:text-lg text-emerald-50 transition-colors duration-200">
                   Quản lý giày
                 </Link>
               </li>

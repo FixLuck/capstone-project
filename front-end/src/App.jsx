@@ -17,8 +17,8 @@ import MemberManagemant from "./pages/admin-pages/MemberManagemant";
 import RootLayoutAdmin from "./pages/RootLayoutAdmin";
 import Cart from "./pages/shop-pages/Cart";
 import RootLayoutManager from "./pages/RootLayoutManager";
-import DiscountManagement from "./pages/manager-pages/DiscountManagement";
-import MemberOrderHistory from "./pages/manager-pages/MemberOrderHistory";
+import DiscountManagement from "./pages/admin-pages/DiscountManagement";
+import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory";
 import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
@@ -53,8 +53,10 @@ const router = createBrowserRouter([
       { path: "discount-management", element: <DiscountManagement /> },
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
+      { path: "account-management/new", element: <MemberManagemant />},
       { path: "revenue-stats", element: <RevenueStatistics /> },
-      { path: "list-shoes", element: <ListManageShoePage /> },
+      { path: "manage-shoes", element: <ListManageShoePage /> },
+      { path: "manage-shoes/new", element: <AddShoePage /> },
       { path: "profile", element: <Profile /> },
     ],
   },

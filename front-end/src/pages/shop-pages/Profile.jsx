@@ -16,7 +16,7 @@ import { selectUser } from "@/store/auth";
 import { useSelector } from "react-redux";
 import LocationSelector from "@/components/shop/LocationSelector";
 import { ToastContainer, toast } from "react-toastify";
-import { set } from "react-hook-form";
+
 
 function Profile() {
   const [userData, setUserData] = useState(null);
@@ -46,7 +46,6 @@ function Profile() {
 
     const fetchUserData = async () => {
       setLoading(true);
-      setError(null);
       try {
         const response = await api.get(`/users/profile?username=${userName}`);
         const data = response.data.result;
@@ -106,7 +105,6 @@ function Profile() {
 
     const toastId = toast.loading("Updating user...");
     setLoading(true);
-    setError(null);
 
     try {
       const addressPart = address.split(", ");

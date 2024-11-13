@@ -1,7 +1,7 @@
 import React from "react";
 import { Minus, Plus, Heart, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-<<<<<<< HEAD
+
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { selectItems } from "@/store/cart-slice";
 import { Link } from "react-router-dom";
 import { formatterToVND } from "../../utils/formatter";
-=======
+
 import {
   Pagination,
   PaginationContent,
@@ -30,12 +30,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
-
-import { Minus, Plus, Heart, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
->>>>>>> main
-
 
 export default function Cart() {
   const dispatch = useDispatch();

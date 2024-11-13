@@ -26,7 +26,7 @@ import CheckOut from "./pages/shop-pages/CheckOut";
 import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 import Terms from "./pages/shop-pages/Terms";
 import Privacy from "./pages/shop-pages/Privacy";
-import CheckOut from "./pages/shop-pages/CheckOut";
+
 
 
 const router = createBrowserRouter([

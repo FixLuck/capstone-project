@@ -11,13 +11,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import api from "@/config/axios";
-import { authActions } from "@/store";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [termsAccepted, setTermsAccepted] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -25,15 +27,20 @@ function SignUp() {
     const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setError('');  // Reset lỗi trước khi gửi yêu cầu
+        setError('');
 
+        if (!termsAccepted) {
+            setError("You must accept the terms and conditions to register.");
+            setLoading(false);
+            return;
+        }
+    
         if (password !== confirmPassword) {
-            setError("Passwords do not match!");
+            setError("Password do not match!");
             setLoading(false);
             return;
         }
 
-        // Kiểm tra email hợp lệ
         if (!/\S+@\S+\.\S+/.test(email)) {
             setError("Please enter a valid email.");
             setLoading(false);
@@ -84,7 +91,7 @@ function SignUp() {
                                         type="username"
                                         id="username"
                                         className="border rounded-md p-2 w-full"
-                                        value={email}
+                                        value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
                                 </div>
@@ -108,7 +115,7 @@ function SignUp() {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <div className="grid gap-2">s
+                                <div className="grid gap-2">
                                     <Label htmlfor="confirmPassword">Confirm Password</Label>
                                     <Input
                                         type="password"
@@ -117,6 +124,27 @@ function SignUp() {
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                     />
+                                </div>
+                                <div className="grid gap-2">
+                                    <div className="items-top flex space-x-2">
+                                        <input
+                                            type="checkbox"
+                                            id="terms"
+                                            checked={termsAccepted}
+                                            onChange={(e) => setTermsAccepted(e.target.checked)}
+                                        />
+                                        <div className="grid gap-1.5 leading-none">
+                                            <label
+                                            htmlFor="terms"
+                                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            >
+                                            Accept terms and conditions
+                                            </label>
+                                            <p className="text-sm text-muted-foreground">
+                                            You agree to our Terms of Service and Privacy Policy.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="text-red-500 mt-2">{error}</div>
                             </div>

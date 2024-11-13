@@ -24,8 +24,8 @@ import { selectIsLoading, selectError } from "../../store/auth";
 import { authActions } from "@/store";
 
 const schema = z.object({
-  username: z.string().min(1, { message: "Required" }),
-  password: z.string().min(8, { message: "Required" }),
+  username: z.string().min(1, { message: "Username is required" }),
+  password: z.string().min(1, { message: "Password is required" }),
 });
 
 function UserLogin() {
@@ -33,7 +33,7 @@ function UserLogin() {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-
+  
   const {
     register,
     handleSubmit,
@@ -52,9 +52,11 @@ function UserLogin() {
       console.log(token);
       dispatch(authActions.loginSuccess(token));
       navigate("/");
+      
     } catch (err) {
-      dispatch(authActions.loginFailure(err));
-      alert(err);
+      console.log(err.response.data.message);
+      alert('Username or password is incorrect');
+      dispatch(authActions.loginFailure());
     }
   };
 

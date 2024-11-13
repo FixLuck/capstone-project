@@ -44,7 +44,7 @@ public class OrderService {
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         newOrder.setUser(userOrder);
 
-       CustomerOrder savedOrder = orderRepository.save(newOrder);
+        CustomerOrder savedOrder = orderRepository.save(newOrder);
         CustomerOrder finalSavedOrder = savedOrder;
 
         if (finalSavedOrder.getId() == null) {
@@ -70,7 +70,6 @@ public class OrderService {
                 }).collect(Collectors.toList());
 
 
-
         savedOrder.setOrderDetails(orderDetails);
         savedOrder = orderRepository.save(savedOrder);
 
@@ -87,32 +86,32 @@ public class OrderService {
         return orderResponse;
     }
 
-    public boolean couponIsExpired(Discount discount ) {
+    public boolean couponIsExpired(Discount discount) {
         Date currentdate = new Date();
         Date expirationDate = Date.from(discount.getEndDate());
         return currentdate.after(expirationDate);
     }
 
 
-    public OrderDto applyDiscount(String userId,String orderId, String code) {
-        CustomerOrder order = orderRepository.findByIdAndUserIdAndOrderStatus(orderId,userId, OrderConstants.OrderStatus.PENDING)
-                .orElseThrow(()-> new AppException(ErrorCode.ORDER_NOT_FOUND));
+    public OrderDto applyDiscount(String userId, String orderId, String code) {
+        CustomerOrder order = orderRepository.findByIdAndUserIdAndOrderStatus(orderId, userId, OrderConstants.OrderStatus.PENDING)
+                .orElseThrow(() -> new AppException(ErrorCode.ORDER_NOT_FOUND));
         Discount discount = discountRepository.findByCode(code)
                 .orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
 
-        if(couponIsExpired(discount)) {
+        if (couponIsExpired(discount)) {
             throw new ValidationException("Discount has been expired");
         }
 
-        if(discount.getMinimumOrderAmount() > order.getOriginalTotal()){
-                throw new AppException(ErrorCode.MINIMUM_AMOUNT_NOT_MET);
-            }
+        if (discount.getMinimumOrderAmount() > order.getOriginalTotal()) {
+            throw new AppException(ErrorCode.MINIMUM_AMOUNT_NOT_MET);
+        }
 
         double discountAmount = 0.0;
         double finalTotal;
-        if(discount.getDiscountType() == DiscountConstants.DiscountType.PERCENTAGE){
-            discountAmount = ((discount.getPercentage()/100.0) * order.getOriginalTotal());
-        }else if(discount.getDiscountType() == DiscountConstants.DiscountType.FIXED_AMOUNT){
+        if (discount.getDiscountType() == DiscountConstants.DiscountType.PERCENTAGE) {
+            discountAmount = ((discount.getPercentage() / 100.0) * order.getOriginalTotal());
+        } else if (discount.getDiscountType() == DiscountConstants.DiscountType.FIXED_AMOUNT) {
             discountAmount = discount.getFixedAmount();
         }
 

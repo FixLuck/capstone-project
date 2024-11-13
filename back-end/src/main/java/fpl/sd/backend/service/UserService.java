@@ -1,6 +1,7 @@
 package fpl.sd.backend.service;
 
 
+import fpl.sd.backend.constant.RoleConstants;
 import fpl.sd.backend.dto.request.UserCreateRequest;
 import fpl.sd.backend.dto.response.UserResponse;
 import fpl.sd.backend.dto.request.UserUpdateRequest;
@@ -8,6 +9,7 @@ import fpl.sd.backend.entity.User;
 import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
 import fpl.sd.backend.mapper.UserMapper;
+import fpl.sd.backend.repository.RoleRepository;
 import fpl.sd.backend.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +28,7 @@ import java.util.List;
 public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
+    RoleRepository roleRepository;
 
     public void validateUserCreateRequest(UserCreateRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -41,6 +45,9 @@ public class UserService {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setCreatedAt(Instant.now());
+        user.setAddress("This field need to be updated");
+        user.setRole(roleRepository.findById(3)
+                .orElseThrow(() -> new AppException(ErrorCode.UNCAUGHT_EXCEPTION)));
         userRepository.save(user);
         return userMapper.toUserResponse(user);
     }
@@ -94,6 +101,15 @@ public class UserService {
         user.setUpdatedAt(Instant.now());
         userRepository.save(user);
         return userMapper.toUserResponse(user);
+    }
+
+    public UserResponse getUserByUserName(String username) {
+        Optional<User> existingUser = userRepository.findByUsername(username);
+        if (existingUser.isPresent()) {
+            return userMapper.toUserResponse(existingUser.get());
+        } else {
+            throw new AppException(ErrorCode.USER_NOT_FOUND);
+        }
     }
 
 }

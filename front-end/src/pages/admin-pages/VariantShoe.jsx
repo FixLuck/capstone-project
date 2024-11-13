@@ -1,31 +1,31 @@
+import React, { useState } from "react";
+import { useEffect } from "react";
+import api from "@/config/axios";
 
-import React from "react";
+export default function VariantShoe({ variants, onVariantChange }) {
+  
+  const [sizes, setSize] = useState([]);
 
-export default function VariantShoe({variants, onVariantChange}) {
-  const sizes = [
-    {
-      id: 1,
-      size_number: 6,
-    },
-    {
-      id: 2,
-      size_number: 6.5,
-    },
-    {
-      id: 3,
-      size_number: 7,
-    },
-  ];
-
+  useEffect(() => {
+    const fetchSizes = async () => {
+      try {
+        const { data } = await api.get("shoes/sizes");
+        console.log(data.result);
+        
+        setSize(data.result);
+      } catch (error) {
+        console.error("Error fetching sizes:", error);
+      }
+    }
+    fetchSizes();
+  }, [])
 
   const handleVariantChange = (size, quantity) => {
     onVariantChange({
       sizeId: size.id,
-      stockQuantity: parseInt(quantity) || 0
-    })
-  }
-
-
+      stockQuantity: parseInt(quantity) || 0,
+    });
+  };
 
   return (
     <div>
@@ -34,13 +34,15 @@ export default function VariantShoe({variants, onVariantChange}) {
         {sizes.map((size) => (
           <div key={size.id} className="flex flex-col">
             <label htmlFor={`size-${size}`} className="font-medium mb-1">
-              Size {size.size_number}
+              Size {size.sizeNumber}
             </label>
             <input
               type="number"
               id={`size-${size.id}`}
               min={1}
-              value={variants.find(v => v.sizeId === size.id)?.stockQuantity || ""}
+              value={
+                variants.find((v) => v.sizeId === size.id)?.stockQuantity || ""
+              }
               onChange={(e) => handleVariantChange(size, e.target.value)}
               placeholder="Quantity"
               className="w-full p-2 border rounded"

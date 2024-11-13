@@ -34,7 +34,7 @@ import java.util.Optional;
 import java.util.StringJoiner;
 
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE , makeFinal = true)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class AuthenticationService {
     private static final Logger log = LoggerFactory.getLogger(AuthenticationService.class);
@@ -61,14 +61,18 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest)  {
+    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         var user = userRepository.findByUsername(authenticationRequest.getUsername())
-                .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         boolean authenticated = passwordEncoder.matches(authenticationRequest.getPassword(), user.getPassword());
 
-        if(!authenticated)
-            throw new AppException(ErrorCode.UNAUTHORIZED);
+        if (!authenticated)
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+
+        if (!user.isActive()) {
+            throw new AppException(ErrorCode.ACCOUNT_DISABLED);
+        }
 
         var token = generateToken(user);
 
@@ -78,7 +82,8 @@ public class AuthenticationService {
                 .build();
 
     }
-    private String generateToken(User user){
+
+    private String generateToken(User user) {
         JWSHeader jwsHeader = new JWSHeader(JWSAlgorithm.HS512);
 
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
@@ -86,29 +91,26 @@ public class AuthenticationService {
                 .issuer("superteam.com")
                 .issueTime(new Date())
                 .expirationTime(new Date(Instant.now().plus(2, ChronoUnit.HOURS).toEpochMilli())) //Thời hạn của token
-                .claim("scope",buildScope(user))
+                .claim("scope", buildScope(user))
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
 
-        JWSObject jwsObject = new JWSObject(jwsHeader,payload);
+        JWSObject jwsObject = new JWSObject(jwsHeader, payload);
 
         try {
             jwsObject.sign(new MACSigner(signerKey.getBytes()));
             return jwsObject.serialize();
         } catch (JOSEException e) {
-            log.error("Can not generate token",e);
+            log.error("Can not generate token", e);
             throw new RuntimeException(e);
         }
     }
 
-   private String buildScope(User user) {
-       return Optional.ofNullable(user.getRole())
-               .map(role -> "ROLE_" + role.getRoles())
-               .orElse("");
-   }
-
-    public String getUsernameFromToken(String substring) {
-
+    private String buildScope(User user) {
+        return Optional.ofNullable(user.getRole())
+                .map(role -> "ROLE_" + role.getRoles())
+                .orElse("");
     }
+
 }

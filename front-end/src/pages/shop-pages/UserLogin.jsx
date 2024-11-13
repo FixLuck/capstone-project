@@ -24,8 +24,8 @@ import { selectIsLoading, selectError } from "../../store/auth";
 import { authActions } from "@/store";
 
 const schema = z.object({
-  username: z.string().min(1, { message: "Required" }),
-  password: z.string().min(8, { message: "Required" }),
+  username: z.string().min(1, { message: "Username is required" }),
+  password: z.string().min(1, { message: "Password is required" }),
 });
 
 function UserLogin() {
@@ -33,7 +33,7 @@ function UserLogin() {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-
+  
   const {
     register,
     handleSubmit,
@@ -52,12 +52,13 @@ function UserLogin() {
       console.log(token);
       dispatch(authActions.loginSuccess(token));
       navigate("/");
+      
     } catch (err) {
-      dispatch(authActions.loginFailure(err));
-      alert(err);
+      console.log(err.response.data.message);
+      alert('Username or password is incorrect');
+      dispatch(authActions.loginFailure());
     }
   };
-
 
   return (
     //Code chức năng để đăng nhập tài khoản người dùng, code chức năng để đăng xuất
@@ -118,7 +119,7 @@ function UserLogin() {
                       Forgot password?
                     </a>
                   </div>
-                  </div>
+                </div>
               </CardContent>
               <CardFooter className="flex items-center justify-center">
                 <div className="w-full flex flex-col space-y-4">
@@ -151,8 +152,8 @@ function UserLogin() {
           </form>
         </div>
       </div>
-      </div>
+    </div>
   );
-}  
+}
 
 export default UserLogin;

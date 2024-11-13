@@ -4,9 +4,10 @@ import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useParams } from "react-router-dom";
 import api from "@/config/axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
+import { selectItems } from "@/store/cart-slice";
 
 export default function DetailShoePage() {
   const params = useParams();
@@ -16,6 +17,9 @@ export default function DetailShoePage() {
   const [quantity, setQuantity] = React.useState(1);
   const [selectedVariant, setSelectedVariant] = React.useState(null);
   const [shoe, setShoe] = React.useState(null);
+
+  const cartItems = useSelector(selectItems);
+
 
   const dispatch = useDispatch();
 
@@ -50,8 +54,8 @@ export default function DetailShoePage() {
     const cartItem = {
       id: shoe.id,
       name: shoe.name,
-      price: shoe.price,
-      image: shoe.images[0].url,
+      price: shoe.price * 1000,
+      imageUrl: shoe.images[0].url,
       quantity: quantity,
       variantId: selectedVariant.id,
       size: selectedVariant.sku.split('-').pop(),
@@ -66,7 +70,21 @@ export default function DetailShoePage() {
 
   const handleQuantityChange = (type) => {
     if (type === "increment") {
-      setQuantity((prev) => prev + 1);
+      const maxAllowed = selectedVariant ? selectedVariant.stockQuantity : 1;
+      
+      // Check existing quantity in cart for this variant
+      const existingCartItem = cartItems.find(
+        item => item.id === shoe.id && item.variantId === selectedVariant?.id
+      );
+      const currentInCart = existingCartItem ? existingCartItem.quantity : 0;
+      
+      if (quantity + currentInCart < maxAllowed) {
+        setQuantity((prev) => prev + 1);
+      } else {
+        toast.error(`Cannot add more than ${maxAllowed} items for this size`, {
+          autoClose: 2000
+        });
+      }
     } else if (type === "decrement" && quantity > 1) {
       setQuantity((prev) => prev - 1);
     }
@@ -74,7 +92,11 @@ export default function DetailShoePage() {
 
   const handleVariantSelect = (variant) => {
     setSelectedVariant(variant);
-    // Reset quantity when changing variant
+    // Check if there's already this variant in cart
+    const existingCartItem = cartItems.find(
+      item => item.id === shoe.id && item.variantId === variant.id
+    );
+    // Reset quantity to 1 when changing variant
     setQuantity(1);
   };
 

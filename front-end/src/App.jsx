@@ -24,6 +24,11 @@ import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import CheckOut from "./pages/shop-pages/CheckOut";
 import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
+import Terms from "./pages/shop-pages/Terms";
+import Privacy from "./pages/shop-pages/Privacy";
+import CheckOut from "./pages/shop-pages/CheckOut";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +47,8 @@ const router = createBrowserRouter([
       { path: "orders", element: <OrderHistory /> },
       { path: "checkout", element: <CheckOut /> },
       { path: "logout", element: <UserLogin /> },
+      { path: "terms", element: <Terms /> },
+      { path: "privacy", element: <Privacy /> },
     ],
   },
   {
@@ -51,6 +58,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <WelcomeAdmin /> },
 
+
       { path: "discount-management", element: <DiscountManagement /> },
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
@@ -58,6 +66,7 @@ const router = createBrowserRouter([
       { path: "manage-shoes", element: <ListManageShoePage /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },
       { path: "profile", element: <Profile /> },
+
       { path: "discount-management", element: <DiscountManagement /> },
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
@@ -67,9 +76,22 @@ const router = createBrowserRouter([
       { path: "add-discount", element: <AddDiscountPage /> },
     ],
   },
+  {
+    path: "/manager",
+    element: <RootLayoutManager />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <WelcomeManager /> },
+      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "member-order-history", element: <MemberOrderHistory /> },
+      { path: "add-discount", element: <AddDiscountPage /> },
+    ],
+  },
+
 ]);
 
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
 }
+
 export default App;

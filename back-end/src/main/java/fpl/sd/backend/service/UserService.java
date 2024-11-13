@@ -112,4 +112,11 @@ public class UserService {
         }
     }
 
+<<<<<<< HEAD
+=======
+    user.setUpdatedAt(Instant.now());
+    userRepository.save(user);
+    return userMapper.toUserResponse(user);
+}
+>>>>>>> main
 }

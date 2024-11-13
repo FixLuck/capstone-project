@@ -74,7 +74,7 @@ export function AdminAside() {
                   to="/admin/manage-shoes"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-                  <FaShoePrints /> <span>Manage Shoes</span>
+<FaShoePrints /> <span>Manage Shoes</span>
 
                 </Link>
               </li>

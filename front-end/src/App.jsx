@@ -22,83 +22,10 @@ import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory";
 import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
-<<<<<<< HEAD
-=======
-
+import Terms from "./pages/shop-pages/Terms";
+import Privacy from "./pages/shop-pages/Privacy";
 import CheckOut from "./pages/shop-pages/CheckOut";
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c5fe8498f26602ab3a3818381d2626caf245f0d0
-    const router = createBrowserRouter([
-      {
-        path: "/",
-        element: <RootLayout/>,
-        errorElement: <ErrorPage/>,
-        children: [
-          
-        {path: 'shoes', element: <ListShoePage/>},
-        {path: 'shoes/:id', element: <DetailShoePage/>},
-        {path: 'add-shoe', element: <AddShoePage/>},
-        {path: 'cart', element: <Cart/>},
-        {path: 'order-history', element: <OrderHistory/>},
-        {path: 'login', element: <UserLogin/>},
-        {path: 'register', element: <SignUp/>},
-        {path: 'users', element: <Profile/>},
-        {path: 'orders', element: <OrderHistory/>},
-        {path: 'checkout', element: <CheckOut/>},
-        {path: 'logout', element: <UserLogin/>}
-        ]
-      },
-      {
-        path: "/admin",
-        element: <RootLayoutAdmin/>,
-        errorElement: <ErrorPage/>,
-        children: [
-        {index: true, element: <WelcomeAdmin/>},
-        {path: 'discount-management', element: <DiscountManagement/>},
-        {path: 'member-order-history', element: <MemberOrderHistory/>},
-        {path: 'account-management', element: <MemberManagemant/>},
-        {path: 'revenue-stats', element: <RevenueStatistics/>},
-
-        {path: 'manage-shoes', element: <ListManageShoePage/>},
-        {path: 'manage-shoes/new', element: <AddShoePage/>},
-
-        {path: 'profile', element: <Profile/>},
-          
-
->>>>>>> 9321daf4b742a433ae0119997773c5e0b97557e9
-import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
-import CheckOut from "./pages/shop-pages/CheckOut";
-
-
-<<<<<<< HEAD
-=======
-        ]
-      },
-<<<<<<< HEAD
-=======
-    ]);
-
-
-function App() {
-
-  return (
-    
-
-    <RouterProvider router={router}>
-
-    </RouterProvider>
-
-
-  )
-
-
-
-  
-
->>>>>>> 9321daf4b742a433ae0119997773c5e0b97557e9
 const router = createBrowserRouter([
   {
     path: "/",
@@ -117,24 +44,25 @@ const router = createBrowserRouter([
       { path: "orders", element: <OrderHistory /> },
       { path: "checkout", element: <CheckOut /> },
       { path: "logout", element: <UserLogin /> },
+      { path: "terms", element: <Terms /> },
+      { path: "privacy", element: <Privacy /> },
     ],
   },
->>>>>>> c5fe8498f26602ab3a3818381d2626caf245f0d0
+
   {
     path: "/admin",
     element: <RootLayoutAdmin />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <WelcomeAdmin /> },
-      { path: 'discount-management', element: <DiscountManagement /> },
-      { path: 'member-order-history', element: <MemberOrderHistory /> },
-      { path: 'account-management', element: <MemberManagemant /> },
-      { path: 'revenue-stats', element: <RevenueStatistics /> },
-      { path: 'list-shoes', element: <ListManageShoePage /> },
-      { path: 'profile', element: <Profile /> },
-      {path: 'add-discount', element: <AddDiscountPage />}
-    ]
-
+      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "member-order-history", element: <MemberOrderHistory /> },
+      { path: "account-management", element: <MemberManagemant /> },
+      { path: "revenue-stats", element: <RevenueStatistics /> },
+      { path: "list-shoes", element: <ListManageShoePage /> },
+      { path: "profile", element: <Profile /> },
+      { path: "add-discount", element: <AddDiscountPage /> },
+    ],
   },
   {
     path: "/manager",
@@ -142,28 +70,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <WelcomeManager /> },
-      { path: 'discount-management', element: <DiscountManagement /> },
-      { path: 'member-order-history', element: <MemberOrderHistory /> },
-      { path: 'add-discount', element: <AddDiscountPage /> },
-    ]
-  }
+      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "member-order-history", element: <MemberOrderHistory /> },
+      { path: "add-discount", element: <AddDiscountPage /> },
+    ],
+  },
 ]);
 
 function App() {
-<<<<<<< HEAD
-  return (
-    
-
-    <RouterProvider router={router}>
-
-    </RouterProvider>
-
-
-  )
-
-=======
   return <RouterProvider router={router}></RouterProvider>;
->>>>>>> c5fe8498f26602ab3a3818381d2626caf245f0d0
-
 }
+
 export default App;

@@ -26,10 +26,6 @@ import { Minus, Plus, Heart, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 
-import { Minus, Plus, Heart, X } from 'lucide-react';
-
-import { Button } from '@/components/ui/button';
-
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([

@@ -93,8 +93,4 @@ public class UserService {
     userRepository.save(user);
     return userMapper.toUserResponse(user);
 }
-
-    public UserResponse getUserByUsername(String username) {
-
-    }
 }

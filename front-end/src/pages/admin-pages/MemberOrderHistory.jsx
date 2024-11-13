@@ -90,7 +90,7 @@ export function OrderHistory() {
       <h1 className="text-2xl font-bold mb-4 text-center">Order History</h1>
 
       {/* Filter Section */}
-      <div className="flex items-center space-x-4 mb-6 p-5">
+      <div className="flex items-center space-x-4 mb-6 p-10">
         <div className="flex space-x-2">
           <button className="text-blue-500 font-medium">All Order(50)</button>
           <button className="text-gray-500">Pending(10)</button>
@@ -100,7 +100,7 @@ export function OrderHistory() {
       </div>
 
       {/* Search and Date Filter */}
-      <div className="flex items-center space-x-4 mb-6">
+      <div className="flex items-center space-x-4 mb-6 p-5">
         <Input placeholder="Search..." className="w-full max-w-xs" />
         <div className="flex items-center space-x-2">
           <Button variant="outline" className="flex items-center space-x-2">
@@ -119,7 +119,7 @@ export function OrderHistory() {
       </div>
 
       {/* Order Table */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-lg shadow overflow-hidden ">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100 text-gray-600">
             <tr>

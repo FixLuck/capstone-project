@@ -109,14 +109,7 @@ export default function Cart() {
 
 
   return (
-
     <div>
-      <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
-      <div className="grid gap-4 sm:grid-cols-12 grid-cols-1">
-        <div className="sm:col-span-8"></div>
-        <div className="sm:col-span-4 me-10">
-          <Textarea className="bg-white" placeholder="Total" />
-
     <div className="container mx-auto p-6 bg-white rounded-md">
       <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
       
@@ -240,8 +233,6 @@ export default function Cart() {
       </div>
     </div>
     </div>
-    </div>
-    </div>
-    </div>
+
   )
 }

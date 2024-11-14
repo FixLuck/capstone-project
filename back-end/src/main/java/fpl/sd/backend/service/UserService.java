@@ -43,10 +43,22 @@ public class UserService {
         userRepository.save(user);
         return userMapper.toUserResponse(user);
     }
+//    public List<UserResponse> getAllUsers(){
+//        List<User> users = userRepository.findAll();
+//        return users.stream()
+//                .map(userMapper::toUserResponse)
+//                .toList();
+//    }
     public List<UserResponse> getAllUsers(){
         List<User> users = userRepository.findAll();
         return users.stream()
-                .map(userMapper::toUserResponse)
+                .map(user -> {
+                    UserResponse response = userMapper.toUserResponse(user);
+                    if (user.getRole() != null) {
+                        response.setRoleName(user.getRole().getRoles().name());
+                    }
+                    return response;
+                })
                 .toList();
     }
 
@@ -94,7 +106,4 @@ public class UserService {
     return userMapper.toUserResponse(user);
 }
 
-    public UserResponse getUserByUsername(String username) {
-
-    }
 }

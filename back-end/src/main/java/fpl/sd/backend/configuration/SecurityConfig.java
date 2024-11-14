@@ -27,7 +27,8 @@ public class SecurityConfig {
             "/auth/introspect",
             "/shoes/**",
             "/brands/**",
-            "/discounts/**"
+            "/discounts/**",
+            "/orders/**"
     };
 
     @Value("${jwt.signerKey}")

@@ -54,7 +54,7 @@ public class OrderService {
         }
 
 
-        List<OrderDetail> orderDetails = request.getCartItems().stream()
+        List<OrderDetail> orderDetails = request.getItems().stream()
                 .map(cartItem -> {
                     String variantId = cartItem.getVariantId();
                     ShoeVariant variant = shoeVariantRepository.findById(variantId)
@@ -82,6 +82,7 @@ public class OrderService {
                         .variantId(item.getVariant().getId())
                         .build())
                 .toList();
+
 
 
         OrderResponse orderResponse = orderMapper.toOrderResponse(savedOrder);
@@ -144,6 +145,7 @@ public ApplyDiscountResponse applyDiscount(String code){
 
 
     ApplyDiscountResponse response = new ApplyDiscountResponse();
+    response.setId(discount.getId());
     response.setCoupon(discount.getCode());
     response.setActive(discount.isActive());
     response.setMinimumOrderAmount(discount.getMinimumOrderAmount());

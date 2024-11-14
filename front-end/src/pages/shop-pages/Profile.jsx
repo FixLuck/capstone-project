@@ -5,105 +5,109 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import api from "@/config/axios";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const schema = z.object({
+  username: z.string().min(1, { message: "Username is required" }),
+  email: z.string().email({ message: "Invalid email address" }),
+  phone: z.string().regex(/^\d{10}$/, { message: "Phone number must be 10 digits" }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters" }),
+});
 
 function Profile() {
-    const [user, setUser] = useState(null); 
-    const [loading, setLoading] = useState(true); 
-    const [error, setError] = useState(null); 
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [role, setRole] = useState("");
-    const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
- 
-    const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
     const userId = decodedToken.sub;
-    useEffect(() => {
-        if (!token) {
-        navigate("/login"); 
-        return;
-        }
 
-        
-        const fetchUserData = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await api.get(`/users/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`, 
-            },
-            });
+    const fetchUserData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await api.get(`/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-            const userData = response.data.result; 
-            setUser(userData); 
-            setUsername(userData.username);
-            setEmail(userData.email);
-            setPhone(userData.phone);
-            setRole(userData.role);
-        } catch (err) {
-            setError("Failed to fetch user data."); 
-        } finally {
-            setLoading(false);
-        }
-        };
-
-        fetchUserData();
-    }, [token, navigate]); 
-
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        if (!username || !email || !phone) {
-        setError("All fields are required");
-        return;
-        }
-
-        setLoading(true);
-        setError(null);
-
-        try {
-        const response = await api.put(
-            `/users/${user.id}`,
-            {
-            username,
-            email,
-            phone,
-            role,
-            },
-            {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            }
-        );
-
-        setUser(response.data.result);
-        setError("Update successful!");
-        } catch (err) {
-        setError("Failed to update user data.");
-        } finally {
+        const userData = response.data.result;
+        setUser(userData);
+      } catch (err) {
+        setError("Failed to fetch user data.");
+      } finally {
         setLoading(false);
-        }
+      }
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    fetchUserData();
+  }, [token, navigate]);
 
-    if (error) {
-        return <div className="text-red-500">{error}</div>;
-    }
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema),
+  });
 
-    return (
+  const handleUpdate = async (data) => {
+    setLoading(true);
+    setError(null);
+
+    const updatedData = {
+      username: data.username,
+      email: data.email,
+      phone: data.phone,
+      password: data.password,
+      role: user?.role, // Người dùng không được phép thay đổi role
+    };
+
+    try {
+      const response = await api.put(
+        `/users/${user.id}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const updatedUser = response.data.result;
+      setUser(updatedUser);
+      setError("Update successful!");
+    } catch (err) {
+      setError("Failed to update user data.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
+  return (
     <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border rounded-sm">
       <div className="col-span-1 border-r flex justify-center">
         <div className="w-60 flex flex-col space-y-4">
@@ -114,6 +118,7 @@ function Profile() {
       <div className="col-span-2 p-4">
         <h1 className="text-lg font-bold text-black">My Profile</h1>
         <div className="mt-1">
+          <form onSubmit={handleSubmit(handleUpdate)}>
           <Card className="w-full border-0">
             <CardHeader>
               <CardDescription className="font-bold text-center">
@@ -121,66 +126,78 @@ function Profile() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
-                <div className="grid gap-2">
-                  <Label>Username</Label>
-                  <Input
-                    id="username"
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="border rounded-md p-2 w-full"
-                  />
+                <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
+                  <div className="grid gap-2">
+                    <Label>Username</Label>
+                    <Input
+                      id="username"
+                      type="text"
+                      defaultValue={user?.username}
+                      {...register("username")}
+                      className="border rounded-md p-2 w-full"
+                    />
+                    {errors.username && <p className="text-red-500">{errors.username.message}</p>}
+                  </div>
+
+                  <div className="grid gap-2">
+                    <Label>Password</Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                      placeholder="********"
+                    />
+                    {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+                  </div>
                 </div>
-                <div className="grid gap-2">
-                  <Label>Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="********"
-                    className="border rounded-md p-2 w-full"
-                  />
+
+                <div className="grid w-full gap-6 border rounded-sm p-4">
+                  <div className="grid gap-2">
+                    <Label>Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      defaultValue={user?.email}
+                      {...register("email")}
+                      className="border rounded-md p-2 w-full"
+                    />
+                    {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                  </div>
+
+                  <div className="grid gap-2">
+                    <Label>Phone</Label>
+                    <Input
+                      id="phone"
+                      type="text"
+                      defaultValue={user?.phone}
+                      {...register("phone")}
+                      className="border rounded-md p-2 w-full"
+                    />
+                    {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
+                  </div>
+
+                  <div className="grid gap-2">
+                    <Label>Role</Label>
+                    <Input
+                      id="role"
+                      type="text"
+                      value={user?.role}
+                      disabled
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="grid w-full gap-6 border rounded-sm p-4">
-                <div className="grid gap-2">
-                  <Label>Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="border rounded-md p-2 w-full"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label>Phone</Label>
-                  <Input
-                    id="phone"
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="border rounded-md p-2 w-full"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label>Role</Label>
-                  <Input
-                    id="role"
-                    type="text"
-                    value={role}
-                    disabled
-                    className="border rounded-md p-2 w-full"
-                  />
-                </div>
-              </div>
+
+                <CardFooter className="flex justify-end">
+                  <Button type="submit" className="bg-blue-500" disabled={loading}>
+                    Save Changes
+                  </Button>
+                </CardFooter>
             </CardContent>
-            <CardFooter className="flex justify-end">
-              <Button onClick={handleUpdate} className="bg-blue-500">
-                Save Changes
-              </Button>
-            </CardFooter>
           </Card>
+          </form>
         </div>
       </div>
     </div>

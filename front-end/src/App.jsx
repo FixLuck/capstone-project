@@ -32,7 +32,7 @@ import CheckOut from "./pages/shop-pages/CheckOut";
         element: <RootLayout/>,
         errorElement: <ErrorPage/>,
         children: [
-          
+        {index: true, element: <HomePage/>},
         {path: 'shoes', element: <ListShoePage/>},
         {path: 'shoes/:id', element: <DetailShoePage/>},
         {path: 'add-shoe', element: <AddShoePage/>},

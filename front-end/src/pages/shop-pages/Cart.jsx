@@ -3,37 +3,22 @@ import { Minus, Plus, Heart, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
 import { selectItems } from "@/store/cart-slice";
 import { Link } from "react-router-dom";
 import { formatterToVND } from "../../utils/formatter";
-
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
+import api from "@/config/axios";
 
 export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
+
+  const couponCode = useRef();
+
+  const [discountInfo, setDiscountInfor] = useState(null);
 
   const removeItem = (id) => {
     dispatch(cartActions.removeEntireItemFromCart(id));
@@ -47,22 +32,57 @@ export default function Cart() {
     dispatch(cartActions.removeItemFromCart(id));
   };
 
+  const handleApplyCode = async () => {
+    const currentCode = couponCode.current.value;
+
+    try {
+      const response = await api.post(`/orders/apply-discount`, {
+        discount: currentCode,
+      });
+
+      if (!response.data.flag) {
+        setDiscountInfor(null);
+        toast.error(response.data.message);
+      }
+
+      if (response.data.flag) {
+        setDiscountInfor(response.data.result);
+        toast.success(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to apply discount");
+    }
+  };
+
   const calculateTotals = () => {
     const originalPrice = items.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
     );
-    const savings = 299000;
+
+    let discountAmount = 0;
+    if (discountInfo && discountInfo.active) {
+      if (originalPrice >= discountInfo.minimumOrderAmount) {
+        if (discountInfo.discountType === "PERCENTAGE") {
+          discountAmount = (originalPrice * discountInfo.percentage) / 100;
+        } else if (discountInfo.discountType === "FIXED_AMOUNT") {
+          discountAmount = discountInfo.fixedAmount;
+        }
+      }
+    }
     const storePickup = 99000;
     const tax = originalPrice * 0.1;
-    const total = originalPrice - savings + storePickup + tax;
+    const total = originalPrice - discountAmount + storePickup + tax;
 
     return {
       originalPrice,
-      savings,
+      discountAmount,
       storePickup,
       tax,
       total,
+      appliedCoupon: discountInfo?.coupon || null,
+      discountType: discountInfo?.discountType || null,
+      minimumOrderAmount: discountInfo?.minimumOrderAmount || 0,
     };
   };
 
@@ -81,6 +101,19 @@ export default function Cart() {
 
   return (
     <div className="container mx-auto p-6 bg-white rounded-md">
+      <ToastContainer
+        autoClose={2000}
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
       <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
@@ -146,10 +179,30 @@ export default function Cart() {
                   <span className="text-gray-600">Original price</span>
                   <span>{formatterToVND.format(totals.originalPrice)}</span>
                 </div>
-                <div className="flex justify-between text-green-600">
-                  <span>Savings</span>
-                  <span>-{formatterToVND.format(totals.savings)}</span>
-                </div>
+
+                {totals.discountAmount > 0 && (
+                  <div className="flex justify-between text-green-600">
+                    <span>
+                      Discount{" "}
+                      {totals.appliedCoupon && `(${totals.appliedCoupon})`}
+                      {totals.discountType === "PERCENTAGE" &&
+                        ` ${discountInfo.percentage}%`}
+                    </span>
+                    <span>-{formatterToVND.format(totals.discountAmount)}</span>
+                  </div>
+                )}
+
+                {discountInfo &&
+                  totals.originalPrice < totals.minimumOrderAmount && (
+                    <div className="text-red-500 text-sm">
+                      Add{" "}
+                      {formatterToVND.format(
+                        totals.minimumOrderAmount - totals.originalPrice
+                      )}{" "}
+                      more to apply this coupon
+                    </div>
+                  )}
+
                 <div className="flex justify-between">
                   <span className="text-gray-600">Store Pickup</span>
                   <span>{formatterToVND.format(totals.storePickup)}</span>
@@ -189,8 +242,11 @@ export default function Cart() {
                     type="text"
                     className="flex-grow px-3 py-2 border rounded-md"
                     placeholder="Enter code"
+                    ref={couponCode}
                   />
-                  <Button variant="outline">Apply Code</Button>
+                  <Button variant="outline" onClick={handleApplyCode}>
+                    Apply Code
+                  </Button>
                 </div>
               </div>
             </CardContent>
@@ -199,5 +255,4 @@ export default function Cart() {
       </div>
     </div>
   );
-
 }

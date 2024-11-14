@@ -23,7 +23,40 @@ public class WebConfig {
         return new CorsFilter(source);
 
 
+
     }
+
+
+
+
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                System.out.println("CORS Configuration is being applied!");
+//                registry.addMapping("/api/**")
+//                    .allowedOrigins("http://localhost:5173")
+//                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//                    .allowedHeaders("*")
+//                    .allowCredentials(true);
+//            }
+//        };
+
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                System.out.println("CORS Configuration is being applied!");
+                registry.addMapping("/api/**")
+                    .allowedOrigins("http://localhost:5173")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowedHeaders("*")
+                    .allowCredentials(true);
+            }
+        };
+    }
+
+
 }
 
 

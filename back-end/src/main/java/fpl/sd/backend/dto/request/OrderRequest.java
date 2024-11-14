@@ -34,6 +34,6 @@ public class OrderRequest {
     @NotNull(message = "Cart items cannot be null")
     @Size(min = 1, message = "At least one cart item is required")
     @Valid
-    List<CartItemRequest> cartItems;
+    List<CartItemRequest> items;
 
 }

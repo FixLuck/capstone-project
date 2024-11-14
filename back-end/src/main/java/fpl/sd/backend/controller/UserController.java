@@ -23,7 +23,6 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserController {
     UserService userService;
-    AuthenticationService authenticationService;
     
     @PostMapping
     public ApiResponse<UserResponse> addUser(@RequestBody @Valid UserCreateRequest user) {
@@ -64,10 +63,16 @@ public class UserController {
                 .result(updateUser)
                 .build();
     }
-<<<<<<< HEAD
 
 
+    @GetMapping("/profile")
+    public ApiResponse<UserResponse> getUserByUsername(@RequestParam(value = "username", required = true) String username) {
+        return ApiResponse.<UserResponse>builder()
+                .flag(true)
+                .code(200)
+                .message("Successfully")
+                .result(userService.getUserByUserName(username))
+                .build();
+    }
 
-=======
->>>>>>> f37317a75e18a5c47fbf9e6e0725dba6e912b896
 }

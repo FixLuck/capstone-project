@@ -3,7 +3,9 @@ package fpl.sd.backend.service;
 import fpl.sd.backend.constant.ShoeConstants;
 import fpl.sd.backend.dto.request.ShoeCreateRequest;
 import fpl.sd.backend.dto.request.ShoeUpdateRequest;
+import fpl.sd.backend.dto.request.VariantUpdateRequest;
 import fpl.sd.backend.dto.response.ShoeResponse;
+import fpl.sd.backend.dto.response.VariantResponse;
 import fpl.sd.backend.entity.*;
 import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
@@ -16,10 +18,13 @@ import fpl.sd.backend.utils.ShoeHelper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,6 +32,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ShoeService {
+    private static final Logger log = LoggerFactory.getLogger(ShoeService.class);
     ShoeRepository shoeRepository;
     ShoeMapper shoeMapper;
     BrandRepository brandRepository;
@@ -96,12 +102,12 @@ public class ShoeService {
         shoeRepository.save(newShoe);
 
         List<ShoeImage> images = request.getImages().stream()
-                        .map(imgRequest -> {
-                            ShoeImage shoeImage = imageMapper.toShoeImage(imgRequest);
-                            shoeImage.setShoe(newShoe);
-                            shoeImage.setCreatedAt(Instant.now());
-                            return shoeImage;
-                        }).toList();
+                .map(imgRequest -> {
+                    ShoeImage shoeImage = imageMapper.toShoeImage(imgRequest);
+                    shoeImage.setShoe(newShoe);
+                    shoeImage.setCreatedAt(Instant.now());
+                    return shoeImage;
+                }).toList();
 
         shoeImageRepository.saveAll(images);
 
@@ -146,21 +152,28 @@ public class ShoeService {
         selectedShoe.setUpdatedAt(Instant.now());
         selectedShoe.setName(request.getName());
         selectedShoe.setPrice(request.getPrice());
+        selectedShoe.setDescription(request.getDescription());
         selectedShoe.setFakePrice(request.getFakePrice());
         selectedShoe.setGender(ShoeConstants.getGenderFromString(request.getGender()));
         selectedShoe.setCategory(ShoeConstants.getCategoryFromString(request.getCategory()));
         selectedShoe.setStatus(request.isStatus());
 
-        shoeRepository.save(selectedShoe);
+        List<ShoeVariant> updatedVariants = new ArrayList<>();
+        for (VariantUpdateRequest variantRequest : request.getVariants()) {
+            ShoeVariant existingVariant = selectedShoe.getShoeVariants().stream()
+                    .filter(v -> v.getId().equals(variantRequest.getVariantId()))
+                    .findFirst()
+                    .orElseThrow(() -> new AppException(ErrorCode.INVALID_KEY));
 
-        return shoeMapper.toShoeResponse(selectedShoe);
+            existingVariant.setUpdatedAt(Instant.now());
+            existingVariant.setStockQuantity(variantRequest.getStockQuantity());
+            updatedVariants.add(existingVariant);
+        }
 
+        selectedShoe.setShoeVariants(updatedVariants);
+        this.shoeRepository.save(selectedShoe);
+        return shoeHelper.getShoeResponse(selectedShoe);
     }
-
-
-
-
-
 
 
 }

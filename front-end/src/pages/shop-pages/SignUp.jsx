@@ -16,6 +16,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import api from "@/config/axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const schema = z.object({
     username: z.string().min(1, { message: "Username is required" }),
@@ -78,7 +80,9 @@ function SignUp() {
         <div 
         className="flex items-center justify-center h-screen" 
         style={{ backgroundImage: "url('https://short.com.vn/kd9s')", 
-        backgroundSize: "cover"}}>
+        backgroundSize: "cover"
+        }}
+        >
             <div className="w-full max-w-full md:max-w-lg p-6 bg-white rounded-lg shadow-md">
                 <h1 className="mt-5 text-lg font-bold text-center text-black">Register</h1>
                 <div className="mt-1">
@@ -165,9 +169,9 @@ function SignUp() {
                         </CardFooter>
                     </Card>
                     </form>
-                </div>
+                </div>   
             </div>
         </div>
-    );
+  );
 }
 export default SignUp;

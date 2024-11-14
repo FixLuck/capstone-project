@@ -14,12 +14,15 @@ import { selectUser } from "../../store/auth"
 import { authActions } from "../../store";
 
 
+
 export default function UserDropDown() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
   const name = user ? user.sub : null;
   console.log(name);
+
+
   
 
   const handleLogout = () => {

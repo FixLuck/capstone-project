@@ -2,7 +2,9 @@ package fpl.sd.backend.service;
 
 import fpl.sd.backend.constant.DiscountConstants;
 import fpl.sd.backend.constant.OrderConstants;
+import fpl.sd.backend.dto.request.ApplyDiscountRequest;
 import fpl.sd.backend.dto.request.OrderRequest;
+import fpl.sd.backend.dto.response.ApplyDiscountResponse;
 import fpl.sd.backend.dto.response.CartItemResponse;
 import fpl.sd.backend.dto.response.OrderDto;
 import fpl.sd.backend.dto.response.OrderResponse;
@@ -94,35 +96,65 @@ public class OrderService {
     }
 
 
-    public OrderDto applyDiscount(String userId,String orderId, String code) {
-        CustomerOrder order = orderRepository.findByIdAndUserIdAndOrderStatus(orderId,userId, OrderConstants.OrderStatus.PENDING)
-                .orElseThrow(()-> new AppException(ErrorCode.ORDER_NOT_FOUND));
-        Discount discount = discountRepository.findByCode(code)
-                .orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
+//    public OrderDto applyDiscount(String userId,String orderId, String code) {
+//        CustomerOrder order = orderRepository.findByIdAndUserIdAndOrderStatus(orderId,userId, OrderConstants.OrderStatus.PENDING)
+//                .orElseThrow(()-> new AppException(ErrorCode.ORDER_NOT_FOUND));
+//        Discount discount = discountRepository.findByCode(code)
+//                .orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
+//
+//        if(couponIsExpired(discount)) {
+//            throw new ValidationException("Discount has been expired");
+//        }
+//
+//        if(discount.getMinimumOrderAmount() > order.getOriginalTotal()){
+//                throw new AppException(ErrorCode.MINIMUM_AMOUNT_NOT_MET);
+//            }
+//
+//        double discountAmount = 0.0;
+//        double finalTotal;
+//        if(discount.getDiscountType() == DiscountConstants.DiscountType.PERCENTAGE){
+//            discountAmount = ((discount.getPercentage()/100.0) * order.getOriginalTotal());
+//        }else if(discount.getDiscountType() == DiscountConstants.DiscountType.FIXED_AMOUNT){
+//            discountAmount = discount.getFixedAmount();
+//        }
+//
+//        finalTotal = order.getOriginalTotal() - discountAmount;
+//
+//        order.setFinalTotal(finalTotal);
+//        order.setDiscountAmount(discountAmount);
+//        order.setDiscount(discount);
+//
+//        orderRepository.save(order);
+//        return order.getOrderDto();
+//    }
+public ApplyDiscountResponse applyDiscount(String code){
+    Discount discount = discountRepository.findByCode(code)
+            .orElseThrow(() -> new AppException(ErrorCode.DISCOUNT_NOT_FOUND));
 
-        if(couponIsExpired(discount)) {
-            throw new ValidationException("Discount has been expired");
-        }
-
-        if(discount.getMinimumOrderAmount() > order.getOriginalTotal()){
-                throw new AppException(ErrorCode.MINIMUM_AMOUNT_NOT_MET);
-            }
-
-        double discountAmount = 0.0;
-        double finalTotal;
-        if(discount.getDiscountType() == DiscountConstants.DiscountType.PERCENTAGE){
-            discountAmount = ((discount.getPercentage()/100.0) * order.getOriginalTotal());
-        }else if(discount.getDiscountType() == DiscountConstants.DiscountType.FIXED_AMOUNT){
-            discountAmount = discount.getFixedAmount();
-        }
-
-        finalTotal = order.getOriginalTotal() - discountAmount;
-
-        order.setFinalTotal(finalTotal);
-        order.setDiscountAmount(discountAmount);
-        order.setDiscount(discount);
-
-        orderRepository.save(order);
-        return order.getOrderDto();
+    // Kiểm tra nếu mã giảm giá không hoạt động
+    if (!discount.isActive()) {
+        throw new ValidationException("Discount is not active");
     }
+
+    // Kiểm tra nếu mã giảm giá đã hết hạn
+    if (couponIsExpired(discount)) {
+        throw new ValidationException("Discount has expired");
+    }
+
+
+
+    ApplyDiscountResponse response = new ApplyDiscountResponse();
+    response.setCoupon(discount.getCode());
+    response.setActive(discount.isActive());
+    response.setMinimumOrderAmount(discount.getMinimumOrderAmount());
+    if(discount.getDiscountType() == DiscountConstants.DiscountType.PERCENTAGE){
+        response.setPercentage(discount.getPercentage());
+        response.setDiscountType(DiscountConstants.DiscountType.PERCENTAGE);
+    } else if(discount.getDiscountType()== DiscountConstants.DiscountType.FIXED_AMOUNT){
+        response.setFixedAmount(discount.getFixedAmount());
+        response.setDiscountType(DiscountConstants.DiscountType.FIXED_AMOUNT);
+    }
+
+    return response;
+}
 }

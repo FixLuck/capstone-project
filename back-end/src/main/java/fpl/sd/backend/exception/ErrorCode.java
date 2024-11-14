@@ -21,7 +21,7 @@ public enum ErrorCode {
     UNAUTHENTICATED(401, "Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(403, "You do not have permissions", HttpStatus.FORBIDDEN),
     EMAIL_ALREADY_EXISTS(409, "Email Already Exists", HttpStatus.CONFLICT),
-    UNAUTHENTICATED_USER(401, "Unauthenticated User", HttpStatus.UNAUTHORIZED),
+    ACCOUNT_DISABLED(401, "Account is disabled", HttpStatus.CONFLICT),
 
     // Brand-related errors
     BRAND_NOT_FOUND(404, "Brand Not Found", HttpStatus.NOT_FOUND),

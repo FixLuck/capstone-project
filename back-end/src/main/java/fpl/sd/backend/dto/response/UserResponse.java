@@ -1,6 +1,7 @@
 package fpl.sd.backend.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import fpl.sd.backend.constant.RoleConstants;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,4 +23,6 @@ public class UserResponse {
     boolean isActive;
     String createdAt;
     String updatedAt;
+    RoleConstants.Role role;
+    String roleName;
 }

@@ -23,8 +23,6 @@ public class DiscountService {
     DiscountRepository discountRepository;
     DiscountMapper discountMapper;
 
-
-
     public List<DiscountResponse> getAllDiscounts() {
         List<Discount> discounts = discountRepository.findAll();
         return discounts.stream()

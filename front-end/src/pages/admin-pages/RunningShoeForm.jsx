@@ -13,6 +13,7 @@ import api from "@/config/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
   name: z.string().min(2, { message: "Required" }),
@@ -287,6 +288,8 @@ export default function RunningShoeForm() {
           variants={formData.variants}
           onVariantChange={handleVariantChange}
         />
+
+        <Separator className="my-4" />
         <Button type="submit">Submit</Button>
       </form>
     </div>

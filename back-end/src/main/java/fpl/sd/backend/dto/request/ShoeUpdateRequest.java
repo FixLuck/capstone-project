@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ShoeUpdateRequest {
     String name;
     double price;
@@ -20,7 +19,6 @@ public class ShoeUpdateRequest {
     double fakePrice;
     String gender;
     String category;
-
-//    List<ImageRequest> images;
-    List<VariantRequest> variants;
+    String description;
+    List<VariantUpdateRequest> variants;
 }

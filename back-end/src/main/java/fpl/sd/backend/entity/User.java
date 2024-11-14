@@ -36,11 +36,8 @@ public class User {
     String password;
     @Column(nullable = false)
     String email;
-
-    @Column(nullable = false)
+    
     String address;
-
-    @Column(nullable = false)
     String phone;
 
     @Column(nullable = false)

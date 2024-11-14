@@ -12,7 +12,5 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApplyDiscountRequest {
-    String userId;
-    String orderId;
     String discount;
 }

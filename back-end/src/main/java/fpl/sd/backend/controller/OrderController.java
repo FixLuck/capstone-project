@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     OrderService orderService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ApiResponse<OrderResponse> createOrder(@RequestBody @Valid OrderRequest request) {
         return ApiResponse.<OrderResponse>builder()
                 .code(200)

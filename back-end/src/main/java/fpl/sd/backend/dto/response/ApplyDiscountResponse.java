@@ -11,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApplyDiscountResponse {
+    int id;
     boolean active;
     String coupon;
     Double percentage;

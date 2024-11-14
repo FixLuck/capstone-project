@@ -9,12 +9,14 @@ import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
 import { selectItems } from "@/store/cart-slice";
 import { Link } from "react-router-dom";
-import { formatterToVND } from "../../utils/formatter";
+import { formatter } from "../../utils/formatter";
 import api from "@/config/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
+  const navigate = useNavigate();
 
   const couponCode = useRef();
 
@@ -70,7 +72,7 @@ export default function Cart() {
         }
       }
     }
-    const storePickup = 99000;
+    const storePickup = 99;
     const tax = originalPrice * 0.1;
     const total = originalPrice - discountAmount + storePickup + tax;
 
@@ -145,7 +147,7 @@ export default function Cart() {
 
                   <div className="flex flex-col items-end gap-2">
                     <span className="font-bold">
-                      {formatterToVND.format(item.price)}
+                      {formatter.format(item.price)}
                     </span>
                     <div className="flex items-center gap-2">
                       <button
@@ -177,7 +179,7 @@ export default function Cart() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Original price</span>
-                  <span>{formatterToVND.format(totals.originalPrice)}</span>
+                  <span>{formatter.format(totals.originalPrice)}</span>
                 </div>
 
                 {totals.discountAmount > 0 && (
@@ -188,7 +190,7 @@ export default function Cart() {
                       {totals.discountType === "PERCENTAGE" &&
                         ` ${discountInfo.percentage}%`}
                     </span>
-                    <span>-{formatterToVND.format(totals.discountAmount)}</span>
+                    <span>-{formatter.format(totals.discountAmount)}</span>
                   </div>
                 )}
 
@@ -205,24 +207,26 @@ export default function Cart() {
 
                 <div className="flex justify-between">
                   <span className="text-gray-600">Store Pickup</span>
-                  <span>{formatterToVND.format(totals.storePickup)}</span>
+                  <span>{formatter.format(totals.storePickup)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Tax</span>
-                  <span>{formatterToVND.format(totals.tax)}</span>
+                  <span>{formatter.format(totals.tax)}</span>
                 </div>
 
                 <div className="pt-4 border-t mt-4">
                   <div className="flex justify-between font-bold">
                     <span>Total</span>
-                    <span>{formatterToVND.format(totals.total)}</span>
+                    <span>{formatter.format(totals.total)}</span>
                   </div>
                 </div>
               </div>
 
-              <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white">
-                Proceed to Checkout
-              </Button>
+              <Link to={"/checkout"}>
+                <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white">
+                  Proceed to Checkout
+                </Button>
+              </Link>
 
               <div className="text-center mt-4">
                 <span className="text-gray-600">or</span>

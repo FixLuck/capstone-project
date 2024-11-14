@@ -33,7 +33,6 @@ function Profile() {
   const [error, setError] = useState(null);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-<<<<<<< HEAD
 
   const token = localStorage.getItem("token");
 
@@ -46,30 +45,16 @@ function Profile() {
     // Extract username from token payload
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
     const username = decodedToken.sub; // Username is stored as `sub` in JWT payload
-=======
 
-  const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
-    const decodedToken = JSON.parse(atob(token.split('.')[1]));
-    const userId = decodedToken.sub;
->>>>>>> 83ff8e47a00541cd4df693d8a54063d8927157c8
 
     const fetchUserData = async () => {
       setLoading(true);
       setError(null);
       try {
-<<<<<<< HEAD
+
         // Fetch user data by username instead of userId
         const response = await api.get(`/profile?username=${username}`, {
-=======
-        const response = await api.get(`/users/${userId}`, {
->>>>>>> 83ff8e47a00541cd4df693d8a54063d8927157c8
+
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -133,11 +118,9 @@ function Profile() {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border rounded-sm">
-=======
+
     <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
->>>>>>> 83ff8e47a00541cd4df693d8a54063d8927157c8
+
       <div className="col-span-1 border-r flex justify-center">
         <div className="w-60 flex flex-col space-y-4">
           <Button className="bg-green-500">My Profile</Button>
@@ -148,7 +131,6 @@ function Profile() {
         <h1 className="text-lg font-bold text-black">My Profile</h1>
         <div className="mt-1">
           <form onSubmit={handleSubmit(handleUpdate)}>
-<<<<<<< HEAD
             <Card className="w-full border-0">
               <CardHeader>
                 <CardDescription className="font-bold text-center">
@@ -156,15 +138,7 @@ function Profile() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-=======
-          <Card className="w-full border-0">
-            <CardHeader>
-              <CardDescription className="font-bold text-center">
-                Show and edit your profile
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
->>>>>>> 83ff8e47a00541cd4df693d8a54063d8927157c8
+
                 <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
                   <div className="grid gap-2">
                     <Label>Username</Label>
@@ -234,13 +208,8 @@ function Profile() {
                     Save Changes
                   </Button>
                 </CardFooter>
-<<<<<<< HEAD
               </CardContent>
             </Card>
-=======
-            </CardContent>
-          </Card>
->>>>>>> 83ff8e47a00541cd4df693d8a54063d8927157c8
           </form>
         </div>
       </div>

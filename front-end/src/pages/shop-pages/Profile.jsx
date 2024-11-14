@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
+//!?
 const schema = z.object({
   username: z.string().min(1, { message: "Username is required" }),
   email: z.string().email({ message: "Invalid email address" }),

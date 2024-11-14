@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Checkbox } from "@/components/ui/checkbox";
 
+//!?
 const schema = z.object({
     username: z.string().min(1, { message: "Username is required" }),
     email: z.string().email({ message: "Invalid email address" }),

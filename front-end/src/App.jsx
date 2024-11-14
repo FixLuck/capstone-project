@@ -25,6 +25,7 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import Terms from "./pages/shop-pages/Terms";
 import Privacy from "./pages/shop-pages/Privacy";
 import CheckOut from "./pages/shop-pages/CheckOut";
+import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 
     const router = createBrowserRouter([
       {
@@ -54,7 +55,7 @@ import CheckOut from "./pages/shop-pages/CheckOut";
         errorElement: <ErrorPage/>,
         children: [
         {index: true, element: <WelcomeAdmin/>},
-        {path: 'discount-management', element: <DiscountManagement/>},
+        {path: 'discount-management', element: <AddDiscountPage/>},
         {path: 'member-order-history', element: <MemberOrderHistory/>},
         {path: 'account-management', element: <MemberManagemant/>},
         {path: 'revenue-stats', element: <RevenueStatistics/>},

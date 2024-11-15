@@ -46,28 +46,22 @@ function SignUp() {
       const confirmPassword = watch("confirmPassword");
     
       const handleSignup = async (data) => {
-        // Kiểm tra xem mật khẩu có khớp không
+        console.log('Payload trước khi gửi:', {
+            username: data.username,
+            email: data.email,
+            password: data.password,
+        });
+
         if (password !== confirmPassword) {
           setError("Passwords do not match!");
           return;
         }
-    
+        
         setLoading(true);
         setError("");
     
         try {
-          const response = await api.post("users", {
-            username: data.username,
-            email: data.email,
-            password: data.password,
-          });
-    
-          if (response.data.success) {
-            navigate("/login");
-          } else {
-            setError(response.data.message || "Registration failed. Please try again.");
-            alert(response.data.message);
-          }
+          console(response.data);  
         } catch (err) {
           setError(err.response?.data?.message || "Something went wrong. Please try again.");
           alert(err);
@@ -77,7 +71,6 @@ function SignUp() {
     };
 
     return (
-        //Code chức năng để đăng kí người dùng mới
         <div 
         className="flex items-center justify-center h-screen" 
         style={{ backgroundImage: "url('https://short.com.vn/kd9s')", 

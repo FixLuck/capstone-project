@@ -47,6 +47,9 @@ public class CustomerOrder {
     @ManyToOne
     Discount discount;
 
+    @ManyToOne
+    PaymentDetail paymentDetail;
+
     public OrderDto getOrderDto() {
         OrderDto orderDto = new OrderDto();
 

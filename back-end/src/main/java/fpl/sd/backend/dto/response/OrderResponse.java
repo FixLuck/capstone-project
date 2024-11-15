@@ -21,5 +21,5 @@ public class OrderResponse {
     String orderStatus;
     Instant orderDate;
     Integer discountId;
-    List<CartItemResponse> cartItems;
+    List<CartItemResponse> items;
 }

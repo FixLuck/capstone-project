@@ -61,10 +61,8 @@ const router = createBrowserRouter([
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenueStatistics /> },
-
       { path: "manage-shoes", element: <ListManageShoePage /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },
-
       { path: "profile", element: <Profile /> },
     ],
   },

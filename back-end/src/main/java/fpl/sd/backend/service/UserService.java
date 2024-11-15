@@ -84,7 +84,6 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        // Kiểm tra xem username đã tồn tại hay chưa
         if (request.getUsername() != null && !request.getUsername().equals(user.getUsername()) &&
                 userRepository.existsByUsername(request.getUsername())) {
             throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
@@ -110,14 +109,15 @@ public class UserService {
         if (request.getAddress() != null) {
             user.setAddress(request.getAddress());
         }
-        if (request.getActive() != null) {
-            user.setActive(request.getActive());
+        if (request.getIsActive() != null) {  // Use getIsActive here, which corresponds to the isActive field
+            user.setActive(request.getIsActive());
         }
 
         user.setUpdatedAt(Instant.now());
         userRepository.save(user);
         return userMapper.toUserResponse(user);
     }
+
 
     public UserResponse getUserByUserName(String username) {
         Optional<User> existingUser = userRepository.findByUsername(username);

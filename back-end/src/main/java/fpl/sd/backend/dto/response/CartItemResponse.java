@@ -13,4 +13,5 @@ public class CartItemResponse {
     String variantId;
     int quantity;
     double price;
+    int productId;
 }

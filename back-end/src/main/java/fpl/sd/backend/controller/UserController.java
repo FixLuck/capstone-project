@@ -65,7 +65,6 @@ public class UserController {
                 .build();
     }
 
-
     @GetMapping("/profile")
     public ApiResponse<UserResponse> getUserByUsername(@RequestParam(value = "username", required = true) String username) {
         return ApiResponse.<UserResponse>builder()
@@ -75,5 +74,8 @@ public class UserController {
                 .result(userService.getUserByUserName(username))
                 .build();
     }
+
+
+
 
 }

@@ -28,6 +28,7 @@ import { fetchFilterOptions } from "@/store/filter";
 import { useShopFilters } from "@/hooks/useShopFilters";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
+import { formatter } from "../../utils/formatter";
 
 export default function ListShoePage() {
   const [shoes, setShoes] = useState([]);
@@ -45,7 +46,7 @@ export default function ListShoePage() {
 
     const itemToAdd = {
       productId: shoe.id,
-      price: shoe.price * 1000,
+      price: shoe.price,
       imageUrl: shoe.images[0].url,
       variantId: shoe.variants[0].id,
       size: size,
@@ -194,7 +195,15 @@ export default function ListShoePage() {
                 </CardHeader>
                 <CardContent>
                   <img src={shoe.images[0].url} alt="" />
-                  <p className="text-xl font-bold mt-2">{shoe.price}.000 đ</p>
+                  <div className="flex justify-between">
+                    <p className="text-xl font-bold mt-2">
+                      {formatter.format(shoe.price)}
+                    </p>
+                    <p className="text-xl font-bold mt-2 line-through">
+                      {formatter.format(shoe.fakePrice)}
+                    </p>
+
+                  </div>
                 </CardContent>
                 <CardFooter className="justify-between">
                   <Link to={`/shoes/${shoe.id}`}>

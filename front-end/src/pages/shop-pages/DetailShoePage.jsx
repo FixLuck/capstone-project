@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
 import { selectItems } from "@/store/cart-slice";
+import { formatter } from "../../utils/formatter";
 
 export default function DetailShoePage() {
   const params = useParams();
@@ -52,9 +53,9 @@ export default function DetailShoePage() {
     }
 
     const cartItem = {
-      id: shoe.id,
+      productId: shoe.id,
       name: shoe.name,
-      price: shoe.price * 1000,
+      price: shoe.price,
       imageUrl: shoe.images[0].url,
       quantity: quantity,
       variantId: selectedVariant.id,
@@ -154,7 +155,8 @@ export default function DetailShoePage() {
           <div>
             <h1 className="text-2xl font-bold capitalize">{shoe.name}</h1>
             <p className="text-gray-500">{shoe.description}</p>
-            <p className="text-xl font-semibold mt-2">{shoe.price}.000đ</p>
+            <p className="text-xl font-semibold mt-2 line-through">{formatter.format(shoe.fakePrice)}</p>
+            <p className="text-5xl font-semibold mt-2">{formatter.format(shoe.price)}</p>
           </div>
           <Card>
             <CardContent className="space-y-4 p-4">

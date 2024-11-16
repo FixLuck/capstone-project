@@ -1,5 +1,7 @@
 package fpl.sd.backend.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderRequest {
 
     @PositiveOrZero(message = "Total amount must be positive or zero")
@@ -29,7 +32,8 @@ public class OrderRequest {
 
     @NotBlank(message = "User ID is required")
     String userId;
-    int discountId;
+
+    Integer discountId;
 
     @NotNull(message = "Cart items cannot be null")
     @Size(min = 1, message = "At least one cart item is required")

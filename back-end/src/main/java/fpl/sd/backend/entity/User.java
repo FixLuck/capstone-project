@@ -42,7 +42,7 @@ public class User {
 
     @Column(nullable = false)
     @Builder.Default
-    @JsonProperty("active")
+//    @JsonProperty("active")
     boolean isActive = true;
 
     @Column(nullable = false)

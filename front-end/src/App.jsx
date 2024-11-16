@@ -30,6 +30,63 @@ import { useDispatch } from "react-redux";
 import { authActions } from "./store/index";
 import { useEffect } from "react";
 
+<<<<<<< HEAD
+=======
+
+//     const router = createBrowserRouter([
+//       {
+//         path: "/",
+//         element: <RootLayout/>,
+//         errorElement: <ErrorPage/>,
+//         children: [
+//         {index: true, element: <HomePage/>},
+//         {path: 'shoes', element: <ListShoePage/>},
+//         {path: 'shoes/:id', element: <DetailShoePage/>},
+//         {path: 'add-shoe', element: <AddShoePage/>},
+//         {path: 'cart', element: <Cart/>},
+//         {path: 'order-history', element: <OrderHistory/>},
+//         {path: 'login', element: <UserLogin/>},
+//         {path: 'register', element: <SignUp/>},
+//         {path: 'users', element: <Profile/>},
+//         {path: 'orders', element: <OrderHistory/>},
+//         {path: 'checkout', element: <CheckOut/>},
+//         {path: 'logout', element: <UserLogin/>},
+//         {path: 'terms', element: <Terms/>},
+//         {path: 'privacy', element: <Privacy/>}
+//         ]
+//       },
+//       {
+//         path: "/admin",
+//         element: <RootLayoutAdmin/>,
+//         errorElement: <ErrorPage/>,
+//         children: [
+//         {index: true, element: <WelcomeAdmin/>},
+//         {path: 'discount-management', element: <AddDiscountPage/>},
+//         {path: 'member-order-history', element: <MemberOrderHistory/>},
+//         {path: 'account-management', element: <MemberManagemant/>},
+//         {path: 'revenue-stats', element: <RevenueStatistics/>},
+
+//         {path: 'manage-shoes', element: <ListManageShoePage/>},
+//         {path: 'manage-shoes/new', element: <AddShoePage/>},
+
+//         {path: 'profile', element: <Profile/>},
+          
+//         ]
+//       },
+
+    // {
+    //   path: "/manager",
+    //   element: <RootLayoutManager />,
+    //   errorElement: <ErrorPage />,
+    //   children: [
+    //     { index: true, element: <WelcomeManager /> },
+    //     { path: 'discount-management', element: <DiscountManagement /> },
+    //     { path: 'member-order-history', element: <MemberOrderHistory /> },
+    //     //{ path: 'add-discount', element: <AddDiscountPage /> },
+    //   ]
+    // }
+
+>>>>>>> c8ae65f16420e075eb784aaa5763a3dbc65f5c85
 const router = createBrowserRouter([
   {
     path: "/",
@@ -94,6 +151,10 @@ const router = createBrowserRouter([
       //{ path: 'add-discount', element: <AddDiscountPage /> },
     ],
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> c8ae65f16420e075eb784aaa5763a3dbc65f5c85
 ]);
 
 function App() {

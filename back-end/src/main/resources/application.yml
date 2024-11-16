@@ -20,3 +20,14 @@ spring:
 
 jwt:
     signerKey: "1cLc5GX0Em888Eol5qUD7MmqprRtdyV7mFEBWftpuHDlmdbSZdXrTa74uv5q9/rD"
+
+
+vnPay:
+  version: "2.1.0"
+  command: "pay"
+  orderType: "other"
+  currCode: "VND"
+  hash-secret: "ANAIDKYHLTU5HVKRMUM4NVRMLCN0SJU1"
+  tmn-code: "8VWZT7KJ"
+  payment-url: "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
+  return-url: "http://localhost:8080/api/v1/payment/payment-callback"

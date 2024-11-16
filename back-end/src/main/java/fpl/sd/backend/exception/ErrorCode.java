@@ -48,9 +48,16 @@ public enum ErrorCode {
     //Order-related errors
     ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
 
-    ORDER_NOT_FOUND(404,"Order not found" ,HttpStatus.NOT_FOUND );
+    ORDER_NOT_FOUND(404,"Order not found" ,HttpStatus.NOT_FOUND),
+
+    //Quantity-related errors
+    INSUFFICIENT_INVENTORY(404, "Insufficient inventory", HttpStatus.SERVICE_UNAVAILABLE),
+
+    //Create Payment Url
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR),
 
 
+    ;
 
 
 

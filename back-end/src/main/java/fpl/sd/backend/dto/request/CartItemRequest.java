@@ -18,5 +18,6 @@ public class CartItemRequest {
     @Min(value = 1, message = "Quantity must be at least 1")
     int quantity;
     double price;
+    int productId;
 
 }

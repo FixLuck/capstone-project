@@ -20,8 +20,9 @@ import * as z from "zod";
 import api from "@/config/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoading, selectError } from "../../store/auth";
+import { selectIsLoading, selectError, selectUser } from "../../store/auth";
 import { authActions } from "@/store";
+
 
 const schema = z.object({
   username: z.string().min(1, { message: "Username is required" }),
@@ -33,6 +34,9 @@ function UserLogin() {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
+
+  const user = useSelector(selectUser);
+  const userName = user ? user.sub : "";
   
   const {
     register,
@@ -49,7 +53,7 @@ function UserLogin() {
       const response = await api.post("auth/token", data);
       const token = response.data.result.token;
       localStorage.setItem("token", token);
-      console.log(token);
+      
       dispatch(authActions.loginSuccess(token));
       navigate("/");
       

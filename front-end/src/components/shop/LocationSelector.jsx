@@ -110,7 +110,6 @@ export default function LocationSelector({ onLocationChange }) {
     wards,
   ]);
 
-
   return (
     <div className="grid md:grid-cols-3 gap-4">
       <div className="grid flex-col space-y-2">

@@ -1,7 +1,7 @@
 import "./App.css";
 import UserLogin from "./pages/shop-pages/UserLogin";
 import SignUp from "./pages/shop-pages/SignUp";
-import Profile from "./pages/shop-pages/Profile";
+// import Profile from "./pages/shop-pages/Profile";
 import RevenueStatistics from "./pages/admin-pages/RevenueStatistics";
 import "./App.jsx";
 import { createBrowserRouter } from "react-router-dom";
@@ -19,7 +19,7 @@ import Cart from "./pages/shop-pages/Cart";
 import RootLayoutManager from "./pages/RootLayoutManager";
 import DiscountManagement from "./pages/admin-pages/DiscountManagement";
 import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory";
-import WelcomeManager from "./pages/manager-pages/WelcomeManager";
+// import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import Terms from "./pages/shop-pages/Terms";
@@ -41,7 +41,7 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
         {path: 'order-history', element: <OrderHistory/>},
         {path: 'login', element: <UserLogin/>},
         {path: 'register', element: <SignUp/>},
-        {path: 'users', element: <Profile/>},
+        // {path: 'users', element: <Profile/>},
         {path: 'orders', element: <OrderHistory/>},
         {path: 'checkout', element: <CheckOut/>},
         {path: 'logout', element: <UserLogin/>},
@@ -63,37 +63,22 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
         {path: 'manage-shoes', element: <ListManageShoePage/>},
         {path: 'manage-shoes/new', element: <AddShoePage/>},
 
-        {path: 'profile', element: <Profile/>},
+        // {path: 'profile', element: <Profile/>},
           
         ]
       },
-    {
-      path: "/admin",
-      element: <RootLayoutAdmin />,
-      errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <WelcomeAdmin /> },
-        { path: 'discount-management', element: <DiscountManagement /> },
-        { path: 'member-order-history', element: <MemberOrderHistory /> },
-        { path: 'account-management', element: <MemberManagemant /> },
-        { path: 'revenue-stats', element: <RevenueStatistics /> },
-        { path: 'list-shoes', element: <ListManageShoePage /> },
-        { path: 'profile', element: <Profile /> },
-        //{path: 'add-discount', element: <AddDiscountPage />}
-      ]
 
-    },
-    {
-      path: "/manager",
-      element: <RootLayoutManager />,
-      errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <WelcomeManager /> },
-        { path: 'discount-management', element: <DiscountManagement /> },
-        { path: 'member-order-history', element: <MemberOrderHistory /> },
-        //{ path: 'add-discount', element: <AddDiscountPage /> },
-      ]
-    }
+    // {
+    //   path: "/manager",
+    //   element: <RootLayoutManager />,
+    //   errorElement: <ErrorPage />,
+    //   children: [
+    //     { index: true, element: <WelcomeManager /> },
+    //     { path: 'discount-management', element: <DiscountManagement /> },
+    //     { path: 'member-order-history', element: <MemberOrderHistory /> },
+    //     //{ path: 'add-discount', element: <AddDiscountPage /> },
+    //   ]
+    // }
 ]);
 
 function App() {

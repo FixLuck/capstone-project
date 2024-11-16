@@ -25,6 +25,7 @@ import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import Terms from "./pages/shop-pages/Terms";
 import Privacy from "./pages/shop-pages/Privacy";
 import CheckOut from "./pages/shop-pages/CheckOut";
+import OrderDetailList from "./pages/shop-pages/OrderDetailList";
 import { useDispatch } from "react-redux";
 import { authActions } from "./store/index";
 import { useEffect } from "react";
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
       { path: "logout", element: <UserLogin /> },
       { path: "terms", element: <Terms /> },
       { path: "privacy", element: <Privacy /> },
+      { path: "order_list", element: <OrderDetailList/>}
     ],
   },
   {

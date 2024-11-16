@@ -1,253 +1,259 @@
-// import React, { useState, useEffect } from "react";
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardFooter,
-//   CardHeader,
-// } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
-// import { useNavigate } from "react-router-dom";
-// import api from "@/config/axios";
-// import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import * as z from "zod";
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useNavigate } from "react-router-dom";
+import api from "@/config/axios";
+import { selectUser } from "@/store/auth";
+import { useSelector } from "react-redux";
+import LocationSelector from "@/components/shop/LocationSelector";
+import { ToastContainer, toast } from "react-toastify";
 
 
-// // Validation schema using Zod
+function Profile() {
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState(userData?.username || "");
+  const [email, setEmail] = useState(userData?.email || "");
+  const [phone, setPhone] = useState(userData?.phone || "");
+  const [location, setLocation] = useState("");
+  const [street, setStreet] = useState("");
+  const [address, setAddress] = useState("");
+  const [fullName, setFullName] = useState(userData?.fullName || "");
 
-// //!?
-
-// const schema = z.object({
-//   username: z.string().min(1, { message: "Username is required" }),
-//   email: z.string().email({ message: "Invalid email address" }),
-//   phone: z.string().regex(/^\d{10}$/, { message: "Phone number must be 10 digits" }),
-//   password: z.string().min(8, { message: "Password must be at least 8 characters" }),
-// });
-
-// function Profile() {
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-//   const [password, setPassword] = useState("");
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const user = useSelector(selectUser);
+  const userName = user ? user.sub : null;
 
 
-//   const token = localStorage.getItem("token");
 
-//   useEffect(() => {
-//     if (!token) {
-//       navigate("/login");
-//       return;
-//     }
+  useEffect(() => {
+    if (userData) {
+      setUsername(userData.username || "");
+      setEmail(userData.email || "");
+      setPhone(userData.phone || "");
+      setFullName(userData.fullName || "");
+    }
+  }, [userData]);
 
-//     // Extract username from token payload
-//     const decodedToken = JSON.parse(atob(token.split('.')[1]));
-//     const username = decodedToken.sub; // Username is stored as `sub` in JWT payload
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
 
+    const fetchUserData = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get(`/users/profile?username=${userName}`);
+        const data = response.data.result;
+        setUserData(data);
 
-//   const token = localStorage.getItem("token");
+        if (data.address) {
+          setAddress(data.address);
+        }
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-//   useEffect(() => {
-//     if (!token) {
-//       navigate("/login");
-//       return;
-//     }
+    fetchUserData();
+  }, [navigate, user, userName]);
 
-//     const decodedToken = JSON.parse(atob(token.split('.')[1]));
-//     const userId = decodedToken.sub;
+  const handleLocationChange = (locationData) => {
+    if (locationData && locationData.fullAddress) {
+      setLocation(locationData.fullAddress);
+      updateFullAddress(locationData.fullAddress, street);
+    }
+  };
 
+  const updateFullAddress = (loc, str) => {
+    const addressParts = [];
+    if (loc) addressParts.push(loc);
+    if (str) addressParts.push(str);
+    const newAddress = setAddress(addressParts.join(", "));
 
-    
+    if (userData) {
+      setUserData((prev) => ({
+        ...prev,
+        address: newAddress,
+      }));
+    }
+  };
+  console.log(street);
+  console.log(location);
+  console.log(address);
 
-//     const fetchUserData = async () => {
-//       setLoading(true);
-//       setError(null);
-//       try {
+  useEffect(() => {
+    updateFullAddress(location, street);
+  }, [location, street]);
 
-//         // Fetch user data by username instead of userId
-//         const response = await api.get(`/profile?username=${username}`, {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    if (!username || !email || !phone) {
+      alert("All fields are required");
+      return;
+    }
 
-//         const response = await api.get(`/users/${userId}`, {
+    const toastId = toast.loading("Updating user...");
+    setLoading(true);
 
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         });
+    try {
+      const addressPart = address.split(", ");
+      const reversedAddress = addressPart.reverse().join(", ");
 
-//         const userData = response.data.result;
-//         setUser(userData);
-//       } catch (err) {
-//         setError("Failed to fetch user data.");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
+      const response = await api.put(`/users/${userData.id}`, {
+        username: username,
+        email: email,
+        phone: phone,
+        address: reversedAddress,
+        fullName: fullName,
+      });
+      if (response.data.flag) {
+        toast.update(toastId, {
+          render: "User updated successfully",
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
+        });
+        setLoading(false);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to update user");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//     fetchUserData();
-//   }, [token, navigate]);
+  return (
+    <div>
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
+      <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
+        <div className="col-span-1 border-r flex justify-center">
+          <div className="w-60 flex flex-col space-y-4">
+            <Button className="bg-green-500">My Profile</Button>
+            <Button className="bg-yellow-500">Security</Button>
+          </div>
+        </div>
+        <div className="col-span-2 p-4">
+          <h1 className="text-lg font-bold text-black">My Profile</h1>
+          <div className="mt-1">
+            <Card className="w-full border-0">
+              <CardHeader>
+                <CardDescription className="font-bold text-center">
+                  Show and edit your profile
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
+                  <div className="grid gap-2">
+                    <Label>Username</Label>
+                    <Input
+                      id="username"
+                      type="text"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Full Name</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                </div>
 
-//   const { register, handleSubmit, formState: { errors } } = useForm({
-//     resolver: zodResolver(schema),
-//   });
+                <div className="grid w-full gap-6 border rounded-sm p-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="grid gap-2">
+                      <Label>Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="border rounded-md p-2 w-full"
+                      />
+                    </div>
 
-//   const handleUpdate = async (data) => {
-//     setLoading(true);
-//     setError(null);
+                    <div className="grid gap-2">
+                      <Label>Phone</Label>
+                      <Input
+                        id="phone"
+                        type="text"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="border rounded-md p-2 w-full"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Current Address</Label>
+                    <Input
+                      id="address"
+                      type="text"
+                      value={address}
+                      className="border rounded-md p-2 w-full"
+                      readOnly
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Street</Label>
+                    <Input
+                      id="street"
+                      type="text"
+                      value={street}
+                      onChange={(e) => setStreet(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                    <LocationSelector onLocationChange={handleLocationChange} />
+                  </div>
+                </div>
 
-//     const updatedData = {
-//       username: data.username,
-//       email: data.email,
-//       phone: data.phone,
-//       password: data.password,
-//       role: user?.role, // Người dùng không được phép thay đổi role
-//     };
+                <CardFooter className="flex justify-end">
+                  <Button
+                    type="submit"
+                    className="bg-blue-500"
+                    onClick={handleUpdate}
+                    disabled={loading}
+                  >
+                    Save Changes
+                  </Button>
+                </CardFooter>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-//     try {
-//       const response = await api.put(
-//         `/users/${user.id}`,
-//         updatedData,
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
-
-//       const updatedUser = response.data.result;
-//       setUser(updatedUser);
-//       setError("Update successful!");
-//     } catch (err) {
-//       setError("Failed to update user data.");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   if (loading) {
-//     return <div>Loading...</div>;
-//   }
-
-//   if (error) {
-//     return <div className="text-red-500">{error}</div>;
-//   }
-
-//   return (
-
-//     <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
-
-//       <div className="col-span-1 border-r flex justify-center">
-//         <div className="w-60 flex flex-col space-y-4">
-//           <Button className="bg-green-500">My Profile</Button>
-//           <Button className="bg-yellow-500">Security</Button>
-//         </div>
-//       </div>
-//       <div className="col-span-2 p-4">
-//         <h1 className="text-lg font-bold text-black">My Profile</h1>
-//         <div className="mt-1">
-//           <form onSubmit={handleSubmit(handleUpdate)}>
-
-//             <Card className="w-full border-0">
-//               <CardHeader>
-//                 <CardDescription className="font-bold text-center">
-//                   Show and edit your profile
-//                 </CardDescription>
-//               </CardHeader>
-//               <CardContent>
-
-//           <Card className="w-full border-0">
-//             <CardHeader>
-//               <CardDescription className="font-bold text-center">
-//                 Show and edit your profile
-//               </CardDescription>
-//             </CardHeader>
-//             <CardContent>
-
-//                 <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
-//                   <div className="grid gap-2">
-//                     <Label>Username</Label>
-//                     <Input
-//                       id="username"
-//                       type="text"
-//                       defaultValue={user?.username}
-//                       {...register("username")}
-//                       className="border rounded-md p-2 w-full"
-//                     />
-//                     {errors.username && <p className="text-red-500">{errors.username.message}</p>}
-//                   </div>
-
-//                   <div className="grid gap-2">
-//                     <Label>Password</Label>
-//                     <Input
-//                       id="password"
-//                       type="password"
-//                       value={password}
-//                       onChange={(e) => setPassword(e.target.value)}
-//                       className="border rounded-md p-2 w-full"
-//                       placeholder="********"
-//                     />
-//                     {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-//                   </div>
-//                 </div>
-
-//                 <div className="grid w-full gap-6 border rounded-sm p-4">
-//                   <div className="grid gap-2">
-//                     <Label>Email</Label>
-//                     <Input
-//                       id="email"
-//                       type="email"
-//                       defaultValue={user?.email}
-//                       {...register("email")}
-//                       className="border rounded-md p-2 w-full"
-//                     />
-//                     {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-//                   </div>
-
-//                   <div className="grid gap-2">
-//                     <Label>Phone</Label>
-//                     <Input
-//                       id="phone"
-//                       type="text"
-//                       defaultValue={user?.phone}
-//                       {...register("phone")}
-//                       className="border rounded-md p-2 w-full"
-//                     />
-//                     {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
-//                   </div>
-
-//                   <div className="grid gap-2">
-//                     <Label>Role</Label>
-//                     <Input
-//                       id="role"
-//                       type="text"
-//                       value={user?.role}
-//                       disabled
-//                       className="border rounded-md p-2 w-full"
-//                     />
-//                   </div>
-//                 </div>
-
-//                 <CardFooter className="flex justify-end">
-//                   <Button type="submit" className="bg-blue-500" disabled={loading}>
-//                     Save Changes
-//                   </Button>
-//                 </CardFooter>
-
-//               </CardContent>
-//             </Card>
-
-//             </CardContent>
-//           </Card>
-
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-//   )
-// }
-
-// export default Profile;
+export default Profile;

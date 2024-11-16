@@ -1,7 +1,7 @@
 import "./App.css";
 import UserLogin from "./pages/shop-pages/UserLogin";
 import SignUp from "./pages/shop-pages/SignUp";
-// import Profile from "./pages/shop-pages/Profile";
+import Profile from "./pages/shop-pages/Profile";
 import RevenueStatistics from "./pages/admin-pages/RevenueStatistics";
 import "./App.jsx";
 import { createBrowserRouter } from "react-router-dom";
@@ -41,7 +41,7 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
         {path: 'order-history', element: <OrderHistory/>},
         {path: 'login', element: <UserLogin/>},
         {path: 'register', element: <SignUp/>},
-        // {path: 'users', element: <Profile/>},
+        {path: 'users', element: <Profile/>},
         {path: 'orders', element: <OrderHistory/>},
         {path: 'checkout', element: <CheckOut/>},
         {path: 'logout', element: <UserLogin/>},
@@ -63,7 +63,7 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
         {path: 'manage-shoes', element: <ListManageShoePage/>},
         {path: 'manage-shoes/new', element: <AddShoePage/>},
 
-        // {path: 'profile', element: <Profile/>},
+        {path: 'profile', element: <Profile/>},
           
         ]
       },

@@ -30,8 +30,6 @@ import { useDispatch } from "react-redux";
 import { authActions } from "./store/index";
 import { useEffect } from "react";
 
-<<<<<<< HEAD
-=======
 
 //     const router = createBrowserRouter([
 //       {
@@ -86,7 +84,7 @@ import { useEffect } from "react";
     //   ]
     // }
 
->>>>>>> c8ae65f16420e075eb784aaa5763a3dbc65f5c85
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -151,10 +149,7 @@ const router = createBrowserRouter([
       //{ path: 'add-discount', element: <AddDiscountPage /> },
     ],
   },
-<<<<<<< HEAD
-=======
 
->>>>>>> c8ae65f16420e075eb784aaa5763a3dbc65f5c85
 ]);
 
 function App() {

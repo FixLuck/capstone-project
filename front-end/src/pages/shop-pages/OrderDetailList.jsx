@@ -35,7 +35,7 @@ const orders = [
 export default function OrderDetailList() {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Your Orders</h1>
+      <h1 className="text-2xl font-bold mb-6">Đơn hàng đã đặt</h1>
       <div className="space-y-4">
         {orders.map((order) => (
           <OrderCard key={order.id} order={order} />
@@ -65,7 +65,7 @@ function OrderCard({ order }) {
       </CardHeader>
       <CardContent>
         <div className="flex justify-between items-center mb-4">
-          <span className="font-semibold">Total: VND {order.total.toFixed(3)}</span>
+          <span className="font-semibold">Tổng tiền: VND {order.total.toFixed(3)}</span>
           <Collapsible open={isOpen} onOpenChange={setIsOpen}>
             <CollapsibleTrigger asChild>
               <Button variant="outline">

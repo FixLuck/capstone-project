@@ -55,7 +55,7 @@ public enum ErrorCode {
 
     //Create Payment Url
     INTERNAL_SERVER_ERROR(500, "Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR),
-
+    PAYMENT_ALREADY_PROCESSED(500, "Payment already processed", HttpStatus.CONFLICT),
 
     ;
 

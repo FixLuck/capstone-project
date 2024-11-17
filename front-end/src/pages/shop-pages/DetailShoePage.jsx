@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
 import { selectItems } from "@/store/cart-slice";
-import { formatter } from "../../utils/formatter";
+import { formatterToVND } from "../../utils/formatter";
+import { useNavigate } from "react-router-dom";
 
 export default function DetailShoePage() {
   const params = useParams();
@@ -23,6 +24,7 @@ export default function DetailShoePage() {
 
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchShoe = async () => {
@@ -43,6 +45,29 @@ export default function DetailShoePage() {
   }, [id]);
 
   const imagesShoe = shoe?.images;
+
+  const handleBuyNow = () => {
+    if (!selectedVariant) {
+      toast.error("Please select a size before adding to cart.", {
+        autoClose: 2000,
+      });
+      return;
+    }
+
+    const cartItem = {
+      productId: shoe.id,
+      name: shoe.name,
+      price: shoe.price,
+      imageUrl: shoe.images[0].url,
+      quantity: quantity,
+      variantId: selectedVariant.id,
+      size: selectedVariant.sku.split('-').pop(),
+      totalPrice: shoe.price * quantity
+    };
+    dispatch(cartActions.addItemToCart(cartItem));
+    navigate("/cart");
+  }
+
 
   const handleAddToCart = () => {
     if (!selectedVariant) {
@@ -155,8 +180,8 @@ export default function DetailShoePage() {
           <div>
             <h1 className="text-2xl font-bold capitalize">{shoe.name}</h1>
             <p className="text-gray-500">{shoe.description}</p>
-            <p className="text-xl font-semibold mt-2 line-through">{formatter.format(shoe.fakePrice)}</p>
-            <p className="text-5xl font-semibold mt-2">{formatter.format(shoe.price)}</p>
+            <p className="text-xl font-semibold mt-2 line-through">{formatterToVND.format(shoe.fakePrice)}</p>
+            <p className="text-5xl font-semibold mt-2">{formatterToVND.format(shoe.price)}</p>
           </div>
           <Card>
             <CardContent className="space-y-4 p-4">
@@ -205,7 +230,7 @@ export default function DetailShoePage() {
                 >
                   Add to cart
                 </Button>
-                <Button variant="destructive" className="flex-1 ">
+                <Button onClick={() => handleBuyNow(shoe)} variant="destructive" className="flex-1">
                   Buy now
                 </Button>
               </div>

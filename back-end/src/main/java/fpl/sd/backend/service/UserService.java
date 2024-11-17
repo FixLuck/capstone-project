@@ -100,8 +100,8 @@ public class UserService {
         if (request.getEmail() != null) {
             user.setEmail(request.getEmail());
         }
-        if (request.getPassword() != null) {
-            user.setPassword(request.getPassword());
+        if (request.getFullName() != null) {
+            user.setFullName(request.getFullName());
         }
         if (request.getPhone() != null) {
             user.setPhone(request.getPhone());

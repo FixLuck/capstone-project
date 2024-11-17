@@ -42,7 +42,7 @@ export default function UserDropDown() {
           <DropdownMenuSeparator />
           {user ? (
             <div>
-              <Link to={"/users"}>
+              <Link to={"/profile/me"}>
                 <DropdownMenuItem className="cursor-pointer">
                   Profile
                 </DropdownMenuItem>

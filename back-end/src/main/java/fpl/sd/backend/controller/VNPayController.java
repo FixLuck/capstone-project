@@ -2,9 +2,12 @@ package fpl.sd.backend.controller;
 
 import fpl.sd.backend.configuration.VNPayConfig;
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.request.PaymentCallbackRequest;
 import fpl.sd.backend.dto.request.PaymentRequest;
+import fpl.sd.backend.dto.response.PaymentResponse;
 import fpl.sd.backend.service.PaymentService;
 import fpl.sd.backend.utils.VNPayUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +25,14 @@ import java.util.TreeMap;
 @RequestMapping("/payment")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin("*")
 public class VNPayController {
     private static final Logger log = LoggerFactory.getLogger(VNPayController.class);
     PaymentService paymentService;
-    VNPayConfig vnPayConfig;
+
 
     @PostMapping("/create-payment")
-   public ApiResponse<String> createPayment(@RequestBody PaymentRequest paymentRequest) {
+    public ApiResponse<String> createPayment(@RequestBody PaymentRequest paymentRequest) {
         return ApiResponse.<String>builder()
                 .flag(true)
                 .message("Payment created successfully")
@@ -38,41 +42,20 @@ public class VNPayController {
     }
 
     @GetMapping("/payment-callback")
-   public ResponseEntity<String> getPaymentCallback(@RequestParam Map<String, String> queryParams) {
-        try {
-            // Extract vnp_SecureHash from query parameters
-            String vnpSecureHash = queryParams.get("vnp_SecureHash");
+    public ApiResponse<PaymentResponse> paymentCallback(HttpServletRequest request) {
+        //Extract payment callback data
+        PaymentCallbackRequest callbackRequest = PaymentCallbackRequest.from(request);
 
-            // Remove vnp_SecureHash from queryParams to validate checksum
-            Map<String, String> validationParams = new TreeMap<>(queryParams);
-            validationParams.remove("vnp_SecureHash");
+        //Process payment
+        PaymentResponse response = paymentService.processPaymentCallback(callbackRequest);
 
-            // Generate checksum from remaining parameters
-            String checkSum = VNPayUtils.generateQueryUrl(validationParams, true);
-            String calculatedHash = VNPayUtils.hmacSHA512(vnPayConfig.getVnpHashSecret(), checkSum);
+        return ApiResponse.<PaymentResponse>builder()
+                .flag(true)
+                .message("Payment successful")
+                .code(200)
+                .result(response)
+                .build();
 
-            // Validate checksum
-            if (!calculatedHash.equals(vnpSecureHash)) {
-                return ResponseEntity.badRequest().body("Invalid checksum");
-            }
-
-            // Get payment status
-            String status = queryParams.get("vnp_ResponseCode");
-            String orderId = queryParams.get("vnp_TxnRef");
-
-            // Update order status
-            if ("00".equals(status)) {
-                log.info("orderId: {}", orderId);
-                return ResponseEntity.ok("Payment successful");
-            } else {
-
-                return ResponseEntity.ok("Payment failed");
-            }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error processing payment callback: " + e.getMessage());
-        }
     }
 }
 

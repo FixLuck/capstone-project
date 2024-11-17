@@ -26,8 +26,9 @@ function Profile() {
   const [location, setLocation] = useState("");
   const [street, setStreet] = useState("");
   const [address, setAddress] = useState("");
-
   const [fullName, setFullName] = useState(userData?.fullName || "");
+
+
 
 
   const navigate = useNavigate();
@@ -42,9 +43,7 @@ function Profile() {
       setUsername(userData.username || "");
       setEmail(userData.email || "");
       setPhone(userData.phone || "");
-
       setFullName(userData.fullName || "");
-
     }
   }, [userData]);
 
@@ -185,6 +184,16 @@ function Profile() {
               </CardHeader>
               <CardContent>
                 <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
+                <div className="grid gap-2">
+                    <Label>FullName</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
                   <div className="grid gap-2">
                     <Label>Username</Label>
                     <Input

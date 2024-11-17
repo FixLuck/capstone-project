@@ -16,10 +16,10 @@ import lombok.experimental.FieldDefaults;
 public class UserResponse {
     String id;
     String username;
-    String password;
     String email;
     String address;
     String phone;
+    String fullName;
     boolean isActive;
     String createdAt;
     String updatedAt;

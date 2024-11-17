@@ -29,6 +29,7 @@ import OrderDetailList from "./pages/shop-pages/OrderDetailList";
 import { useDispatch } from "react-redux";
 import { authActions } from "./store/index";
 import { useEffect } from "react";
+import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
 
 
 
@@ -100,9 +101,10 @@ const router = createBrowserRouter([
       { path: "order-history", element: <OrderHistory /> },
       { path: "login", element: <UserLogin /> },
       { path: "register", element: <SignUp /> },
-      { path: "users", element: <Profile /> },
+      { path: "profile/me", element: <Profile /> },
       { path: "orders", element: <OrderHistory /> },
       { path: "checkout", element: <CheckOut /> },
+      { path: "checkout/payment-callback", element: <PaymentCallbackPage /> },
       { path: "logout", element: <UserLogin /> },
       { path: "terms", element: <Terms /> },
       { path: "privacy", element: <Privacy /> },

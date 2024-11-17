@@ -31,11 +31,11 @@ function AddDiscountPage() {
         console.error('Dữ liệu trả về không phải là mảng trong thuộc tính result:', response.data);
       }
     } catch (error) {
-      console.error('Error fetching discounts:', error);
+      console.error('Lỗi khi lấy mã giảm giá:', error);
     }
   };
 
-  //  Hàm thêm mã giảm giá mới
+  // Hàm thêm mã giảm giá mới
   // const handleAddDiscount = async () => {
   //   try {
   //     const discountToAdd = {
@@ -47,13 +47,11 @@ function AddDiscountPage() {
   //     setDiscounts(prevDiscounts => [...prevDiscounts, response.data]);
   //     resetForm();
   //   } catch (error) {
-  //     console.error("Error adding discount:", error);
+  //     console.error("Lỗi khi thêm mã giảm giá:", error);
   //   }
   // };
 
-
-  
-   // Hàm reset form
+  // Hàm reset form
   // const resetForm = () => {
   //   setNewDiscount({
   //     percentage: 0,
@@ -67,49 +65,49 @@ function AddDiscountPage() {
   //     isActive: true
   //   });
   // };
+
   return (
     <div className="p-6 max-w-full mx-auto bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-6">Discount Management</h1>
+      <h1 className="text-2xl font-semibold text-gray-800 mb-6">Quản lý mã giảm giá</h1>
 
-      
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <input
           type="text"
-          placeholder="Code"
+          placeholder="Mã giảm giá"
           value={newDiscount.code}
           onChange={(e) => setNewDiscount({ ...newDiscount, code: e.target.value })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         />
         <input
           type="number"
-          placeholder="Percentage"
+          placeholder="Phần trăm"
           value={newDiscount.percentage}
           onChange={(e) => setNewDiscount({ ...newDiscount, percentage: parseFloat(e.target.value) })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         />
         <input
           type="datetime-local"
-          placeholder="Start Date"
+          placeholder="Ngày bắt đầu"
           value={newDiscount.startDate}
           onChange={(e) => setNewDiscount({ ...newDiscount, startDate: e.target.value })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         />
         <input
           type="datetime-local"
-          placeholder="End Date"
+          placeholder="Ngày kết thúc"
           value={newDiscount.endDate}
           onChange={(e) => setNewDiscount({ ...newDiscount, endDate: e.target.value })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         />
         <input
           type="number"
-          placeholder="Minimum Order Amount"
+          placeholder="Số tiền đơn hàng tối thiểu"
           value={newDiscount.minimumOrderAmount}
           onChange={(e) => setNewDiscount({ ...newDiscount, minimumOrderAmount: parseFloat(e.target.value) })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         />
         <textarea
-          placeholder="Description"
+          placeholder="Mô tả"
           value={newDiscount.description}
           onChange={(e) => setNewDiscount({ ...newDiscount, description: e.target.value })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 col-span-full"
@@ -117,7 +115,7 @@ function AddDiscountPage() {
         />
         <input
           type="number"
-          placeholder="Fixed Amount"
+          placeholder="Số tiền cố định"
           value={newDiscount.fixedAmount}
           onChange={(e) => setNewDiscount({ ...newDiscount, fixedAmount: parseFloat(e.target.value) })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
@@ -127,27 +125,27 @@ function AddDiscountPage() {
           onChange={(e) => setNewDiscount({ ...newDiscount, discountType: e.target.value })}
           className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         >
-          <option value="PERCENTAGE">Percentage</option>
-          <option value="FIXED_AMOUNT">Fixed Amount</option>
+          <option value="PERCENTAGE">Phần trăm</option>
+          <option value="FIXED_AMOUNT">Số tiền cố định</option>
         </select>
       </div>
 
-      <Button  className="mt-6 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600">
-        Add Discount
+      <Button className="mt-6 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600">
+        Thêm mã giảm giá
       </Button>
 
       {/* Danh sách mã giảm giá */}
       <div className="mt-10">
         <Table className="w-full">
-          <TableCaption className="text-gray-500">A list of your recent discounts.</TableCaption>
+          <TableCaption className="text-gray-500">Danh sách mã giảm giá của bạn.</TableCaption>
           <TableHeader className="bg-gray-100">
             <TableRow>
-              <TableCell className="p-3 font-semibold">Edit</TableCell>
-              <TableCell className="p-3 font-semibold">Code</TableCell>
-              <TableCell className="p-3 font-semibold">Percentage</TableCell>
-              <TableCell className="p-3 font-semibold">Start Day</TableCell>
-              <TableCell className="p-3 font-semibold">End Day</TableCell>
-              <TableCell className="p-3 font-semibold">Active</TableCell>
+              <TableCell className="p-3 font-semibold">Chỉnh sửa</TableCell>
+              <TableCell className="p-3 font-semibold">Mã giảm giá</TableCell>
+              <TableCell className="p-3 font-semibold">Phần trăm</TableCell>
+              <TableCell className="p-3 font-semibold">Ngày bắt đầu</TableCell>
+              <TableCell className="p-3 font-semibold">Ngày kết thúc</TableCell>
+              <TableCell className="p-3 font-semibold">Hoạt động</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -155,8 +153,8 @@ function AddDiscountPage() {
               discounts.map(discount => (
                 <TableRow key={discount.id} className="hover:bg-gray-50">
                   <TableCell className="p-3 text-red-500 cursor-pointer">
-                    {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Delete</button> */}
-                    Delete
+                    {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Xóa</button> */}
+                    Xóa
                   </TableCell>
                   <TableCell className="p-3">{discount.code}</TableCell>
                   <TableCell className="p-3">{discount.percentage}%</TableCell>
@@ -170,7 +168,7 @@ function AddDiscountPage() {
             ) : (
               <TableRow>
                 <TableCell colSpan="6" className="p-3 text-center text-gray-500">
-                  No discounts available
+                  Không có mã giảm giá
                 </TableCell>
               </TableRow>
             )}

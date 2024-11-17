@@ -19,7 +19,7 @@ export default function ListBrand() {
   return (
     <div className="bg-white my-4 py-4 rounded-sm">
       <div className="text-3xl text-center font-semibold underline underline-offset-8 mb-16">
-        Select Your Brand
+        Chọn hãng giày
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {brands.map((item, index) => (

@@ -146,7 +146,7 @@ const router = createBrowserRouter([
     element: <RootLayoutManager />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <WelcomeManager /> },
+      { index: true, element: <WelcomeAdmin /> },
       { path: "discount-management", element: <DiscountManagement /> },
       { path: "member-order-history", element: <MemberOrderHistory /> },
       //{ path: 'add-discount', element: <AddDiscountPage /> },

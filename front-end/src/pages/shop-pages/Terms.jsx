@@ -15,55 +15,55 @@ export function Terms() {
     return (
         <div className="mt-5 mb-5 bg-white p-5">
             <div className="mt-10 p-10" >
-            <h1 className="mt-5 text-xl font-bold text-center text-black">Terms and Conditions</h1>
+            <h1 className="mt-5 text-xl font-bold text-center text-black">Điều Khoản</h1>
             <Card className="w-full border-0 rounded-lg p-2">
               <CardHeader>
                 <CardDescription className="font-bold text-center">
-                  Terms and conditions of SuperTeam website
+                  Điều khoản và điều kiện của website SuperTeam
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid w-full gap-6">
                   <div className="grid gap-2">
                     <p className="text-[20px]">
-                    1. Introduction:
+                    1. Giới thiệu:
 
-                    Welcome to SuperTeam website. By using this website and our services, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any of these terms, please stop using our website.
+                    Chào mừng bạn đến với website SuperTeam. Bằng cách sử dụng website và dịch vụ của chúng tôi, bạn đồng ý tuân thủ và bị ràng buộc bởi các điều khoản và điều kiện sau. Nếu bạn không đồng ý với bất kỳ điều khoản nào, vui lòng ngừng sử dụng website của chúng tôi.
                     <br/>
-                    2. Services:
+                    2. Dịch vụ:
 
-                    We offer a range of footwear products, including sneakers, formal shoes, fashion shoes, and related accessories. Our services include providing product information, online sales, delivery, and customer support.
+                    Chúng tôi cung cấp một loạt các sản phẩm giày dép, bao gồm giày thể thao, giày công sở, giày thời trang và các phụ kiện liên quan. Dịch vụ của chúng tôi bao gồm cung cấp thông tin sản phẩm, bán hàng trực tuyến, giao hàng và hỗ trợ khách hàng.
                     <br/>
-                    3. Ownership and Use of the Website:
+                    3. Quyền sở hữu và sử dụng website:
 
-                    This website and all content, including design, text, images, icons, logos, and other components, are the property of us or our content providers. You may not copy, reproduce, distribute, publicly display, modify, or exploit any part of this website without our explicit permission.
+                    Website này và tất cả các nội dung, bao gồm thiết kế, văn bản, hình ảnh, biểu tượng, logo và các thành phần khác, là tài sản của chúng tôi hoặc các nhà cung cấp nội dung của chúng tôi. Bạn không được sao chép, tái sản xuất, phân phối, công khai, sửa đổi hoặc khai thác bất kỳ phần nào của website này mà không có sự cho phép rõ ràng từ chúng tôi.
                     <br/>
-                    4. Ordering and Transactions:
+                    4. Đặt hàng và giao dịch:
 
-                    When you place an order on our website, you agree that the information you provide is accurate and complete. We reserve the right to refuse or cancel any order if incorrect information or violations of our website’s policies are detected.
+                    Khi bạn đặt hàng trên website của chúng tôi, bạn đồng ý rằng thông tin bạn cung cấp là chính xác và đầy đủ. Chúng tôi có quyền từ chối hoặc hủy bỏ bất kỳ đơn hàng nào nếu phát hiện thông tin không chính xác hoặc vi phạm chính sách của website.
                     <br/>
-                    5. Payment:
+                    5. Thanh toán:
 
-                    We offer various payment methods, including credit cards, debit cards, bank transfers, and other electronic payment methods. You agree to pay the full amount for products you purchase on our website through the supported payment methods.
+                    Chúng tôi cung cấp nhiều phương thức thanh toán khác nhau, bao gồm thẻ tín dụng, thẻ ghi nợ, chuyển khoản ngân hàng và các phương thức thanh toán điện tử khác. Bạn đồng ý thanh toán toàn bộ số tiền cho các sản phẩm bạn mua trên website thông qua các phương thức thanh toán hỗ trợ.
                     <br/>
-                    6. Return Policy:
+                    6. Chính sách trả hàng:
 
-                    If you are not satisfied with a purchased product, you can request a return within [number of days] days from receipt of the item, provided that the product has not been used and is still in its original packaging.
+                    Nếu bạn không hài lòng với sản phẩm đã mua, bạn có thể yêu cầu trả lại trong vòng [số ngày] ngày kể từ ngày nhận hàng, với điều kiện sản phẩm chưa được sử dụng và vẫn còn trong bao bì nguyên vẹn.
                     <br/>
-                    7. Our Rights:
+                    7. Quyền của chúng tôi:
 
-                    We reserve the right to change or modify these terms and conditions at any time without prior notice. Your continued use of the website after such changes will constitute your acceptance of the modified terms.
+                    Chúng tôi có quyền thay đổi hoặc sửa đổi các điều khoản và điều kiện này vào bất kỳ thời điểm nào mà không cần thông báo trước. Việc bạn tiếp tục sử dụng website sau khi các thay đổi này sẽ được coi là bạn đã chấp nhận các điều khoản đã sửa đổi.
                     <br/>
-                    8. Contact:
+                    8. Liên hệ:
 
-                    If you have any questions regarding these terms and conditions, please contact us via email or phone as listed on our website.
+                    Nếu bạn có bất kỳ câu hỏi nào liên quan đến các điều khoản và điều kiện này, vui lòng liên hệ với chúng tôi qua email hoặc điện thoại được liệt kê trên website của chúng tôi.
                     </p>
                   </div>
                 </div>
               </CardContent>
               <CardFooter className="flex items-center justify-end">
                 <Link to="/register" className="flex items-center px-4 py-2 bg-black text-white rounded">
-                    <FontAwesomeIcon icon={faArrowLeft} /> Have you read and understood all the content ? Go back Sign Up.
+                    <FontAwesomeIcon icon={faArrowLeft} /> &nbsp; Bạn đã đọc và hiểu tất cả nội dung? Quay lại Đăng ký.
                 </Link>
               </CardFooter>
             </Card>
@@ -72,6 +72,5 @@ export function Terms() {
   
     );
   }
-  
   
   export default Terms;

@@ -18,7 +18,7 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
-  username: z.string().min(2, { message: "Required" }),
+  username: z.string().min(2, { message: "Yêu cầu nhập tên người dùng" }),
   isActive: z.boolean(),
 });
 
@@ -41,33 +41,33 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
     const fetchUser = async () => {
       const { data } = await api.get(`users/${userId}`);
       setUser(data.result);
-      setIsActive(data.result.active); // Sync isActive with the user data from DB
+      setIsActive(data.result.active); // Đồng bộ trạng thái isActive với dữ liệu người dùng từ DB
       reset(data.result);
-      setValue("isActive", data.result.active); // Initialize Switch value
+      setValue("isActive", data.result.active); // Khởi tạo giá trị của Switch
     };
     fetchUser();
   }, [userId, reset, setValue]);
 
   const handleSwitchChange = (checked) => {
-    setIsActive(checked); 
-    setValue("isActive", checked); // Sync value with react-hook-form
-    setIsChanged(checked !== user.active); // Detect change in active status
+    setIsActive(checked);
+    setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
+    setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
   };
 
   const onSubmit = async (formData) => {
     const updateData = { ...formData, isActive };
-    console.log("Data to update:", updateData);
+    console.log("Dữ liệu cần cập nhật:", updateData);
     try {
       const response = await api.put(`users/${userId}`, updateData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log("Full Update response:", response); // Log full response
+      console.log("Phản hồi đầy đủ sau khi cập nhật:", response); // Log phản hồi đầy đủ
       onSuccess();
       onClose();
     } catch (error) {
-      console.error("Error updating user", error);
+      console.error("Lỗi khi cập nhật người dùng", error);
     }
   };
 
@@ -75,14 +75,14 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
     <Dialog open={true} onOpenChange={onClose} className="min-h-screen">
       <DialogContent className="w-full max-w-2xl mx-auto">
         <DialogHeader>
-          <DialogTitle>Edit Member Detail</DialogTitle>
+          <DialogTitle>Chỉnh sửa thông tin thành viên</DialogTitle>
           <DialogDescription>
-            Make changes to account status. Click save when you're done.
+            Thực hiện thay đổi trạng thái tài khoản. Nhấn lưu khi bạn hoàn tất.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="username">Tên người dùng</Label>
             <Input
               id="username"
               name="username"
@@ -98,9 +98,9 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
               <Switch
                 id="isActive"
                 checked={isActive}
-                onCheckedChange={handleSwitchChange} // Change event to update the state
+                onCheckedChange={handleSwitchChange} // Thay đổi sự kiện để cập nhật trạng thái
               />
-              <Label htmlFor="isActive">Active Status</Label>
+              <Label htmlFor="isActive">Trạng thái hoạt động</Label>
             </div>
           </div>
 
@@ -108,7 +108,7 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
 
           <DialogFooter>
             <Button type="submit" disabled={!isChanged}>
-              Save changes
+              Lưu thay đổi
             </Button>
           </DialogFooter>
         </form>

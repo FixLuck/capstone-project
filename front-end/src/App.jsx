@@ -19,7 +19,7 @@ import Cart from "./pages/shop-pages/Cart";
 import RootLayoutManager from "./pages/RootLayoutManager";
 import DiscountManagement from "./pages/admin-pages/DiscountManagement";
 import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory";
-// import WelcomeManager from "./pages/manager-pages/WelcomeManager";
+import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import Terms from "./pages/shop-pages/Terms";
@@ -29,6 +29,7 @@ import OrderDetailList from "./pages/shop-pages/OrderDetailList";
 import { useDispatch } from "react-redux";
 import { authActions } from "./store/index";
 import { useEffect } from "react";
+import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 
 
 
@@ -116,6 +117,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <WelcomeAdmin /> },
       { path: "discount-management", element: <DiscountManagement /> },
+      { path: "discount-management/new", element: <AddDiscountPage /> },
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenueStatistics /> },
@@ -124,21 +126,21 @@ const router = createBrowserRouter([
       { path: "profile", element: <Profile /> },
     ],
   },
-  {
-    path: "/admin",
-    element: <RootLayoutAdmin />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <WelcomeAdmin /> },
-      { path: "discount-management", element: <DiscountManagement /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
-      { path: "account-management", element: <MemberManagemant /> },
-      { path: "revenue-stats", element: <RevenueStatistics /> },
-      { path: "list-shoes", element: <ListManageShoePage /> },
-      { path: "profile", element: <Profile /> },
-      //{path: 'add-discount', element: <AddDiscountPage />}
-    ],
-  },
+  // {
+  //   path: "/admin",
+  //   element: <RootLayoutAdmin />,
+  //   errorElement: <ErrorPage />,
+  //   children: [
+  //     { index: true, element: <WelcomeAdmin /> },
+  //     { path: "discount-management", element: <DiscountManagement /> },
+  //     { path: "member-order-history", element: <MemberOrderHistory /> },
+  //     { path: "account-management", element: <MemberManagemant /> },
+  //     { path: "revenue-stats", element: <RevenueStatistics /> },
+  //     { path: "list-shoes", element: <ListManageShoePage /> },
+  //     { path: "profile", element: <Profile /> },
+  //     //{path: 'add-discount', element: <AddDiscountPage />}
+  //   ],
+  // },
   {
     path: "/manager",
     element: <RootLayoutManager />,

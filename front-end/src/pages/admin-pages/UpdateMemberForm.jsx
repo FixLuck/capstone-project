@@ -19,7 +19,7 @@ import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
   username: z.string().min(2, { message: "Required" }),
-  isActive: z.boolean(),
+  active: z.boolean(),
 });
 
 export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
@@ -34,28 +34,28 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
   });
 
   const [user, setUser] = useState({});
-  const [isActive, setIsActive] = useState(false);
+  const [active, setActive] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await api.get(`users/${userId}`);
       setUser(data.result);
-      setIsActive(data.result.active); // Sync isActive with the user data from DB
+      setActive(data.result.active); // Sync isActive with the user data from DB
       reset(data.result);
-      setValue("isActive", data.result.active); // Initialize Switch value
+      setValue("active", data.result.active); // Initialize Switch value
     };
     fetchUser();
   }, [userId, reset, setValue]);
 
   const handleSwitchChange = (checked) => {
-    setIsActive(checked); 
-    setValue("isActive", checked); // Sync value with react-hook-form
+    setActive(checked); 
+    setValue("active", checked); // Sync value with react-hook-form
     setIsChanged(checked !== user.active); // Detect change in active status
   };
 
   const onSubmit = async (formData) => {
-    const updateData = { ...formData, isActive };
+    const updateData = { ...formData, active };
     console.log("Data to update:", updateData);
     try {
       const response = await api.put(`users/${userId}`, updateData, {
@@ -96,11 +96,11 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <Switch
-                id="isActive"
-                checked={isActive}
+                id="active"
+                checked={active}
                 onCheckedChange={handleSwitchChange} // Change event to update the state
               />
-              <Label htmlFor="isActive">Active Status</Label>
+              <Label htmlFor="active">Active Status</Label>
             </div>
           </div>
 

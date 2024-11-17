@@ -15,7 +15,7 @@ import { selectUser } from "@/store/auth";
 import { useSelector } from "react-redux";
 import LocationSelector from "@/components/shop/LocationSelector";
 import { ToastContainer, toast } from "react-toastify";
-import { set } from "date-fns";
+
 
 function Profile() {
   const [userData, setUserData] = useState(null);
@@ -26,9 +26,7 @@ function Profile() {
   const [location, setLocation] = useState("");
   const [street, setStreet] = useState("");
   const [address, setAddress] = useState("");
-
   const [fullName, setFullName] = useState(userData?.fullName || "");
-
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -42,9 +40,7 @@ function Profile() {
       setUsername(userData.username || "");
       setEmail(userData.email || "");
       setPhone(userData.phone || "");
-
       setFullName(userData.fullName || "");
-
     }
   }, [userData]);
 
@@ -102,23 +98,12 @@ function Profile() {
     updateFullAddress(location, street);
   }, [location, street]);
 
-
   const handleUpdate = async (e) => {
     e.preventDefault();
     if (!username || !email || !phone) {
       alert("All fields are required");
       return;
     }
-
-
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    if (!username || !email || !phone) {
-      alert("All fields are required");
-      return;
-    }
-
 
     const toastId = toast.loading("Updating user...");
     setLoading(true);
@@ -132,9 +117,7 @@ function Profile() {
         email: email,
         phone: phone,
         address: reversedAddress,
-
         fullName: fullName,
-
       });
       if (response.data.flag) {
         toast.update(toastId, {
@@ -194,7 +177,6 @@ function Profile() {
                       onChange={(e) => setUsername(e.target.value)}
                       className="border rounded-md p-2 w-full"
                     />
-
                   </div>
                   <div className="grid gap-2">
                     <Label>Full Name</Label>
@@ -205,7 +187,6 @@ function Profile() {
                       onChange={(e) => setFullName(e.target.value)}
                       className="border rounded-md p-2 w-full"
                     />
-
                   </div>
                 </div>
 

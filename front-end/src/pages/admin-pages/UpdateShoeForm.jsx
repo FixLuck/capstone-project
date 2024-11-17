@@ -260,7 +260,7 @@ export default function UpdateShoeForm({ shoeId }) {
           <Separator className="my-4" />
 
           <DialogFooter>
-            <Button type="submit" disabled={isLoading}>
+            <Button  type="submit" disabled={isLoading}>
               {isLoading ? "Loading..." : "Save changes"}
             </Button>
           </DialogFooter>

@@ -3,8 +3,12 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
+import api from "@/config/axios";
+import UpdateDiscountForm from "./UpdateDiscountForm";  
+import { Link } from "react-router-dom";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
-function AddDiscountPage() {
+export default function AddDiscountPage() {
   const [discounts, setDiscounts] = useState([]);
   const [newDiscount, setNewDiscount] = useState({
     percentage: 0,
@@ -70,9 +74,14 @@ function AddDiscountPage() {
   return (
     <div className="p-6 max-w-full mx-auto bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-semibold text-gray-800 mb-6">Discount Management</h1>
-
+      <Button variant="outline" className="hover:bg-green-600 hover:text-white">
+        <Link to={"/admin/discount-management/new"} className="flex p-4 align-items-center">
+          <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
+          <span>Add</span>
+        </Link>
+      </Button>
       
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <input
           type="text"
           placeholder="Code"
@@ -130,11 +139,9 @@ function AddDiscountPage() {
           <option value="PERCENTAGE">Percentage</option>
           <option value="FIXED_AMOUNT">Fixed Amount</option>
         </select>
-      </div>
+      </div> */}
 
-      <Button  className="mt-6 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600">
-        Add Discount
-      </Button>
+
 
       {/* Danh sách mã giảm giá */}
       <div className="mt-10">
@@ -144,7 +151,7 @@ function AddDiscountPage() {
             <TableRow>
               <TableCell className="p-3 font-semibold">Edit</TableCell>
               <TableCell className="p-3 font-semibold">Code</TableCell>
-              <TableCell className="p-3 font-semibold">Percentage</TableCell>
+              <TableCell className="p-3 font-semibold">Discount </TableCell>
               <TableCell className="p-3 font-semibold">Start Day</TableCell>
               <TableCell className="p-3 font-semibold">End Day</TableCell>
               <TableCell className="p-3 font-semibold">Active</TableCell>
@@ -154,16 +161,21 @@ function AddDiscountPage() {
             {Array.isArray(discounts) && discounts.length > 0 ? (
               discounts.map(discount => (
                 <TableRow key={discount.id} className="hover:bg-gray-50">
-                  <TableCell className="p-3 text-red-500 cursor-pointer">
+                  <TableCell className="p-3 text-yellow-500 cursor-pointer">
                     {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Delete</button> */}
-                    Delete
+                    {/* Delete */}
+                    <UpdateDiscountForm discountId={discount.id} />
                   </TableCell>
                   <TableCell className="p-3">{discount.code}</TableCell>
-                  <TableCell className="p-3">{discount.percentage}%</TableCell>
+                  <TableCell className="p-3">{discount.discountType}</TableCell>
                   <TableCell className="p-3">{new Date(discount.startDate).toLocaleString()}</TableCell>
                   <TableCell className="p-3">{new Date(discount.endDate).toLocaleString()}</TableCell>
                   <TableCell className="p-3">
-                    <Checkbox checked={discount.isActive} disabled />
+                    {discount.active ? (
+                      <span className="text-green-500" value="true">Active</span>
+                    ) : (
+                      <span className="text-red-500"value="false">Inactive</span>
+                    )}
                   </TableCell>
                 </TableRow>
               ))
@@ -181,4 +193,4 @@ function AddDiscountPage() {
   );
 }
 
-export default AddDiscountPage;
+

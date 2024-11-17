@@ -8,6 +8,12 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import api from "@/config/axios";
 import { useState, useEffect } from "react";
 
+const member = [
+    {
+        username: admin
+    }
+]
+
 const orders = [
   {
     id: '1234',
@@ -35,7 +41,7 @@ const orders = [
 export default function OrderDetailList() {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Your Orders List</h1>
+      <h1 className="text-2xl font-bold mb-6">{member.username} Orders List</h1>
       <div className="space-y-4">
         {orders.map((order) => (
           <OrderCard key={order.id} order={order} />

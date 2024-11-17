@@ -5,23 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/VNPayConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/VNPayController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/PaymentRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/VNPayResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/PaymentDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/PaymentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/utils/VNPayUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/PaymentCallbackRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/PaymentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/PaymentDetailRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/PaymentValidationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/constant/OrderConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/constant/OrderConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/CartItemRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/CartItemRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/OrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/OrderRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/OrderResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/OrderResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/VNPayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/VNPayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/UserUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/UserUpdateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/VNPayResponse.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/CustomerOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/PaymentDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/PaymentDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/mapper/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
@@ -204,6 +207,8 @@
       <workItem from="1731563565100" duration="9211000" />
       <workItem from="1731650137171" duration="4060000" />
       <workItem from="1731654237225" duration="15805000" />
+      <workItem from="1731735642709" duration="19780000" />
+      <workItem from="1731816147566" duration="8103000" />
     </task>
     <servers />
   </component>

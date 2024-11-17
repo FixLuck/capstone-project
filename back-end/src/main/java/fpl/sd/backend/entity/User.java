@@ -39,10 +39,10 @@ public class User {
     
     String address;
     String phone;
+    String fullName;
 
     @Column(nullable = false)
     @Builder.Default
-    @JsonProperty("active")
     boolean isActive = true;
 
     @Column(nullable = false)

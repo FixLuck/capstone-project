@@ -28,7 +28,7 @@ import { fetchFilterOptions } from "@/store/filter";
 import { useShopFilters } from "@/hooks/useShopFilters";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
-import { formatter } from "../../utils/formatter";
+import { formatterToVND } from "../../utils/formatter";
 
 export default function ListShoePage() {
   const [shoes, setShoes] = useState([]);
@@ -197,10 +197,10 @@ export default function ListShoePage() {
                   <img src={shoe.images[0].url} alt="" />
                   <div className="flex justify-between">
                     <p className="text-xl font-bold mt-2">
-                      {formatter.format(shoe.price)}
+                      {formatterToVND.format(shoe.price)}
                     </p>
                     <p className="text-xl font-bold mt-2 line-through">
-                      {formatter.format(shoe.fakePrice)}
+                      {formatterToVND.format(shoe.fakePrice)}
                     </p>
 
                   </div>

@@ -1,8 +1,10 @@
 package fpl.sd.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Fetch;
 
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class PaymentDetail {
     String paymentDate;
     String cardType;
 
-    @OneToMany(mappedBy = "paymentDetail")
-    List<CustomerOrder> orderList;
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    CustomerOrder order;
 }

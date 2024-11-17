@@ -37,7 +37,7 @@ export function MemberManagement() {
   };
 
   return (
-    <div>
+    <div className="bg-white h-screen">
       <h1 className="mt-5 text-lg text-black-500 font-bold" align="center">
         Member Management
       </h1>
@@ -63,6 +63,7 @@ export function MemberManagement() {
                   <Button
                     variant="outline"
                     onClick={() => handleEditClick(user.id)}
+                    className="hover:bg-yellow-600 hover:text-white"
                   >
                     Edit
                   </Button>

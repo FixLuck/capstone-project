@@ -3,8 +3,12 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
+import api from "@/config/axios";
+import UpdateDiscountForm from "./UpdateDiscountForm";  
+import { Link } from "react-router-dom";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
-function AddDiscountPage() {
+export default function AddDiscountPage() {
   const [discounts, setDiscounts] = useState([]);
   const [newDiscount, setNewDiscount] = useState({
     percentage: 0,
@@ -68,71 +72,20 @@ function AddDiscountPage() {
 
   return (
     <div className="p-6 max-w-full mx-auto bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-6">Quản lý mã giảm giá</h1>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <input
-          type="text"
-          placeholder="Mã giảm giá"
-          value={newDiscount.code}
-          onChange={(e) => setNewDiscount({ ...newDiscount, code: e.target.value })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        <input
-          type="number"
-          placeholder="Phần trăm"
-          value={newDiscount.percentage}
-          onChange={(e) => setNewDiscount({ ...newDiscount, percentage: parseFloat(e.target.value) })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        <input
-          type="datetime-local"
-          placeholder="Ngày bắt đầu"
-          value={newDiscount.startDate}
-          onChange={(e) => setNewDiscount({ ...newDiscount, startDate: e.target.value })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        <input
-          type="datetime-local"
-          placeholder="Ngày kết thúc"
-          value={newDiscount.endDate}
-          onChange={(e) => setNewDiscount({ ...newDiscount, endDate: e.target.value })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        <input
-          type="number"
-          placeholder="Số tiền đơn hàng tối thiểu"
-          value={newDiscount.minimumOrderAmount}
-          onChange={(e) => setNewDiscount({ ...newDiscount, minimumOrderAmount: parseFloat(e.target.value) })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        <textarea
-          placeholder="Mô tả"
-          value={newDiscount.description}
-          onChange={(e) => setNewDiscount({ ...newDiscount, description: e.target.value })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 col-span-full"
-          style={{ height: '3rem' }}
-        />
-        <input
-          type="number"
-          placeholder="Số tiền cố định"
-          value={newDiscount.fixedAmount}
-          onChange={(e) => setNewDiscount({ ...newDiscount, fixedAmount: parseFloat(e.target.value) })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        <select
-          value={newDiscount.discountType}
-          onChange={(e) => setNewDiscount({ ...newDiscount, discountType: e.target.value })}
-          className="p-3 border rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        >
-          <option value="PERCENTAGE">Phần trăm</option>
-          <option value="FIXED_AMOUNT">Số tiền cố định</option>
-        </select>
-      </div>
-
-      <Button className="mt-6 w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600">
-        Thêm mã giảm giá
+      <h1 className="text-2xl font-semibold text-gray-800 mb-6">Discount Management</h1>
+      <Button variant="outline" className="hover:bg-green-600 hover:text-white">
+        <Link to={"/admin/discount-management/new"} className="flex p-4 align-items-center">
+          <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
+          <span>Add</span>
+        </Link>
       </Button>
+      
+
+
+
+
+
 
       {/* Danh sách mã giảm giá */}
       <div className="mt-10">
@@ -152,16 +105,25 @@ function AddDiscountPage() {
             {Array.isArray(discounts) && discounts.length > 0 ? (
               discounts.map(discount => (
                 <TableRow key={discount.id} className="hover:bg-gray-50">
-                  <TableCell className="p-3 text-red-500 cursor-pointer">
+
+                  <TableCell className="p-3 text-yellow-500 cursor-pointer">
+                    {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Delete</button> */}
+                    {/* Delete */}
+                    <UpdateDiscountForm discountId={discount.id} />
+                 <TableCell className="p-3 text-red-500 cursor-pointer">
                     {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Xóa</button> */}
-                    Xóa
+
                   </TableCell>
                   <TableCell className="p-3">{discount.code}</TableCell>
-                  <TableCell className="p-3">{discount.percentage}%</TableCell>
+                  <TableCell className="p-3">{discount.discountType}</TableCell>
                   <TableCell className="p-3">{new Date(discount.startDate).toLocaleString()}</TableCell>
                   <TableCell className="p-3">{new Date(discount.endDate).toLocaleString()}</TableCell>
                   <TableCell className="p-3">
-                    <Checkbox checked={discount.isActive} disabled />
+                    {discount.active ? (
+                      <span className="text-green-500" value="true">Active</span>
+                    ) : (
+                      <span className="text-red-500"value="false">Inactive</span>
+                    )}
                   </TableCell>
                 </TableRow>
               ))
@@ -179,4 +141,4 @@ function AddDiscountPage() {
   );
 }
 
-export default AddDiscountPage;
+

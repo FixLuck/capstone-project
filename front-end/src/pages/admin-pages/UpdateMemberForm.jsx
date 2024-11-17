@@ -18,8 +18,13 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
+
   username: z.string().min(2, { message: "Required" }),
   active: z.boolean(),
+
+  username: z.string().min(2, { message: "Yêu cầu nhập tên người dùng" }),
+  isActive: z.boolean(),
+
 });
 
 export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
@@ -41,14 +46,21 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
     const fetchUser = async () => {
       const { data } = await api.get(`users/${userId}`);
       setUser(data.result);
+
       setActive(data.result.active); // Sync isActive with the user data from DB
       reset(data.result);
       setValue("active", data.result.active); // Initialize Switch value
+
+      setIsActive(data.result.active); // Đồng bộ trạng thái isActive với dữ liệu người dùng từ DB
+      reset(data.result);
+      setValue("isActive", data.result.active); // Khởi tạo giá trị của Switch
+
     };
     fetchUser();
   }, [userId, reset, setValue]);
 
   const handleSwitchChange = (checked) => {
+
     setActive(checked); 
     setValue("active", checked); // Sync value with react-hook-form
     setIsChanged(checked !== user.active); // Detect change in active status
@@ -57,17 +69,27 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
   const onSubmit = async (formData) => {
     const updateData = { ...formData, active };
     console.log("Data to update:", updateData);
+
+    setIsActive(checked);
+    setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
+    setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
+  };
+
+  const onSubmit = async (formData) => {
+    const updateData = { ...formData, isActive };
+    console.log("Dữ liệu cần cập nhật:", updateData);
+
     try {
       const response = await api.put(`users/${userId}`, updateData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log("Full Update response:", response); // Log full response
+      console.log("Phản hồi đầy đủ sau khi cập nhật:", response); // Log phản hồi đầy đủ
       onSuccess();
       onClose();
     } catch (error) {
-      console.error("Error updating user", error);
+      console.error("Lỗi khi cập nhật người dùng", error);
     }
   };
 
@@ -75,14 +97,14 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
     <Dialog open={true} onOpenChange={onClose} className="min-h-screen">
       <DialogContent className="w-full max-w-2xl mx-auto">
         <DialogHeader>
-          <DialogTitle>Edit Member Detail</DialogTitle>
+          <DialogTitle>Chỉnh sửa thông tin thành viên</DialogTitle>
           <DialogDescription>
-            Make changes to account status. Click save when you're done.
+            Thực hiện thay đổi trạng thái tài khoản. Nhấn lưu khi bạn hoàn tất.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="username">Tên người dùng</Label>
             <Input
               id="username"
               name="username"
@@ -96,11 +118,19 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <Switch
+
                 id="active"
                 checked={active}
                 onCheckedChange={handleSwitchChange} // Change event to update the state
               />
               <Label htmlFor="active">Active Status</Label>
+
+                id="isActive"
+                checked={isActive}
+                onCheckedChange={handleSwitchChange} // Thay đổi sự kiện để cập nhật trạng thái
+              />
+              <Label htmlFor="isActive">Trạng thái hoạt động</Label>
+
             </div>
           </div>
 
@@ -108,7 +138,7 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
 
           <DialogFooter>
             <Button type="submit" disabled={!isChanged}>
-              Save changes
+              Lưu thay đổi
             </Button>
           </DialogFooter>
         </form>

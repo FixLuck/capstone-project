@@ -33,8 +33,6 @@ function Profile() {
   const user = useSelector(selectUser);
   const userName = user ? user.sub : null;
 
-
-
   useEffect(() => {
     if (userData) {
       setUsername(userData.username || "");
@@ -81,7 +79,8 @@ function Profile() {
     const addressParts = [];
     if (loc) addressParts.push(loc);
     if (str) addressParts.push(str);
-    const newAddress = setAddress(addressParts.join(", "));
+    const newAddress = addressParts.join(", ");
+    setAddress(newAddress);
 
     if (userData) {
       setUserData((prev) => ({
@@ -90,9 +89,6 @@ function Profile() {
       }));
     }
   };
-  console.log(street);
-  console.log(location);
-  console.log(address);
 
   useEffect(() => {
     updateFullAddress(location, street);
@@ -101,11 +97,15 @@ function Profile() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     if (!username || !email || !phone) {
-      alert("All fields are required");
+      alert("Tất cả các trường là bắt buộc");
       return;
     }
 
+
     const toastId = toast.loading("Updating user...");
+
+    const toastId = toast.loading("Đang cập nhật thông tin...");
+
     setLoading(true);
 
     try {
@@ -121,7 +121,7 @@ function Profile() {
       });
       if (response.data.flag) {
         toast.update(toastId, {
-          render: "User updated successfully",
+          render: "Cập nhật người dùng thành công",
           type: "success",
           isLoading: false,
           autoClose: 3000,
@@ -130,7 +130,7 @@ function Profile() {
       }
     } catch (err) {
       console.log(err);
-      toast.error("Failed to update user");
+      toast.error("Cập nhật người dùng thất bại");
     } finally {
       setLoading(false);
     }
@@ -148,28 +148,37 @@ function Profile() {
         draggable
         pauseOnHover
         theme="light"
-        transition:Bounce
       />
       <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
         <div className="col-span-1 border-r flex justify-center">
           <div className="w-60 flex flex-col space-y-4">
-            <Button className="bg-green-500">My Profile</Button>
-            <Button className="bg-yellow-500">Security</Button>
+            <Button className="bg-green-500">Hồ sơ của tôi</Button>
+            <Button className="bg-yellow-500">Bảo mật</Button>
           </div>
         </div>
         <div className="col-span-2 p-4">
-          <h1 className="text-lg font-bold text-black">My Profile</h1>
+          <h1 className="text-lg font-bold text-black">Hồ Sơ Của Tôi</h1>
           <div className="mt-1">
             <Card className="w-full border-0">
               <CardHeader>
                 <CardDescription className="font-bold text-center">
-                  Show and edit your profile
+                  Hiển thị và chỉnh sửa hồ sơ của bạn
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
                   <div className="grid gap-2">
-                    <Label>Username</Label>
+                    <Label>Họ và Tên</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Tên đăng nhập</Label>
                     <Input
                       id="username"
                       type="text"
@@ -179,43 +188,30 @@ function Profile() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label>Full Name</Label>
+                    <Label>Email</Label>
                     <Input
-                      id="fullName"
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Số điện thoại</Label>
+                    <Input
+                      id="phone"
                       type="text"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       className="border rounded-md p-2 w-full"
                     />
                   </div>
                 </div>
 
                 <div className="grid w-full gap-6 border rounded-sm p-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="grid gap-2">
-                      <Label>Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                    </div>
-
-                    <div className="grid gap-2">
-                      <Label>Phone</Label>
-                      <Input
-                        id="phone"
-                        type="text"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                    </div>
-                  </div>
                   <div className="grid gap-2">
-                    <Label>Current Address</Label>
+                    <Label>Địa chỉ hiện tại</Label>
                     <Input
                       id="address"
                       type="text"
@@ -225,7 +221,7 @@ function Profile() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label>Street</Label>
+                    <Label>Đường phố</Label>
                     <Input
                       id="street"
                       type="text"
@@ -244,7 +240,7 @@ function Profile() {
                     onClick={handleUpdate}
                     disabled={loading}
                   >
-                    Save Changes
+                    Lưu Thay Đổi
                   </Button>
                 </CardFooter>
               </CardContent>

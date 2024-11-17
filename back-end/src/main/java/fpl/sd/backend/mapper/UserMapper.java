@@ -17,7 +17,7 @@ public interface UserMapper {
     UserResponse toUserResponse(User user);
 
 
-    @Mapping(source = "active", target = "isActive")
+    @Mapping(source = "isActive", target = "isActive")
     User toUser(UserUpdateRequest request);
 
 

@@ -54,82 +54,82 @@ export function OrderHistory() {
     {
       id: '#12526',
       username: 'user1',
-      productName: 'Sport Shoes',
-      payment: 'Paid',
-      status: 'Pending',
+      productName: 'Giày thể thao',
+      payment: 'Đã thanh toán',
+      status: 'Chờ xử lý',
       total: '$20',
     },
     {
       id: '#52689',
       username: 'user2',
-      productName: 'Watch',
+      productName: 'Đồng hồ',
       payment: 'COD',
-      status: 'Cancelled',
+      status: 'Đã hủy',
       total: '$20',
     },
     {
       id: '#52648',
       username: 'user3',
-      productName: 'Headphone',
+      productName: 'Tai nghe',
       payment: 'COD',
-      status: 'Cancelled',
+      status: 'Đã hủy',
       total: '$20',
     },
     {
       id: '#23845',
       username: 'user4',
-      productName: 'COCO Perfume',
-      payment: 'Paid',
-      status: 'Received',
+      productName: 'Nước hoa COCO',
+      payment: 'Đã thanh toán',
+      status: 'Đã nhận',
       total: '$20',
     },
   ];
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 text-center">Order History</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Lịch sử Đơn Hàng</h1>
 
-      {/* Filter Section */}
+      {/* Phần lọc */}
       <div className="flex items-center space-x-4 mb-6 p-10">
         <div className="flex space-x-2">
-          <button className="text-blue-500 font-medium">All Order(50)</button>
-          <button className="text-gray-500">Pending(10)</button>
-          <button className="text-gray-500">Completed(8)</button>
-          <button className="text-gray-500">Cancelled(22)</button>
+          <button className="text-blue-500 font-medium">Tất cả Đơn Hàng(50)</button>
+          <button className="text-gray-500">Chờ xử lý(10)</button>
+          <button className="text-gray-500">Hoàn thành(8)</button>
+          <button className="text-gray-500">Đã hủy(22)</button>
         </div>
       </div>
 
-      {/* Search and Date Filter */}
+      {/* Tìm kiếm và lọc theo ngày */}
       <div className="flex items-center space-x-4 mb-6 p-5">
-        <Input placeholder="Search..." className="w-full max-w-xs" />
+        <Input placeholder="Tìm kiếm..." className="w-full max-w-xs" />
         <div className="flex items-center space-x-2">
           <Button variant="outline" className="flex items-center space-x-2">
             <CalendarIcon className="w-5 h-5" />
-            <span>From</span>
+            <span>Từ</span>
           </Button>
           <Button variant="outline" className="flex items-center space-x-2">
             <CalendarIcon className="w-5 h-5" />
-            <span>To</span>
+            <span>Đến</span>
           </Button>
         </div>
         <Button variant="outline" className="flex items-center space-x-1">
-          <span>Sort By</span>
+          <span>Sắp xếp theo</span>
           <span className="w-5 h-5">🔽</span>
         </Button>
       </div>
 
-      {/* Order Table */}
-      <div className="bg-white rounded-lg shadow overflow-hidden ">
+      {/* Bảng đơn hàng */}
+      <div className="bg-white rounded-lg shadow overflow-hidden">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-100 text-gray-600">
             <tr>
-              <th className="py-3 px-4 text-left">Id</th>
-              <th className="py-3 px-4 text-left">Username</th>
-              <th className="py-3 px-4 text-left">Product Name</th>
-              <th className="py-3 px-4 text-left">Payment</th>
-              <th className="py-3 px-4 text-left">Status</th>
-              <th className="py-3 px-4 text-left">Total</th>
-              <th className="py-3 px-4 text-left">Invoice</th>
+              <th className="py-3 px-4 text-left">Mã Đơn</th>
+              <th className="py-3 px-4 text-left">Tên Người Dùng</th>
+              <th className="py-3 px-4 text-left">Tên Sản Phẩm</th>
+              <th className="py-3 px-4 text-left">Thanh Toán</th>
+              <th className="py-3 px-4 text-left">Trạng Thái</th>
+              <th className="py-3 px-4 text-left">Tổng Tiền</th>
+              <th className="py-3 px-4 text-left">Hóa Đơn</th>
             </tr>
           </thead>
           <tbody>
@@ -141,9 +141,9 @@ export function OrderHistory() {
                 <td className="py-3 px-4 text-green-500">{order.payment}</td>
                 <td
                   className={`py-3 px-4 ${
-                    order.status === 'Pending'
+                    order.status === 'Chờ xử lý'
                       ? 'text-yellow-500'
-                      : order.status === 'Received'
+                      : order.status === 'Đã nhận'
                       ? 'text-green-500'
                       : 'text-red-500'
                   }`}
@@ -164,16 +164,16 @@ export function OrderHistory() {
 export function MemberOrderHistory() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const options = ["newest", "oldest"];
+  const options = ["Mới nhất", "Cũ nhất"];
 
-  // Separate state for start date and end date
+  // Tạo state riêng cho ngày bắt đầu và ngày kết thúc
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
   const handleSelection = (value) => {
     setSelectedOption(value);
 
-    // Open the dialog if 'edit' is selected
+    // Mở dialog nếu chọn 'edit'
     if (value === "edit") {
       setIsDialogOpen(true);
     }

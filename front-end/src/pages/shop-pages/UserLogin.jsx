@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -20,13 +20,12 @@ import * as z from "zod";
 import api from "@/config/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoading, selectError, selectUser } from "../../store/auth";
+import { selectIsLoading, selectError } from "../../store/auth";
 import { authActions } from "@/store";
 
-
 const schema = z.object({
-  username: z.string().min(1, { message: "Username is required" }),
-  password: z.string().min(1, { message: "Password is required" }),
+  username: z.string().min(1, { message: "Tên người dùng là bắt buộc" }),
+  password: z.string().min(8, { message: "Mật khẩu ít nhất 8 ký tự" }),
 });
 
 function UserLogin() {
@@ -35,15 +34,12 @@ function UserLogin() {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
-  const user = useSelector(selectUser);
-  const userName = user ? user.sub : "";
-  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema),  
   });
 
   const handleLogin = async (data) => {
@@ -52,21 +48,18 @@ function UserLogin() {
     try {
       const response = await api.post("auth/token", data);
       const token = response.data.result.token;
+      console.log(token);
       localStorage.setItem("token", token);
-      
+      console.log(token);
       dispatch(authActions.loginSuccess(token));
       navigate("/");
-      
     } catch (err) {
-      console.log(err.response.data.message);
-      alert('Username or password is incorrect');
-      dispatch(authActions.loginFailure());
+      dispatch(authActions.loginFailure(err));
+      alert(err);
     }
   };
 
-
   return (
-    //Code chức năng để đăng nhập tài khoản người dùng, code chức năng để đăng xuất
     <div
       className="flex items-center justify-center h-screen"
       style={{
@@ -75,19 +68,19 @@ function UserLogin() {
       }}
     >
       <div className="w-full max-w-full md:max-w-lg p-6 bg-white rounded-lg shadow-md">
-        <h1 className="mt-5 text-lg font-bold text-center text-black">Login</h1>
+        <h1 className="mt-5 text-lg font-bold text-center text-black">Đăng Nhập</h1>
         <div className="mt-1">
           <form onSubmit={handleSubmit(handleLogin)}>
             <Card className="w-full border-0 rounded-lg p-2">
               <CardHeader>
                 <CardDescription className="font-bold text-center">
-                  Hello! Let's get started
+                  Chào bạn! Hãy đăng nhập nhé
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid w-full gap-6">
                   <div className="grid gap-2">
-                    <Label>Username</Label>
+                    <Label>Tên người dùng</Label>
                     <Input
                       id="username"
                       type="text"
@@ -99,7 +92,7 @@ function UserLogin() {
                     )}
                   </div>
                   <div className="grid gap-2">
-                    <Label>Password</Label>
+                    <Label>Mật khẩu</Label>
                     <Input
                       id="password"
                       type="password"
@@ -114,17 +107,17 @@ function UserLogin() {
                     <div className="flex items-center">
                       <Checkbox id="remember" />
                       <label htmlFor="remember" className="ml-2 text-black">
-                        Remember me?
+                        Ghi nhớ tài khoản?
                       </label>
                     </div>
                     <a
                       href="#"
                       className="underline text-black hover:text-yellow-500 transition-colors duration-200"
                     >
-                      Forgot password?
+                      Quên mật khẩu?
                     </a>
                   </div>
-                </div>
+                  </div>
               </CardContent>
               <CardFooter className="flex items-center justify-center">
                 <div className="w-full flex flex-col space-y-4">
@@ -132,7 +125,7 @@ function UserLogin() {
                     disabled={isLoading}
                     className="w-full bg-black text-white rounded p-2 hover:bg-gray-500"
                   >
-                    {isLoading ? "Loading..." : "Login"}
+                    {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
                   </Button>
                   {error && <p>{error}</p>}
                   <div className="flex justify-between">
@@ -149,7 +142,7 @@ function UserLogin() {
                     href="#"
                     className="text-center text-black hover:text-green-500 transition-colors duration-200 p-2"
                   >
-                    Don't have an account? Create one
+                    Chưa có tài khoản? Tạo một tài khoản
                   </a>
                 </div>
               </CardFooter>

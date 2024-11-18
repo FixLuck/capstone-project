@@ -37,23 +37,23 @@ export function AdminAside() {
 
           {/* Role Information */}
           <div className="mt-4 text-gray-600 text-center">
-            Role: <span className="text-red-500 font-semibold">Admin</span>
+            Vai trò: <span className="text-red-500 font-semibold">Quản trị viên (Admin)</span>
           </div>
 
           {/* Account Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger className="mt-8 text-gray-700 hover:text-red-500 text-center w-full p-3 hover:bg-gray-100 transition duration-300">
-              <FaUserCircle className="inline mr-2" /> My Account
+              <FaUserCircle className="inline mr-2" /> Tài khoản của tôi
             </DropdownMenuTrigger>
             <DropdownMenuContent className="p-4 bg-white shadow-md border border-gray-200 transition-all duration-300 rounded-none">
               <DropdownMenuSeparator />
               <Link to="/admin/profile">
                 <DropdownMenuItem className="flex items-center p-3 hover:text-red-500 hover:scale-105 transition-transform duration-200">
-                  Profile
+                  Hồ sơ
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuItem className="flex items-center p-3 hover:text-red-500 hover:scale-105 transition-transform duration-200">
-                Log out
+                Đăng xuất
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -66,7 +66,7 @@ export function AdminAside() {
                   to="/admin"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-                  <FaHome /> <span>Dashboard</span>
+                  <FaHome /> <span>Bảng điều khiển</span>
                 </Link>
               </li>
               <li>
@@ -74,8 +74,7 @@ export function AdminAside() {
                   to="/admin/manage-shoes"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-<FaShoePrints /> <span>Manage Shoes</span>
-
+                  <FaShoePrints /> <span>Quản lý giày</span>
                 </Link>
               </li>
               <li>
@@ -83,7 +82,7 @@ export function AdminAside() {
                   to="/admin/discount-management"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-                  <FaPercentage /> <span>Discount Management</span>
+                  <FaPercentage /> <span>Quản lý mã giảm giá</span>
                 </Link>
               </li>
               <li>
@@ -91,7 +90,7 @@ export function AdminAside() {
                   to="/admin/member-order-history"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-                  <FaHistory /> <span>Order History</span>
+                  <FaHistory /> <span>Lịch sử đơn hàng</span>
                 </Link>
               </li>
               <li>
@@ -99,7 +98,7 @@ export function AdminAside() {
                   to="/admin/account-management"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-                  <FaUsers /> <span>Account Management</span>
+                  <FaUsers /> <span>Quản lý tài khoản</span>
                 </Link>
               </li>
               <li>
@@ -107,7 +106,7 @@ export function AdminAside() {
                   to="/admin/revenue-stats"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-                  <FaChartLine /> <span>Revenue Stats</span>
+                  <FaChartLine /> <span>Thống kê doanh thu</span>
                 </Link>
               </li>
               <li className="mt-12">
@@ -115,7 +114,7 @@ export function AdminAside() {
                   to="/logout"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >
-                  <FaSignOutAlt /> <span>Log out</span>
+                  <FaSignOutAlt /> <span>Đăng xuất</span>
                 </Link>
               </li>
             </ul>

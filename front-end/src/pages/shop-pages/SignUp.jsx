@@ -20,13 +20,13 @@ import { ToastContainer, toast } from "react-toastify";
 
 //!?
 const schema = z.object({
-  username: z.string().min(1, { message: "Username is required" }),
-  email: z.string().email({ message: "Invalid email address" }),
+  username: z.string().min(1, { message: "Tên người dùng là bắt buộc" }),
+  email: z.string().email({ message: "Địa chỉ email không hợp lệ" }),
   password: z
     .string()
-    .min(3, { message: "Password must be at least 3 characters" }),
+    .min(3, { message: "Mật khẩu phải có ít nhất 3 ký tự" }),
   termsAccepted: z.boolean().refine((val) => val === true, {
-    message: "You must accept the terms and conditions",
+    message: "Bạn phải chấp nhận các điều khoản và điều kiện",
   }),
 });
 
@@ -49,13 +49,13 @@ function SignUp() {
 
   const handleSignup = async (data) => {
     if (password !== confirmPassword) {
-      setError("Passwords do not match!");
+      setError("Mật khẩu không khớp!");
       return;
     }
 
     setLoading(true);
     setError("");
-    const toastId = toast.loading("Creating account...");
+    const toastId = toast.loading("Đang tạo tài khoản...");
 
     try {
       const response = await api.post("/users", {
@@ -66,7 +66,7 @@ function SignUp() {
 
       if (response.data.flag) {
         toast.update(toastId, {
-            render: "Account created successfully",
+            render: "Tạo tài khoản thành công",
             type: "success",
             isLoading: false,
             autoClose: 3000,
@@ -77,11 +77,11 @@ function SignUp() {
         }, 3000);
       } else {
         setError(
-          response.data.message || "Registration failed. Please try again."
+          response.data.message || "Đăng ký thất bại. Vui lòng thử lại."
         );
         setLoading(false);
         toast.update(toastId, {
-            render: error.response?.data?.message || "Error creating account",
+            render: error.response?.data?.message || "Lỗi khi tạo tài khoản",
             type: "error",
             isLoading: false,
             autoClose: 5000,
@@ -89,11 +89,11 @@ function SignUp() {
       }
     } catch (err) {
       setError(
-        err.response?.data?.message || "Something went wrong. Please try again."
+        err.response?.data?.message || "Đã có lỗi xảy ra. Vui lòng thử lại."
       );
       setLoading(false);
       toast.update(toastId, {
-        render: error.response?.data?.message || "Something went wrong. Please try again later",
+        render: error.response?.data?.message || "Đã có lỗi xảy ra. Vui lòng thử lại sau",
         type: "error",
         isLoading: false,
         autoClose: 3000,
@@ -123,23 +123,23 @@ function SignUp() {
           draggable
           pauseOnHover
           theme="light"
-          transition:Bounce
+          transition="Bounce"
         />
         <h1 className="mt-5 text-lg font-bold text-center text-black">
-          Register
+          Đăng Ký
         </h1>
         <div className="mt-1">
           <form onSubmit={handleSubmit(handleSignup)}>
             <Card className="w-full border-0 rounded-lg p-2">
               <CardHeader>
                 <CardDescription className="font-bold text-center">
-                  Hello! Let's get register
+                  Ồ bạn mới! Hãy đăng ký ngay
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid w-full gap-6">
                   <div className="grid gap-2">
-                    <Label htmlFor="username">Username</Label>
+                    <Label htmlFor="username">Tên người dùng</Label>
                     <Input
                       id="username"
                       type="text"
@@ -157,7 +157,7 @@ function SignUp() {
                     )}
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">Mật khẩu</Label>
                     <Input
                       id="password"
                       type="password"
@@ -168,7 +168,7 @@ function SignUp() {
                     )}
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <Label htmlFor="confirmPassword">Xác nhận mật khẩu</Label>
                     <Input
                       id="confirmPassword"
                       type="password"
@@ -192,16 +192,16 @@ function SignUp() {
                           htmlFor="terms"
                           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                         >
-                          Accept terms and conditions
+                          Chấp nhận điều khoản và điều kiện
                         </label>
                         <p className="text-sm text-muted-foreground">
-                          You agree to our{" "}
+                          Bạn đồng ý với{" "}
                           <Link to="/terms" className="underline">
-                            Terms of Service
+                            Điều khoản sử dụng
                           </Link>{" "}
-                          and{" "}
+                          và{" "}
                           <Link to="/privacy" className="underline">
-                            Privacy Policy
+                            Chính sách bảo mật
                           </Link>
                           .
                         </p>
@@ -223,19 +223,19 @@ function SignUp() {
                     type="submit"
                     disabled={loading}
                   >
-                    {loading ? "Registering..." : "Register"}
+                    {loading ? "Đang đăng ký..." : "Đăng ký"}
                   </Button>
                   <Link
                     to="/login"
                     className="text-center text-black hover:text-green-500 transition-colors duration-200"
                   >
-                    Already have an account? Login
+                    Bạn đã có tài khoản? Đăng nhập
                   </Link>
                   <Button className="w-full bg-blue-500 text-white rounded p-2 hover:bg-gray-500">
-                    Login with Facebook
+                    Đăng nhập với Facebook
                   </Button>
                   <Button className="w-full bg-yellow-500 text-white rounded p-2 hover:bg-gray-500">
-                    Login with Google
+                    Đăng nhập với Google
                   </Button>
                 </div>
               </CardFooter>

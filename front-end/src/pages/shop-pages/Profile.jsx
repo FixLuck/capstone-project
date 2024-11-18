@@ -15,7 +15,7 @@ import { selectUser } from "@/store/auth";
 import { useSelector } from "react-redux";
 import LocationSelector from "@/components/shop/LocationSelector";
 import { ToastContainer, toast } from "react-toastify";
-import { set } from "date-fns";
+
 
 function Profile() {
   const [userData, setUserData] = useState(null);
@@ -79,7 +79,8 @@ function Profile() {
     const addressParts = [];
     if (loc) addressParts.push(loc);
     if (str) addressParts.push(str);
-    const newAddress = setAddress(addressParts.join(", "));
+    const newAddress = addressParts.join(", ");
+    setAddress(newAddress);
 
     if (userData) {
       setUserData((prev) => ({
@@ -88,9 +89,6 @@ function Profile() {
       }));
     }
   };
-  console.log(street);
-  console.log(location);
-  console.log(address);
 
   useEffect(() => {
     updateFullAddress(location, street);

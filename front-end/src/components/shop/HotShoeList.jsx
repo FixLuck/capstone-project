@@ -48,7 +48,7 @@ export default function HotShoeList() {
   return (
     <div className="bg-white rounded-sm p-4 my-4">
       <div className="flex">
-        <p className="text-3xl font-bold me-2 items-center">Most Favorite</p>
+        <p className="text-3xl font-bold me-2 items-center">Yêu thích nhất</p>
         <FaFire className="w-8 h-8 text-red-500" />
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-4">

@@ -14,7 +14,6 @@ import { selectUser } from "../../store/auth"
 import { authActions } from "../../store";
 
 
-
 export default function UserDropDown() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -22,14 +21,9 @@ export default function UserDropDown() {
   const name = user ? user.sub : null;
   console.log(name);
 
-
-  
-
   const handleLogout = () => {
     dispatch(authActions.logout());
   }
- 
-  
 
   return (
     <div className="cursor-pointer">
@@ -38,23 +32,23 @@ export default function UserDropDown() {
           <CircleUser className="w-8 h-8" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="-translate-x-1/3">
-          <DropdownMenuLabel>{name ? "Welcome, " + name : "Profile"}</DropdownMenuLabel>
+          <DropdownMenuLabel>{name ? "Chào mừng, " + name : "Hồ sơ"}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {user ? (
             <div>
               <Link to={"/profile/me"}>
                 <DropdownMenuItem className="cursor-pointer">
-                  Profile
+                  Hồ sơ
                 </DropdownMenuItem>
               </Link>
               <Link to={"/orders"}>
                 <DropdownMenuItem className="cursor-pointer">
-                  Orders History
+                  Lịch sử đơn hàng
                 </DropdownMenuItem>
               </Link>
               <Link to={"/logout"} onClick={handleLogout}>
                 <DropdownMenuItem className="cursor-pointer">
-                  Logout
+                  Đăng xuất
                 </DropdownMenuItem>
               </Link>
             </div>
@@ -62,12 +56,12 @@ export default function UserDropDown() {
             <div>
               <Link to={"/login"}>
                 <DropdownMenuItem className="cursor-pointer">
-                  Login
+                  Đăng nhập
                 </DropdownMenuItem>
               </Link>
               <Link to={"/register"}>
                 <DropdownMenuItem className="cursor-pointer">
-                  Register
+                  Đăng ký
                 </DropdownMenuItem>
               </Link>
             </div>

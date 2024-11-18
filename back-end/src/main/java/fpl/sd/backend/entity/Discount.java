@@ -32,8 +32,8 @@ public class Discount {
     @Column(nullable = false)
     String code;
 
-    @Column(nullable = false)
-    Double minimumOrderAmount ;
+    @Builder.Default
+    Double minimumOrderAmount = 0.0;
 
     @Column(nullable = false)
     String description;
@@ -49,4 +49,14 @@ public class Discount {
 
     @OneToMany(mappedBy = "discount")
     List<CustomerOrder> customerOrders = new ArrayList<>();
+
+    // Phương thức giúp kiểm tra và điều chỉnh giá trị khi cập nhật Discount
+    public void setDiscountValues() {
+        if (this.discountType == DiscountConstants.DiscountType.FIXED_AMOUNT) {
+            this.percentage = null; // Disable percentage
+        } else if (this.discountType == DiscountConstants.DiscountType.PERCENTAGE) {
+            this.fixedAmount = null; // Disable fixedAmount
+            this.minimumOrderAmount = null; // Disable minimumOrderAmount
+        }
+    }
 }

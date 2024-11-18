@@ -14,6 +14,7 @@ import api from "@/config/axios";
 import { Button } from "@/components/ui/button";
 import UpdateShoeForm from "./UpdateShoeForm";
 import { Link } from "react-router-dom";
+import { formatterToVND } from "@/utils/formatter";
 
 import { IoIosAddCircleOutline } from "react-icons/io";
 
@@ -57,7 +58,7 @@ export default function ShoeList() {
               <TableCell>
                 <img src={shoe.images[0].url} alt="" className="h-20 w-20" />
               </TableCell>
-              <TableCell>{shoe.price}</TableCell>
+              <TableCell>{formatterToVND.format(shoe.price)}</TableCell>
               <TableCell className="text-right space-x-2">
                 <UpdateShoeForm shoeId={shoe.id} />
                 <Button variant="destructive">Delete</Button>

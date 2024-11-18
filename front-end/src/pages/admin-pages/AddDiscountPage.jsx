@@ -40,35 +40,35 @@ export default function AddDiscountPage() {
   };
 
   // Hàm thêm mã giảm giá mới
-  // const handleAddDiscount = async () => {
-  //   try {
-  //     const discountToAdd = {
-  //       ...newDiscount,
-  //       startDate: new Date(newDiscount.startDate).toISOString(),
-  //       endDate: new Date(newDiscount.endDate).toISOString(),
-  //     };
-  //     const response = await axios.post('http://localhost:8080/api/v1/discounts', discountToAdd);
-  //     setDiscounts(prevDiscounts => [...prevDiscounts, response.data]);
-  //     resetForm();
-  //   } catch (error) {
-  //     console.error("Lỗi khi thêm mã giảm giá:", error);
-  //   }
-  // };
+  const handleAddDiscount = async () => {
+    try {
+      const discountToAdd = {
+        ...newDiscount,
+        startDate: new Date(newDiscount.startDate).toISOString(),
+        endDate: new Date(newDiscount.endDate).toISOString(),
+      };
+      const response = await axios.post('http://localhost:8080/api/v1/discounts', discountToAdd);
+      setDiscounts(prevDiscounts => [...prevDiscounts, response.data]);
+      resetForm();
+    } catch (error) {
+      console.error("Lỗi khi thêm mã giảm giá:", error);
+    }
+  };
 
   // Hàm reset form
-  // const resetForm = () => {
-  //   setNewDiscount({
-  //     percentage: 0,
-  //     startDate: '',
-  //     endDate: '',
-  //     code: '',
-  //     minimumOrderAmount: 0,
-  //     description: '',
-  //     fixedAmount: 0,
-  //     discountType: 'PERCENTAGE',
-  //     isActive: true
-  //   });
-  // };
+  const resetForm = () => {
+    setNewDiscount({
+      percentage: 0,
+      startDate: '',
+      endDate: '',
+      code: '',
+      minimumOrderAmount: 0,
+      description: '',
+      fixedAmount: 0,
+      discountType: 'PERCENTAGE',
+      isActive: true
+    });
+  };
 
   return (
     <div className="p-6 max-w-full mx-auto bg-white rounded-lg shadow-md">
@@ -80,13 +80,6 @@ export default function AddDiscountPage() {
           <span>Add</span>
         </Link>
       </Button>
-      
-
-
-
-
-
-
       {/* Danh sách mã giảm giá */}
       <div className="mt-10">
         <Table className="w-full">
@@ -112,7 +105,7 @@ export default function AddDiscountPage() {
                     <UpdateDiscountForm discountId={discount.id} />
                   </TableCell>
                  <TableCell className="p-3 text-red-500 cursor-pointer">
-                    {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Xóa</button> */}
+                    <button onClick={() => handleDeleteDiscount(discount.id)}>Xóa</button>
 
                   </TableCell>
                   <TableCell className="p-3">{discount.code}</TableCell>

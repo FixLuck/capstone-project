@@ -2,6 +2,7 @@ package fpl.sd.backend.controller;
 
 import fpl.sd.backend.constant.ShoeConstants;
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.ShoeCreateRequest;
 import fpl.sd.backend.dto.request.ShoeUpdateRequest;
 import fpl.sd.backend.dto.response.EnumResponse;
@@ -121,6 +122,25 @@ public class ShoeController {
                 .code(200)
                 .message("OK")
                 .result(ShoeConstants.getAllGenderResponses())
+                .build();
+    }
+
+    @GetMapping("/list-shoes")
+    public ApiResponse<PageResponse<ShoeResponse>> getShoePaging(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Long minPrice,
+            @RequestParam(required = false) Long maxPrice,
+            @RequestParam(required = false) Integer brandId,  // Changed default to 0
+            @RequestParam(required = false) String gender,
+            @RequestParam(required = false) String category,
+            @RequestParam(defaultValue = "date") String sortOrder,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "8") int size
+            ) {
+        return ApiResponse.<PageResponse<ShoeResponse>>builder()
+                .flag(true)
+                .message("OK")
+                .result(shoeService.getShoePaging(name, minPrice, maxPrice, brandId, gender, category, page, size, sortOrder))
                 .build();
     }
 

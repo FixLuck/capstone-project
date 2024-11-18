@@ -110,6 +110,7 @@ export default function AddDiscountPage() {
                     {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Delete</button> */}
                     {/* Delete */}
                     <UpdateDiscountForm discountId={discount.id} />
+                  </TableCell>
                  <TableCell className="p-3 text-red-500 cursor-pointer">
                     {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Xóa</button> */}
 

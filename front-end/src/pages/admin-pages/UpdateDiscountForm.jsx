@@ -21,36 +21,23 @@ import api from "@/config/axios";
 const schema = z
   .object({
     code: z.string().min(2, { message: "Code is required" }),
-    discountType: z.enum(["FIXED_AMOUNT", "PERCENTAGE"]),
-    percentage: z.number().nullable(),
-    fixedAmount: z.number().nullable(),
-    minimumOrderAmount: z.number().nullable(),
+    discountType: z.string(),
+    percentage: z.number().nullable().optional(), // Cho phép null hoặc không nhập
+    fixedAmount: z.number().nullable().optional(), // Cho phép null hoặc không nhập
+    minimumOrderAmount: z.number().nullable().default(0), // Nếu không nhập thì mặc định là 0
     description: z.string().min(5, { message: "Description must be at least 5 characters" }),
+    startDate: z.string().refine((value) => !isNaN(Date.parse(value)), {
+      message: "Start date must be a valid date",
+    }),
+    endDate: z.string().refine((value) => !isNaN(Date.parse(value)), {
+      message: "End date must be a valid date",
+    }),
     active: z
-    .enum(["true", "false"], {
-      invalid_type_error: "Status must be a boolean",
-      required_error: "Status is required",
-    })
-    .transform((value) => value === "true"),
-    startDate: z.string().refine((date) => !isNaN(Date.parse(date)), { message: "Invalid start date" }),
-    endDate: z.string().refine((date) => !isNaN(Date.parse(date)), { message: "Invalid end date" }),
-  })
-  .superRefine((data, ctx) => {
-    if (data.discountType === "PERCENTAGE" && data.percentage === null) {
-      ctx.addIssue({
-        path: ["percentage"],
-        message: "Percentage is required for type PERCENTAGE",
-      });
-    }
-    if (data.discountType === "FIXED_AMOUNT" && data.fixedAmount === null) {
-      ctx.addIssue({
-        path: ["fixedAmount"],
-        message: "Fixed amount is required for type FIXED_AMOUNT",
-      });
-    }
+      .enum(["true", "false"], {
+        invalid_type_error: "Status must be a boolean",
+        required_error: "Status is required",
+      }),
   });
-
-
 
 export default function UpdateDiscountForm({ discountId }) {
   const {
@@ -63,37 +50,24 @@ export default function UpdateDiscountForm({ discountId }) {
     resolver: zodResolver(schema),
   });
 
-  const [discount, setDiscount] = useState({
-    discountType: "PERCENTAGE",
-    percentage: null,
-    minimumOrderAmount: null,
-    fixedAmount: null,
-    description: "",
-    active: true,
-    startDate: new Date(),
-    endDate: new Date(),
-    code: "",
-  });
-
-  const discountType = watch("discountType");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [discount, setDiscount] = useState({});
 
   useEffect(() => {
     const fetchDiscount = async () => {
       setIsLoading(true);
       try {
         const { data } = await api.get(`discounts/${discountId}`);
-        console.log("Fetched data:", data); // Kiểm tra dữ liệu từ API
         reset({
           ...data.result,
-          startDate: data.result.startDate
-            ? new Date(data.result.startDate).toISOString().slice(0, 16)
-            : "",
-          endDate: data.result.endDate
-            ? new Date(data.result.endDate).toISOString().slice(0, 16)
-            : "",
+          percentage: data.result.percentage ?? null, // Gán null nếu không có giá trị
+          fixedAmount: data.result.fixedAmount ?? null, // Gán null nếu không có giá trị
+          minimumOrderAmount: data.result.minimumOrderAmount ?? 0, // Gán 0 nếu không có giá trị
+          description: data.result.description ?? "", // Thêm trường description
+          startDate: new Date(data.result.startDate).toISOString().slice(0, 16), // Chuyển đổi startDate sang ISO 8601
+          endDate: new Date(data.result.endDate).toISOString().slice(0, 16), // Chuyển đổi endDate sang ISO 8601
         });
       } catch (error) {
         console.error("Error fetching discount:", error);
@@ -104,97 +78,64 @@ export default function UpdateDiscountForm({ discountId }) {
     };
     fetchDiscount();
   }, [discountId, reset]);
-  
-
-  if (isLoading) return <div>Loading...</div>;
 
   const onSubmit = async (data) => {
-    console.log("Data before validation:", data);
-  
+    setIsLoading(true);
+    const toastId = toast.loading("Updating discount...");
     try {
-      // Validate dữ liệu trước khi gửi
-      const validatedData = schema.parse(data);
-      setIsLoading(true);
-      
-      // Tạo toast loading
-      const toastId = toast.loading("Updating Discount...");
-  
-      // Chuẩn bị dữ liệu gửi đi
-      const formData = {
-        ...validatedData,
-        percentage: validatedData.percentage || null,
-        fixedAmount: validatedData.fixedAmount || null,
-        minimumOrderAmount: validatedData.minimumOrderAmount || null,
-        startDate: new Date(validatedData.startDate).toISOString(),
-        endDate: new Date(validatedData.endDate).toISOString(),
-      };
-  
-      console.log("Sending form data to API:", formData);
-  
-      // Gọi API update
-      const response = await api.put(`discounts/${discountId}`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+      console.log("Form data submitted:", data);
+
+      // Gửi yêu cầu API với dữ liệu `data`
+      const response = await api.put(`discounts/${discountId}`, {
+        ...data,
+        percentage: data.percentage === "" ? null : data.percentage, // Nếu trống, set là null
+        fixedAmount: data.fixedAmount === "" ? null : data.fixedAmount, // Nếu trống, set là null
+        minimumOrderAmount: data.minimumOrderAmount === "" ? 0 : data.minimumOrderAmount, // Nếu trống, set là 0
+        startDate: new Date(data.startDate).toISOString(), // Chuyển startDate sang ISO 8601
+        endDate: new Date(data.endDate).toISOString(), // Chuyển endDate sang ISO 8601
       });
-  
-      console.log("API response:", response);
-  
-      // Kiểm tra phản hồi từ API
-      if (response.data && response.data.flag === true) {
-        // Cập nhật toast thành công
+
+      if (response.status === 200 && response.data.flag) {
         toast.update(toastId, {
-          render: "Discount updated successfully",
+          render: "Discount updated successfully!",
           type: "success",
           isLoading: false,
           autoClose: 2000,
         });
-  
-        // Chuyển hướng sau khi thành công
-        setTimeout(() => {
-          navigate("/admin/discounts");
-        }, 2000);
+        setTimeout(() => navigate("/admin"), 2000);
       } else {
-        // Xử lý trường hợp API trả về lỗi
         toast.update(toastId, {
-          render: response.data?.message || "Failed to update discount",
+          render: response.data.message || "Failed to update discount.",
           type: "error",
           isLoading: false,
           autoClose: 2000,
         });
       }
     } catch (error) {
-      // Xử lý lỗi validation hoặc API
-      console.error("Error:", error);
-  
-      // Kiểm tra nếu là lỗi validation từ Zod
-      if (error instanceof z.ZodError) {
-        // Hiển thị lỗi validation chi tiết
-        const errorMessages = error.errors.map(err => `${err.path}: ${err.message}`).join('\n');
-        toast.error(`Validation Error:\n${errorMessages}`, {
-          autoClose: 5000,
-        });
-      } else if (error.response) {
-        // Lỗi từ phía server
-        toast.error(error.response.data.message || "An error occurred while updating the discount");
-      } else {
-        // Lỗi không xác định
-        toast.error("An unexpected error occurred");
-      }
+      console.error("Error updating discount:", error);
+      toast.update(toastId, {
+        render: "An error occurred while updating the discount.",
+        type: "error",
+        isLoading: false,
+        autoClose: 2000,
+      });
     } finally {
-      // Luôn đặt loading về false
       setIsLoading(false);
     }
   };
-  
-  
-  
-  
-  
 
   return (
     <Dialog className="min-h-screen">
-      <ToastContainer position="top-right" hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+      <ToastContainer 
+      position="top-right" 
+      hideProgressBar={false} 
+      newestOnTop={false} 
+      closeOnClick 
+      rtl={false} 
+      pauseOnFocusLoss 
+      draggable 
+      pauseOnHover 
+      theme="light" />
       <DialogTrigger asChild>
         <Button variant="outline" className="hover:bg-slate-950 hover:text-white">
           Edit
@@ -210,10 +151,26 @@ export default function UpdateDiscountForm({ discountId }) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="code">Code</Label>
-            <Input id="code" name="code" defaultValue={discount.code} {...register("code")} />
+            <Input
+              id="code"
+              name="code"
+              defaultValue={discount.code}
+              {...register("code")}
+            />
             {errors.code?.message && <p className="text-red-600">{errors.code?.message}</p>}
           </div>
-          
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Input
+              id="description"
+              name="description"
+              defaultValue={discount.description}
+              {...register("description")}
+            />
+            {errors.description?.message && <p className="text-red-600">{errors.description?.message}</p>}
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="active">Active:</Label>
@@ -232,58 +189,67 @@ export default function UpdateDiscountForm({ discountId }) {
             </div>
           </div>
 
-          {discountType === "FIXED_AMOUNT" && (
-            <>
-              <div className="space-y-2">
-                <Label htmlFor="fixedAmount">Fixed Amount</Label>
-                <Input id="fixedAmount" name="fixedAmount" type="number" step="0.01" defaultValue={discount.fixedAmount} {...register("fixedAmount", { valueAsNumber: true })} />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="percentage">Percentage</Label>
-                <Input id="percentage" name="percentage" type="number" step="0.01" defaultValue={discount.percentage} {...register("percentage", { valueAsNumber: true })} disabled />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="minimumOrderAmount">Minimum Order Amount</Label>
-                <Input id="minimumOrderAmount" name="minimumOrderAmount" type="number" step="0.01" defaultValue={discount.minimumOrderAmount} {...register("minimumOrderAmount", { valueAsNumber: true })} />
-              </div>
-            </>
-          )}
+          <div className="space-y-2">
+            <Label htmlFor="percentage">Percentage</Label>
+            <Input
+              id="percentage"
+              name="percentage"
+              type="number"
+              step="0.01"
+              defaultValue={discount.percentage ?? null}
+              {...register("percentage", { valueAsNumber: true })}
+            />
+          </div>
 
-          {discountType === "PERCENTAGE" && (
-            <>
-              <div className="space-y-2">
-                <Label htmlFor="percentage">Percentage</Label>
-                <Input id="percentage" name="percentage" type="number" step="0.01" defaultValue={discount.percentage} {...register("percentage", { valueAsNumber: true })} />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="fixedAmount">Fixed Amount</Label>
-                <Input id="fixedAmount" name="fixedAmount" type="number" step="0.01" defaultValue={discount.fixedAmount} {...register("fixedAmount", { valueAsNumber: true })} disabled />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="minimumOrderAmount">Minimum Order Amount</Label>
-                <Input id="minimumOrderAmount" name="minimumOrderAmount" type="number" step="0.01" defaultValue={discount.minimumOrderAmount} {...register("minimumOrderAmount", { valueAsNumber: true })} disabled />
-              </div>
-            </>
-          )}
+          <div className="space-y-2">
+            <Label htmlFor="fixedAmount">Fixed Amount</Label>
+            <Input
+              id="fixedAmount"
+              name="fixedAmount"
+              type="number"
+              step="0.01"
+              defaultValue={discount.fixedAmount ?? null}
+              {...register("fixedAmount", { valueAsNumber: true })}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="minimumOrderAmount">Minimum Order Amount</Label>
+            <Input
+              id="minimumOrderAmount"
+              name="minimumOrderAmount"
+              type="number"
+              step="0.01"
+              defaultValue={discount.minimumOrderAmount ?? 0}
+              {...register("minimumOrderAmount", { valueAsNumber: true })}
+            />
+          </div>
 
           <div className="space-y-2">
             <Label htmlFor="startDate">Start Date</Label>
-            <Input type="datetime-local" id="startDate" name="startDate" defaultValue={discount.startDate} {...register("startDate")} />
+            <Input
+              id="startDate"
+              type="datetime-local"
+              defaultValue={discount.startDate}
+              {...register("startDate")}
+            />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="endDate">End Date</Label>
-            <Input type="datetime-local" id="endDate" name="endDate" defaultValue={discount.endDate} {...register("endDate")} />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Input id="description" name="description" defaultValue={discount.description} {...register("description")} />
-            {errors.description?.message && <p className="text-red-600">{errors.description?.message}</p>}
+            <Input
+              id="endDate"
+              type="datetime-local"
+              defaultValue={discount.endDate}
+              {...register("endDate")}
+            />
           </div>
 
           <DialogFooter>
-            <Button type="submit" className="w-full">
+            <Button variant="outline" onClick={() => reset()}>
+              Cancel
+            </Button>
+            <Button type="submit" disabled={isLoading} className="bg-blue-600 text-white hover:bg-blue-700">
               Save Changes
             </Button>
           </DialogFooter>

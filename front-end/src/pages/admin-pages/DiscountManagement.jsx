@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
+// import { Checkbox } from "@/components/ui/checkbox";
 import api from "@/config/axios";
 import UpdateDiscountForm from "./UpdateDiscountForm";  
 import { Link } from "react-router-dom";
@@ -28,11 +28,12 @@ export default function AddDiscountPage() {
 
   const fetchDiscounts = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/discounts');
-      if (Array.isArray(response.data.result)) {
-        setDiscounts(response.data.result);
+      const { data } = await api.get("discounts");
+  
+      if (Array.isArray(data.result)) {
+        setDiscounts(data.result);
       } else {
-        console.error('Dữ liệu trả về không phải là mảng trong thuộc tính result:', response.data);
+        console.error('Dữ liệu trả về không phải là mảng trong thuộc tính result:', data);
       }
     } catch (error) {
       console.error('Error fetching discounts:', error);

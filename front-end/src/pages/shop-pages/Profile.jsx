@@ -100,177 +100,166 @@ function Profile() {
       return;
     }
 
-    const handleUpdate = async (e) => {
-      e.preventDefault();
-      if (!username || !email || !phone) {
-        alert("All fields are required");
-        return;
-      }
+    const toastId = toast.loading("Updating user...");
+    setLoading(true);
 
-      const toastId = toast.loading("Updating user...");
-      setLoading(true);
+    try {
+      const addressPart = address.split(", ");
+      const reversedAddress = addressPart.reverse().join(", ");
 
-      try {
-        const addressPart = address.split(", ");
-        const reversedAddress = addressPart.reverse().join(", ");
+      const response = await api.put(`/users/${userData.id}`, {
+        username: username,
+        email: email,
+        phone: phone,
+        address: reversedAddress,
 
-        const response = await api.put(`/users/${userData.id}`, {
-          username: username,
-          email: email,
-          phone: phone,
-          address: reversedAddress,
-
-          fullName: fullName,
+        fullName: fullName,
+      });
+      if (response.data.flag) {
+        toast.update(toastId, {
+          render: "User updated successfully",
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
         });
-        if (response.data.flag) {
-          toast.update(toastId, {
-            render: "User updated successfully",
-            type: "success",
-            isLoading: false,
-            autoClose: 3000,
-          });
-          setLoading(false);
-        }
-      } catch (err) {
-        console.log(err);
-        toast.error("Failed to update user");
-      } finally {
         setLoading(false);
       }
-    };
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to update user");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    return (
-      <div>
-        <ToastContainer
-          position="top-right"
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition:Bounce
-        />
-        <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
-          <div className="col-span-1 border-r flex justify-center">
-            <div className="w-60 flex flex-col space-y-4">
-              <Button className="bg-green-500">My Profile</Button>
-              <Button className="bg-yellow-500">Security</Button>
-            </div>
+  return (
+    <div>
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
+      <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
+        <div className="col-span-1 border-r flex justify-center">
+          <div className="w-60 flex flex-col space-y-4">
+            <Button className="bg-green-500">My Profile</Button>
+            <Button className="bg-yellow-500">Security</Button>
           </div>
-          <div className="col-span-2 p-4">
-            <h1 className="text-lg font-bold text-black">My Profile</h1>
-            <div className="mt-1">
-              <Card className="w-full border-0">
-                <CardHeader>
-                  <CardDescription className="font-bold text-center">
-                    Show and edit your profile
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
+        </div>
+        <div className="col-span-2 p-4">
+          <h1 className="text-lg font-bold text-black">My Profile</h1>
+          <div className="mt-1">
+            <Card className="w-full border-0">
+              <CardHeader>
+                <CardDescription className="font-bold text-center">
+                  Show and edit your profile
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
+                  <div className="grid gap-2">
+                    <Label>FullName</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Username</Label>
+                    <Input
+                      id="username"
+                      type="text"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Full Name</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid w-full gap-6 border rounded-sm p-4">
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="grid gap-2">
-                      <Label>FullName</Label>
+                      <Label>Email</Label>
                       <Input
-                        id="fullName"
-                        type="text"
-                        value={fullName}
-                        onChange={(e) => setUsername(e.target.value)}
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="border rounded-md p-2 w-full"
                       />
                     </div>
+
                     <div className="grid gap-2">
-                      <Label>Username</Label>
+                      <Label>Phone</Label>
                       <Input
-                        id="username"
+                        id="phone"
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label>Full Name</Label>
-                      <Input
-                        id="fullName"
-                        type="text"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         className="border rounded-md p-2 w-full"
                       />
                     </div>
                   </div>
-
-                  <div className="grid w-full gap-6 border rounded-sm p-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="grid gap-2">
-                        <Label>Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="border rounded-md p-2 w-full"
-                        />
-                      </div>
-
-                      <div className="grid gap-2">
-                        <Label>Phone</Label>
-                        <Input
-                          id="phone"
-                          type="text"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className="border rounded-md p-2 w-full"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid gap-2">
-                      <Label>Current Address</Label>
-                      <Input
-                        id="address"
-                        type="text"
-                        value={address}
-                        className="border rounded-md p-2 w-full"
-                        readOnly
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label>Street</Label>
-                      <Input
-                        id="street"
-                        type="text"
-                        value={street}
-                        onChange={(e) => setStreet(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                      <LocationSelector
-                        onLocationChange={handleLocationChange}
-                      />
-                    </div>
+                  <div className="grid gap-2">
+                    <Label>Current Address</Label>
+                    <Input
+                      id="address"
+                      type="text"
+                      value={address}
+                      className="border rounded-md p-2 w-full"
+                      readOnly
+                    />
                   </div>
+                  <div className="grid gap-2">
+                    <Label>Street</Label>
+                    <Input
+                      id="street"
+                      type="text"
+                      value={street}
+                      onChange={(e) => setStreet(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                    <LocationSelector onLocationChange={handleLocationChange} />
+                  </div>
+                </div>
 
-                  <CardFooter className="flex justify-end">
-                    <Button
-                      type="submit"
-                      className="bg-blue-500"
-                      onClick={handleUpdate}
-                      disabled={loading}
-                    >
-                      Save Changes
-                    </Button>
-                  </CardFooter>
-                </CardContent>
-              </Card>
-            </div>
+                <CardFooter className="flex justify-end">
+                  <Button
+                    type="submit"
+                    className="bg-blue-500"
+                    onClick={handleUpdate}
+                    disabled={loading}
+                  >
+                    Save Changes
+                  </Button>
+                </CardFooter>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
-      
-    );
-  };
+    </div>
+  );
 }
 
 export default Profile;

@@ -98,6 +98,12 @@ export default function AddDiscountPage() {
             {Array.isArray(discounts) && discounts.length > 0 ? (
               discounts.map(discount => (
                 <TableRow key={discount.id} className="hover:bg-gray-50">
+
+                  <TableCell className="p-3 text-yellow-500 cursor-pointer">
+                    {/* <button onClick={() => handleDeleteDiscount(discount.id)}>Delete</button> */}
+                    {/* Delete */}
+                    <UpdateDiscountForm discountId={discount.id} />
+                  </TableCell>
                  <TableCell className="p-3 text-red-500 cursor-pointer">
                     <button onClick={() => handleDeleteDiscount(discount.id)}>Xóa</button>
 

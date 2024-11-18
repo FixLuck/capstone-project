@@ -21,6 +21,7 @@ public class Discount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @Column(nullable = true)
     Double percentage;
 
     @Column(nullable = false)
@@ -38,12 +39,14 @@ public class Discount {
     @Column(nullable = false)
     String description;
 
+    @Column(nullable = true)
     Double fixedAmount;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     DiscountConstants.DiscountType discountType;
 
+    @Column(nullable = false)
     @Builder.Default
     boolean isActive = true;
 

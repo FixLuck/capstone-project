@@ -18,8 +18,10 @@ public interface DiscountMapper {
 
 
 
+//    @Mapping(source = "active", target = "isActive")
     DiscountResponse toDiscountResponse (Discount discount);
 
+    @Mapping(source = "active", target = "isActive")
     Discount toDiscount (DiscountUpdateRequest request);
 
     @Mapping(source = "startDate", target = "startDate", qualifiedByName = "instantToString")

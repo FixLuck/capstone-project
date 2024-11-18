@@ -12,53 +12,57 @@ import org.springframework.http.HttpStatusCode;
 public enum ErrorCode {
 
     // User-related errors
-    USER_NOT_FOUND(404, "Không tìm thấy người dùng", HttpStatus.NOT_FOUND),
-    USER_ALREADY_EXISTS(409, "Người dùng đã tồn tại", HttpStatus.CONFLICT),
-    UNCAUGHT_EXCEPTION(500, "Lỗi không bắt được", HttpStatus.INTERNAL_SERVER_ERROR),
-    USERNAME_INVALID(400, "Tên người dùng phải có ít nhất 3 ký tự", HttpStatus.BAD_REQUEST),
-    PASSWORD_INVALID(400, "Mật khẩu phải có ít nhất 8 ký tự", HttpStatus.BAD_REQUEST),
-    INVALID_KEY(999, "Khóa thông điệp không hợp lệ", HttpStatus.BAD_REQUEST),
-    UNAUTHENTICATED(401, "Chưa xác thực", HttpStatus.UNAUTHORIZED),
-    UNAUTHORIZED(403, "Bạn không có quyền truy cập", HttpStatus.FORBIDDEN),
-    EMAIL_ALREADY_EXISTS(409, "Email đã tồn tại", HttpStatus.CONFLICT),
-    ACCOUNT_DISABLED(401, "Tài khoản đã bị vô hiệu hóa", HttpStatus.CONFLICT),
+    USER_NOT_FOUND(404, "User Not Found", HttpStatus.NOT_FOUND),
+    USER_ALREADY_EXISTS(409, "User Already Exists", HttpStatus.CONFLICT),
+    UNCAUGHT_EXCEPTION(500, "Uncaught Exception", HttpStatus.INTERNAL_SERVER_ERROR),
+    USERNAME_INVALID(400, "Username must be at least 3 characters", HttpStatus.BAD_REQUEST),
+    PASSWORD_INVALID(400, "Password must be at least 8 characters", HttpStatus.BAD_REQUEST),
+    INVALID_KEY(999, "Invalid Message Key", HttpStatus.BAD_REQUEST),
+    UNAUTHENTICATED(401, "Unauthenticated", HttpStatus.UNAUTHORIZED),
+    UNAUTHORIZED(403, "You do not have permissions", HttpStatus.FORBIDDEN),
+    EMAIL_ALREADY_EXISTS(409, "Email Already Exists", HttpStatus.CONFLICT),
+    ACCOUNT_DISABLED(401, "Account is disabled", HttpStatus.CONFLICT),
 
     // Brand-related errors
-    BRAND_NOT_FOUND(404, "Không tìm thấy thương hiệu", HttpStatus.NOT_FOUND),
-    BRAND_ALREADY_EXISTS(409, "Thương hiệu đã tồn tại", HttpStatus.CONFLICT),
-    BRAND_NAME_INVALID(400, "Tên thương hiệu không được để trống", HttpStatus.BAD_REQUEST),
-    BRAND_DESCRIPTION_TOO_LONG(400, "Mô tả thương hiệu quá dài", HttpStatus.BAD_REQUEST),
-    BRAND_LOGO_INVALID(400, "URL logo thương hiệu không hợp lệ", HttpStatus.BAD_REQUEST),
-    BRAND_INACTIVE(403, "Thương hiệu này không hoạt động", HttpStatus.FORBIDDEN),
-    SKU_ALREADY_EXISTS(500, "Mã sản phẩm (SKU) đã tồn tại", HttpStatus.CONFLICT),
+    BRAND_NOT_FOUND(404, "Brand Not Found", HttpStatus.NOT_FOUND),
+    BRAND_ALREADY_EXISTS(409, "Brand Already Exists", HttpStatus.CONFLICT),
+    BRAND_NAME_INVALID(400, "Brand name must not be empty", HttpStatus.BAD_REQUEST),
+    BRAND_DESCRIPTION_TOO_LONG(400, "Brand description is too long", HttpStatus.BAD_REQUEST),
+    BRAND_LOGO_INVALID(400, "Invalid Brand Logo URL", HttpStatus.BAD_REQUEST),
+    BRAND_INACTIVE(403, "This brand is inactive", HttpStatus.FORBIDDEN),
+    SKU_ALREADY_EXISTS(500, "Sku Already Exists", HttpStatus.CONFLICT),
 
-    // Role-related errors
-    ROLE_ALREADY_EXISTS(409, "Vai trò đã tồn tại", HttpStatus.CONFLICT),
 
-    // Product-related errors
-    PRODUCT_NOT_FOUND(404, "Không tìm thấy sản phẩm", HttpStatus.NOT_FOUND),
+    //Role-related errors
+    ROLE_ALREADY_EXISTS(409, "Role already exists", HttpStatus.CONFLICT),
 
-    // Discount-related errors
-    DISCOUNT_NOT_FOUND(404, "Không tìm thấy khuyến mãi", HttpStatus.NOT_FOUND),
-    DISCOUNT_ALREADY_EXISTS(409, "Khuyến mãi đã tồn tại", HttpStatus.CONFLICT),
-    COUPON_INVALID(400, "Mã giảm giá không hợp lệ", HttpStatus.BAD_REQUEST),
-    MINIMUM_AMOUNT_NOT_MET(400, "Tổng đơn hàng chưa đủ số tiền tối thiểu cho khuyến mãi", HttpStatus.BAD_REQUEST),
-    
-    // Order-related errors
-    ORDER_SAVE_ERROR(500, "Lỗi lưu đơn hàng", HttpStatus.INTERNAL_SERVER_ERROR),
 
-    ORDER_NOT_FOUND(404,"Không tìm thấy đơn hàng", HttpStatus.NOT_FOUND),
+    //Product-related errors
+    PRODUCT_NOT_FOUND(404, "Product Not Found", HttpStatus.NOT_FOUND),
 
-    // Quantity-related errors
-    INSUFFICIENT_INVENTORY(404, "Không đủ hàng trong kho", HttpStatus.SERVICE_UNAVAILABLE),
+    //Discount-related errors
+    DISCOUNT_NOT_FOUND(404, "Discount Not Found", HttpStatus.NOT_FOUND),
+    DISCOUNT_ALREADY_EXISTS(409, "Discount already exists", HttpStatus.CONFLICT),
+    COUPON_INVALID(400, "Invalid Coupon", HttpStatus.BAD_REQUEST),
+    MINIMUM_AMOUNT_NOT_MET(400, "The order total does not meet the minimum amount required for this discount.", HttpStatus.BAD_REQUEST),
+    //Order-related errors
+    ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
 
-    // Create Payment Url
-    INTERNAL_SERVER_ERROR(500, "Lỗi máy chủ nội bộ", HttpStatus.INTERNAL_SERVER_ERROR),
-    PAYMENT_ALREADY_PROCESSED(500, "Thanh toán đã được xử lý", HttpStatus.CONFLICT),
-    
+    ORDER_NOT_FOUND(404,"Order not found" ,HttpStatus.NOT_FOUND),
+
+    //Quantity-related errors
+    INSUFFICIENT_INVENTORY(404, "Insufficient inventory", HttpStatus.SERVICE_UNAVAILABLE),
+
+    //Create Payment Url
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR),
+    PAYMENT_ALREADY_PROCESSED(500, "Payment already processed", HttpStatus.CONFLICT),
+
     ;
+
+
 
     private final int code;
     private final String message;
     private final HttpStatusCode statusCode;
+
 }

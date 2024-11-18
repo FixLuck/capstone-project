@@ -109,8 +109,8 @@ public class UserService {
         if (request.getAddress() != null) {
             user.setAddress(request.getAddress());
         }
-        if (request.getActive() != null) {  // Use getIsActive here, which corresponds to the isActive field
-            user.setActive(request.getActive());
+        if (request.getIsActive() != null) {  // Use getIsActive here, which corresponds to the isActive field
+            user.setActive(request.getIsActive());
         }
 
         user.setUpdatedAt(Instant.now());

@@ -19,7 +19,7 @@ import Cart from "./pages/shop-pages/Cart";
 import RootLayoutManager from "./pages/RootLayoutManager";
 import DiscountManagement from "./pages/admin-pages/DiscountManagement";
 import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory";
-// import WelcomeManager from "./pages/manager-pages/WelcomeManager";
+
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import Terms from "./pages/shop-pages/Terms";
@@ -138,21 +138,9 @@ const router = createBrowserRouter([
       { path: "revenue-stats", element: <RevenueStatistics /> },
       { path: "list-shoes", element: <ListManageShoePage /> },
       { path: "profile", element: <Profile /> },
-      //{path: 'add-discount', element: <AddDiscountPage />}
+      // {path: 'add-discount', element: <AddDiscountPage />}
     ],
   },
-  {
-    path: "/manager",
-    element: <RootLayoutManager />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <WelcomeManager /> },
-      { path: "discount-management", element: <DiscountManagement /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
-      //{ path: 'add-discount', element: <AddDiscountPage /> },
-    ],
-  },
-
 ]);
 
 function App() {

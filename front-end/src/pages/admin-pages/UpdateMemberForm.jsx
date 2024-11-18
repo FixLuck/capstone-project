@@ -19,9 +19,6 @@ import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
 
-  username: z.string().min(2, { message: "Required" }),
-  active: z.boolean(),
-
   username: z.string().min(2, { message: "Yêu cầu nhập tên người dùng" }),
   isActive: z.boolean(),
 
@@ -51,10 +48,6 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
       reset(data.result);
       setValue("active", data.result.active); // Initialize Switch value
 
-      setIsActive(data.result.active); // Đồng bộ trạng thái isActive với dữ liệu người dùng từ DB
-      reset(data.result);
-      setValue("isActive", data.result.active); // Khởi tạo giá trị của Switch
-
     };
     fetchUser();
   }, [userId, reset, setValue]);
@@ -66,17 +59,17 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
     setIsChanged(checked !== user.active); // Detect change in active status
   };
 
+  // const onSubmit = async (formData) => {
+  //   const updateData = { ...formData, active };
+  //   console.log("Data to update:", updateData);
+
+  //   setIsActive(checked);
+  //   setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
+  //   setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
+  // };
+
   const onSubmit = async (formData) => {
     const updateData = { ...formData, active };
-    console.log("Data to update:", updateData);
-
-    setIsActive(checked);
-    setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
-    setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
-  };
-
-  const onSubmit = async (formData) => {
-    const updateData = { ...formData, isActive };
     console.log("Dữ liệu cần cập nhật:", updateData);
 
     try {
@@ -122,12 +115,6 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
                 id="active"
                 checked={active}
                 onCheckedChange={handleSwitchChange} // Change event to update the state
-              />
-              <Label htmlFor="active">Active Status</Label>
-
-                id="isActive"
-                checked={isActive}
-                onCheckedChange={handleSwitchChange} // Thay đổi sự kiện để cập nhật trạng thái
               />
               <Label htmlFor="isActive">Trạng thái hoạt động</Label>
 

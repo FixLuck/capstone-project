@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import LocationSelector from "@/components/shop/LocationSelector";
 import { ToastContainer, toast } from "react-toastify";
 
-
 function Profile() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -269,6 +268,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      
     );
   };
 }

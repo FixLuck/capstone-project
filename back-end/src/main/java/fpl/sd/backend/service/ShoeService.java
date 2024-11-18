@@ -218,15 +218,17 @@ public class ShoeService {
     }
 
     private Sort createSort(String sortOrder) {
+
+        String date = "createdAt";
         if (sortOrder == null) {
-            return Sort.by(Sort.Direction.DESC, "createdAt");
+            return Sort.by(Sort.Direction.ASC, date);
         }
 
         return switch (sortOrder.toLowerCase()) {
-            case "date" -> Sort.by(Sort.Direction.DESC, "createdAt");
             case "desc" -> Sort.by(Sort.Direction.DESC, "price");
             case "asc" -> Sort.by(Sort.Direction.ASC, "price");
-            default -> Sort.by(Sort.Direction.DESC, "createdAt");
+            case "date_desc" -> Sort.by(Sort.Direction.DESC, date);
+            default -> Sort.by(Sort.Direction.ASC, date);
         };
     }
 

@@ -100,10 +100,7 @@ function Profile() {
       alert("Tất cả các trường là bắt buộc");
       return;
     }
-
-
-    const toastId = toast.loading("Updating user...");
-
+    
     const toastId = toast.loading("Đang cập nhật thông tin...");
 
     setLoading(true);

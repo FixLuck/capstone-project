@@ -28,6 +28,7 @@ import { fetchFilterOptions } from "@/store/filter";
 import { useShopFilters } from "@/hooks/useShopFilters";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
+import { formatterToVND } from "../../utils/formatter";
 
 export default function ListShoePage() {
   const [shoes, setShoes] = useState([]);
@@ -45,7 +46,7 @@ export default function ListShoePage() {
 
     const itemToAdd = {
       productId: shoe.id,
-      price: shoe.price * 1000,
+      price: shoe.price,
       imageUrl: shoe.images[0].url,
       variantId: shoe.variants[0].id,
       size: size,
@@ -128,7 +129,7 @@ export default function ListShoePage() {
         <div className="w-1/3 me-4">
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>Brand</AccordionTrigger>
+              <AccordionTrigger>Hãng giày</AccordionTrigger>
               {brands.map((brand, index) => (
                 <AccordionContent key={index}>
                   <Link
@@ -141,7 +142,7 @@ export default function ListShoePage() {
               ))}
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Category</AccordionTrigger>
+              <AccordionTrigger>Loại giày</AccordionTrigger>
               {categories.map((category, index) => (
                 <AccordionContent key={index}>
                   <Link
@@ -154,7 +155,7 @@ export default function ListShoePage() {
               ))}
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>Gender</AccordionTrigger>
+              <AccordionTrigger>Giới tính</AccordionTrigger>
               {genders.map((gender, index) => (
                 <AccordionContent key={index}>
                   <Link
@@ -194,7 +195,15 @@ export default function ListShoePage() {
                 </CardHeader>
                 <CardContent>
                   <img src={shoe.images[0].url} alt="" />
-                  <p className="text-xl font-bold mt-2">{shoe.price}.000 đ</p>
+                  <div className="flex justify-between">
+                    <p className="text-xl font-bold mt-2">
+                      {formatterToVND.format(shoe.price)}
+                    </p>
+                    <p className="text-xl font-bold mt-2 line-through">
+                      {formatterToVND.format(shoe.fakePrice)}
+                    </p>
+
+                  </div>
                 </CardContent>
                 <CardFooter className="justify-between">
                   <Link to={`/shoes/${shoe.id}`}>

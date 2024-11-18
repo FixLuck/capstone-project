@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className='pt-14 pb-32 bg-white mt-4'>
       <div className='relative z-10 container grid lg:grid-cols-4 gap-8 mx-auto'>
         <div>
-          <h4 className='font-bold text-2xl'>SUPER TEAM IN VIETNAM</h4>
+          <h4 className='font-bold text-2xl'>SUPER TEAM TẠI VIETNAM</h4>
           <div>
             <h1>GIỚI THIỆU</h1>
             <h1>Hệ thống cửa hàng</h1>

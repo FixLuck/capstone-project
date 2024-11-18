@@ -52,17 +52,17 @@ import {
 export function OrderHistory() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const options = ["newest", "oldest"];
+  const options = ["mới nhất", "cũ nhất"];
   
-  // Separate state for start date and end date
+  // Trạng thái riêng cho ngày bắt đầu và ngày kết thúc
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
   const handleSelection = (value) => {
     setSelectedOption(value);
 
-    // Open the dialog if 'edit' is selected
-    if (value === "edit") {
+    // Mở hộp thoại nếu 'chỉnh sửa' được chọn
+    if (value === "chỉnh sửa") {
       setIsDialogOpen(true);
     }
   };
@@ -107,7 +107,7 @@ export function OrderHistory() {
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {startDate ? format(startDate, "PPP") : <span>Pick a start date</span>}
+                    {startDate ? format(startDate, "PPP") : <span>Chọn ngày bắt đầu</span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
@@ -131,7 +131,7 @@ export function OrderHistory() {
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {endDate ? format(endDate, "PPP") : <span>Pick an end date</span>}
+                    {endDate ? format(endDate, "PPP") : <span>Chọn ngày kết thúc</span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
@@ -150,7 +150,7 @@ export function OrderHistory() {
 
                 <div className="sm:col-span-2">
                   <Button className="bg-green-500 text-indigo-50" variant="default">
-                    Save to Excel
+                    Lưu sang Excel
                   </Button>
                 </div>
               </div>
@@ -158,17 +158,16 @@ export function OrderHistory() {
           </div>
           <div className="mt-10 p-10" >
             <Table>
-              <TableCaption>A list of your recent purchases.</TableCaption>
+              <TableCaption>Danh sách các đơn hàng gần đây của bạn.</TableCaption>
               <TableHeader>
                 <TableRow>
-                  
                   <TableHead>ID</TableHead>
-                  <TableHead>Order Date</TableHead>
-                  <TableHead>Discount Percantage</TableHead>
-                  <TableHead>Total Amount</TableHead>
-                  <TableHead>Total Cost</TableHead>
-                  <TableHead>Order Status</TableHead>
-                  <TableHead>Details</TableHead>
+                  <TableHead>Ngày đặt hàng</TableHead>
+                  <TableHead>Phần trăm giảm giá</TableHead>
+                  <TableHead>Tổng số tiền</TableHead>
+                  <TableHead>Tổng chi phí</TableHead>
+                  <TableHead>Trạng thái đơn hàng</TableHead>
+                  <TableHead>Chi tiết</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -178,19 +177,14 @@ export function OrderHistory() {
                   <TableCell>5%</TableCell>
                   <TableCell>300$</TableCell>
                   <TableCell>285$</TableCell>
-                  <TableCell>Done</TableCell>
-                  <TableCell><a href="#" className="text-indigo-500">Details</a></TableCell>
+                  <TableCell>Hoàn thành</TableCell>
+                  <TableCell><a href="#" className="text-indigo-500">Chi tiết</a></TableCell>
                 </TableRow>
-
-                
-
               </TableBody>
             </Table>
           </div>
     </div>
-
   );
 }
-
 
 export default OrderHistory;

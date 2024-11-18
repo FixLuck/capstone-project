@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus } from 'lucide-react';
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useParams } from "react-router-dom";
@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
 import { selectItems } from "@/store/cart-slice";
+import { formatter } from "../../utils/formatter";
+import { useNavigate } from "react-router-dom";
 
 export default function DetailShoePage() {
   const params = useParams();
@@ -20,8 +22,8 @@ export default function DetailShoePage() {
 
   const cartItems = useSelector(selectItems);
 
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchShoe = async () => {
@@ -43,18 +45,40 @@ export default function DetailShoePage() {
 
   const imagesShoe = shoe?.images;
 
-  const handleAddToCart = () => {
+  const handleBuyNow = () => {
     if (!selectedVariant) {
-      toast.error("Please select a size before adding to cart.", {
+      toast.error("Vui lòng chọn kích thước trước khi thêm vào giỏ hàng.", {
         autoClose: 2000,
       });
       return;
     }
 
     const cartItem = {
-      id: shoe.id,
+      productId: shoe.id,
       name: shoe.name,
-      price: shoe.price * 1000,
+      price: shoe.price,
+      imageUrl: shoe.images[0].url,
+      quantity: quantity,
+      variantId: selectedVariant.id,
+      size: selectedVariant.sku.split('-').pop(),
+      totalPrice: shoe.price * quantity
+    };
+    dispatch(cartActions.addItemToCart(cartItem));
+    navigate("/cart");
+  }
+
+  const handleAddToCart = () => {
+    if (!selectedVariant) {
+      toast.error("Vui lòng chọn kích thước trước khi thêm vào giỏ hàng.", {
+        autoClose: 2000,
+      });
+      return;
+    }
+
+    const cartItem = {
+      productId: shoe.id,
+      name: shoe.name,
+      price: shoe.price,
       imageUrl: shoe.images[0].url,
       quantity: quantity,
       variantId: selectedVariant.id,
@@ -63,7 +87,7 @@ export default function DetailShoePage() {
     };
 
     dispatch(cartActions.addItemToCart(cartItem));
-    toast.success("Item added to cart", {
+    toast.success("Đã thêm vào giỏ hàng", {
       autoClose: 2000,
     })
   };
@@ -72,7 +96,7 @@ export default function DetailShoePage() {
     if (type === "increment") {
       const maxAllowed = selectedVariant ? selectedVariant.stockQuantity : 1;
       
-      // Check existing quantity in cart for this variant
+      // Kiểm tra số lượng hiện có trong giỏ hàng cho biến thể này
       const existingCartItem = cartItems.find(
         item => item.id === shoe.id && item.variantId === selectedVariant?.id
       );
@@ -81,7 +105,7 @@ export default function DetailShoePage() {
       if (quantity + currentInCart < maxAllowed) {
         setQuantity((prev) => prev + 1);
       } else {
-        toast.error(`Cannot add more than ${maxAllowed} items for this size`, {
+        toast.error(`Không thể thêm quá ${maxAllowed} sản phẩm cho kích thước này`, {
           autoClose: 2000
         });
       }
@@ -92,16 +116,16 @@ export default function DetailShoePage() {
 
   const handleVariantSelect = (variant) => {
     setSelectedVariant(variant);
-    // Check if there's already this variant in cart
+    // Kiểm tra xem đã có biến thể này trong giỏ hàng chưa
     const existingCartItem = cartItems.find(
       item => item.id === shoe.id && item.variantId === variant.id
     );
-    // Reset quantity to 1 when changing variant
+    // Đặt lại số lượng về 1 khi thay đổi biến thể
     setQuantity(1);
   };
 
   if (!shoe) {
-    return <div>Loading...</div>;
+    return <div>Đang tải...</div>;
   }
 
   return (
@@ -154,12 +178,13 @@ export default function DetailShoePage() {
           <div>
             <h1 className="text-2xl font-bold capitalize">{shoe.name}</h1>
             <p className="text-gray-500">{shoe.description}</p>
-            <p className="text-xl font-semibold mt-2">{shoe.price}.000đ</p>
+            <p className="text-xl font-semibold mt-2 line-through">{formatter.format(shoe.fakePrice)}</p>
+            <p className="text-5xl font-semibold mt-2">{formatter.format(shoe.price)}</p>
           </div>
           <Card>
             <CardContent className="space-y-4 p-4">
               <div>
-                <p className="font-medium mb-2">Size</p>
+                <p className="font-medium mb-2">Kích thước</p>
                 <div className="flex gap-2">
                   {shoe.variants.map((variant) => (
                     <button
@@ -179,7 +204,7 @@ export default function DetailShoePage() {
                 </div>
               </div>
               <div>
-                <p className="font-medium mb-2">Quantity:</p>
+                <p className="font-medium mb-2">Số lượng:</p>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleQuantityChange("decrement")}
@@ -201,10 +226,10 @@ export default function DetailShoePage() {
                   className="flex-1 "
                   onClick={() => handleAddToCart(shoe)}
                 >
-                  Add to cart
+                  Thêm vào giỏ hàng
                 </Button>
                 <Button variant="destructive" className="flex-1 ">
-                  Buy now
+                  Mua ngay
                 </Button>
               </div>
             </CardContent>

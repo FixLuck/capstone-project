@@ -5,7 +5,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,17 +25,22 @@ function Profile() {
   const [phone, setPhone] = useState(userData?.phone || "");
   const [location, setLocation] = useState("");
   const [street, setStreet] = useState("");
-  const [address, setAddress] = useState(userData?.address || "");
+  const [address, setAddress] = useState("");
+  const [fullName, setFullName] = useState(userData?.fullName || "");
 
   const navigate = useNavigate();
-
-
-  useEffect(() => {
-    updateFullAddress(location, street);
-  }, [location, street]);
-
+  const token = localStorage.getItem("token");
   const user = useSelector(selectUser);
   const userName = user ? user.sub : null;
+
+  useEffect(() => {
+    if (userData) {
+      setUsername(userData.username || "");
+      setEmail(userData.email || "");
+      setPhone(userData.phone || "");
+      setFullName(userData.fullName || "");
+    }
+  }, [userData]);
 
   useEffect(() => {
     if (!user) {
@@ -75,7 +79,9 @@ function Profile() {
     const addressParts = [];
     if (loc) addressParts.push(loc);
     if (str) addressParts.push(str);
-    const newAddress = setAddress(addressParts.join(", "));
+    const newAddress = addressParts.join(", ");
+    setAddress(newAddress);
+
     if (userData) {
       setUserData((prev) => ({
         ...prev,
@@ -85,25 +91,18 @@ function Profile() {
   };
 
   useEffect(() => {
-    if (userData) {
-      setUsername(userData.username || "");
-      setEmail(userData.email || "");
-      setPhone(userData.phone || "");
-    }
-  }, [userData]);
-
-  useEffect(() => {
     updateFullAddress(location, street);
-  }, [street, location]);
+  }, [location, street]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     if (!username || !email || !phone) {
-      alert("All fields are required");
+      alert("Tất cả các trường là bắt buộc");
       return;
     }
+    
+    const toastId = toast.loading("Đang cập nhật thông tin...");
 
-    const toastId = toast.loading("Updating user...");
     setLoading(true);
 
     try {
@@ -115,20 +114,20 @@ function Profile() {
         email: email,
         phone: phone,
         address: reversedAddress,
+        fullName: fullName,
       });
       if (response.data.flag) {
         toast.update(toastId, {
-          render: "User updated successfully",
+          render: "Cập nhật người dùng thành công",
           type: "success",
           isLoading: false,
           autoClose: 3000,
         });
         setLoading(false);
       }
-
     } catch (err) {
       console.log(err);
-      toast.error("Failed to update user");
+      toast.error("Cập nhật người dùng thất bại");
     } finally {
       setLoading(false);
     }
@@ -146,28 +145,37 @@ function Profile() {
         draggable
         pauseOnHover
         theme="light"
-        transition:Bounce
       />
       <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
         <div className="col-span-1 border-r flex justify-center">
           <div className="w-60 flex flex-col space-y-4">
-            <Button className="bg-green-500">My Profile</Button>
-            <Button className="bg-yellow-500">Security</Button>
+            <Button className="bg-green-500">Hồ sơ của tôi</Button>
+            <Button className="bg-yellow-500">Bảo mật</Button>
           </div>
         </div>
         <div className="col-span-2 p-4">
-          <h1 className="text-lg font-bold text-black">My Profile</h1>
+          <h1 className="text-lg font-bold text-black">Hồ Sơ Của Tôi</h1>
           <div className="mt-1">
             <Card className="w-full border-0">
               <CardHeader>
                 <CardDescription className="font-bold text-center">
-                  Show and edit your profile
+                  Hiển thị và chỉnh sửa hồ sơ của bạn
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
                   <div className="grid gap-2">
-                    <Label>Username</Label>
+                    <Label>Họ và Tên</Label>
+                    <Input
+                      id="fullName"
+                      type="text"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Tên đăng nhập</Label>
                     <Input
                       id="username"
                       type="text"
@@ -177,68 +185,62 @@ function Profile() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label>Password</Label>
+                    <Label>Email</Label>
                     <Input
-                      id="password"
-                      type="password"
-                      placeholder="********"
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="border rounded-md p-2 w-full"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Số điện thoại</Label>
+                    <Input
+                      id="phone"
+                      type="text"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       className="border rounded-md p-2 w-full"
                     />
                   </div>
                 </div>
+
                 <div className="grid w-full gap-6 border rounded-sm p-4">
-                  <div className="grid lg:grid-cols-2 gap-6">
-                    <div className="grid gap-2">
-                      <Label>Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label>Phone Number</Label>
-                      <Input
-                        id="phone"
-                        type="text"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                    </div>
-                  </div>
                   <div className="grid gap-2">
-                    <Label>Current Address</Label>
-                    <Input
-                      id="currentAddress"
-                      type="text"
-                      value={address}
-                      disabled
-                      className="border rounded-md p-2 w-full"
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label>Address</Label>
+                    <Label>Địa chỉ hiện tại</Label>
                     <Input
                       id="address"
                       type="text"
+                      value={address}
+                      className="border rounded-md p-2 w-full"
+                      readOnly
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label>Đường phố</Label>
+                    <Input
+                      id="street"
+                      type="text"
+                      value={street}
                       onChange={(e) => setStreet(e.target.value)}
                       className="border rounded-md p-2 w-full"
                     />
                     <LocationSelector onLocationChange={handleLocationChange} />
                   </div>
                 </div>
+
+                <CardFooter className="flex justify-end">
+                  <Button
+                    type="submit"
+                    className="bg-blue-500"
+                    onClick={handleUpdate}
+                    disabled={loading}
+                  >
+                    Lưu Thay Đổi
+                  </Button>
+                </CardFooter>
               </CardContent>
-              <CardFooter className="flex justify-end">
-                <Button
-                  onClick={handleUpdate}
-                  className="bg-blue-500"
-                >
-                  {loading ? "Saving...." : "Save changes"}
-                </Button>
-              </CardFooter>
             </Card>
           </div>
         </div>

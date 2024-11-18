@@ -29,6 +29,9 @@ public class CustomerOrder {
     @Column(nullable = false)
     Instant orderDate;
 
+    @Column
+    Instant updateDate;
+
     @Enumerated(EnumType.STRING)
     OrderConstants.OrderStatus orderStatus;
 
@@ -46,6 +49,9 @@ public class CustomerOrder {
 
     @ManyToOne
     Discount discount;
+
+    @OneToOne
+    PaymentDetail paymentDetail;
 
     public OrderDto getOrderDto() {
         OrderDto orderDto = new OrderDto();

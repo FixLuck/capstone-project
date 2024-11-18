@@ -1,5 +1,6 @@
 package fpl.sd.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -38,6 +39,7 @@ public class User {
     
     String address;
     String phone;
+    String fullName;
 
     @Column(nullable = false)
     @Builder.Default
@@ -49,8 +51,9 @@ public class User {
 
     Instant updatedAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     Role role;
+
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     List<CustomerOrder> customerOrders = new ArrayList<>();

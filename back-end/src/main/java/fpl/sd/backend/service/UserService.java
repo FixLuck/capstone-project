@@ -52,10 +52,26 @@ public class UserService {
         return userMapper.toUserResponse(user);
     }
 
+//    public List<UserResponse> getAllUsers(){
+//        List<User> users = userRepository.findAll();
+//        return users.stream()
+//                .map(userMapper::toUserResponse)
+//                .toList();
+//    }
+
+
+
     public List<UserResponse> getAllUsers() {
+
         List<User> users = userRepository.findAll();
         return users.stream()
-                .map(userMapper::toUserResponse)
+                .map(user -> {
+                    UserResponse response = userMapper.toUserResponse(user);
+                    if (user.getRole() != null) {
+                        response.setRoleName(user.getRole().getRoles().name());
+                    }
+                    return response;
+                })
                 .toList();
     }
 
@@ -68,7 +84,6 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        // Kiểm tra xem username đã tồn tại hay chưa
         if (request.getUsername() != null && !request.getUsername().equals(user.getUsername()) &&
                 userRepository.existsByUsername(request.getUsername())) {
             throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
@@ -85,8 +100,8 @@ public class UserService {
         if (request.getEmail() != null) {
             user.setEmail(request.getEmail());
         }
-        if (request.getPassword() != null) {
-            user.setPassword(request.getPassword());
+        if (request.getFullName() != null) {
+            user.setFullName(request.getFullName());
         }
         if (request.getPhone() != null) {
             user.setPhone(request.getPhone());
@@ -94,7 +109,7 @@ public class UserService {
         if (request.getAddress() != null) {
             user.setAddress(request.getAddress());
         }
-        if (request.getActive() != null) {
+        if (request.getActive() != null) {  // Use getIsActive here, which corresponds to the isActive field
             user.setActive(request.getActive());
         }
 
@@ -102,6 +117,7 @@ public class UserService {
         userRepository.save(user);
         return userMapper.toUserResponse(user);
     }
+
 
     public UserResponse getUserByUserName(String username) {
         Optional<User> existingUser = userRepository.findByUsername(username);

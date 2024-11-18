@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -7,105 +7,140 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useEffect } from "react";
 import api from "@/config/axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { Checkbox } from "@/components/ui/checkbox";
-import { add } from "date-fns";
 
 const schema = z.object({
-  username: z.string().min(2, { message: "Required" }),
-  isActive: z.boolean(),
 
+  username: z.string().min(2, { message: "Required" }),
+  active: z.boolean(),
+
+  username: z.string().min(2, { message: "Yêu cầu nhập tên người dùng" }),
+  isActive: z.boolean(),
 
 });
 
-export default function UpdateMemberForm({ userId }) {
+export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm({
     resolver: zodResolver(schema),
   });
 
-  const [user, setUser] = React.useState({});
+  const [user, setUser] = useState({});
+  const [active, setActive] = useState(false);
+  const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
       const { data } = await api.get(`users/${userId}`);
       setUser(data.result);
+
+      setActive(data.result.active); // Sync isActive with the user data from DB
       reset(data.result);
+      setValue("active", data.result.active); // Initialize Switch value
+
+      setIsActive(data.result.active); // Đồng bộ trạng thái isActive với dữ liệu người dùng từ DB
+      reset(data.result);
+      setValue("isActive", data.result.active); // Khởi tạo giá trị của Switch
+
     };
     fetchUser();
-  }, [userId, reset]);
+  }, [userId, reset, setValue]);
 
-  const [isActive, setisActive] = useState(user.isActive)
+  const handleSwitchChange = (checked) => {
 
-  //   console.log(shoe);
-
-  const onSubmit = (data) => {
-    console.log(data);
+    setActive(checked); 
+    setValue("active", checked); // Sync value with react-hook-form
+    setIsChanged(checked !== user.active); // Detect change in active status
   };
 
+  const onSubmit = async (formData) => {
+    const updateData = { ...formData, active };
+    console.log("Data to update:", updateData);
+
+    setIsActive(checked);
+    setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
+    setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
+  };
+
+  const onSubmit = async (formData) => {
+    const updateData = { ...formData, isActive };
+    console.log("Dữ liệu cần cập nhật:", updateData);
+
+    try {
+      const response = await api.put(`users/${userId}`, updateData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("Phản hồi đầy đủ sau khi cập nhật:", response); // Log phản hồi đầy đủ
+      onSuccess();
+      onClose();
+    } catch (error) {
+      console.error("Lỗi khi cập nhật người dùng", error);
+    }
+  };
+
+
   return (
-    <Dialog className='min-h-screen'>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="hover:bg-slate-950 hover:text-white"
-        >
-          Edit
-        </Button>
-      </DialogTrigger>
+    <Dialog open={true} onOpenChange={onClose} className="min-h-screen">
       <DialogContent className="w-full max-w-2xl mx-auto">
         <DialogHeader>
-          <DialogTitle>Edit Member Detail</DialogTitle>
+          <DialogTitle>Chỉnh sửa thông tin thành viên</DialogTitle>
           <DialogDescription>
-            Make changes to account status. Click save when you're done.
+            Thực hiện thay đổi trạng thái tài khoản. Nhấn lưu khi bạn hoàn tất.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="username">Tên người dùng</Label>
             <Input
               id="username"
               name="username"
               defaultValue={user.username}
               {...register("username")}
               disabled
-             />
-            {errors.username?.message && (
-              <p className="text-red-600">{errors.username?.message}</p>
-            )}
+            />
+            {errors.username?.message && <p className="text-red-600">{errors.username?.message}</p>}
           </div>
 
-          
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <Switch
-                id="isActive"
-                {...register("isActive")}
-                onCheckedChange={(e) => setisActive(prev => !prev)}
-                value={isActive}
+
+                id="active"
+                checked={active}
+                onCheckedChange={handleSwitchChange} // Change event to update the state
               />
-              <Label htmlFor="isActive">Active Status</Label>
+              <Label htmlFor="active">Active Status</Label>
+
+                id="isActive"
+                checked={isActive}
+                onCheckedChange={handleSwitchChange} // Thay đổi sự kiện để cập nhật trạng thái
+              />
+              <Label htmlFor="isActive">Trạng thái hoạt động</Label>
+
             </div>
           </div>
 
           <Separator className="my-4" />
 
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" disabled={!isChanged}>
+              Lưu thay đổi
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

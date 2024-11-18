@@ -24,19 +24,19 @@ export default function Header() {
         <NavigationMenu>
           <NavigationMenuList className="hidden lg:flex gap-6">
             <NavigationMenuItem>
-              <Link to={"/"} className="text-orange-500">Home</Link>
+              <Link to={"/"} className="text-orange-500">Trang chủ</Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to={"/shoes"}>Product</Link>
+              <Link to={"/shoes"}>Sản phẩm</Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to={"/terms"}>Terms And Conditions</Link>
+              <Link to={"/terms"}>Điều khoản và điều kiện</Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to={"/privacy"}>Privacy Policy</Link>
+              <Link to={"/privacy"}>Chính sách bảo mật</Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to={"/faq"}>FAQ</Link>
+              <Link to={"/faq"}>Câu hỏi thường gặp</Link>
             </NavigationMenuItem>
           </NavigationMenuList>
           <NavigationMenuIndicator />

@@ -12,14 +12,14 @@ export default function HeaderDropDown() {
   return (
     <div>
       <DropdownMenu>
-        <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+        <DropdownMenuTrigger>Mở menu</DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>Tài khoản của tôi</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuItem>Subscription</DropdownMenuItem>
+          <DropdownMenuItem>Hồ sơ</DropdownMenuItem>
+          <DropdownMenuItem>Hóa đơn</DropdownMenuItem>
+          <DropdownMenuItem>Nhóm</DropdownMenuItem>
+          <DropdownMenuItem>Gói đăng ký</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -7,11 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import ImagesUpload from "./ImagesUpload";
 import VariantShoe from "./VariantShoe";
-import { useState } from "react";
 import axios from "axios";
 import api from "@/config/axios";
-
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
   name: z.string().min(2, { message: "Required" }),
@@ -30,6 +31,8 @@ const schema = z.object({
 });
 
 export default function RunningShoeForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     selectedFiles: [],
     images: [],
@@ -60,7 +63,6 @@ export default function RunningShoeForm() {
           formData
         );
 
-        
         images.push({
           url: response.data.secure_url,
           publicId: response.data.public_id,
@@ -103,7 +105,7 @@ export default function RunningShoeForm() {
     defaultValues: {
       name: "",
       price: 10,
-      description: "",
+      description: "Mô tả giày đang được cập nhật",
       status: "true",
       fakePrice: 20,
       gender: "UNISEX",
@@ -113,6 +115,8 @@ export default function RunningShoeForm() {
   });
 
   const onSubmit = async (data) => {
+    const toastId = toast.loading("Creating product...");
+
     try {
       const uploadedImages = await uploadImages(formData.selectedFiles);
       const finalData = {
@@ -122,17 +126,33 @@ export default function RunningShoeForm() {
       };
 
       console.log(finalData);
-      
 
       try {
         const response = await api.post("/shoes", finalData);
         if (response.status === 200) {
           console.log("Product created successfully:", response.data);
+
+          toast.update(toastId, {
+            render: "Product created successfully",
+            type: "success",
+            isLoading: false,
+            autoClose: 3000,
+          });
+
+          setTimeout(() => {
+            navigate("/admin/manage-shoes");
+          }, 4000);
         }
       } catch (error) {
         console.error("Error creating product:", error);
+
+        toast.update(toastId, {
+          render: error.response?.data?.message || "Error creating product",
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
-      
     } catch (error) {
       console.error("Form submission error:", error);
     }
@@ -140,14 +160,26 @@ export default function RunningShoeForm() {
 
   return (
     <div className="max-w-2xl mx-auto p-4">
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition="Bounce"
+      />
       <h1 className="text-2xl font-bold mb-4">Running Shoes Product Form</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
+          <Label htmlFor="name">Tên sản phẩm</Label>
           <Input
-            label="Name"
+            label="Tên sản phẩm"
             type="text"
-            placeholder="Name"
+            placeholder="Tên sản phẩm"
             {...register("name")}
           />
           {errors.name?.message && (
@@ -155,11 +187,11 @@ export default function RunningShoeForm() {
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="price">Price</Label>
+          <Label htmlFor="price">Giá</Label>
           <Input
-            label="Price"
+            label="Giá"
             type="number"
-            placeholder="Price"
+            placeholder="Giá"
             {...register("price", { valueAsNumber: true })}
           />
           {errors.price?.message && (
@@ -167,11 +199,11 @@ export default function RunningShoeForm() {
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">Mô tả</Label>
           <Input
-            label="Price"
+            label="Mô tả"
             type="text"
-            placeholder="Description"
+            placeholder="Mô tả"
             {...register("description")}
           />
           {errors.description?.message && (
@@ -179,25 +211,25 @@ export default function RunningShoeForm() {
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="status">Status:</Label>
+          <Label htmlFor="status">Trạng thái:</Label>
           <select
             {...register("status")}
             className="block w-1/4 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
           >
-            <option value="">Select status</option>
-            <option value="true">Active</option>
-            <option value="false">Inactive</option>
+            <option value="">Chọn trạng thái</option>
+            <option value="true">Kích hoạt</option>
+            <option value="false">Không kích hoạt</option>
           </select>
           {errors.status?.message && (
             <p className="text-red-600">{errors.status?.message}</p>
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="fakePrice">FakePrice:</Label>
+          <Label htmlFor="fakePrice">Giá</Label> {/* Thay "Giá ảo" thành "Giá" */}
           <Input
-            label="FakePrice"
+            label="Giá"
             type="number"
-            placeholder="Fake Price"
+            placeholder="Giá"
             {...register("fakePrice", { valueAsNumber: true })}
           />
           {errors.fakePrice?.message && (
@@ -206,35 +238,35 @@ export default function RunningShoeForm() {
         </div>
         <div className="flex justify-between">
           <div className="space-y-2">
-            <Label htmlFor="gender">Gender:</Label>
+            <Label htmlFor="gender">Giới tính:</Label>
             <select
               {...register("gender")}
               className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
             >
-              <option value="WOMEN">WOMEN</option>
-              <option value="MAN">MAN</option>
-              <option value="UNISEX">UNISEX</option>
+              <option value="WOMEN">Nữ</option>
+              <option value="MAN">Nam</option>
+              <option value="UNISEX">Unisex</option>
             </select>
             {errors.gender?.message && (
               <p className="text-red-600">{errors.gender?.message}</p>
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="category">Category:</Label>
+            <Label htmlFor="category">Danh mục:</Label>
             <select
               {...register("category")}
               className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
             >
-              <option value="RUNNING">RUNNING</option>
-              <option value="SPORT">SPORT</option>
-              <option value="CASUAL">CASUAL</option>
+              <option value="RUNNING">Giày chạy</option>
+              <option value="SPORT">Giày thể thao</option>
+              <option value="CASUAL">Giày thường</option>
             </select>
             {errors.category?.message && (
               <p className="text-red-600">{errors.category?.message}</p>
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="brandId">Brand:</Label>
+            <Label htmlFor="brandId">Thương hiệu:</Label>
             <select
               {...register("brandId", { valueAsNumber: true })}
               className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
@@ -254,7 +286,9 @@ export default function RunningShoeForm() {
           variants={formData.variants}
           onVariantChange={handleVariantChange}
         />
-        <Button type="submit">Submit</Button>
+
+        <Separator className="my-4" />
+        <Button type="submit">Gửi</Button>
       </form>
     </div>
   );

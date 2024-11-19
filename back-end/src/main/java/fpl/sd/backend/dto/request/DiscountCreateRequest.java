@@ -32,8 +32,8 @@ public class DiscountCreateRequest {
 
 
 
-    @DecimalMin(value = "0.0", inclusive = true, message = "Minimum order amount must be greater than 0")
-    Double minimumOrderAmount = 0.0;  // Giữ giá trị mặc định là 0
+
+    Double minimumOrderAmount;  // Giữ giá trị mặc định là 0
 
 
 

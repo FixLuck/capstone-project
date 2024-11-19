@@ -34,6 +34,10 @@ function UserLogin() {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
+  
+  const user = useSelector(selectUser);
+  const userName = user ? user.sub : "";
+
   const {
     register,
     handleSubmit,
@@ -53,13 +57,16 @@ function UserLogin() {
       console.log(token);
       dispatch(authActions.loginSuccess(token));
       navigate("/");
+      
     } catch (err) {
-      dispatch(authActions.loginFailure(err));
-      alert(err);
+      console.log(err.response.data.message);
+      alert('Username or password is incorrect');
+      dispatch(authActions.loginFailure());
     }
   };
 
-  return (
+  
+    return (
     <div
       className="flex items-center justify-center h-screen"
       style={{

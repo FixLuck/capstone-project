@@ -129,7 +129,7 @@ export default function ListShoePage() {
         <div className="w-1/3 me-4">
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>Brand</AccordionTrigger>
+              <AccordionTrigger>Hãng giày</AccordionTrigger>
               {brands.map((brand, index) => (
                 <AccordionContent key={index}>
                   <Link
@@ -142,7 +142,7 @@ export default function ListShoePage() {
               ))}
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Category</AccordionTrigger>
+              <AccordionTrigger>Loại giày</AccordionTrigger>
               {categories.map((category, index) => (
                 <AccordionContent key={index}>
                   <Link
@@ -155,7 +155,7 @@ export default function ListShoePage() {
               ))}
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>Gender</AccordionTrigger>
+              <AccordionTrigger>Giới tính</AccordionTrigger>
               {genders.map((gender, index) => (
                 <AccordionContent key={index}>
                   <Link

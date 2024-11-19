@@ -101,9 +101,6 @@ function Profile() {
       return;
     }
 
-
- 
-
     const toastId = toast.loading("Đang cập nhật thông tin...");
 
     setLoading(true);

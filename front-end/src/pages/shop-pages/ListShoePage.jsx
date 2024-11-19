@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import api from "@/config/axios";
 import { useState, useEffect } from "react";
 import {
@@ -17,6 +17,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { BiSolidDetail } from "react-icons/bi";
 import { FiShoppingBag } from "react-icons/fi";
@@ -29,12 +36,37 @@ import { useShopFilters } from "@/hooks/useShopFilters";
 import { cartActions } from "@/store";
 import { ToastContainer, toast } from "react-toastify";
 import { formatterToVND } from "../../utils/formatter";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ListShoePage() {
   const [shoes, setShoes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [prevFilters, setPrevFilters] = useState({});
   const [initialLoad, setInitialLoad] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const itemsPerPage = 8;
+
+  const filteredShoe = shoes.filter((shoe) => {
+    return shoe.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
+  const sortedShoes = [...filteredShoe].sort((a, b) => {
+    sortOrder === "asc" ? a.price - b.price : b.price - a.price;
+  });
+
+  const indexOfLastShoe = currentPage * itemsPerPage;
+  const indexOfFirstShoe = indexOfLastShoe - itemsPerPage;
+  const currentShoes = sortedShoes.slice(indexOfFirstShoe, indexOfLastShoe);
+
+  const totalPages = Math.ceil(sortedShoes.length / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const handleAddToCart = (shoe) => {
     const size =
@@ -172,20 +204,28 @@ export default function ListShoePage() {
         <div className="flex-col">
           <div className="mb-8 mt-4 flex justify-between">
             <div className="relative w-1/3 flex">
-              <Input placeholder="Search" />
-              <Button
-                variant="ghost"
-                className="absolute right-1 hover:bg-stone-950 hover:text-stone-200"
-              >
-                <IoIosSearch className="w-6 h-6" />
-              </Button>
+              <Input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="max-w-sm"
+                placeholder="Search shoes..."
+              />
             </div>
             <div>
-              <ComboBoxOrderBy />
+              <Select value={sortOrder} onValueChange={setSortOrder}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Sort by price" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="asc">Price: Low to High</SelectItem>
+                  <SelectItem value="desc">Price: High to Low</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {shoes.map((shoe) => (
+            {currentShoes.map((shoe) => (
               <Card
                 key={shoe.id}
                 className="hover:border-stone-950 cursor-pointer"
@@ -202,7 +242,6 @@ export default function ListShoePage() {
                     <p className="text-xl font-bold mt-2 line-through">
                       {formatterToVND.format(shoe.fakePrice)}
                     </p>
-
                   </div>
                 </CardContent>
                 <CardFooter className="justify-between">
@@ -221,6 +260,40 @@ export default function ListShoePage() {
                 </CardFooter>
               </Card>
             ))}
+          </div>
+          <div className="flex justify-between items-center my-4">
+            <div>
+              Showing {indexOfFirstShoe + 1} to{" "}
+              {Math.min(indexOfLastShoe, sortedShoes.length)} of{" "}
+              {sortedShoes.length} shoes
+            </div>
+            <div className="flex spacex-x-2">
+              <Button
+                variant="outline"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <Button
+                    key={page}
+                    variant={currentPage === page ? "default" : "outline"}
+                    onClick={() => handlePageChange(page)}
+                  >
+                    {page}
+                  </Button>
+                )
+              )}
+              <Button
+                variant="outline"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

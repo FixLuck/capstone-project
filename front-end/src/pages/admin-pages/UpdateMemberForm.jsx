@@ -19,9 +19,6 @@ import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
 
-  username: z.string().min(2, { message: "Required" }),
-  active: z.boolean(),
-
   username: z.string().min(2, { message: "Yêu cầu nhập tên người dùng" }),
   isActive: z.boolean(),
 
@@ -39,7 +36,7 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
   });
 
   const [user, setUser] = useState({});
-  const [active, setActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
@@ -47,13 +44,9 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
       const { data } = await api.get(`users/${userId}`);
       setUser(data.result);
 
-      setActive(data.result.active); // Sync isActive with the user data from DB
-      reset(data.result);
-      setValue("active", data.result.active); // Initialize Switch value
-
-      setIsActive(data.result.active); // Đồng bộ trạng thái isActive với dữ liệu người dùng từ DB
-      reset(data.result);
-      setValue("isActive", data.result.active); // Khởi tạo giá trị của Switch
+      // setActive(data.result.active); // Sync isActive with the user data from DB
+      // reset(data.result);
+      // setValue("active", data.result.active); // Initialize Switch value
 
     };
     fetchUser();
@@ -61,19 +54,19 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
 
   const handleSwitchChange = (checked) => {
 
-    setActive(checked); 
-    setValue("active", checked); // Sync value with react-hook-form
-    setIsChanged(checked !== user.active); // Detect change in active status
+    setIsActive(checked); 
+    setValue("isActive", checked); // Sync value with react-hook-form
+    setIsChanged(checked !== user.isActive); // Detect change in active status
   };
 
-  const onSubmit = async (formData) => {
-    const updateData = { ...formData, active };
-    console.log("Data to update:", updateData);
+  // const onSubmit = async (formData) => {
+  //   const updateData = { ...formData, active };
+  //   console.log("Data to update:", updateData);
 
-    setIsActive(checked);
-    setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
-    setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
-  };
+  //   setIsActive(checked);
+  //   setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
+  //   setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
+  // };
 
   const onSubmit = async (formData) => {
     const updateData = { ...formData, isActive };
@@ -119,13 +112,6 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <Switch
-
-                id="active"
-                checked={active}
-                onCheckedChange={handleSwitchChange} // Change event to update the state
-              />
-              <Label htmlFor="active">Active Status</Label>
-
                 id="isActive"
                 checked={isActive}
                 onCheckedChange={handleSwitchChange} // Thay đổi sự kiện để cập nhật trạng thái

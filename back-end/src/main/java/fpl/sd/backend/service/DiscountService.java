@@ -61,7 +61,7 @@ public class DiscountService {
         if (request.getStartDate() != null) {
             discount.setStartDate(request.getStartDate());
         }
-        if(request.getMinimumOrderAmount() !=null){
+        if (request.getMinimumOrderAmount() != null) {
             discount.setMinimumOrderAmount(request.getMinimumOrderAmount());
         }
         if (request.getEndDate() != null) {
@@ -70,17 +70,18 @@ public class DiscountService {
         if (request.getDiscountType() != null) {
             discount.setDiscountType(request.getDiscountType());
         }
-        if (request.getFixAmount() != null) {
-            discount.setFixedAmount(request.getFixAmount());
+        if (request.getFixedAmount() != null) {
+            discount.setFixedAmount(request.getFixedAmount());
         }
         if (request.getActive() != null) {
-            if (discount.isActive() != request.getActive()) {
-                discount.setActive(request.getActive());
-            }
+            discount.setActive(request.getActive());
         }
+
         discountRepository.save(discount);
+
         return discountMapper.toDiscountResponse(discount);
     }
+
 
 
 //    public double applyDiscount(String code, double orderTotal) {

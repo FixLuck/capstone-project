@@ -36,8 +36,9 @@ public class DiscountCreateRequest {
     @NotBlank(message = "Description is mandatory")
     String description;
 
-    @DecimalMin(value = "0.0",inclusive = false,message = "FixAmount must be greater than 0")
-    Double fixAmount;
+    @DecimalMin(value = "0.0", inclusive = false, message = "FixedAmount must be greater than 0")
+    Double fixedAmount;
+
 
     @NotNull(message = "DiscountType is mandatory")
     DiscountConstants.DiscountType discountType;

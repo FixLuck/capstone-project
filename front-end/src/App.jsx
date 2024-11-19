@@ -16,10 +16,8 @@ import OrderHistory from "./pages/shop-pages/OrderHistory.jsx";
 import MemberManagemant from "./pages/admin-pages/MemberManagemant";
 import RootLayoutAdmin from "./pages/RootLayoutAdmin";
 import Cart from "./pages/shop-pages/Cart";
-import RootLayoutManager from "./pages/RootLayoutManager";
 import DiscountManagement from "./pages/admin-pages/DiscountManagement";
 import MemberOrderHistory from "./pages/admin-pages/MemberOrderHistory";
-import WelcomeManager from "./pages/manager-pages/WelcomeManager";
 import DetailShoePage from "./pages/shop-pages/DetailShoePage";
 import ListManageShoePage from "./pages/admin-pages/ListManageShoePage";
 import Terms from "./pages/shop-pages/Terms";
@@ -29,66 +27,10 @@ import OrderDetailList from "./pages/shop-pages/OrderDetailList";
 import { useDispatch } from "react-redux";
 import { authActions } from "./store/index";
 import { useEffect } from "react";
-
 import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
-
 import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
-
-
-
-//     const router = createBrowserRouter([
-//       {
-//         path: "/",
-//         element: <RootLayout/>,
-//         errorElement: <ErrorPage/>,
-//         children: [
-//         {index: true, element: <HomePage/>},
-//         {path: 'shoes', element: <ListShoePage/>},
-//         {path: 'shoes/:id', element: <DetailShoePage/>},
-//         {path: 'add-shoe', element: <AddShoePage/>},
-//         {path: 'cart', element: <Cart/>},
-//         {path: 'order-history', element: <OrderHistory/>},
-//         {path: 'login', element: <UserLogin/>},
-//         {path: 'register', element: <SignUp/>},
-//         {path: 'users', element: <Profile/>},
-//         {path: 'orders', element: <OrderHistory/>},
-//         {path: 'checkout', element: <CheckOut/>},
-//         {path: 'logout', element: <UserLogin/>},
-//         {path: 'terms', element: <Terms/>},
-//         {path: 'privacy', element: <Privacy/>}
-//         ]
-//       },
-//       {
-//         path: "/admin",
-//         element: <RootLayoutAdmin/>,
-//         errorElement: <ErrorPage/>,
-//         children: [
-//         {index: true, element: <WelcomeAdmin/>},
-//         {path: 'discount-management', element: <AddDiscountPage/>},
-//         {path: 'member-order-history', element: <MemberOrderHistory/>},
-//         {path: 'account-management', element: <MemberManagemant/>},
-//         {path: 'revenue-stats', element: <RevenueStatistics/>},
-
-//         {path: 'manage-shoes', element: <ListManageShoePage/>},
-//         {path: 'manage-shoes/new', element: <AddShoePage/>},
-
-//         {path: 'profile', element: <Profile/>},
-          
-//         ]
-//       },
-
-    // {
-    //   path: "/manager",
-    //   element: <RootLayoutManager />,
-    //   errorElement: <ErrorPage />,
-    //   children: [
-    //     { index: true, element: <WelcomeManager /> },
-    //     { path: 'discount-management', element: <DiscountManagement /> },
-    //     { path: 'member-order-history', element: <MemberOrderHistory /> },
-    //     //{ path: 'add-discount', element: <AddDiscountPage /> },
-    //   ]
-    // }
-
+import ProfileUser from "./pages/shop-pages/ProfileUser";
+import ShoePaging from "./pages/admin-pages/ShoePaging";
 
 const router = createBrowserRouter([
   {
@@ -99,19 +41,18 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "shoes", element: <ListShoePage /> },
       { path: "shoes/:id", element: <DetailShoePage /> },
-      { path: "add-shoe", element: <AddShoePage /> },
       { path: "cart", element: <Cart /> },
       { path: "order-history", element: <OrderHistory /> },
       { path: "login", element: <UserLogin /> },
       { path: "register", element: <SignUp /> },
-      { path: "profile/me", element: <Profile /> },
+      { path: "profile/me", element: <ProfileUser /> },
       { path: "orders", element: <OrderHistory /> },
       { path: "checkout", element: <CheckOut /> },
       { path: "checkout/payment-callback", element: <PaymentCallbackPage /> },
       { path: "logout", element: <UserLogin /> },
       { path: "terms", element: <Terms /> },
       { path: "privacy", element: <Privacy /> },
-      { path: "order_list", element: <OrderDetailList/>}
+      { path: "order_list", element: <OrderDetailList /> },
     ],
   },
   {
@@ -125,50 +66,21 @@ const router = createBrowserRouter([
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenueStatistics /> },
-      { path: "manage-shoes", element: <ListManageShoePage /> },
+      { path: "manage-shoes", element: <ShoePaging /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },
-      { path: "profile", element: <Profile /> },
     ],
   },
-  // {
-  //   path: "/admin",
-  //   element: <RootLayoutAdmin />,
-  //   errorElement: <ErrorPage />,
-  //   children: [
-  //     { index: true, element: <WelcomeAdmin /> },
-  //     { path: "discount-management", element: <DiscountManagement /> },
-  //     { path: "member-order-history", element: <MemberOrderHistory /> },
-  //     { path: "account-management", element: <MemberManagemant /> },
-  //     { path: "revenue-stats", element: <RevenueStatistics /> },
-  //     { path: "list-shoes", element: <ListManageShoePage /> },
-  //     { path: "profile", element: <Profile /> },
-  //     //{path: 'add-discount', element: <AddDiscountPage />}
-  //   ],
-  // },
-  {
-    path: "/manager",
-    element: <RootLayoutManager />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <WelcomeAdmin /> },
-      { path: "discount-management", element: <DiscountManagement /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
-      //{ path: 'add-discount', element: <AddDiscountPage /> },
-    ],
-  },
-
 ]);
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       dispatch(authActions.loginSuccess(token));
     }
-  }, [dispatch])
-
+  }, [dispatch]);
 
   return <RouterProvider router={router}></RouterProvider>;
 }

@@ -108,10 +108,14 @@ public class AuthenticationService {
     }
 
 
-   private String buildScope(User user) {
-       return Optional.ofNullable(user.getRole())
-               .map(role -> "ROLE_" + role.getRoles())
-               .orElse("");
-   }
+    private String buildScope(User user) {
+        return Optional.ofNullable(user.getRole())
+                .map(role -> "ROLE_" + role.getRoles())
+                .orElse("");
+    }
 
 }
+
+
+
+

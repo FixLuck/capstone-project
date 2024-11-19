@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import LocationSelector from "@/components/shop/LocationSelector";
 import { ToastContainer, toast } from "react-toastify";
 
-function Profile() {
+export default function ProfileUser() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState(userData?.username || "");
@@ -38,6 +38,7 @@ function Profile() {
       setEmail(userData.email || "");
       setPhone(userData.phone || "");
       setFullName(userData.fullName || "");
+      setAddress(userData.address || "");
     }
   }, [userData]);
 
@@ -54,9 +55,6 @@ function Profile() {
         const data = response.data.result;
         setUserData(data);
 
-        if (data.address) {
-          setAddress(data.address);
-        }
       } catch (err) {
         console.log(err);
       } finally {
@@ -95,7 +93,7 @@ function Profile() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    if (!username || !email || !phone) {
+    if (!username || !email || !phone || !address) {
       alert("All fields are required");
       return;
     }
@@ -184,16 +182,6 @@ function Profile() {
                       className="border rounded-md p-2 w-full"
                     />
                   </div>
-                  <div className="grid gap-2">
-                    <Label>Full Name</Label>
-                    <Input
-                      id="fullName"
-                      type="text"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      className="border rounded-md p-2 w-full"
-                    />
-                  </div>
                 </div>
 
                 <div className="grid w-full gap-6 border rounded-sm p-4">
@@ -239,7 +227,9 @@ function Profile() {
                       onChange={(e) => setStreet(e.target.value)}
                       className="border rounded-md p-2 w-full"
                     />
-                    <LocationSelector onLocationChange={handleLocationChange} />
+                    <LocationSelector
+                      onLocationChange={handleLocationChange}
+                    />
                   </div>
                 </div>
 
@@ -259,7 +249,6 @@ function Profile() {
         </div>
       </div>
     </div>
+    
   );
 }
-
-export default Profile;

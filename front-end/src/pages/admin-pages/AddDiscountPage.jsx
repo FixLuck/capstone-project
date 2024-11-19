@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { ToastContainer, toast } from "react-toastify";
@@ -75,6 +76,18 @@ export default function AddDiscountForm() {
 
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  // const [value, setValue] = useState(initialValue);
+  const { setValue } = useForm();
+
+
+  useEffect(() => {
+    // Nếu discountType là FIXED_AMOUNT, đảm bảo fixedAmount có thể nhập được
+    if (watch("discountType") === "FIXED_AMOUNT") {
+      setValue("fixedAmount", 0); // Hoặc giá trị mặc định khác
+    } else {
+      setValue("fixedAmount", null); // Đặt lại giá trị nếu discountType không phải FIXED_AMOUNT
+    }
+  }, [watch("discountType")]); // Theo dõi sự thay đổi của discountType
 
   // const onSubmit = async (data) => {
   //   setIsLoading(true);
@@ -142,6 +155,7 @@ export default function AddDiscountForm() {
   //     setIsLoading(false);
   //   }
   // };
+
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -270,6 +284,7 @@ export default function AddDiscountForm() {
           <Label htmlFor="percentage" className="block text-gray-700">Percentage</Label>
           <Input
             id="percentage"
+            name="percentage"
             type="number"
             disabled={watch("discountType") !== "PERCENTAGE"}
             {...register("percentage", {
@@ -283,6 +298,7 @@ export default function AddDiscountForm() {
           <Label htmlFor="fixedAmount" className="block text-gray-700">Fixed Amount</Label>
           <Input
             id="fixedAmount"
+            name="fixedAmount"
             type="number"
             disabled={watch("discountType") !== "FIXED_AMOUNT"}
             {...register("fixedAmount", {

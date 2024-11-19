@@ -47,7 +47,7 @@ const schema = z.object({
   discountType: z.enum(["FIXED_AMOUNT", "PERCENTAGE"]),
   percentage: z.number().nullable().optional(),
   fixedAmount: z.number().nullable().optional(),
-    minimumOrderAmount: z.number().nullable().default(0), // Nếu không nhập thì mặc định là 0
+  minimumOrderAmount: z.number().nullable().default(0), // Nếu không nhập thì mặc định là 0
   startDate: z.string(),
   endDate: z.string(),
   active: z.enum(["true", "false"])
@@ -163,13 +163,10 @@ export default function AddDiscountForm() {
         active: data.active === "true",
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
-        minimumOrderAmount: data.minimumOrderAmount === "" ? 0 : data.minimumOrderAmount,  // Nếu không có giá trị, gán giá trị 0.0
+        minimumOrderAmount: data.minimumOrderAmount || 0,  // Đảm bảo giá trị không null, nếu trống thì set là 0
         percentage: data.discountType === "PERCENTAGE" ? data.percentage : null,
         fixedAmount: data.discountType === "FIXED_AMOUNT" ? data.fixedAmount : null,
       };
-      
-      
-      
   
       console.log("Sending data:", formattedData);
   
@@ -199,6 +196,7 @@ export default function AddDiscountForm() {
       setIsLoading(false);
     }
   };
+  
   
   
   
@@ -298,14 +296,17 @@ export default function AddDiscountForm() {
         <div className="space-y-2">
           <Label htmlFor="minimumOrderAmount" className="block text-gray-700">Minimum Order Amount</Label>
           <Input
-            type="number"
-            name="minimumOrderAmount"
-            id="minimumOrderAmount"
-            defaultValue={0}
-            onChange={(e) => setValue("minimumOrderAmount", e.target.value)}
-            {...register("description")}
+  type="number"
+  name="minimumOrderAmount"
+  id="minimumOrderAmount"
+  {...register("minimumOrderAmount", {
+    valueAsNumber: true, // Đảm bảo giá trị được lấy dưới dạng số
+    validate: (value) => value >= 0 || "Minimum order amount cannot be negative", // Kiểm tra trường hợp âm
+  })}
+  defaultValue={0}  // Đảm bảo giá trị mặc định là 0
+/>
 
-          />
+
         </div>
 
         <div className="space-y-2">

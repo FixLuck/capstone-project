@@ -93,6 +93,7 @@ export default function UpdateDiscountForm({ discountId }) {
         minimumOrderAmount: data.minimumOrderAmount === "" ? 0 : data.minimumOrderAmount, // Nếu trống, set là 0
         startDate: new Date(data.startDate).toISOString(), // Chuyển startDate sang ISO 8601
         endDate: new Date(data.endDate).toISOString(), // Chuyển endDate sang ISO 8601
+        
       });
 
       if (response.status === 200 && response.data.flag) {
@@ -173,7 +174,7 @@ export default function UpdateDiscountForm({ discountId }) {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="active">Active:</Label>
+              <Label htmlFor="active">Status:</Label>
               <select {...register("active")} className="block w-2/3 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base">
                 <option value="true">Active</option>
                 <option value="false">Inactive</option>

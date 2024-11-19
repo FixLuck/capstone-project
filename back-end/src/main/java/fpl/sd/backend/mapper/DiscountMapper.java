@@ -14,9 +14,11 @@ import java.time.format.DateTimeFormatter;
 
 @Mapper(componentModel = "spring")
 public interface DiscountMapper {
+
     Discount toDiscount(DiscountCreateRequest request);
 
 
+    
 
 //    @Mapping(source = "active", target = "isActive")
     DiscountResponse toDiscountResponse (Discount discount);

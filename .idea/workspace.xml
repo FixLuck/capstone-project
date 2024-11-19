@@ -5,57 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/front-end/src/components/shop/LocationSelector.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/UpdateDiscountForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/VariantShoeOnUpdateForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front-end/src/utils/formatter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/admin-com/AdminAside.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/admin-com/AdminAside.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/layout/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/layout/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/layout/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/manager-com/ManagerAside.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/manager-com/ManagerAside.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ComboBoxOrderBy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ComboBoxOrderBy.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/HeaderDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/HeaderDropDown.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/HotShoeList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/HotShoeList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/ListBrand.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/Notifacation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/Notifacation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/components/shop/UserDropDown.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/AddDiscountPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/AddDiscountPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/DiscountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/DiscountManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ListManageShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/ListManageShoePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberManagemant.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberManagemant.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderDetailList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderDetailList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RevenueStatistics.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RevenueStatistics.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/UpdateMemberForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/UpdateMemberForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/UpdateShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/UpdateShoeForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/VariantShoe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/VariantShoe.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/AddDiscountPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/AddDiscountPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/DiscountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/DiscountManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/MemberOrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/MemberOrderHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/RunningShoeForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/VariantShoe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/VariantShoe.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/manager-pages/WelcomeManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/manager-pages/WelcomeManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/CheckOut.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/CheckOut.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/DetailShoePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/HomePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/ListShoePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderDetailList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderDetailList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/OrderHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Privacy.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Privacy.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/SignUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Terms.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Terms.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/UserLogin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/store/cart-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/store/cart-slice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,16 +31,32 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;FixLuck&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FixLuck/capstone-project.git&quot;,
+    &quot;accountId&quot;: &quot;b88c65bc-7ccc-4dd1-ba02-2804b183f36a&quot;
+  }
+}</component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="C:\Users\ucong\.m2\repository" />
+        <option name="localRepository" value="C:\Users\caube\.m2\repository" />
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2nWTBIVpIkH8FyWNatvriqnTDxH" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -98,19 +65,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BackEndApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.back-end [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.back-end [validate].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BackEndApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;man-branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="fpl.sd.backend.dto.response" />
       <recent name="fpl.sd.backend.dto.request" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BackEndApplication">
+  <component name="RunManager" selected="Spring Boot.BackEndApplication">
     <configuration name="BackEndApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fpl.sd.backend.BackEndApplication" />
       <module name="back-end" />
@@ -213,8 +196,15 @@
       <workItem from="1731654237225" duration="15805000" />
       <workItem from="1731735642709" duration="19780000" />
       <workItem from="1731816147566" duration="8103000" />
-      <workItem from="1731838699711" duration="33000" />
-      <workItem from="1731904472623" duration="100000" />
+      <workItem from="1731838699711" duration="163000" />
+      <workItem from="1731848784675" duration="8283000" />
+      <workItem from="1731857149860" duration="297000" />
+      <workItem from="1731857465157" duration="778000" />
+      <workItem from="1731858249902" duration="265000" />
+      <workItem from="1731858550615" duration="967000" />
+      <workItem from="1731899581538" duration="12909000" />
+      <workItem from="1731938985993" duration="6522000" />
+      <workItem from="1731947131757" duration="183000" />
     </task>
     <servers />
   </component>

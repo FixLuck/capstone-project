@@ -1,6 +1,7 @@
 package fpl.sd.backend.service;
 
 import fpl.sd.backend.constant.ShoeConstants;
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.ShoeCreateRequest;
 import fpl.sd.backend.dto.request.ShoeUpdateRequest;
 import fpl.sd.backend.dto.request.VariantUpdateRequest;
@@ -20,6 +21,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -174,6 +179,59 @@ public class ShoeService {
         this.shoeRepository.save(selectedShoe);
         return shoeHelper.getShoeResponse(selectedShoe);
     }
+
+    public PageResponse<ShoeResponse> getShoePaging(String name,
+                                                    Long minPrice,
+                                                    Long maxPrice,
+                                                    Integer brandId,
+                                                    String genderString,
+                                                    String categoryString,
+                                                    int page,
+                                                    int size,
+                                                    String sortOrder
+                                                    ) {
+
+        Sort sort = createSort(sortOrder);
+
+
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
+
+        ShoeConstants.Gender genderEnum = ShoeConstants.getGenderFromString(genderString);
+        ShoeConstants.Category categoryEnum = ShoeConstants.getCategoryFromString(categoryString);
+
+        Page<Shoe> shoeData = shoeRepository.findShoesByFilters(name, minPrice, maxPrice, brandId, genderEnum, categoryEnum, pageable);
+
+        var shoeList = shoeData.getContent()
+                .stream()
+                .map(shoeHelper::getShoeResponse)
+                .toList();
+
+        return PageResponse.<ShoeResponse>builder()
+                .currentPage(page)
+                .pageSize(shoeData.getSize())
+                .totalPages(shoeData.getTotalPages())
+                .totalElements(shoeData.getTotalElements())
+                .data(shoeList)
+                .build();
+
+
+    }
+
+    private Sort createSort(String sortOrder) {
+
+        String date = "createdAt";
+        if (sortOrder == null) {
+            return Sort.by(Sort.Direction.ASC, date);
+        }
+
+        return switch (sortOrder.toLowerCase()) {
+            case "desc" -> Sort.by(Sort.Direction.DESC, "price");
+            case "asc" -> Sort.by(Sort.Direction.ASC, "price");
+            case "date_desc" -> Sort.by(Sort.Direction.DESC, date);
+            default -> Sort.by(Sort.Direction.ASC, date);
+        };
+    }
+
 
 
 }

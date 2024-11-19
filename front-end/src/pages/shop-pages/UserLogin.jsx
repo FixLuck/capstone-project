@@ -52,9 +52,7 @@ function UserLogin() {
     try {
       const response = await api.post("auth/token", data);
       const token = response.data.result.token;
-      console.log(token);
       localStorage.setItem("token", token);
-      console.log(token);
       dispatch(authActions.loginSuccess(token));
       navigate("/");
       
@@ -146,7 +144,7 @@ function UserLogin() {
                     </Button>
                   </div>
                   <a
-                    href="#"
+                    href="/register"
                     className="text-center text-black hover:text-green-500 transition-colors duration-200 p-2"
                   >
                     Chưa có tài khoản? Tạo một tài khoản

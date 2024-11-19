@@ -19,7 +19,6 @@ import { Separator } from "@/components/ui/separator";
 
 const schema = z.object({
 
-
   username: z.string().min(2, { message: "Yêu cầu nhập tên người dùng" }),
   isActive: z.boolean(),
 
@@ -48,10 +47,6 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
       // setActive(data.result.active); // Sync isActive with the user data from DB
       // reset(data.result);
       // setValue("active", data.result.active); // Initialize Switch value
-
-      setIsActive(data.result.active); // Đồng bộ trạng thái isActive với dữ liệu người dùng từ DB
-      reset(data.result);
-      setValue("isActive", data.result.active); // Khởi tạo giá trị của Switch
 
     };
     fetchUser();

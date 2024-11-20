@@ -45,6 +45,7 @@ public enum ErrorCode {
     DISCOUNT_ALREADY_EXISTS(409, "Discount already exists", HttpStatus.CONFLICT),
     COUPON_INVALID(400, "Invalid Coupon", HttpStatus.BAD_REQUEST),
     MINIMUM_AMOUNT_NOT_MET(400, "The order total does not meet the minimum amount required for this discount.", HttpStatus.BAD_REQUEST),
+    INVALID_DATE_RANGE (400, "Invalid Date Range", HttpStatus.BAD_REQUEST),
     //Order-related errors
     ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
 

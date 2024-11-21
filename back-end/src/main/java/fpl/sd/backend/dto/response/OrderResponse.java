@@ -18,6 +18,7 @@ public class OrderResponse {
     double discountAmount;
     double finalTotal;
     String userId;
+    String username;
     String orderStatus;
     Instant orderDate;
     Integer discountId;

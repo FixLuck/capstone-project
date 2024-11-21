@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -8,28 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import AdminAside from "@/components/admin-com/AdminAside";
-import { ComboboxSortDiscount } from "@/components/ui/combobox";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -48,42 +27,22 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table";
+import axios from "axios";
+import api from "@/config/axios";
 
-export function OrderHistory() {
-  const orders = [
-    {
-      id: '#12526',
-      username: 'user1',
-      productName: 'Giày thể thao',
-      payment: 'Đã thanh toán',
-      status: 'Chờ xử lý',
-      total: '$20',
-    },
-    {
-      id: '#52689',
-      username: 'user2',
-      productName: 'Đồng hồ',
-      payment: 'COD',
-      status: 'Đã hủy',
-      total: '$20',
-    },
-    {
-      id: '#52648',
-      username: 'user3',
-      productName: 'Tai nghe',
-      payment: 'COD',
-      status: 'Đã hủy',
-      total: '$20',
-    },
-    {
-      id: '#23845',
-      username: 'user4',
-      productName: 'Nước hoa COCO',
-      payment: 'Đã thanh toán',
-      status: 'Đã nhận',
-      total: '$20',
-    },
-  ];
+import UpdateMemberOrderHistory from "./UpdateMemberOrderHistoryForm";
+
+export default function MemberOrderHistory() {
+  const [customerOrders, setCustomerOrders] = useState([]);
+  useEffect(() => {
+    const fetchCustomerOrders = async () => {
+      const { data } = await api.get("order-details");
+      console.log(data.result);
+      setCustomerOrders(data.result);
+    };
+    fetchCustomerOrders();
+  }, []);
 
   return (
     <div>
@@ -93,9 +52,13 @@ export function OrderHistory() {
       <div className="flex items-center space-x-4 mb-6 p-10">
         <div className="flex space-x-2">
           <button className="text-blue-500 font-medium">Tất cả Đơn Hàng(50)</button>
-          <button className="text-gray-500">Chờ xử lý(10)</button>
-          <button className="text-gray-500">Hoàn thành(8)</button>
-          <button className="text-gray-500">Đã hủy(22)</button>
+          <button className="text-yellow-500" value="PENDING">Chờ xử lý(10)</button>
+          <button className="text-green-500" value="PAID">Thanh toán thành công(8)</button>
+          <button className="text-red-500" value="CANCELED">Đã hủy(22)</button>
+          <button className="text-purple-500" value="RECEIVED">Đã nhận(22)</button>
+          <button className="text-orange-500" value="SHIPPED">Đã giao(22)</button>
+          <button className="text-amber-900" value="PAYMENT_FAILED">Thanh toán thất bại(22)</button>
+
         </div>
       </div>
 
@@ -119,72 +82,76 @@ export function OrderHistory() {
       </div>
 
       {/* Bảng đơn hàng */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        <table className="min-w-full bg-white">
-          <thead className="bg-gray-100 text-gray-600">
-            <tr>
-              <th className="py-3 px-4 text-left">Mã Đơn</th>
-              <th className="py-3 px-4 text-left">Tên Người Dùng</th>
-              <th className="py-3 px-4 text-left">Tên Sản Phẩm</th>
-              <th className="py-3 px-4 text-left">Thanh Toán</th>
-              <th className="py-3 px-4 text-left">Trạng Thái</th>
-              <th className="py-3 px-4 text-left">Tổng Tiền</th>
-              <th className="py-3 px-4 text-left">Hóa Đơn</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order, index) => (
-              <tr key={index} className="border-t border-gray-200">
-                <td className="py-3 px-4 text-blue-500">{order.id}</td>
-                <td className="py-3 px-4">{order.username}</td>
-                <td className="py-3 px-4">{order.productName}</td>
-                <td className="py-3 px-4 text-green-500">{order.payment}</td>
-                <td
-                  className={`py-3 px-4 ${
-                    order.status === 'Chờ xử lý'
-                      ? 'text-yellow-500'
-                      : order.status === 'Đã nhận'
-                      ? 'text-green-500'
-                      : 'text-red-500'
-                  }`}
-                >
-                  {order.status}
-                </td>
-                <td className="py-3 px-4">{order.total}</td>
-                <td className="py-3 px-4 text-blue-500">🖶</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <div className="mt-10">
+      <Table className="w-full">
+        <TableCaption className="text-gray-500">Danh sách đơn hàng gần đây của bạn.</TableCaption>
+        <TableHeader className="bg-gray-100">
+          <TableRow>
+            <TableCell className="p-3 font-semibold">Mã Đơn</TableCell>
+            <TableCell className="p-3 font-semibold">Tên Người Dùng</TableCell>
+            <TableCell className="p-3 font-semibold">Ngày Mua</TableCell>
+            <TableCell className="p-3 font-semibold">Giá Tổng Ban Đầu</TableCell>
+            <TableCell className="p-3 font-semibold">Giá Tổng Cuối Cùng</TableCell>
+            <TableCell className="p-3 font-semibold">Trang Thái</TableCell>
+            <TableCell className="p-3 font-semibold">Chỉnh Sửa</TableCell>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {Array.isArray(customerOrders) && customerOrders.length > 0 ? (
+            customerOrders.map((customerOrder,index) => (
+              <TableRow key={customerOrder.id} className="hover:bg-gray-50">
+                <TableCell className="p-3 text-blue-500">{index+1}</TableCell>
+                <TableCell className="p-3">{customerOrder.username}</TableCell>
+                <TableCell className="p-3">{new Date(customerOrder.orderDate).toLocaleString()}</TableCell>
+                <TableCell className="p-3 text-yellow-500">{customerOrder.originalTotal}</TableCell>
+                <TableCell className="p-3 text-green-500">{customerOrder.finalTotal}</TableCell>
+                <TableCell>
+                {customerOrder.orderStatus }
+
+                </TableCell>
+                <TableCell className="p-3 text-blue-500 cursor-pointer">
+                <UpdateMemberOrderHistory orderId={customerOrder.id} />
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan="7" className="p-3 text-center text-gray-500">
+                Không có đơn hàng nào
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
     </div>
   );
 }
 
-export function MemberOrderHistory() {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const options = ["Mới nhất", "Cũ nhất"];
+// export function MemberOrderHistory() {
+//   const [selectedOption, setSelectedOption] = useState("");
+//   const [isDialogOpen, setIsDialogOpen] = useState(false);
+//   const options = ["Mới nhất", "Cũ nhất"];
 
-  // Tạo state riêng cho ngày bắt đầu và ngày kết thúc
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+//   // Tạo state riêng cho ngày bắt đầu và ngày kết thúc
+//   const [startDate, setStartDate] = useState(null);
+//   const [endDate, setEndDate] = useState(null);
 
-  const handleSelection = (value) => {
-    setSelectedOption(value);
+//   const handleSelection = (value) => {
+//     setSelectedOption(value);
 
-    // Mở dialog nếu chọn 'edit'
-    if (value === "edit") {
-      setIsDialogOpen(true);
-    }
-  };
+//     // Mở dialog nếu chọn 'edit'
+//     if (value === "edit") {
+//       setIsDialogOpen(true);
+//     }
+//   };
 
-  return (
-    <div>
-      <OrderHistory />
-      {/* Các thành phần khác nếu cần */}
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <OrderHistory />
+//       {/* Các thành phần khác nếu cần */}
+//     </div>
+//   );
+// }
 
-export default MemberOrderHistory;
+

@@ -1,9 +1,13 @@
 package fpl.sd.backend.controller;
 
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.request.DiscountUpdateRequest;
+import fpl.sd.backend.dto.request.OrderUpdateRequest;
+
 import fpl.sd.backend.dto.response.OrderDetailResponse;
 import fpl.sd.backend.entity.OrderDetail;
 import fpl.sd.backend.service.OrderDetailService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -48,6 +52,18 @@ public class OrderDetailController {
                 .result(orderDetailService.getOrderById(orderId))
                 .build();
     }
+
+    @PutMapping("/order/{orderId}")
+    public ApiResponse<OrderDetailResponse> updateOrderDetail(@PathVariable String orderId, @RequestBody @Valid OrderUpdateRequest request) {
+        OrderDetailResponse orderDetailResponse = orderDetailService.updateOrderDetail(orderId, request);
+        return ApiResponse.<OrderDetailResponse>builder()
+                .flag(true)
+                .code(200)
+                .message("Order updated successfully")
+                .result(orderDetailResponse)
+                .build();
+    }
+
 
     @GetMapping("/order/{orderId}/user/{userId}")
     public ApiResponse<OrderDetailResponse> getOrderDetailByOrderIdAndUserId(@PathVariable String orderId, @PathVariable String userId) {

@@ -23,6 +23,7 @@ public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
+
     @Column(nullable = false)
     Double originalTotal;
 
@@ -41,7 +42,7 @@ public class CustomerOrder {
     @Column(nullable = false)
     Double finalTotal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     User user;
 
     @OneToMany(mappedBy = "order")

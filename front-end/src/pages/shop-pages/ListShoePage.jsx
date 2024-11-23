@@ -113,13 +113,13 @@ export default function ListShoePage() {
   const fetchShoes = async () => {
     setLoading(true);
     try {
-      let endpoint = "shoes";
+      let endpoint = "/shoes";
       if (filters.category) {
-        endpoint = "shoes/by-category";
+        endpoint = "/shoes/by-category";
       } else if (filters.brand) {
-        endpoint = "shoes/by-brand";
+        endpoint = "/shoes/by-brand";
       } else if (filters.gender) {
-        endpoint = "shoes/by-gender";
+        endpoint = "/shoes/by-gender";
       }
 
       const { data } = await api.get(endpoint, { params: filters });

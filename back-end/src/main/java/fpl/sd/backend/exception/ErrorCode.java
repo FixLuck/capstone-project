@@ -23,6 +23,7 @@ public enum ErrorCode {
     EMAIL_ALREADY_EXISTS(409, "Email Already Exists", HttpStatus.CONFLICT),
     ACCOUNT_DISABLED(401, "Account is disabled", HttpStatus.CONFLICT),
 
+
     // Brand-related errors
     BRAND_NOT_FOUND(404, "Brand Not Found", HttpStatus.NOT_FOUND),
     BRAND_ALREADY_EXISTS(409, "Brand Already Exists", HttpStatus.CONFLICT),
@@ -45,6 +46,7 @@ public enum ErrorCode {
     DISCOUNT_ALREADY_EXISTS(409, "Discount already exists", HttpStatus.CONFLICT),
     COUPON_INVALID(400, "Invalid Coupon", HttpStatus.BAD_REQUEST),
     MINIMUM_AMOUNT_NOT_MET(400, "The order total does not meet the minimum amount required for this discount.", HttpStatus.BAD_REQUEST),
+    INVALID_DATE_RANGE (400, "Invalid Date Range", HttpStatus.BAD_REQUEST),
     //Order-related errors
     ORDER_SAVE_ERROR(500, "Order Save Error", HttpStatus.INTERNAL_SERVER_ERROR),
 

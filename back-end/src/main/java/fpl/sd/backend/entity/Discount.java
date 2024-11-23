@@ -59,7 +59,7 @@ public class Discount {
             this.percentage = null; // Disable percentage
         } else if (this.discountType == DiscountConstants.DiscountType.PERCENTAGE) {
             this.fixedAmount = null; // Disable fixedAmount
-            this.minimumOrderAmount = null; // Disable minimumOrderAmount
+            this.minimumOrderAmount = 0.0; // Disable minimumOrderAmount
         }
     }
 }

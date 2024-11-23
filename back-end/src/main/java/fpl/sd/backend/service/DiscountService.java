@@ -31,14 +31,40 @@ public class DiscountService {
     }
 
 
+//    public DiscountResponse createDiscount(DiscountCreateRequest request) {
+//        Discount discounts = discountMapper.toDiscount(request);
+//        if(discountRepository.existsByCode(request.getCode())){
+//            throw new AppException(ErrorCode.DISCOUNT_ALREADY_EXISTS);
+//        }
+
+//        discountRepository.save(discounts);
+//        return discountMapper.toDiscountResponse(discounts);
+//    }
+
     public DiscountResponse createDiscount(DiscountCreateRequest request) {
-        Discount discounts = discountMapper.toDiscount(request);
-        if(discountRepository.existsByCode(request.getCode())){
+        // Kiểm tra ngày hợp lệ
+        if (request.getStartDate().isAfter(request.getEndDate())) {
+            throw new AppException(ErrorCode.INVALID_DATE_RANGE);
+        }
+
+        // Kiểm tra code trùng lặp
+        if (discountRepository.existsByCode(request.getCode())) {
             throw new AppException(ErrorCode.DISCOUNT_ALREADY_EXISTS);
         }
+
+        // Ánh xạ từ request sang entity
+        Discount discounts = discountMapper.toDiscount(request);
+
+        // Áp dụng logic kiểm tra và điều chỉnh các trường discount
+        discounts.setDiscountValues();
+
+        // Lưu dữ liệu vào database
         discountRepository.save(discounts);
+
+        // Trả về response
         return discountMapper.toDiscountResponse(discounts);
     }
+
 
     public DiscountResponse getDiscountById(Integer id) {
         return discountMapper.toDiscountResponse(discountRepository.findById(id)

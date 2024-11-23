@@ -5,8 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/CustomJwtDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/LogoutRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/PasswordChangeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/RefreshTokenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/entity/InvalidatedToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/InvalidatedTokenRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/report/CustomerSegmentationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/report/CustomerSegmentationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/response/report/CustomerSegmentationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/CustomerOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/repository/CustomerOrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/OrderDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,12 +58,12 @@
     &quot;assignee&quot;: &quot;FixLuck&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/FixLuck/capstone-project.git",
-    "accountId": "d9ff29fa-feee-483d-80f5-dae9531eda6d"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FixLuck/capstone-project.git&quot;,
+    &quot;accountId&quot;: &quot;b88c65bc-7ccc-4dd1-ba02-2804b183f36a&quot;
   }
-}]]></component>
+}</component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
@@ -76,7 +97,7 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.BackEndApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;hung-branch&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;man-branch&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -89,6 +110,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="fpl.sd.backend.entity.report" />
       <recent name="fpl.sd.backend.dto.response" />
       <recent name="fpl.sd.backend.dto.request" />
     </key>
@@ -137,6 +159,14 @@
         <item itemvalue="JUnit.BackEndApplicationTests.hash" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -197,7 +227,13 @@
       <workItem from="1731899581538" duration="12909000" />
       <workItem from="1731938985993" duration="6522000" />
       <workItem from="1731947131757" duration="183000" />
-      <workItem from="1732360825391" duration="86000" />
+      <workItem from="1731991895760" duration="10289000" />
+      <workItem from="1732070630786" duration="13226000" />
+      <workItem from="1732104982965" duration="4139000" />
+      <workItem from="1732167726514" duration="13391000" />
+      <workItem from="1732189128035" duration="3944000" />
+      <workItem from="1732252221866" duration="12855000" />
+      <workItem from="1732296585596" duration="270000" />
     </task>
     <servers />
   </component>

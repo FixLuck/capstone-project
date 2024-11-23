@@ -20,6 +20,9 @@ export default function UserDropDown() {
 
   const name = user ? user.sub : null;
   console.log(name);
+  const userRole = user ? user.scope : null
+  console.log(userRole);
+  
 
   const handleLogout = () => {
     dispatch(authActions.logout());
@@ -34,6 +37,15 @@ export default function UserDropDown() {
         <DropdownMenuContent className="-translate-x-1/3">
           <DropdownMenuLabel>{name ? "Chào mừng, " + name : "Hồ sơ"}</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          {user && userRole === "ROLE_ADMIN" && (
+            <div>
+              <Link to={"/admin"}>
+                <DropdownMenuItem className="cursor-pointer">
+                  Quản trị viên
+                </DropdownMenuItem>
+              </Link>
+            </div>
+          )}
           {user ? (
             <div>
               <Link to={"/profile/me"}>
@@ -41,7 +53,7 @@ export default function UserDropDown() {
                   Hồ sơ
                 </DropdownMenuItem>
               </Link>
-              <Link to={"/orders"}>
+              <Link to={"/order-history"}>
                 <DropdownMenuItem className="cursor-pointer">
                   Lịch sử đơn hàng
                 </DropdownMenuItem>

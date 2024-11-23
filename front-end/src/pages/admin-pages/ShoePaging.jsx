@@ -75,7 +75,7 @@ const ShoeManagement = () => {
 
   useEffect(() => {
     fetchShoeData();
-  }, [fetchShoeData]);
+  }, [fetchShoeData, name, minPrice, maxPrice, brandId, gender, category, sortOrder, page, size]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);

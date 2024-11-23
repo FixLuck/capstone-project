@@ -10,34 +10,43 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 export default function AddDiscountPage() {
   const [discounts, setDiscounts] = useState([]);
-  const [newDiscount, setNewDiscount] = useState({
-    percentage: 0,
-    startDate: '',
-    endDate: '',
-    code: '',
-    minimumOrderAmount: 0,
-    description: '',
-    fixedAmount: 0,
-    discountType: 'PERCENTAGE',
-    isActive: true
-  });
-
   useEffect(() => {
+    const fetchDiscounts = async () => {
+      const { data } = await api.get("discounts");
+      setDiscounts(data.result);
+    };
+
     fetchDiscounts();
   }, []);
+  // const [newDiscount, setNewDiscount] = useState({
+  //   percentage: 0,
+  //   startDate: '',
+  //   endDate: '',
+  //   code: '',
+  //   minimumOrderAmount: 0,
+  //   description: '',
+  //   fixedAmount: 0,
+  //   discountType: 'PERCENTAGE',
+  //   isActive: true
+  // });
 
-  const fetchDiscounts = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/v1/discounts');
-      if (Array.isArray(response.data.result)) {
-        setDiscounts(response.data.result);
-      } else {
-        console.error('Dữ liệu trả về không phải là mảng trong thuộc tính result:', response.data);
-      }
-    } catch (error) {
-      console.error('Error fetching discounts:', error);
-    }
-  };
+  // useEffect(() => {
+  //   fetchDiscounts();
+  // }, []);
+
+  // const fetchDiscounts = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:8080/api/v1/discounts');
+  //     if (Array.isArray(response.data.result)) {
+  //       setDiscounts(response.data.result);
+  //     } else {
+  //       console.error('Dữ liệu trả về không phải là mảng trong thuộc tính result:', response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching discounts:', error);
+  //   }
+  // };
+
 
   //  Hàm thêm mã giảm giá mới
   // const handleAddDiscount = async () => {

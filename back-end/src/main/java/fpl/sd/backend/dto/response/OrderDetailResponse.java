@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import fpl.sd.backend.constant.OrderConstants;
 import fpl.sd.backend.entity.CartItem;
 import fpl.sd.backend.entity.CustomerOrder;
+import fpl.sd.backend.entity.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +26,9 @@ public class OrderDetailResponse {
     String id;
     Instant orderDate;
     Double finalTotal;
+    Double originalTotal;
     OrderConstants.OrderStatus orderStatus;
+    String username;
 
     List<CartItemResponse> cartItems;
 
@@ -34,8 +37,13 @@ public class OrderDetailResponse {
         OrderDetailResponse orderDetailResponse = new OrderDetailResponse();
         orderDetailResponse.setOrderDate(orderDate);
         orderDetailResponse.setFinalTotal(finalTotal);
+        orderDetailResponse.setOriginalTotal(originalTotal);
         orderDetailResponse.setOrderStatus(orderStatus);
         orderDetailResponse.setId(id);
+        // Ánh xạ username từ User entity
+        if (customerOrder.getUser() != null) {
+            orderDetailResponse.setUsername(customerOrder.getUser().getUsername());
+        }
 
         List<CartItemResponse> cartItemResponses = customerOrder.getOrderDetails().stream()
                 .map(orderDetail -> {

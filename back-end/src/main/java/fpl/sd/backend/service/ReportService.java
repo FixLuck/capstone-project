@@ -1,11 +1,14 @@
 package fpl.sd.backend.service;
 
+import fpl.sd.backend.dto.response.report.CustomerSegmentationDTO;
 import fpl.sd.backend.dto.response.report.DailyRevenueReportDTO;
 import fpl.sd.backend.dto.response.report.InventoryStatusDTO;
 import fpl.sd.backend.dto.response.report.ProductPerformanceDTO;
+import fpl.sd.backend.entity.report.CustomerSegmentation;
 import fpl.sd.backend.entity.report.DailyRevenueReport;
 import fpl.sd.backend.entity.report.InventoryStatus;
 import fpl.sd.backend.entity.report.ProductPerformance;
+import fpl.sd.backend.repository.report.CustomerSegmentationRepository;
 import fpl.sd.backend.repository.report.DailyRevenueReportRepository;
 import fpl.sd.backend.repository.report.InventoryStatusRepository;
 import fpl.sd.backend.repository.report.ProductPerformanceRepository;
@@ -24,6 +27,7 @@ public class ReportService {
     DailyRevenueReportRepository dailyRevenueReportRepository;
     ProductPerformanceRepository productPerformanceRepository;
     InventoryStatusRepository inventoryStatusRepository;
+    CustomerSegmentationRepository customerSegmentationRepository;
 
     public List<DailyRevenueReportDTO> getDailyRevenueReports() {
         List<DailyRevenueReport> reportDailies = dailyRevenueReportRepository.getDailyRevenueReport();
@@ -66,6 +70,21 @@ public class ReportService {
                     inventoryStatusDTO.setCurrentStock(inventoryStatus.getCurrentStock());
                     inventoryStatusDTO.setStockStatus(inventoryStatus.getStockStatus());
                     return inventoryStatusDTO;
+                }).toList();
+    }
+
+    public List<CustomerSegmentationDTO> getCustomerSegmentation() {
+        List<CustomerSegmentation> customerSegmentations = customerSegmentationRepository.getCustomerSegmentation();
+        return customerSegmentations.stream()
+                .map(customerSegmentation -> {
+                    CustomerSegmentationDTO customerSegmentationDTO = new CustomerSegmentationDTO();
+                    customerSegmentationDTO.setCustomerId(customerSegmentation.getCustomerId());
+                    customerSegmentationDTO.setFullName(customerSegmentation.getFullName());
+                    customerSegmentationDTO.setTotalOrders(customerSegmentation.getTotalOrders());
+                    customerSegmentationDTO.setTotalSpent(customerSegmentation.getTotalSpent());
+                    customerSegmentationDTO.setLastOrderDate(customerSegmentation.getLastOrderDate());
+                    customerSegmentationDTO.setCustomerLifetimeDays(customerSegmentation.getCustomerLifetimeDays());
+                    return customerSegmentationDTO;
                 }).toList();
     }
 

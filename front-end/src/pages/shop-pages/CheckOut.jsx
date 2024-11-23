@@ -91,6 +91,7 @@ function CheckOut() {
         
         setTimeout(() => {
           navigate("/order-history");
+          dispatch(cartActions.clearCart());
         }, 4000);
         return response.data.result;
       }
@@ -141,7 +142,10 @@ function CheckOut() {
       }
       await createOrder();
       setLoading(false);
-      dispatch(cartActions.clearCart());
+      
+      
+
+
     } catch (error) {
       setError(error.message);
       setLoading(false);

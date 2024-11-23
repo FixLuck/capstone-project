@@ -12,7 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderDetailId> {
-//    List<OrderDetail> findByOrderId(String orderId);
-//    @Query("Select od from OrderDetail od WHERE od.order.user.id = :userId")
-//    List<OrderDetail> findByUserId(String userId);
+
 }

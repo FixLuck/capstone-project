@@ -18,7 +18,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchShoeCollections = async () => {
       try {
-        const newShoes = await api.get("shoes/list-shoes", {
+        const newShoes = await api.get("/shoes/list-shoes", {
           params: {
             sortOrder: "date_desc",
             page,
@@ -28,7 +28,7 @@ export default function HomePage() {
 
         setNewArrivals(newShoes.data.result.data);
 
-        const cheapList = await api.get("shoes/list-shoes", {
+        const cheapList = await api.get("/shoes/list-shoes", {
           params: {
             sortOrder: "asc",
             page,
@@ -36,7 +36,7 @@ export default function HomePage() {
           },
         });
         setCheapestShoes(cheapList.data.result.data);
-        const topList = await api.get("shoes/list-shoes", {
+        const topList = await api.get("/shoes/list-shoes", {
           params: {
             sortOrder: "",
             page,
@@ -56,19 +56,7 @@ export default function HomePage() {
   console.log(cheapeastShoes);
   console.log(topSellers);
 
-  React.useEffect(() => {
-    const fetchBrands = async () => {
-      try {
-        const { data } = await api.get("brands");
-        console.log(data.result);
 
-        setBrands(data.result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchBrands();
-  }, []);
 
   return (
     <div className="container mx-auto justify-center ">

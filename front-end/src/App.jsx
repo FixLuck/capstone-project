@@ -42,17 +42,17 @@ const router = createBrowserRouter([
       { path: "shoes", element: <ListShoePage /> },
       { path: "shoes/:id", element: <DetailShoePage /> },
       { path: "cart", element: <Cart /> },
-      { path: "order-history", element: <OrderHistory /> },
+
       { path: "login", element: <UserLogin /> },
       { path: "register", element: <SignUp /> },
       { path: "profile/me", element: <ProfileUser /> },
-      { path: "orders", element: <OrderHistory /> },
+
       { path: "checkout", element: <CheckOut /> },
       { path: "checkout/payment-callback", element: <PaymentCallbackPage /> },
       { path: "logout", element: <UserLogin /> },
       { path: "terms", element: <Terms /> },
       { path: "privacy", element: <Privacy /> },
-      { path: "order_list", element: <OrderDetailList /> },
+      { path: "order-history", element: <OrderDetailList /> },
     ],
   },
   {

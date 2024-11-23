@@ -79,7 +79,17 @@ public class PaymentService {
         );
 
         if (!isSuccess) {
+            PaymentDetail failedPayment = creatPaymentDetail(request);
+            CustomerOrder updatedOrder = orderService.updateStatus(
+                    request.getOrderId(),
+                    OrderConstants.OrderStatus.PAYMENT_FAILED,
+                    failedPayment
+            );
+
+            failedPayment.setOrder(updatedOrder);
+            paymentDetailRepository.save(failedPayment);
             throw new AppException(ErrorCode.INTERNAL_SERVER_ERROR);
+
         }
 
         //create payment details

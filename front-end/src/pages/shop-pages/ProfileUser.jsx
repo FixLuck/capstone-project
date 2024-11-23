@@ -15,6 +15,8 @@ import { selectUser } from "@/store/auth";
 import { useSelector } from "react-redux";
 import LocationSelector from "@/components/shop/LocationSelector";
 import { ToastContainer, toast } from "react-toastify";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ChangePassword from "./ChangePassword";
 
 export default function ProfileUser() {
   const [userData, setUserData] = useState(null);
@@ -54,7 +56,6 @@ export default function ProfileUser() {
         const response = await api.get(`/users/profile?username=${userName}`);
         const data = response.data.result;
         setUserData(data);
-
       } catch (err) {
         console.log(err);
       } finally {
@@ -110,7 +111,6 @@ export default function ProfileUser() {
         email: email,
         phone: phone,
         address: reversedAddress,
-
         fullName: fullName,
       });
       if (response.data.flag) {
@@ -144,111 +144,115 @@ export default function ProfileUser() {
         theme="light"
         transition:Bounce
       />
-      <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
+      <div className="container mx-auto">
         <div className="col-span-1 border-r flex justify-center">
-          <div className="w-60 flex flex-col space-y-4">
-            <Button className="bg-green-500">My Profile</Button>
-            <Button className="bg-yellow-500">Security</Button>
-          </div>
-        </div>
-        <div className="col-span-2 p-4">
-          <h1 className="text-lg font-bold text-black">My Profile</h1>
-          <div className="mt-1">
-            <Card className="w-full border-0">
-              <CardHeader>
-                <CardDescription className="font-bold text-center">
-                  Show and edit your profile
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
-                  <div className="grid gap-2">
-                    <Label>FullName</Label>
-                    <Input
-                      id="fullName"
-                      type="text"
-                      value={fullName}
-                      onChange={(e) => setUsername(e.target.value)}
-                      className="border rounded-md p-2 w-full"
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label>Username</Label>
-                    <Input
-                      id="username"
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      className="border rounded-md p-2 w-full"
-                    />
-                  </div>
+          <Tabs defaultValue="profile" className="w-full">
+            <TabsList className='bg-slate-100'>
+              <TabsTrigger value="profile">Your profile</TabsTrigger>
+              <TabsTrigger value="change-password">Change Password</TabsTrigger>
+            </TabsList>
+            <TabsContent value="profile">
+              <div className="col-span-2 p-4">
+                <div className="mt-1">
+                  <Card className="w-full border-0">
+                    <CardHeader>
+                      <CardDescription className="font-bold text-center">
+                        Show and edit your profile
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
+                        <div className="grid gap-2">
+                          <Label>FullName</Label>
+                          <Input
+                            id="fullName"
+                            type="text"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            className="border rounded-md p-2 w-full"
+                          />
+                        </div>
+                        <div className="grid gap-2">
+                          <Label>Username</Label>
+                          <Input
+                            id="username"
+                            type="text"
+                            value={username}
+                            readOnly
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid w-full gap-6 border rounded-sm p-4">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="grid gap-2">
+                            <Label>Email</Label>
+                            <Input
+                              id="email"
+                              type="email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              className="border rounded-md p-2 w-full"
+                            />
+                          </div>
+
+                          <div className="grid gap-2">
+                            <Label>Phone</Label>
+                            <Input
+                              id="phone"
+                              type="text"
+                              value={phone}
+                              onChange={(e) => setPhone(e.target.value)}
+                              className="border rounded-md p-2 w-full"
+                            />
+                          </div>
+                        </div>
+                        <div className="grid gap-2">
+                          <Label>Current Address</Label>
+                          <Input
+                            id="address"
+                            type="text"
+                            value={address}
+                            className="border rounded-md p-2 w-full"
+                            readOnly
+                          />
+                        </div>
+                        <div className="grid gap-2">
+                          <Label>Street</Label>
+                          <Input
+                            id="street"
+                            type="text"
+                            value={street}
+                            onChange={(e) => setStreet(e.target.value)}
+                            className="border rounded-md p-2 w-full"
+                          />
+                          <LocationSelector
+                            onLocationChange={handleLocationChange}
+                          />
+                        </div>
+                      </div>
+
+                      <CardFooter className="flex justify-end">
+                        <Button
+                          type="submit"
+                          className="bg-blue-500"
+                          onClick={handleUpdate}
+                          disabled={loading}
+                        >
+                          Save Changes
+                        </Button>
+                      </CardFooter>
+                    </CardContent>
+                  </Card>
                 </div>
-
-                <div className="grid w-full gap-6 border rounded-sm p-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="grid gap-2">
-                      <Label>Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                    </div>
-
-                    <div className="grid gap-2">
-                      <Label>Phone</Label>
-                      <Input
-                        id="phone"
-                        type="text"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className="border rounded-md p-2 w-full"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid gap-2">
-                    <Label>Current Address</Label>
-                    <Input
-                      id="address"
-                      type="text"
-                      value={address}
-                      className="border rounded-md p-2 w-full"
-                      readOnly
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <Label>Street</Label>
-                    <Input
-                      id="street"
-                      type="text"
-                      value={street}
-                      onChange={(e) => setStreet(e.target.value)}
-                      className="border rounded-md p-2 w-full"
-                    />
-                    <LocationSelector
-                      onLocationChange={handleLocationChange}
-                    />
-                  </div>
-                </div>
-
-                <CardFooter className="flex justify-end">
-                  <Button
-                    type="submit"
-                    className="bg-blue-500"
-                    onClick={handleUpdate}
-                    disabled={loading}
-                  >
-                    Save Changes
-                  </Button>
-                </CardFooter>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="change-password">
+              <ChangePassword/>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
-    
   );
 }

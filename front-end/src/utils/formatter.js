@@ -23,3 +23,11 @@ export const formatPaymentDate = (payDate) => {
     const second = payDate.substring(12, 14);
     return `${day}/${month}/${year} ${hour}:${minute}:${second}`;
   };
+
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const dayName = format(date, 'EEEE', { locale: vi });
+  // Capitalize first letter of day name
+  const capitalizedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+  return `${capitalizedDayName}, ${format(date, 'dd/MM/yy')}`;
+};

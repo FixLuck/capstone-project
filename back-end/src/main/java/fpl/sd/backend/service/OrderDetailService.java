@@ -46,7 +46,7 @@ public class OrderDetailService {
 //    }
 
         public List<OrderDetailResponse> getAllOrdersByUserId(String userId) {
-            List<CustomerOrder> customerOrders = orderRepository.findByUserId(userId);
+            List<CustomerOrder> customerOrders = orderRepository.findByUserIdOrderByOrderDateDesc(userId);
 
             return customerOrders.stream()
                     .map(this::mapToOrderDetailResponse)

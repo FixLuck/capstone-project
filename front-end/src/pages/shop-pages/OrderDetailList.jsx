@@ -1,12 +1,16 @@
 import React from "react";
 
-import { format } from 'date-fns'
+import { format, set } from 'date-fns'
 import { ChevronDown, ChevronUp, Package } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import api from "@/config/axios";
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser } from "@/store/auth";
+import { formatterToVND } from "@/utils/formatter";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const orders = [
   {
@@ -33,11 +37,50 @@ const orders = [
 ]
 
 export default function OrderDetailList() {
+
+  const [userData, setUserData] = useState({});
+  const [orderList, setOrderList] = useState([]);
+
+
+  const user = useSelector(selectUser);
+  const userName = user ? user.sub : null;
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await api.get(`/users/profile?username=${userName}`);
+        setUserData(response.data.result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUser();
+  }, [userName]);
+
+  useEffect(() => {
+    const fetchOrderInfo = async () => {
+      try {
+          const response = await api.get(`/order-details/user/${userData.id}`)
+          console.log(response.data.result);
+          setOrderList(response.data.result);
+          
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchOrderInfo();
+  }, [userData.id]);
+
+  console.log(orderList);
+  console.log(userData)
+  
+  
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Đơn hàng đã đặt</h1>
       <div className="space-y-4">
-        {orders.map((order) => (
+        {orderList.map((order) => (
           <OrderCard key={order.id} order={order} />
         ))}
       </div>
@@ -48,24 +91,35 @@ export default function OrderDetailList() {
 function OrderCard({ order }) {
   const [isOpen, setIsOpen] = useState(false)
 
+  const getStatusStyle = (status) => {
+    switch (status) {
+      case 'PAID':
+        return 'bg-green-100 text-green-800';
+      case 'PENDING':
+        return 'bg-yellow-100 text-yellow-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+
+
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
-          <span>Đơn hàng #{order.id}</span>
-          <span className={`text-sm px-2 py-1 rounded ${
-            order.status === 'Đã giao hàng' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-          }`}>
-            {order.status}
+          <span>Đơn hàng #{order.id.slice(0, 8)}</span>
+          <span className={`text-sm px-2 py-1 rounded ${getStatusStyle(order.orderStatus)}`}>
+            {order.orderStatus}
           </span>
         </CardTitle>
         <CardDescription>
-          Đặt hàng vào ngày {format(order.date, 'dd/MM/yyyy')}
+          Đặt hàng vào ngày {format(new Date(order.orderDate), 'dd/MM/yyyy')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex justify-between items-center mb-4">
-          <span className="font-semibold">Tổng tiền: {order.total.toFixed(3)} VNĐ</span>
+          <span className="font-semibold">Tổng tiền: {formatterToVND.format(order.finalTotal)} VNĐ</span>
           <Collapsible open={isOpen} onOpenChange={setIsOpen}>
             <CollapsibleTrigger asChild>
               <Button variant="outline">
@@ -84,10 +138,10 @@ function OrderCard({ order }) {
             </CollapsibleTrigger>
             <CollapsibleContent className="mt-4">
               <ul className="space-y-2">
-                {order.items.map((item, index) => (
-                  <li key={index} className="flex justify-between items-center">
-                    <span>{item.name} x{item.quantity}</span>
-                    <span>{(item.price * item.quantity).toFixed(3)} VNĐ</span>
+              {order.cartItems.map((item) => (
+                  <li key={item.variantId} className="flex justify-between items-center">
+                    <span className="me-2">{item.productName}x{item.quantity}</span>
+                    <span className="font-semibold">{formatterToVND.format(item.price * item.quantity)}</span>
                   </li>
                 ))}
               </ul>
@@ -96,7 +150,9 @@ function OrderCard({ order }) {
         </div>
         <div className="flex items-center text-sm text-muted-foreground">
           <Package className="mr-2 h-4 w-4" />
-          <span>{order.items.length} {order.items.length === 1 ? 'sản phẩm' : 'sản phẩm'}</span>
+          <span>
+            {order.cartItems.length} {order.cartItems.length === 1 ? 'sản phẩm' : 'sản phẩm'}
+          </span>
         </div>
       </CardContent>
     </Card>

@@ -2,6 +2,7 @@ package fpl.sd.backend.controller;
 
 
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.request.PasswordChangeRequest;
 import fpl.sd.backend.dto.request.UserCreateRequest;
 import fpl.sd.backend.dto.response.UserResponse;
 import fpl.sd.backend.dto.request.UserUpdateRequest;
@@ -25,7 +26,7 @@ public class UserController {
     UserService userService;
     AuthenticationService authenticationService;
     
-    @PostMapping
+    @PostMapping("/register")
     public ApiResponse<UserResponse> addUser(@RequestBody @Valid UserCreateRequest user) {
         return ApiResponse.<UserResponse>builder()
                 .flag(true)

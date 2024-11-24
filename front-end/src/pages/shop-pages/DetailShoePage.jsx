@@ -28,7 +28,7 @@ export default function DetailShoePage() {
   useEffect(() => {
     const fetchShoe = async () => {
       try {
-        const { data } = await api.get(`shoes/${id}`);
+        const { data } = await api.get(`/shoes/${id}`);
 
         console.log(data.result);
         setShoe(data.result);

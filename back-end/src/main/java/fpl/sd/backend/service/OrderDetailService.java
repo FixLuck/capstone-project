@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +54,7 @@ public class OrderDetailService {
 //    }
 
         public List<OrderDetailResponse> getAllOrdersByUserId(String userId) {
-            List<CustomerOrder> customerOrders = orderRepository.findByUserId(userId);
+            List<CustomerOrder> customerOrders = orderRepository.findByUserIdOrderByOrderDateDesc(userId);
 
             return customerOrders.stream()
                     .map(this::mapToOrderDetailResponse)

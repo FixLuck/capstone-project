@@ -5,9 +5,9 @@ export const fetchFilterOptions = createAsyncThunk(
   "filters/fetchFilterOptions",
   async () => {
     const [brandsRes, categoriesRes, genderRes] = await Promise.all([
-      api.get("brands"),
-      api.get("shoes/categories"),
-      api.get("shoes/genders"),
+      api.get("/brands"),
+      api.get("/shoes/categories"),
+      api.get("/shoes/genders"),
     ]);
     
 

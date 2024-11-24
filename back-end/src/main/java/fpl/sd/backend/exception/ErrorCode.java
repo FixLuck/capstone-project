@@ -23,6 +23,7 @@ public enum ErrorCode {
     EMAIL_ALREADY_EXISTS(409, "Email Already Exists", HttpStatus.CONFLICT),
     ACCOUNT_DISABLED(401, "Account is disabled", HttpStatus.CONFLICT),
 
+
     // Brand-related errors
     BRAND_NOT_FOUND(404, "Brand Not Found", HttpStatus.NOT_FOUND),
     BRAND_ALREADY_EXISTS(409, "Brand Already Exists", HttpStatus.CONFLICT),

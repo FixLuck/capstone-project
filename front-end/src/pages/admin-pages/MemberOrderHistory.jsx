@@ -51,13 +51,13 @@ export default function MemberOrderHistory() {
       {/* Phần lọc */}
       <div className="flex items-center space-x-4 mb-6 p-10">
         <div className="flex space-x-2">
-          <button className="text-blue-500 font-medium">Tất cả Đơn Hàng(50)</button>
-          <button className="text-yellow-500" value="PENDING">Chờ xử lý(10)</button>
-          <button className="text-green-500" value="PAID">Thanh toán thành công(8)</button>
-          <button className="text-red-500" value="CANCELED">Đã hủy(22)</button>
-          <button className="text-purple-500" value="RECEIVED">Đã nhận(22)</button>
-          <button className="text-orange-500" value="SHIPPED">Đã giao(22)</button>
-          <button className="text-amber-900" value="PAYMENT_FAILED">Thanh toán thất bại(22)</button>
+          <button className="text-blue-500 font-medium">Tất cả Đơn Hàng</button>
+          <button className="text-yellow-500" value="PENDING">Chờ xử lý</button>
+          <button className="text-green-500" value="PAID">Thanh toán thành công</button>
+          <button className="text-red-500" value="CANCELED">Đã hủy</button>
+          <button className="text-purple-500" value="RECEIVED">Đã nhận</button>
+          <button className="text-orange-500" value="SHIPPED">Đã giao</button>
+          <button className="text-amber-900" value="PAYMENT_FAILED">Thanh toán thất bại</button>
 
         </div>
       </div>
@@ -107,7 +107,6 @@ export default function MemberOrderHistory() {
                 <TableCell className="p-3 text-green-500">{customerOrder.finalTotal}</TableCell>
                 <TableCell>
                 {customerOrder.orderStatus }
-
                 </TableCell>
                 <TableCell className="p-3 text-blue-500 cursor-pointer">
                 <UpdateMemberOrderHistory orderId={customerOrder.id} />

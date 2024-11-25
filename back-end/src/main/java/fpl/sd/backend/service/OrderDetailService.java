@@ -2,14 +2,18 @@ package fpl.sd.backend.service;
 
 
 import fpl.sd.backend.constant.OrderConstants;
+import fpl.sd.backend.constant.ShoeConstants;
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.DiscountUpdateRequest;
 import fpl.sd.backend.dto.request.OrderUpdateRequest;
 import fpl.sd.backend.dto.response.CartItemResponse;
 import fpl.sd.backend.dto.response.DiscountResponse;
 import fpl.sd.backend.dto.response.OrderDetailResponse;
+import fpl.sd.backend.dto.response.ShoeResponse;
 import fpl.sd.backend.entity.CustomerOrder;
 import fpl.sd.backend.entity.Discount;
 import fpl.sd.backend.entity.OrderDetail;
+import fpl.sd.backend.entity.Shoe;
 import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
 import fpl.sd.backend.mapper.OrderMapper;
@@ -18,6 +22,10 @@ import fpl.sd.backend.repository.OrderDetailRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,6 +46,18 @@ public class OrderDetailService {
                 .map(this::mapToOrderDetailResponse)
                 .collect(Collectors.toList());
     }
+
+    public List<OrderDetailResponse> getByOrderStatus(String orderStatus) {
+        OrderConstants.OrderStatus orderStatusEnum = OrderConstants.getOrderStatusFromString(orderStatus);
+        if (orderStatusEnum == null) {
+            throw new IllegalArgumentException("Invalid orderStatus provided");
+        }
+        List<CustomerOrder> orders = orderRepository.findByOrderStatus(orderStatusEnum);
+        return orders.stream()
+                .map(this::mapToOrderDetailResponse)
+                .toList();
+    }
+
 
     public OrderDetailResponse getOrderByIdAndUserId(String orderId, String userId) {
         CustomerOrder customerOrder = orderRepository.findByIdAndUserId(orderId, userId)
@@ -116,5 +136,52 @@ public class OrderDetailService {
         return response;
     }
 
+
+    public PageResponse<OrderDetailResponse> getOrderPaging(
+                                                    String orderStatusString,
+                                                    int page,
+                                                    int size,
+                                                    String sortOrder
+    ) {
+
+        Sort sort = createSort(sortOrder);
+
+
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
+
+        OrderConstants.OrderStatus orderStatusEnum = OrderConstants.getOrderStatusFromString(orderStatusString);
+
+        Page<CustomerOrder> orderData = orderRepository.findCustomerOrderByFilters(orderStatusEnum, pageable);
+
+        var  orderList= orderData.getContent()
+                .stream()
+                .map(this::mapToOrderDetailResponse)
+                .toList();
+
+        return PageResponse.<OrderDetailResponse>builder()
+                .currentPage(page)
+                .pageSize(orderData.getSize())
+                .totalPages(orderData.getTotalPages())
+                .totalElements(orderData.getTotalElements())
+                .data(orderList)
+                .build();
+
+
+    }
+
+    private Sort createSort(String sortOrder) {
+
+        String date = "orderDate";
+        if (sortOrder == null) {
+            return Sort.by(Sort.Direction.ASC, date);
+        }
+
+        return switch (sortOrder.toLowerCase()) {
+            case "desc" -> Sort.by(Sort.Direction.DESC, "finalTotal");
+            case "asc" -> Sort.by(Sort.Direction.ASC, "finalTotal");
+            case "date_desc" -> Sort.by(Sort.Direction.DESC, date);
+            default -> Sort.by(Sort.Direction.ASC, date);
+        };
+    }
 
 }

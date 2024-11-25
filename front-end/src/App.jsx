@@ -31,7 +31,8 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
 import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
-
+// import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
+import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPaging";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,7 +64,8 @@ const router = createBrowserRouter([
       { index: true, element: <WelcomeAdmin /> },
       { path: "discount-management", element: <DiscountManagement /> },
       { path: "discount-management/new", element: <AddDiscountPage /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
+      { path: "member-order-history", element: <MemberOrderHistoryPaging /> },
+      // {path: "member-order-history/detail", element: <MemberOrderHistoryDetail />},
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenueStatistics /> },
       { path: "manage-shoes", element: <ShoePaging /> },

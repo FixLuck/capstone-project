@@ -9,10 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +22,19 @@ public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, St
     List<CustomerOrder> findByUserIdOrderByOrderDateDesc(String userId);
 
     Optional<CustomerOrder> findByIdAndUserId(String orderId, String userId);
+    List<CustomerOrder> findByOrderStatus(OrderConstants.OrderStatus orderStatus);
+    @Query("""
+    SELECT c FROM CustomerOrder c
+    WHERE 
+     (:orderStatus IS NULL OR c.orderStatus = :orderStatus)
+
+    """)
+    Page<CustomerOrder> findCustomerOrderByFilters(
+                                  @Param("orderStatus") OrderConstants.OrderStatus orderStatus,
+
+                                  Pageable pageable
+    );
+
 
     @Query(value = "SELECT DATE(order_date) as order_date, " +
             "SUM(final_total) as daily_total " +

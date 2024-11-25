@@ -37,7 +37,7 @@ public class SecurityConfig {
             "/orders/**",
             "/payment/**",
             "/order-details/**",
-            "/report/**"
+            "/report/**",
             "/auth/logout",
     };
 

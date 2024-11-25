@@ -159,7 +159,7 @@ export default function ListShoePage() {
       />
       <div className="flex p-4">
         <div className="w-1/3 me-4">
-          <Accordion type="single" collapsible>
+          <Accordion type="single"collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>Hãng giày</AccordionTrigger>
               {brands.map((brand, index) => (

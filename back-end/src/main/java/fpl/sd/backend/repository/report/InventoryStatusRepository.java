@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface InventoryStatusRepository extends JpaRepository<InventoryStatus, String> {
 
-    @Query(nativeQuery = true, value = "select * from inventory_status limit 10")
+    @Query(nativeQuery = true, value = "select * from inventory_status limit 5")
     List<InventoryStatus> getInventoryStatus();
 }

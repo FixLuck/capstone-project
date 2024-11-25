@@ -42,6 +42,14 @@ public class SecurityConfig {
         this.customJwtDecoder = customJwtDecoder;
     }
 
+    private final String [] adminEndpoint = {
+            "/shoes/**",
+            "/discounts/**",
+            "/order-details/**",
+            "/report/**"
+
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request -> request
@@ -50,6 +58,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/brands/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/shoes/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/orders/apply-discount").permitAll()
+                .requestMatchers(HttpMethod.PUT, adminEndpoint).hasAuthority("ROLE_ADMIN")
+                .requestMatchers(HttpMethod.POST, adminEndpoint).hasAuthority("ROLE_ADMIN")
                 .anyRequest()
                 .authenticated());
 

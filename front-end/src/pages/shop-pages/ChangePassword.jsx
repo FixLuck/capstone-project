@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useDispatch } from "react-redux";
+import { authActions } from "@/store";
+
 
 const changePasswordSchema = z
   .object({
@@ -24,6 +27,8 @@ const changePasswordSchema = z
 export default function ChangePassword() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
+  const dispatcch = useDispatch();
 
   const {
     register,
@@ -39,6 +44,10 @@ export default function ChangePassword() {
         if (response.data.flag) {
           setIsSuccess(true);
           setIsError(false);
+          setTimeout(() => {
+            dispatcch(authActions.logout());
+            navigate("/login");
+          }, 2000);
         } else {
           setIsError(true);
           setIsSuccess(false);

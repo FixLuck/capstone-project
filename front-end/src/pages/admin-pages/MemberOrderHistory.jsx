@@ -30,6 +30,7 @@ import {
 import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import axios from "axios";
 import api from "@/config/axios";
+import { formatterToVND } from "@/utils/formatter";
 
 import UpdateMemberOrderHistory from "./UpdateMemberOrderHistoryForm";
 
@@ -44,6 +45,13 @@ export default function MemberOrderHistory() {
     fetchCustomerOrders();
   }, []);
 
+  const pendingOrders = customerOrders.filter((order) => order.orderStatus === "PENDING");
+  const paidOrders = customerOrders.filter((order) => order.orderStatus === "PAID");
+  const canceledOrders = customerOrders.filter((order) => order.orderStatus === "CANCELED");
+  const receivedOrders = customerOrders.filter((order) => order.orderStatus === "RECEIVED");
+  const shippedOrders = customerOrders.filter((order) => order.orderStatus === "SHIPPED");
+  const failPaymentOrders = customerOrders.filter((order) => order.orderStatus === "PAYMENT_FAILED");
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4 text-center">Lịch sử Đơn Hàng</h1>
@@ -51,13 +59,13 @@ export default function MemberOrderHistory() {
       {/* Phần lọc */}
       <div className="flex items-center space-x-4 mb-6 p-10">
         <div className="flex space-x-2">
-          <button className="text-blue-500 font-medium">Tất cả Đơn Hàng(50)</button>
-          <button className="text-yellow-500" value="PENDING">Chờ xử lý(10)</button>
-          <button className="text-green-500" value="PAID">Thanh toán thành công(8)</button>
-          <button className="text-red-500" value="CANCELED">Đã hủy(22)</button>
-          <button className="text-purple-500" value="RECEIVED">Đã nhận(22)</button>
-          <button className="text-orange-500" value="SHIPPED">Đã giao(22)</button>
-          <button className="text-amber-900" value="PAYMENT_FAILED">Thanh toán thất bại(22)</button>
+          <button className="text-blue-500 font-medium">Tất cả Đơn Hàng({customerOrders.length})</button>
+          <button className="text-yellow-500" value="PENDING">Chờ xử lý({pendingOrders.length})</button>
+          <button className="text-green-500" value="PAID">Thanh toán thành công({paidOrders.length})</button>
+          <button className="text-red-500" value="CANCELED">Đã hủy({canceledOrders.length})</button>
+          <button className="text-purple-500" value="RECEIVED">Đã nhận({receivedOrders.length})</button>
+          <button className="text-orange-500" value="SHIPPED">Đã giao({shippedOrders.length})</button>
+          <button className="text-amber-900" value="PAYMENT_FAILED">Thanh toán thất bại({failPaymentOrders.length})</button>
 
         </div>
       </div>
@@ -100,11 +108,11 @@ export default function MemberOrderHistory() {
           {Array.isArray(customerOrders) && customerOrders.length > 0 ? (
             customerOrders.map((customerOrder,index) => (
               <TableRow key={customerOrder.id} className="hover:bg-gray-50">
-                <TableCell className="p-3 text-blue-500">{index+1}</TableCell>
+                <TableCell className="p-3 text-blue-500">#{customerOrder.id.slice(0, 8)}</TableCell>
                 <TableCell className="p-3">{customerOrder.username}</TableCell>
                 <TableCell className="p-3">{new Date(customerOrder.orderDate).toLocaleString()}</TableCell>
-                <TableCell className="p-3 text-yellow-500">{customerOrder.originalTotal}</TableCell>
-                <TableCell className="p-3 text-green-500">{customerOrder.finalTotal}</TableCell>
+                <TableCell className="p-3 text-yellow-500">{formatterToVND.format(customerOrder.originalTotal)}</TableCell>
+                <TableCell className="p-3 text-green-500">{formatterToVND.format(customerOrder.finalTotal)}</TableCell>
                 <TableCell>
                 {customerOrder.orderStatus }
 

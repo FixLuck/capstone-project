@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoading, selectError } from "../../store/auth";
 import { authActions } from "@/store";
+import { selectUser } from "../../store/auth";
 
 const schema = z.object({
   username: z.string().min(1, { message: "Tên người dùng là bắt buộc" }),

@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, String> {
     Optional<CustomerOrder> findByIdAndUserIdAndOrderStatus(String orderId, String userId, OrderConstants.OrderStatus orderStatus);
-    List<CustomerOrder> findByUserId(String userId);
+    List<CustomerOrder> findByUserIdOrderByOrderDateDesc(String userId);
     Optional<CustomerOrder> findByIdAndUserId(String orderId, String userId);
     List<CustomerOrder> findByOrderStatus(OrderConstants.OrderStatus orderStatus);
     @Query("""

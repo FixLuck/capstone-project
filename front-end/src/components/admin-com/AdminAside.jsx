@@ -19,8 +19,13 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import "../../index.css";
+import { useDispatch } from "react-redux";
+import { authActions } from "@/store";
 
 export function AdminAside() {
+
+  const dispatch = useDispatch();
+
   return (
     <aside className="h-full">
       {/* Card without rounded corners */}
@@ -111,6 +116,7 @@ export function AdminAside() {
               </li>
               <li className="mt-12">
                 <Link
+                onClick={() => dispatch(authActions.logout())}
                   to="/logout"
                   className="flex items-center justify-start gap-3 text-gray-700 hover:text-red-500 p-4 rounded-none hover:bg-gray-100 transition duration-200 w-full"
                 >

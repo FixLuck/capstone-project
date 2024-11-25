@@ -5,9 +5,13 @@ import com.nimbusds.jose.JOSEException;
 import fpl.sd.backend.dto.ApiResponse;
 import fpl.sd.backend.dto.request.AuthenticationRequest;
 import fpl.sd.backend.dto.request.IntrospectRequest;
+import fpl.sd.backend.dto.request.LogoutRequest;
+import fpl.sd.backend.dto.request.PasswordChangeRequest;
 import fpl.sd.backend.dto.response.AuthenticationResponse;
 import fpl.sd.backend.dto.response.IntrospectResponse;
 import fpl.sd.backend.service.AuthenticationService;
+import fpl.sd.backend.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -18,10 +22,11 @@ import java.text.ParseException;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin("*")
+@CrossOrigin(origins = {"http://localhost:5173"})
 @FieldDefaults(level = AccessLevel.PRIVATE,makeFinal = true)
 public class AuthenticationController {
     AuthenticationService authenticationService;
+    UserService userService;
 
 
     @PostMapping("/token")
@@ -39,6 +44,25 @@ public class AuthenticationController {
         var rs = authenticationService.introspect(request);
         return ApiResponse.<IntrospectResponse>builder()
                 .result(rs)
+                .build();
+    }
+
+    @PostMapping("/change-password")
+    public ApiResponse<Void> changePassword(@Valid @RequestBody PasswordChangeRequest request) {
+        userService.changePassword(request);
+        return ApiResponse.<Void>builder()
+                .flag(true)
+                .message("Password changed successfully")
+                .build();
+    }
+
+    @PostMapping("/logout")
+    public ApiResponse<Void> logout(@RequestBody LogoutRequest request) throws ParseException {
+        authenticationService.logout(request);
+        return ApiResponse.<Void>builder()
+                .code(200)
+                .message("Successfully logged out.")
+                .result(null)
                 .build();
     }
 }

@@ -1,5 +1,6 @@
 package fpl.sd.backend.dto.response.report;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -13,8 +14,8 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerSegmentationDTO {
-
     String customerId;
     String fullName;
     Integer totalOrders;

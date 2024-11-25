@@ -1,13 +1,11 @@
 package fpl.sd.backend.service;
 
-import fpl.sd.backend.dto.response.report.CustomerSegmentationDTO;
-import fpl.sd.backend.dto.response.report.DailyRevenueReportDTO;
-import fpl.sd.backend.dto.response.report.InventoryStatusDTO;
-import fpl.sd.backend.dto.response.report.ProductPerformanceDTO;
+import fpl.sd.backend.dto.response.report.*;
 import fpl.sd.backend.entity.report.CustomerSegmentation;
 import fpl.sd.backend.entity.report.DailyRevenueReport;
 import fpl.sd.backend.entity.report.InventoryStatus;
 import fpl.sd.backend.entity.report.ProductPerformance;
+import fpl.sd.backend.repository.CustomerOrderRepository;
 import fpl.sd.backend.repository.report.CustomerSegmentationRepository;
 import fpl.sd.backend.repository.report.DailyRevenueReportRepository;
 import fpl.sd.backend.repository.report.InventoryStatusRepository;
@@ -17,7 +15,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +32,7 @@ public class ReportService {
     ProductPerformanceRepository productPerformanceRepository;
     InventoryStatusRepository inventoryStatusRepository;
     CustomerSegmentationRepository customerSegmentationRepository;
+    CustomerOrderRepository customerOrderRepository;
 
     public List<DailyRevenueReportDTO> getDailyRevenueReports() {
         List<DailyRevenueReport> reportDailies = dailyRevenueReportRepository.getDailyRevenueReport();
@@ -87,6 +92,43 @@ public class ReportService {
                     return customerSegmentationDTO;
                 }).toList();
     }
+
+    public List<DailyTotalDTO> getDailyTotals(LocalDate startDate, LocalDate endDate) {
+        Instant start = startDate != null
+                ? startDate.atStartOfDay(ZoneId.systemDefault()).toInstant()
+                : null;
+        Instant end = endDate != null
+                ? endDate.atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant()
+                : null;
+
+        // Validate dates if both are provided
+        if (startDate != null && endDate != null && startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("Start date must be before or equal to end date");
+        }
+
+        List<Object[]> results = customerOrderRepository.getDailyTotals(start, end);
+        return results.stream()
+                .map(result -> new DailyTotalDTO(
+                        ((Date) result[0]).toLocalDate(),
+                        ((Number) result[1]).doubleValue()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public List<MonthlyTotalDTO> getMonthlyTotals(int year) {
+        List<Object[]> results = customerOrderRepository.getMonthlyTotals(year);
+        return results.stream()
+                .map(result -> new MonthlyTotalDTO(
+                        ((Number) result[0]).intValue(),
+                        ((Number) result[1]).intValue(),
+                        ((Number) result[2]).doubleValue()
+                ))
+                .collect(Collectors.toList());
+    }
+
+
+
+
 
 
 

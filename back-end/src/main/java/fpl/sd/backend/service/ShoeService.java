@@ -25,6 +25,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 
@@ -95,6 +96,7 @@ public class ShoeService {
                 .map(shoeHelper::getShoeResponse)
                 .toList();
     }
+
 
     public ShoeResponse createShoe(ShoeCreateRequest request) {
         Shoe newShoe = shoeMapper.toShoe(request);

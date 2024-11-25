@@ -31,6 +31,7 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
 import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
+import RevenuePage from "./pages/admin-pages/RevenuePage";
 
 const router = createBrowserRouter([
   {
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
       { path: "discount-management/new", element: <AddDiscountPage /> },
       { path: "member-order-history", element: <MemberOrderHistory /> },
       { path: "account-management", element: <MemberManagemant /> },
-      { path: "revenue-stats", element: <RevenueStatistics /> },
+      { path: "revenue-stats", element: <RevenuePage /> },
       { path: "manage-shoes", element: <ShoePaging /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },
     ],

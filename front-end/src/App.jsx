@@ -33,6 +33,10 @@ import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
 // import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
 import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPaging";
+
+import RevenuePage from "./pages/admin-pages/RevenuePage";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,7 +71,7 @@ const router = createBrowserRouter([
       { path: "member-order-history", element: <MemberOrderHistoryPaging /> },
       // {path: "member-order-history/detail", element: <MemberOrderHistoryDetail />},
       { path: "account-management", element: <MemberManagemant /> },
-      { path: "revenue-stats", element: <RevenueStatistics /> },
+      { path: "revenue-stats", element: <RevenuePage /> },
       { path: "manage-shoes", element: <ShoePaging /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },
     ],

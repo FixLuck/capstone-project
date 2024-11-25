@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { jwtDecode } from "jwt-decode";
+import api from "@/config/axios";
 
 const initialState = {
   user: null,
@@ -30,10 +31,14 @@ const authSlice = createSlice({
       state.token = null;
     },
     logout: (state) => {
+      api.post("/auth/logout", {
+        token: localStorage.getItem("token"),
+      });
       state.user = null;
       state.token = null;
       state.error = null;
       localStorage.removeItem("token");
+      
     },
     updateUser: (state, action) => {
       state.user = {

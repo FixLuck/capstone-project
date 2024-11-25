@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ProductPerformanceRepository extends CrudRepository<ProductPerformance, String> {
 
-    @Query(nativeQuery = true, value = "select * from product_performance limit 10;")
+    @Query(nativeQuery = true, value = "select * from product_performance limit 5")
     List<ProductPerformance> getProductPerformance();
 }

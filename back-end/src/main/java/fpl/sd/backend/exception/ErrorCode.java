@@ -59,6 +59,9 @@ public enum ErrorCode {
     INTERNAL_SERVER_ERROR(500, "Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR),
     PAYMENT_ALREADY_PROCESSED(500, "Payment already processed", HttpStatus.CONFLICT),
 
+    //Email-related errors
+    SEND_MAIL_ERROR(500, "Send mail error", HttpStatus.INTERNAL_SERVER_ERROR),
+
     ;
 
 

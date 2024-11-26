@@ -39,6 +39,10 @@ public class SecurityConfig {
             "/order-details/**",
             "/report/**",
             "/auth/logout",
+            "/auth/email/send",
+            "/auth/verify-otp",
+            "/auth/reset-password",
+
     };
 
     @Value("${jwt.signerKey}")

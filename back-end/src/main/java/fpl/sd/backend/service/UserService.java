@@ -16,6 +16,7 @@ import fpl.sd.backend.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,12 +24,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@Slf4j
 public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
@@ -153,6 +156,49 @@ public class UserService {
         user.setUpdatedAt(Instant.now());
         userRepository.save(user);
 
+    }
+
+    public boolean verifyOtp(String email, String otpCode) {
+        Optional<User> existingUser = userRepository.findByEmailAndOtpCode(email, otpCode);
+
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+
+            // Check if OTP has expired
+            if (user.getOtpExpiryDate().isBefore(LocalDateTime.now())) {
+                log.warn("OTP expired for email: {}", email);
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean resetPassword(String email, String newPassword, String confirmPassword) {
+        // Validate password match
+        if (!newPassword.equals(confirmPassword)) {
+            throw new AppException(ErrorCode.PASSWORD_INVALID);
+        }
+
+        Optional<User> existingUser = userRepository.findByEmail(email);
+
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+
+            user.setPassword(passwordEncoder.encode(newPassword));
+            user.setUpdatedAt(Instant.now());
+            user.setOtpCode(null);
+            user.setOtpExpiryDate(null);
+
+            userRepository.save(user);
+
+            log.info("Password reset successful for email: {}", email);
+            return true;
+        }
+
+        return false;
     }
 
 

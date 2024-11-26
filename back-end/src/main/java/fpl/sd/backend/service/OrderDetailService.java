@@ -65,6 +65,7 @@ public class OrderDetailService {
 
         return mapToOrderDetailResponse(customerOrder);
     }
+
 //  tìm kiếm bằng order id, user id, trạng thái đơn hàng
 //    public OrderDetailResponse getOrderByIdAndUserIdAndStatus(String orderId, String userId, OrderConstants.OrderStatus status) {
 //        CustomerOrder customerOrder = orderRepository.findByIdAndUserIdAndOrderStatus(orderId, userId, status)
@@ -116,7 +117,7 @@ public class OrderDetailService {
         response.setFinalTotal(order.getFinalTotal());
         response.setOrderStatus(order.getOrderStatus());
         response.setOriginalTotal(order.getOriginalTotal());
-
+        response.setUserId(order.getUser().getId());
         // Gán giá trị username từ thực thể User
         if (order.getUser() != null) {
             response.setUsername(order.getUser().getUsername());

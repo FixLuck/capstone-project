@@ -31,7 +31,7 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
 import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
-// import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
+import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
 import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPaging";
 
 import RevenuePage from "./pages/admin-pages/RevenuePage";
@@ -69,11 +69,12 @@ const router = createBrowserRouter([
       { path: "discount-management", element: <DiscountManagement /> },
       { path: "discount-management/new", element: <AddDiscountPage /> },
       { path: "member-order-history", element: <MemberOrderHistoryPaging /> },
-      // {path: "member-order-history/detail", element: <MemberOrderHistoryDetail />},
+      { path: "member-order-history/detail/:orderId/:userId", element: <MemberOrderHistoryDetail /> },
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenuePage /> },
       { path: "manage-shoes", element: <ShoePaging /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },
+      { path: "profile", element: <Profile /> },
     ],
   },
 ]);

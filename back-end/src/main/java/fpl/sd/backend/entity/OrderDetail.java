@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,5 +32,8 @@ public class OrderDetail {
 
     @Column(nullable = false)
     double price;
+
+
+
 
 }

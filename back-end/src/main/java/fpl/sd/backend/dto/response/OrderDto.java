@@ -18,6 +18,7 @@ public class OrderDto {
     double discountAmount;
     double finalTotal;
     String username;
+    String userId;
     String orderStatus;
     Instant orderDate;
     Integer discountId;

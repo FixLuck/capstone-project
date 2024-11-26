@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios"; // We'll use axios for HTTP requests
 import api from "@/config/axios";
-
 // You'll need to install and import your UI components library
 // For this example, I'll assume we're using a hypothetical 'react-ui-library'
 // import { Input, Button, Select, Table } from 'react-ui-library'
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,16 +26,20 @@ import { formatterToVND } from "@/utils/formatter";
 import UpdateMemberOrderHistory from "./UpdateMemberOrderHistoryForm";
 // import { IoIosAddCircleOutline } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-// import MemberOrderHistoryDetail from "./MemberOrderHistoryDetail";
+import MemberOrderHistoryDetail from "./MemberOrderHistoryDetail";
+import { Pagination } from "@/components/ui/pagination";
 
 const MemberOrderHistoryPaging   = () => {
+  const navigate = useNavigate();
   const [orderData, setOrderData] = useState(null);
+
   const [orderStatus, setOrderStatus] = useState("");
   const handleStatusChange = (status) => {
     setOrderStatus(status); // Cập nhật trạng thái
   };
   const [sortOrder, setSortOrder] = useState("date");
   const [page, setPage] = useState(1);
+
   const [size, setSize] = useState(5);
 
   const fetchOrderData = useCallback(async () => {
@@ -90,6 +92,7 @@ const MemberOrderHistoryPaging   = () => {
     );
   }
 
+
   return (
     // <div className="container mx-auto p-6 space-y-6 max-w-7xl">
     <div className="mt-10 p-5">
@@ -97,49 +100,56 @@ const MemberOrderHistoryPaging   = () => {
 
     <div className="flex items-center space-x-4 mb-6 p-10">
     <div className="flex space-x-2">
-      <button
-        onClick={() => handleStatusChange("")}
-        className={`font-medium ${orderStatus === "" ? "text-blue-700" : "text-blue-500"}`}
-      >
-        Tất cả Đơn Hàng
-      </button>
-      <button
-        onClick={() => handleStatusChange("PENDING")}
-        className={`font-medium ${orderStatus === "PENDING" ? "text-yellow-700" : "text-yellow-500"}`}
-      >
-        Chờ xử lý
-      </button>
-      <button
-        onClick={() => handleStatusChange("PAID")}
-        className={`font-medium ${orderStatus === "PAID" ? "text-green-700" : "text-green-500"}`}
-      >
-        Thanh toán thành công
-      </button>
-      <button
-        onClick={() => handleStatusChange("CANCELED")}
-        className={`font-medium ${orderStatus === "CANCELED" ? "text-red-700" : "text-red-500"}`}
-      >
-        Đã hủy
-      </button>
-      <button
-        onClick={() => handleStatusChange("RECEIVED")}
-        className={`font-medium ${orderStatus === "RECEIVED" ? "text-purple-700" : "text-purple-500"}`}
-      >
-        Đã nhận
-      </button>
-      <button
-        onClick={() => handleStatusChange("SHIPPED")}
-        className={`font-medium ${orderStatus === "SHIPPED" ? "text-orange-700" : "text-orange-500"}`}
-      >
-        Đã giao
-      </button>
-      <button
-        onClick={() => handleStatusChange("PAYMENT_FAILED")}
-        className={`font-medium ${orderStatus === "PAYMENT_FAILED" ? "text-amber-700" : "text-amber-900"}`}
-      >
-        Thanh toán thất bại
-      </button>
-    </div>
+  <button
+    onClick={() => handleStatusChange("")}
+    className={`font-medium ${orderStatus === "" ? "text-blue-700" : "text-blue-500"}`}
+  >
+    Tất cả Đơn Hàng({orderData?.data?.length || 0})
+  </button>
+  <button
+    onClick={() => handleStatusChange("PENDING")}
+    className={`font-medium ${orderStatus === "PENDING" ? "text-yellow-700" : "text-yellow-500"}`}
+  >
+    Chờ xử lý(
+    {orderData?.data?.filter((order) => order.orderStatus === "PENDING").length || 0})
+  </button>
+  <button
+    onClick={() => handleStatusChange("PAID")}
+    className={`font-medium ${orderStatus === "PAID" ? "text-green-700" : "text-green-500"}`}
+  >
+    Thanh toán thành công(
+    {orderData?.data?.filter((order) => order.orderStatus === "PAID").length || 0})
+  </button>
+  <button
+    onClick={() => handleStatusChange("CANCELED")}
+    className={`font-medium ${orderStatus === "CANCELED" ? "text-red-700" : "text-red-500"}`}
+  >
+    Đã hủy(
+    {orderData?.data?.filter((order) => order.orderStatus === "CANCELED").length || 0})
+  </button>
+  <button
+    onClick={() => handleStatusChange("RECEIVED")}
+    className={`font-medium ${orderStatus === "RECEIVED" ? "text-purple-700" : "text-purple-500"}`}
+  >
+    Đã nhận(
+    {orderData?.data?.filter((order) => order.orderStatus === "RECEIVED").length || 0})
+  </button>
+  <button
+    onClick={() => handleStatusChange("SHIPPED")}
+    className={`font-medium ${orderStatus === "SHIPPED" ? "text-orange-700" : "text-orange-500"}`}
+  >
+    Đã giao(
+    {orderData?.data?.filter((order) => order.orderStatus === "SHIPPED").length || 0})
+  </button>
+  <button
+    onClick={() => handleStatusChange("PAYMENT_FAILED")}
+    className={`font-medium ${orderStatus === "PAYMENT_FAILED" ? "text-amber-700" : "text-amber-900"}`}
+  >
+    Thanh toán thất bại(
+    {orderData?.data?.filter((order) => order.orderStatus === "PAYMENT_FAILED").length || 0})
+  </button>
+</div>
+
     <div className="flex items-center space-x-2" >
         <Select value={sortOrder} onValueChange={setSortOrder} className="flex items-center space-x-2">
           <SelectTrigger>
@@ -192,7 +202,16 @@ const MemberOrderHistoryPaging   = () => {
                 </TableCell>
                 <TableCell className="p-3 text-blue-500 cursor-pointer">
                 <UpdateMemberOrderHistory orderId={customerOrder.id} />
-                {/* <MemberOrderHistoryDetail orderId={customerOrder.id} /> */}
+                <Button
+                  variant="ghost"
+                  onClick={() =>
+                    navigate(`/admin/member-order-history/detail/${customerOrder.id}/${customerOrder.userId}`)
+                  }
+                >
+                  Xem chi tiết
+                </Button>
+
+
                 </TableCell>
 
               </TableRow>

@@ -28,6 +28,7 @@ import { formatterToVND } from "@/utils/formatter";
 import UpdateShoeForm from "../admin-pages/UpdateShoeForm";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import { Pagination } from "@/components/ui/pagination";
 
 const ShoeManagement = () => {
   const [shoeData, setShoeData] = useState(null);

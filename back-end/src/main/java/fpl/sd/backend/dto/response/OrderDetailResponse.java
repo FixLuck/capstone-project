@@ -29,7 +29,7 @@ public class OrderDetailResponse {
     Double originalTotal;
     OrderConstants.OrderStatus orderStatus;
     String username;
-
+    String userId;
     List<CartItemResponse> cartItems;
 
 
@@ -39,6 +39,7 @@ public class OrderDetailResponse {
         orderDetailResponse.setFinalTotal(finalTotal);
         orderDetailResponse.setOriginalTotal(originalTotal);
         orderDetailResponse.setOrderStatus(orderStatus);
+        orderDetailResponse.setUserId(id);
         orderDetailResponse.setId(id);
         // Ánh xạ username từ User entity
         if (customerOrder.getUser() != null) {

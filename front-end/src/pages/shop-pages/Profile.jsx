@@ -146,7 +146,7 @@ function Profile() {
         theme="light"
         transition:Bounce
       />
-      <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border">
+      <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border h-screen">
         <div className="col-span-1 border-r flex justify-center">
           <div className="w-60 flex flex-col space-y-4">
             <Button className="bg-green-500">My Profile</Button>

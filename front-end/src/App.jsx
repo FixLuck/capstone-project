@@ -32,6 +32,9 @@ import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
 import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
 import RevenuePage from "./pages/admin-pages/RevenuePage";
+import ForgotPassword from "./pages/shop-pages/ForgotPassword";
+import VerifyCode from "./pages/shop-pages/VerifyCode";
+import ResetPassword from "./pages/shop-pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +57,9 @@ const router = createBrowserRouter([
       { path: "terms", element: <Terms /> },
       { path: "privacy", element: <Privacy /> },
       { path: "order-history", element: <OrderDetailList /> },
+      { path: "forgot-password", element: <ForgotPassword /> },
+      { path: "forgot-password/verify-otp", element: <VerifyCode /> },
+      { path: "forgot-password/reset-password", element: <ResetPassword /> },
     ],
   },
   {

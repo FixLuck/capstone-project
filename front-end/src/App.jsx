@@ -31,10 +31,14 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
 import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
+// import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
+import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPaging";
+
 import RevenuePage from "./pages/admin-pages/RevenuePage";
 import ForgotPassword from "./pages/shop-pages/ForgotPassword";
 import VerifyCode from "./pages/shop-pages/VerifyCode";
 import ResetPassword from "./pages/shop-pages/ResetPassword";
+
 
 const router = createBrowserRouter([
   {
@@ -70,7 +74,8 @@ const router = createBrowserRouter([
       { index: true, element: <WelcomeAdmin /> },
       { path: "discount-management", element: <DiscountManagement /> },
       { path: "discount-management/new", element: <AddDiscountPage /> },
-      { path: "member-order-history", element: <MemberOrderHistory /> },
+      { path: "member-order-history", element: <MemberOrderHistoryPaging /> },
+      // {path: "member-order-history/detail", element: <MemberOrderHistoryDetail />},
       { path: "account-management", element: <MemberManagemant /> },
       { path: "revenue-stats", element: <RevenuePage /> },
       { path: "manage-shoes", element: <ShoePaging /> },

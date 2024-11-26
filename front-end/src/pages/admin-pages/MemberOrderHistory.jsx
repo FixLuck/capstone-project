@@ -115,7 +115,6 @@ export default function MemberOrderHistory() {
                 <TableCell className="p-3 text-green-500">{formatterToVND.format(customerOrder.finalTotal)}</TableCell>
                 <TableCell>
                 {customerOrder.orderStatus }
-
                 </TableCell>
                 <TableCell className="p-3 text-blue-500 cursor-pointer">
                 <UpdateMemberOrderHistory orderId={customerOrder.id} />

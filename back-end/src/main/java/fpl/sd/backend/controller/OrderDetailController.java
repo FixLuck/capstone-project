@@ -1,10 +1,15 @@
 package fpl.sd.backend.controller;
 
+import fpl.sd.backend.constant.OrderConstants;
+import fpl.sd.backend.constant.ShoeConstants;
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.DiscountUpdateRequest;
 import fpl.sd.backend.dto.request.OrderUpdateRequest;
 
+import fpl.sd.backend.dto.response.EnumResponse;
 import fpl.sd.backend.dto.response.OrderDetailResponse;
+import fpl.sd.backend.dto.response.ShoeResponse;
 import fpl.sd.backend.entity.OrderDetail;
 import fpl.sd.backend.service.OrderDetailService;
 import jakarta.validation.Valid;
@@ -43,6 +48,7 @@ public class OrderDetailController {
                 .build();
     }
 
+
     @GetMapping("/order/{orderId}")
     public ApiResponse<OrderDetailResponse> getOrderDetailByOrderId(@PathVariable String orderId) {
         return ApiResponse.<OrderDetailResponse>builder()
@@ -72,6 +78,31 @@ public class OrderDetailController {
                 .flag(true)
                 .message("Successfully loaded")
                 .result(orderDetailService.getOrderByIdAndUserId(orderId, userId))
+                .build();
+    }
+
+    @GetMapping("/orderStatus")
+    public ApiResponse<List<EnumResponse>> getByOrderStatus() {
+        return ApiResponse.<List<EnumResponse>>builder()
+                .flag(true)
+                .code(200)
+                .message("OK")
+                .result(OrderConstants.getAllOrderStatusResponses())
+                .build();
+    }
+
+
+    @GetMapping("/list-order")
+    public ApiResponse<PageResponse<OrderDetailResponse>> getOrderPaging(
+            @RequestParam(required = false) String orderStatus,
+            @RequestParam(defaultValue = "date") String sortOrder,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "8") int size
+    ) {
+        return ApiResponse.<PageResponse<OrderDetailResponse>>builder()
+                .flag(true)
+                .message("OK")
+                .result(orderDetailService.getOrderPaging( orderStatus, page, size, sortOrder))
                 .build();
     }
 }

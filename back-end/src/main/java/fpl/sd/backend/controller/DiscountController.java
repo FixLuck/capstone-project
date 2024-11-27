@@ -1,9 +1,15 @@
 package fpl.sd.backend.controller;
 
+import fpl.sd.backend.constant.DiscountConstants;
+import fpl.sd.backend.constant.OrderConstants;
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.DiscountCreateRequest;
 import fpl.sd.backend.dto.request.DiscountUpdateRequest;
 import fpl.sd.backend.dto.response.DiscountResponse;
+import fpl.sd.backend.dto.response.EnumResponse;
+import fpl.sd.backend.dto.response.OrderDetailResponse;
+import fpl.sd.backend.dto.response.ShoeResponse;
 import fpl.sd.backend.service.DiscountService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -62,6 +68,42 @@ public class DiscountController {
                 .code(200)
                 .message("Discount updated successfully")
                 .result(discountResponse)
+                .build();
+    }
+
+    @GetMapping("/isActive")
+    public ApiResponse<List<DiscountResponse>> getDiscountByIsActive(@RequestParam(value = "isActive", required = false) boolean isActive) {
+        return ApiResponse.<List<DiscountResponse>>builder()
+                .flag(true)
+                .code(200)
+                .message("OK")
+                .result(discountService.getDiscountByIsActive(isActive))
+                .build();
+    }
+
+    @GetMapping("/discountType")
+    public ApiResponse<List<EnumResponse>> getDiscountByDiscountType() {
+        return ApiResponse.<List<EnumResponse>>builder()
+                .flag(true)
+                .code(200)
+                .message("OK")
+                .result(DiscountConstants.getAllDiscountTypeResponses())
+                .build();
+    }
+
+    @GetMapping("/list-discount")
+    public ApiResponse<PageResponse<DiscountResponse>> getDiscountPaging(
+            @RequestParam(required = false) String discountType,
+            @RequestParam(required = false) String code,
+            @RequestParam(required = false) boolean isActive,
+            @RequestParam(defaultValue = "date") String sortOrder,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "8") int size
+    ) {
+        return ApiResponse.<PageResponse<DiscountResponse>>builder()
+                .flag(true)
+                .message("OK")
+                .result(discountService.getDiscountPaging( discountType, code, isActive, page, size, sortOrder))
                 .build();
     }
 }

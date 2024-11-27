@@ -13,16 +13,23 @@ import java.util.List;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderDto {
-    String orderId;
-    double originalTotal;
-    double discountAmount;
-    double finalTotal;
-    String username;
-    String userId;
-    String orderStatus;
-    Instant orderDate;
-    Integer discountId;
-    List<CartItemResponse> cartItems;
-    String couponName;
 
+String orderId;
+    Instant orderDate;
+    String orderStatus;
+    Double discountAmount;
+    Double finalTotal;
+    Double originalTotal;
+    String username;
+    String userId; // Sửa lỗi mapping từ username sang userId
+    String discountId;
+    String couponName;
+    String fullName;
+    String email;
+    String address;
+    String phone;
+    String bankCode;
+    String cardType;
+    List<CartItemResponse> cartItems;
+    List<OrderDetailResponse> orderDetails; // Thêm chi tiết đơn hàng (nếu cần)
 }

@@ -63,19 +63,38 @@ public class CustomerOrder {
         orderDto.setDiscountAmount(discountAmount);
         orderDto.setFinalTotal(finalTotal);
         orderDto.setOriginalTotal(originalTotal);
-        orderDto.setUsername(user.getUsername());
-        orderDto.setUsername(user.getId());
+        orderDto.setUserId(user.getId()); // Lấy userId từ entity User
+        orderDto.setUsername(user.getUsername()); // Lấy username từ entity User
 
-        if(discount!=null){
-            orderDto.setDiscountId(discount.getId());
-            orderDto.setCouponName(discount.getCode());
+        // Thông tin discount (mã giảm giá)
+        if (discount != null) {
+            orderDto.setDiscountId(String.valueOf(discount.getId()));
+            orderDto.setCouponName(discount.getCode()); // Mã giảm giá từ Discount
         }
+
+        // Thông tin payment detail (mã ngân hàng, loại thẻ)
+        if (paymentDetail != null) {
+            orderDto.setBankCode(paymentDetail.getBankCode()); // Mã ngân hàng
+            orderDto.setCardType(paymentDetail.getCardType()); // Loại thẻ
+        }
+
+        // Thông tin người dùng
+        if (user != null) {
+            orderDto.setAddress(user.getAddress()); // Địa chỉ người dùng
+            orderDto.setEmail(user.getEmail()); // Email người dùng
+            orderDto.setPhone(user.getPhone()); // Số điện thoại người dùng
+            orderDto.setFullName(user.getFullName()); // Tên đầy đủ của người dùng
+        }
+
+        // Lấy danh sách các sản phẩm trong đơn hàng
         List<CartItemResponse> cartItemResponses = orderDetails.stream()
                 .map(orderDetail -> {
                     CartItemResponse cartItemResponse = new CartItemResponse();
                     cartItemResponse.setVariantId(orderDetail.getVariant().getId());
-                    cartItemResponse.setQuantity(orderDetail.getQuantity());
                     cartItemResponse.setPrice(orderDetail.getPrice());
+                    cartItemResponse.setQuantity(orderDetail.getQuantity());
+                    cartItemResponse.setProductId(orderDetail.getVariant().getShoe().getId());
+                    cartItemResponse.setProductName(orderDetail.getVariant().getShoe().getName());
                     return cartItemResponse;
                 })
                 .collect(Collectors.toList());

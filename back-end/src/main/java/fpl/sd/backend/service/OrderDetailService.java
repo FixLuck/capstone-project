@@ -66,6 +66,7 @@ public class OrderDetailService {
         return mapToOrderDetailResponse(customerOrder);
     }
 
+
 //  tìm kiếm bằng order id, user id, trạng thái đơn hàng
 //    public OrderDetailResponse getOrderByIdAndUserIdAndStatus(String orderId, String userId, OrderConstants.OrderStatus status) {
 //        CustomerOrder customerOrder = orderRepository.findByIdAndUserIdAndOrderStatus(orderId, userId, status)
@@ -118,10 +119,26 @@ public class OrderDetailService {
         response.setOrderStatus(order.getOrderStatus());
         response.setOriginalTotal(order.getOriginalTotal());
         response.setUserId(order.getUser().getId());
-        // Gán giá trị username từ thực thể User
+
+//        response.setDiscountId(String.valueOf(order.getDiscount().getId()));
+//        response.setPaymentId(String.valueOf(order.getPaymentDetail().getId()));
+//        // Gán giá trị username từ thực thể User
         if (order.getUser() != null) {
             response.setUsername(order.getUser().getUsername());
+            response.setFullName(order.getUser().getFullName());
+            response.setAddress(order.getUser().getAddress());
+            response.setPhone(order.getUser().getPhone());
+            response.setEmail(order.getUser().getEmail());
         }
+//
+//        if (order.getDiscount() != null){
+//            response.setCouponName(order.getDiscount().getCode());
+//        }
+//        if (order.getPaymentDetail() != null) {
+//            response.setCardType(order.getPaymentDetail().getCardType());
+//            response.setBankCode(order.getPaymentDetail().getBankCode());
+//        }
+
         List<CartItemResponse> cartItemResponses = order.getOrderDetails().stream()
                 .map(orderDetail -> {
                     CartItemResponse cartItemResponse = new CartItemResponse();

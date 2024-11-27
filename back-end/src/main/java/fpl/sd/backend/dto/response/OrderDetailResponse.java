@@ -30,6 +30,15 @@ public class OrderDetailResponse {
     OrderConstants.OrderStatus orderStatus;
     String username;
     String userId;
+    String fullName;
+    String email;
+    String address;
+    String phone;
+    String paymentId;
+    String bankCode;
+    String cardType;
+    String discountId;
+    String couponName;
     List<CartItemResponse> cartItems;
 
 
@@ -41,6 +50,15 @@ public class OrderDetailResponse {
         orderDetailResponse.setOrderStatus(orderStatus);
         orderDetailResponse.setUserId(id);
         orderDetailResponse.setId(id);
+        orderDetailResponse.setFullName(fullName);
+        orderDetailResponse.setEmail(email);
+        orderDetailResponse.setAddress(address);
+        orderDetailResponse.setPhone(phone);
+        orderDetailResponse.setBankCode(bankCode);
+        orderDetailResponse.setCardType(cardType);
+        orderDetailResponse.setDiscountId(discountId);
+        orderDetailResponse.setCouponName(couponName);
+
         // Ánh xạ username từ User entity
         if (customerOrder.getUser() != null) {
             orderDetailResponse.setUsername(customerOrder.getUser().getUsername());

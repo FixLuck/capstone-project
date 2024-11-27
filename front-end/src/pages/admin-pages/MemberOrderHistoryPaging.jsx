@@ -189,10 +189,10 @@ const MemberOrderHistoryPaging   = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orderData.data.map((customerOrder, index) => (
+            {orderData.data.map((customerOrder) => (
               <TableRow key={customerOrder.id} className="hover:bg-gray-50">
 
-                <TableCell className="p-3 text-blue-500">{index+1}</TableCell>
+                <TableCell className="p-3 text-blue-500">{customerOrder.id.slice(0, 8)}</TableCell>
                 <TableCell className="p-3">{customerOrder.username}</TableCell>
                 <TableCell className="p-3">{new Date(customerOrder.orderDate).toLocaleString()}</TableCell>
                 <TableCell className="p-3 text-yellow-500">{formatterToVND.format(customerOrder.originalTotal)}</TableCell>

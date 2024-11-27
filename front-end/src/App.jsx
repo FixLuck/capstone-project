@@ -33,7 +33,7 @@ import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
 import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
 import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPaging";
-
+import DiscountPaging from "./pages/admin-pages/DiscountPaging";
 import RevenuePage from "./pages/admin-pages/RevenuePage";
 import ForgotPassword from "./pages/shop-pages/ForgotPassword";
 import VerifyCode from "./pages/shop-pages/VerifyCode";
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <WelcomeAdmin /> },
-      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "discount-management", element: <DiscountPaging /> },
       { path: "discount-management/new", element: <AddDiscountPage /> },
       { path: "member-order-history", element: <MemberOrderHistoryPaging /> },
       { path: "member-order-history/detail/:orderId/:userId", element: <MemberOrderHistoryDetail /> },

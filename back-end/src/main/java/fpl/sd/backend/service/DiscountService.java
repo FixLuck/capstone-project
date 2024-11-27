@@ -1,10 +1,16 @@
 package fpl.sd.backend.service;
 
 
+import fpl.sd.backend.constant.DiscountConstants;
+
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.DiscountCreateRequest;
 import fpl.sd.backend.dto.request.DiscountUpdateRequest;
 import fpl.sd.backend.dto.response.DiscountResponse;
+import fpl.sd.backend.dto.response.ShoeResponse;
+import fpl.sd.backend.entity.CustomerOrder;
 import fpl.sd.backend.entity.Discount;
+import fpl.sd.backend.entity.Shoe;
 import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
 import fpl.sd.backend.mapper.DiscountMapper;
@@ -12,7 +18,12 @@ import fpl.sd.backend.repository.DiscountRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -69,6 +80,31 @@ public class DiscountService {
     public DiscountResponse getDiscountById(Integer id) {
         return discountMapper.toDiscountResponse(discountRepository.findById(id)
                 .orElseThrow(()-> new AppException(ErrorCode.DISCOUNT_NOT_FOUND)));
+    }
+
+    public List<DiscountResponse> getDiscountByDiscountType(String discountType) {
+        DiscountConstants.DiscountType discountTypeEnum = DiscountConstants.getDiscountTypeFromString(discountType);
+        if (discountTypeEnum == null) {
+            throw new IllegalArgumentException("Invalid discount type provided");
+        }
+        List<Discount> discounts = discountRepository.findByDiscountType(discountTypeEnum);
+        return discounts.stream()
+                .map(discountMapper::toDiscountResponse)
+                .toList();
+    }
+
+    public List<DiscountResponse> getDiscountByIsActive(boolean isActive) {
+        List<Discount> discounts = discountRepository.findByIsActive(isActive);
+        return discounts.stream()
+                .map(discountMapper::toDiscountResponse)
+                .toList();
+    }
+
+    public List<DiscountResponse> getDiscountsByCode(String code) {
+        List<Discount> discounts = discountRepository.findDiscountsByCodeContainingIgnoreCase(code);
+        return discounts.stream()
+                .map(discountMapper::toDiscountResponse)
+                .toList();
     }
 
     public DiscountResponse updateDiscount(Integer id, DiscountUpdateRequest request) {
@@ -133,4 +169,58 @@ public class DiscountService {
 //        return Math.max(newTotal, 0); // Ensure total is not negative
 //    }
 
+    public PageResponse<DiscountResponse> getDiscountPaging(
+            String discountTypeString,
+            String code,
+            boolean isActive,
+            int page,
+            int size,
+            String sortOrder
+    ) {
+
+        Sort sort = createSort(sortOrder);
+
+
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
+
+        DiscountConstants.DiscountType discountTypeEnum = DiscountConstants.getDiscountTypeFromString(discountTypeString);
+
+
+        Page<Discount> discountData = discountRepository.findDiscountByFilters(discountTypeEnum, code, isActive, pageable);
+
+        var  discountList= discountData.getContent()
+                .stream()
+                .map(discountMapper::toDiscountResponse)
+                .toList();
+
+        return PageResponse.<DiscountResponse>builder()
+                .currentPage(page)
+                .pageSize(discountData.getSize())
+                .totalPages(discountData.getTotalPages())
+                .totalElements(discountData.getTotalElements())
+                .data(discountList)
+                .build();
+
+
+    }
+
+    private Sort createSort(String sortOrder) {
+
+        String date = "endDate";
+        if (sortOrder == null) {
+            return Sort.by(Sort.Direction.ASC, date);
+        }
+
+        return switch (sortOrder.toLowerCase()) {
+            case "pcdesc" -> Sort.by(Sort.Direction.DESC, "percentage");
+            case "pcasc" -> Sort.by(Sort.Direction.ASC, "percentage");
+            case "fadesc" -> Sort.by(Sort.Direction.DESC, "fixedAmount");
+            case "faasc" -> Sort.by(Sort.Direction.ASC, "fixedAmount");
+            case "date_desc" -> Sort.by(Sort.Direction.DESC, date);
+            default -> Sort.by(Sort.Direction.ASC, date);
+        };
+    }
+
 }
+
+

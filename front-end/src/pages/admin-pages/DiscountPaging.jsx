@@ -92,7 +92,7 @@ const DiscountPaging = () => {
     <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-semibold text-gray-800 mb-6">Quản Lý Mã Giảm Giá</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <Input
           placeholder="Search by code"
           value={code}
@@ -114,7 +114,7 @@ const DiscountPaging = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="true">Hoạt Động</SelectItem>
-            <SelectItem value="fail">Tắt</SelectItem>
+            <SelectItem value="false">Tắt</SelectItem>
           </SelectContent>
         </Select>
         <Select value={sortOrder} onValueChange={setSortOrder}>

@@ -51,7 +51,7 @@ export function MemberManagement() {
               <TableHead>Username</TableHead>
               <TableHead>Phone</TableHead>
               <TableHead>Email</TableHead>
-              <TableHead>Address</TableHead>
+              {/* <TableHead>Address</TableHead> */}
               <TableHead>Role</TableHead>
             </TableRow>
           </TableHeader>
@@ -71,7 +71,7 @@ export function MemberManagement() {
                 <TableCell>{user.username}</TableCell>
                 <TableCell>{user.phone}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.address}</TableCell>
+                {/* <TableCell>{user.address}</TableCell> */}
                 <TableCell>{user.roleName}</TableCell>
               </TableRow>
             ))}

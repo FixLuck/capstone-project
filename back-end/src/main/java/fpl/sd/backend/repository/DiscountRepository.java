@@ -23,18 +23,32 @@ public interface DiscountRepository extends JpaRepository<Discount, Integer> {
     List<Discount> findByIsActive(boolean isActive);
     Optional<Discount> findByCode(String code);
     List<Discount> findDiscountsByCodeContainingIgnoreCase(String discountCode);
-    @Query("""
+//    @Query("""
+//    SELECT d FROM Discount d
+//    WHERE
+//     (:discountType IS NULL OR d.discountType = :discountType)
+//     AND (:isActive IS NULL OR d.isActive = :isActive)
+//     AND  (:code IS NULL OR LOWER(d.code) LIKE LOWER(CONCAT('%', :code, '%')))
+//
+//    """)
+//    Page<Discount> findDiscountByFilters(
+//            @Param("discountType") DiscountConstants.DiscountType discountType,
+//            @Param("code") String code,
+//            @Param("isActive") boolean isActive,
+//            Pageable pageable
+//    );
+@Query("""
     SELECT d FROM Discount d
     WHERE 
      (:discountType IS NULL OR d.discountType = :discountType)
      AND (:isActive IS NULL OR d.isActive = :isActive)
      AND  (:code IS NULL OR LOWER(d.code) LIKE LOWER(CONCAT('%', :code, '%')))
-
     """)
-    Page<Discount> findDiscountByFilters(
-            @Param("discountType") DiscountConstants.DiscountType discountType,
-            @Param("code") String code,
-            @Param("isActive") boolean isActive,
-            Pageable pageable
-    );
+Page<Discount> findDiscountByFilters(
+        @Param("discountType") DiscountConstants.DiscountType discountType,
+        @Param("code") String code,
+        @Param("isActive") Boolean isActive,  // Sửa từ boolean thành Boolean
+        Pageable pageable
+);
+
 }

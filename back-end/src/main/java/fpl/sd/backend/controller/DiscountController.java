@@ -95,7 +95,8 @@ public class DiscountController {
     public ApiResponse<PageResponse<DiscountResponse>> getDiscountPaging(
             @RequestParam(required = false) String discountType,
             @RequestParam(required = false) String code,
-            @RequestParam(required = false) boolean isActive,
+//            @RequestParam(required = false) boolean isActive,
+            @RequestParam(required = false) Boolean isActive,  // Thay đổi từ boolean sang Boolean
             @RequestParam(defaultValue = "date") String sortOrder,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "8") int size

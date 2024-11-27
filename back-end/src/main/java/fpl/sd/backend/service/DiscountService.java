@@ -169,40 +169,77 @@ public class DiscountService {
 //        return Math.max(newTotal, 0); // Ensure total is not negative
 //    }
 
-    public PageResponse<DiscountResponse> getDiscountPaging(
-            String discountTypeString,
-            String code,
-            boolean isActive,
-            int page,
-            int size,
-            String sortOrder
-    ) {
+//    public PageResponse<DiscountResponse> getDiscountPaging(
+//            String discountTypeString,
+//            String code,
+//            boolean isActive,
+//            int page,
+//            int size,
+//            String sortOrder
+//    ) {
+//
+//        Sort sort = createSort(sortOrder);
+//
+//
+//        Pageable pageable = PageRequest.of(page - 1, size, sort);
+//
+//        DiscountConstants.DiscountType discountTypeEnum = DiscountConstants.getDiscountTypeFromString(discountTypeString);
+//
+//
+//        Page<Discount> discountData = discountRepository.findDiscountByFilters(discountTypeEnum, code, isActive, pageable);
+//
+//        var  discountList= discountData.getContent()
+//                .stream()
+//                .map(discountMapper::toDiscountResponse)
+//                .toList();
+//
+//        return PageResponse.<DiscountResponse>builder()
+//                .currentPage(page)
+//                .pageSize(discountData.getSize())
+//                .totalPages(discountData.getTotalPages())
+//                .totalElements(discountData.getTotalElements())
+//                .data(discountList)
+//                .build();
+//
+//
+//    }
+public PageResponse<DiscountResponse> getDiscountPaging(
+        String discountTypeString,
+        String code,
+        Boolean isActive, // Đảm bảo là Boolean, không phải boolean
+        int page,
+        int size,
+        String sortOrder
+) {
 
-        Sort sort = createSort(sortOrder);
+    Sort sort = createSort(sortOrder);
+    Pageable pageable = PageRequest.of(page - 1, size, sort);
 
+    DiscountConstants.DiscountType discountTypeEnum = DiscountConstants.getDiscountTypeFromString(discountTypeString);
 
-        Pageable pageable = PageRequest.of(page - 1, size, sort);
-
-        DiscountConstants.DiscountType discountTypeEnum = DiscountConstants.getDiscountTypeFromString(discountTypeString);
-
-
-        Page<Discount> discountData = discountRepository.findDiscountByFilters(discountTypeEnum, code, isActive, pageable);
-
-        var  discountList= discountData.getContent()
-                .stream()
-                .map(discountMapper::toDiscountResponse)
-                .toList();
-
-        return PageResponse.<DiscountResponse>builder()
-                .currentPage(page)
-                .pageSize(discountData.getSize())
-                .totalPages(discountData.getTotalPages())
-                .totalElements(discountData.getTotalElements())
-                .data(discountList)
-                .build();
-
-
+    // Gọi phương thức findDiscountByFilters với tham số isActive là null nếu không có giá trị
+    Page<Discount> discountData;
+    if (isActive == null) {
+        discountData = discountRepository.findDiscountByFilters(discountTypeEnum, code, null, pageable); // Truyền null nếu isActive không được cung cấp
+    } else {
+        discountData = discountRepository.findDiscountByFilters(discountTypeEnum, code, isActive, pageable); // Truyền giá trị isActive nếu có
     }
+
+    var discountList = discountData.getContent()
+            .stream()
+            .map(discountMapper::toDiscountResponse)
+            .toList();
+
+    return PageResponse.<DiscountResponse>builder()
+            .currentPage(page)
+            .pageSize(discountData.getSize())
+            .totalPages(discountData.getTotalPages())
+            .totalElements(discountData.getTotalElements())
+            .data(discountList)
+            .build();
+}
+
+
 
     private Sort createSort(String sortOrder) {
 

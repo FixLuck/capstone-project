@@ -39,6 +39,11 @@ import RevenuePage from "./pages/admin-pages/RevenuePage";
 import ForgotPassword from "./pages/shop-pages/ForgotPassword";
 import VerifyCode from "./pages/shop-pages/VerifyCode";
 import ResetPassword from "./pages/shop-pages/ResetPassword";
+import FAQ from "./pages/shop-pages/FAQ";
+
+
+
+import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
 
 
 import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
@@ -58,6 +63,7 @@ const router = createBrowserRouter([
       { path: "login", element: <UserLogin /> },
       { path: "register", element: <SignUp /> },
       { path: "profile/me", element: <ProfileUser /> },
+      { path: "faq", element: <FAQ /> },
 
       { path: "checkout", element: <CheckOut /> },
       { path: "checkout/payment-callback", element: <PaymentCallbackPage /> },

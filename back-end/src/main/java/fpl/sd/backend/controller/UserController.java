@@ -2,8 +2,11 @@ package fpl.sd.backend.controller;
 
 
 import fpl.sd.backend.dto.ApiResponse;
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.PasswordChangeRequest;
 import fpl.sd.backend.dto.request.UserCreateRequest;
+import fpl.sd.backend.dto.response.DiscountResponse;
+import fpl.sd.backend.dto.response.ShoeResponse;
 import fpl.sd.backend.dto.response.UserResponse;
 import fpl.sd.backend.dto.request.UserUpdateRequest;
 import fpl.sd.backend.service.UserService;
@@ -76,7 +79,40 @@ public class UserController {
                 .build();
     }
 
+    @GetMapping("/role")
+    public ApiResponse<List<UserResponse>> getUserByRole(@RequestParam(value = "role", required = false) String roleName) {
+        return ApiResponse.<List<UserResponse>>builder()
+                .flag(true)
+                .code(200)
+                .message("OK")
+                .result(userService.getUserByRole(roleName))  // Cập nhật tham số thành roleName
+                .build();
+    }
 
+    @GetMapping("/isActive")
+    public ApiResponse<List<UserResponse>> getUserByIsActive(@RequestParam(value = "isActive", required = false) boolean isActive) {
+        return ApiResponse.<List<UserResponse>>builder()
+                .flag(true)
+                .code(200)
+                .message("OK")
+                .result(userService.getUserByIsActive(isActive))
+                .build();
+    }
+    @GetMapping("/list-user")
+    public ApiResponse<PageResponse<UserResponse>> getUserPaging(
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String roleName,  // Thay roleId bằng roleName
+            @RequestParam(required = false) Boolean isActive,
+            @RequestParam(defaultValue = "date") String sortOrder,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "8") int size
+    ) {
+        return ApiResponse.<PageResponse<UserResponse>>builder()
+                .flag(true)
+                .message("OK")
+                .result(userService.getUserPaging(username, roleName, isActive, page, size, sortOrder))
+                .build();
+    }
 
 
 }

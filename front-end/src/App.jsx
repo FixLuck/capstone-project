@@ -31,13 +31,22 @@ import AddDiscountPage from "./pages/admin-pages/AddDiscountPage";
 import PaymentCallbackPage from "./pages/shop-pages/PaymentCallbackPage";
 import ProfileUser from "./pages/shop-pages/ProfileUser";
 import ShoePaging from "./pages/admin-pages/ShoePaging";
-// import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
+import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDetail";
 import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPaging";
-
+import DiscountPaging from "./pages/admin-pages/DiscountPaging";
 import RevenuePage from "./pages/admin-pages/RevenuePage";
+
 import ForgotPassword from "./pages/shop-pages/ForgotPassword";
 import VerifyCode from "./pages/shop-pages/VerifyCode";
 import ResetPassword from "./pages/shop-pages/ResetPassword";
+import FAQ from "./pages/shop-pages/FAQ";
+
+
+
+import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
+
+
+import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
 
 
 const router = createBrowserRouter([
@@ -54,6 +63,7 @@ const router = createBrowserRouter([
       { path: "login", element: <UserLogin /> },
       { path: "register", element: <SignUp /> },
       { path: "profile/me", element: <ProfileUser /> },
+      { path: "faq", element: <FAQ /> },
 
       { path: "checkout", element: <CheckOut /> },
       { path: "checkout/payment-callback", element: <PaymentCallbackPage /> },
@@ -72,14 +82,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <WelcomeAdmin /> },
-      { path: "discount-management", element: <DiscountManagement /> },
+      { path: "discount-management", element: <DiscountPaging /> },
       { path: "discount-management/new", element: <AddDiscountPage /> },
       { path: "member-order-history", element: <MemberOrderHistoryPaging /> },
-      // {path: "member-order-history/detail", element: <MemberOrderHistoryDetail />},
-      { path: "account-management", element: <MemberManagemant /> },
+      { path: "member-order-history/detail/:orderId/:userId", element: <MemberOrderHistoryDetail /> },
+      { path: "account-management", element: <MemberManagemantPaging /> },
       { path: "revenue-stats", element: <RevenuePage /> },
       { path: "manage-shoes", element: <ShoePaging /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },
+      { path: "profile", element: <Profile /> },
     ],
   },
 ]);

@@ -1,6 +1,7 @@
 package fpl.sd.backend.repository;
 
 import fpl.sd.backend.constant.OrderConstants;
+import fpl.sd.backend.dto.response.CartItemResponse;
 import fpl.sd.backend.dto.response.OrderDetailResponse;
 import fpl.sd.backend.dto.response.report.DailyTotalDTO;
 import fpl.sd.backend.dto.response.report.MonthlyTotalDTO;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.time.Instant;
+import fpl.sd.backend.dto.response.OrderDto;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +36,8 @@ public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, St
 
                                   Pageable pageable
     );
+
+
 
 
     @Query(value = "SELECT DATE(order_date) as order_date, " +

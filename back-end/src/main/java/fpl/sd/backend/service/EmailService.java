@@ -1,10 +1,7 @@
 package fpl.sd.backend.service;
 
 import fpl.sd.backend.dto.request.PasswordResetRequest;
-import fpl.sd.backend.dto.request.mail.EmailRequest;
-import fpl.sd.backend.dto.request.mail.Recipient;
-import fpl.sd.backend.dto.request.mail.SendEmailRequest;
-import fpl.sd.backend.dto.request.mail.Sender;
+import fpl.sd.backend.dto.request.mail.*;
 import fpl.sd.backend.entity.User;
 import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
@@ -13,10 +10,13 @@ import fpl.sd.backend.utils.EmailTemplate;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -27,12 +27,18 @@ import java.util.Optional;
 import java.util.Random;
 
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class EmailService {
     RestTemplate restTemplate;
-    String apiKey = "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";
+
+    @Value("${mail.apiKey}")
+    String apiKey;
+
+    private static final String MAIL_URL = "https://api.brevo.com/v3/smtp/email";
+
     UserRepository userRepository;
 
     public void requestPasswordReset(PasswordResetRequest request) {
@@ -49,7 +55,6 @@ public class EmailService {
             user.setOtpExpiryDate(LocalDateTime.now().plusMinutes(5));
             userRepository.save(user);
 
-            String url = "https://api.brevo.com/v3/smtp/email";
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -63,19 +68,28 @@ public class EmailService {
                             .build()
             );
 
-            EmailRequest emailRequest = EmailRequest.builder()
-                    .sender(Sender.builder()
-                            .name("SuperTeamShopShoe")
-                            .email("ng.vanman1502@gmail.com")
-                            .build())
-                    .to(recipients)
-                    .subject("SuperTeam Shop Shoe - Your Security Code")
-                    .htmlContent(htmlContent)
-                    .build();
+           try {
+               EmailRequest emailRequest = EmailRequest.builder()
+                       .sender(Sender.builder()
+                               .name("SuperTeamShopShoe")
+                               .email("ng.vanman1502@gmail.com")
+                               .build())
+                       .to(recipients)
+                       .headers(Headers.builder()
+                               .newKey("New Value")
+                               .build())
+                       .subject("SuperTeam Shop Shoe - Your Security Code")
+                       .htmlContent(htmlContent)
+                       .build();
 
-            HttpEntity<EmailRequest> httpRequest = new HttpEntity<>(emailRequest, headers);
+               HttpEntity<EmailRequest> httpRequest = new HttpEntity<>(emailRequest, headers);
 
-            restTemplate.postForObject(url, httpRequest, Void.class);
+               restTemplate.postForObject(MAIL_URL, httpRequest, Void.class);
+           } catch (HttpClientErrorException e) {
+               String responseBody = e.getResponseBodyAsString();
+               log.error("Email send error: Status {}, Body: {}", e.getStatusCode(), responseBody);
+               throw new AppException(ErrorCode.SEND_MAIL_ERROR);
+           }
 
         }
 

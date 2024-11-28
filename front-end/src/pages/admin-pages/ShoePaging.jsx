@@ -29,6 +29,7 @@ import UpdateShoeForm from "../admin-pages/UpdateShoeForm";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { Pagination } from "@/components/ui/pagination";
+import { set } from "date-fns";
 
 const ShoeManagement = () => {
   const [shoeData, setShoeData] = useState(null);
@@ -39,6 +40,10 @@ const ShoeManagement = () => {
   const [gender, setGender] = useState("");
   const [category, setCategory] = useState("");
   const [sortOrder, setSortOrder] = useState("date");
+  const [status, setStatus] = useState("true");
+  const isActive = status === "true";
+  console.log(isActive);
+
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(5);
 
@@ -54,6 +59,7 @@ const ShoeManagement = () => {
         sortOrder,
         page,
         size,
+        status: isActive,
       };
 
       const response = await api.get("shoes/list-shoes", { params });
@@ -72,11 +78,24 @@ const ShoeManagement = () => {
     sortOrder,
     page,
     size,
+    status,
   ]);
 
   useEffect(() => {
     fetchShoeData();
-  }, [fetchShoeData, name, minPrice, maxPrice, brandId, gender, category, sortOrder, page, size]);
+  }, [
+    fetchShoeData,
+    name,
+    minPrice,
+    maxPrice,
+    brandId,
+    gender,
+    category,
+    sortOrder,
+    page,
+    size,
+    status,
+  ]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
@@ -101,6 +120,34 @@ const ShoeManagement = () => {
       </div>
     );
   }
+
+  const handleDelete = async (id) => {
+    try {
+      const currentShoe = shoeData.data.find((shoe) => shoe.id === id);
+
+      console.log(currentShoe);
+      const updateRequest = {
+        name: currentShoe.name,
+        price: currentShoe.price,
+        status: false, // Set status to false for "deletion"
+        fakePrice: currentShoe.fakePrice,
+        gender: currentShoe.gender,
+        category: currentShoe.category,
+        description: currentShoe.description,
+        variants: currentShoe.variants.map((variant) => ({
+          variantId: variant.id,
+          stockQuantity: variant.stockQuantity,
+          // Add other variant fields as needed
+        })),
+      };
+
+      await api.put(`/shoes/${id}`, updateRequest);
+      fetchShoeData(); // Refresh the list
+
+    } catch (error) {
+      console.error("Error deleting shoe:", error);
+    }
+  };
 
   return (
     <div className="container mx-auto p-6 space-y-6 max-w-7xl">
@@ -173,12 +220,24 @@ const ShoeManagement = () => {
             <SelectItem value="asc">Price: Low to High</SelectItem>
           </SelectContent>
         </Select>
+        <Select value={status} onValueChange={setStatus}>
+          <SelectTrigger>
+            <SelectValue placeholder="Tất cả" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="true">Active</SelectItem>
+            <SelectItem value="false">Inactive</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <Button onClick={handleSearch} className="w-full md:w-auto">
         Search
       </Button>
       <Button variant="outline" className="hover:bg-green-600 hover:text-white">
-        <Link to={"/admin/manage-shoes/new"} className="flex p-4 align-items-center">
+        <Link
+          to={"/admin/manage-shoes/new"}
+          className="flex p-4 align-items-center"
+        >
           <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
           <span>Add</span>
         </Link>
@@ -214,8 +273,15 @@ const ShoeManagement = () => {
                   )}
                 </TableCell>
                 <TableCell>
-                    <UpdateShoeForm shoeId={shoe.id} />
-                    <Button variant="destructive">Delete</Button>
+                  <UpdateShoeForm shoeId={shoe.id} />
+                  <Button
+                    className="bg-red-500 text-white"
+                    onClick={() => {
+                      handleDelete(shoe.id);
+                    }}
+                  >
+                    Delete
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

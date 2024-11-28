@@ -166,60 +166,50 @@ public class UserService {
     }
 
 
-    public List<UserResponse> getUserByIsActive(boolean isActive) {
-        List<User> users = userRepository.findByIsActive(isActive);
-        return users.stream()
-                .map(userMapper::toUserResponse)
-                .toList();
-    }
-
     public boolean verifyOtp(String email, String otpCode) {
         Optional<User> existingUser = userRepository.findByEmailAndOtpCode(email, otpCode);
 
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
 
-    public List<UserResponse> getUserByRole(String roleName) {
-        Role role = roleRepository.findByRoles(roleName)
-                .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
+            // Check if OTP has expired
+            if (user.getOtpExpiryDate().isBefore(LocalDateTime.now())) {
+                log.warn("OTP expired for email: {}", email);
+                return false;
+            }
 
-        List<User> users = userRepository.findByRole(role);
-        return users.stream()
-                .map(userMapper::toUserResponse)
-                .toList();
-    }
-
-
-    public PageResponse<UserResponse> getUserPaging(
-            String username,
-            String roleName,  // Thay roleId bằng roleName
-            Boolean isActive,
-            int page,
-            int size,
-            String sortOrder
-    ) {
-        Sort sort = createSort(sortOrder);
-        Pageable pageable = PageRequest.of(page - 1, size, sort);
-
-        // Gọi phương thức findUserByFilters với roleName
-        Page<User> userData;
-        if (isActive == null) {
-            userData = userRepository.findUserByFilters(username, roleName, null, pageable);  // Truyền roleName
-        } else {
-            userData = userRepository.findUserByFilters(username, roleName, isActive, pageable); // Truyền roleName
+            return true;
         }
 
-        var userList = userData.getContent()
-                .stream()
-                .map(userMapper::toUserResponse)
-                .toList();
-
-        return PageResponse.<UserResponse>builder()
-                .currentPage(page)
-                .pageSize(userData.getSize())
-                .totalPages(userData.getTotalPages())
-                .totalElements(userData.getTotalElements())
-                .data(userList)
-                .build();
+        return false;
     }
+
+
+    public boolean resetPassword(String email, String newPassword, String confirmPassword) {
+        // Validate password match
+        if (!newPassword.equals(confirmPassword)) {
+            throw new AppException(ErrorCode.PASSWORD_INVALID);
+        }
+
+        Optional<User> existingUser = userRepository.findByEmail(email);
+
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+
+            user.setPassword(passwordEncoder.encode(newPassword));
+            user.setUpdatedAt(Instant.now());
+            user.setOtpCode(null);
+            user.setOtpExpiryDate(null);
+
+            userRepository.save(user);
+
+            log.info("Password reset successful for email: {}", email);
+            return true;
+        }
+
+        return false;
+    }
+
 
 
 
@@ -293,22 +283,6 @@ public class UserService {
     }
 
 
-
-
-    private Sort createSort(String sortOrder) {
-
-        String date = "createdAt";
-        if (sortOrder == null) {
-            return Sort.by(Sort.Direction.ASC, date);
-        }
-
-        return switch (sortOrder.toLowerCase()) {
-            case "updesc" -> Sort.by(Sort.Direction.DESC, "updatedAt");
-            case "upasc" -> Sort.by(Sort.Direction.ASC, "updatedAt");
-            case "date_asc" -> Sort.by(Sort.Direction.ASC, date);
-            default -> Sort.by(Sort.Direction.DESC, date);
-        };
-    }
 
 
 

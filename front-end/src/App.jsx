@@ -40,12 +40,6 @@ import ForgotPassword from "./pages/shop-pages/ForgotPassword";
 import VerifyCode from "./pages/shop-pages/VerifyCode";
 import ResetPassword from "./pages/shop-pages/ResetPassword";
 import FAQ from "./pages/shop-pages/FAQ";
-
-
-
-import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
-
-
 import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
 
 

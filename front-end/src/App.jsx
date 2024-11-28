@@ -46,6 +46,9 @@ import FAQ from "./pages/shop-pages/FAQ";
 import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
 
 
+import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
+
+
 const router = createBrowserRouter([
   {
     path: "/",

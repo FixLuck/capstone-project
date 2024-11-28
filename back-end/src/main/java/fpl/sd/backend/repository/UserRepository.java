@@ -38,4 +38,5 @@ public interface UserRepository extends JpaRepository<User,String> {
             @Param("isActive") Boolean isActive,
             Pageable pageable
     );
+
 }

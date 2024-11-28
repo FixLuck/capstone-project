@@ -16,11 +16,13 @@ import fpl.sd.backend.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -230,50 +232,6 @@ public class UserService {
             default -> Sort.by(Sort.Direction.DESC, date);
         };
     }
-    public boolean verifyOtp(String email, String otpCode) {
-        Optional<User> existingUser = userRepository.findByEmailAndOtpCode(email, otpCode);
-
-        if (existingUser.isPresent()) {
-            User user = existingUser.get();
-
-            // Check if OTP has expired
-            if (user.getOtpExpiryDate().isBefore(LocalDateTime.now())) {
-                log.warn("OTP expired for email: {}", email);
-                return false;
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean resetPassword(String email, String newPassword, String confirmPassword) {
-        // Validate password match
-        if (!newPassword.equals(confirmPassword)) {
-            throw new AppException(ErrorCode.PASSWORD_INVALID);
-        }
-
-        Optional<User> existingUser = userRepository.findByEmail(email);
-
-        if (existingUser.isPresent()) {
-            User user = existingUser.get();
-
-            user.setPassword(passwordEncoder.encode(newPassword));
-            user.setUpdatedAt(Instant.now());
-            user.setOtpCode(null);
-            user.setOtpExpiryDate(null);
-
-            userRepository.save(user);
-
-            log.info("Password reset successful for email: {}", email);
-            return true;
-        }
-
-        return false;
-    }
-
-
 
 }
 

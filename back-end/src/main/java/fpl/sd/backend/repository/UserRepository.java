@@ -21,6 +21,8 @@ public interface UserRepository extends JpaRepository<User,String> {
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(String email);
 
+    Optional<User> findByEmailAndOtpCode(String email, String otpCode);
+
     List<User> findByRole(Role role);
     List<User> findByIsActive(boolean isActive);
     @Query("""
@@ -36,7 +38,4 @@ public interface UserRepository extends JpaRepository<User,String> {
             @Param("isActive") Boolean isActive,
             Pageable pageable
     );
-
-    Optional<User> findByEmailAndOtpCode(String email, String otpCode);
-
 }

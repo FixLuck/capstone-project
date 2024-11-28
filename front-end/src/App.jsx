@@ -36,13 +36,14 @@ import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPagi
 import DiscountPaging from "./pages/admin-pages/DiscountPaging";
 import RevenuePage from "./pages/admin-pages/RevenuePage";
 
-import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
-
 import ForgotPassword from "./pages/shop-pages/ForgotPassword";
 import VerifyCode from "./pages/shop-pages/VerifyCode";
 import ResetPassword from "./pages/shop-pages/ResetPassword";
 import FAQ from "./pages/shop-pages/FAQ";
 
+
+
+import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
 
 
 const router = createBrowserRouter([

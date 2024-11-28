@@ -1,19 +1,14 @@
 package fpl.sd.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 
 @Getter
@@ -57,5 +52,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     List<CustomerOrder> customerOrders = new ArrayList<>();
+
+    String otpCode;
+
+    LocalDateTime otpExpiryDate;
 
 }

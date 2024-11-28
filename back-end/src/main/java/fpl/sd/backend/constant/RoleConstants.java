@@ -17,7 +17,7 @@ public class RoleConstants {
         }
         return null;
     }
-    public static List<EnumResponse> getAllDiscountTypeResponses() {
+    public static List<EnumResponse> getAllRoleTypeResponses() {
         return Arrays.stream(RoleConstants.Role.values())
                 .map(roleString -> new EnumResponse(roleString.name(), roleString.name().toLowerCase()))
                 .toList();

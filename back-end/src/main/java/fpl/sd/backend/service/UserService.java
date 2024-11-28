@@ -1,13 +1,13 @@
 package fpl.sd.backend.service;
 
 
-import fpl.sd.backend.constant.RoleConstants;
-import fpl.sd.backend.dto.ApiResponse;
+
+import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.PasswordChangeRequest;
 import fpl.sd.backend.dto.request.UserCreateRequest;
 import fpl.sd.backend.dto.response.UserResponse;
 import fpl.sd.backend.dto.request.UserUpdateRequest;
-import fpl.sd.backend.entity.User;
+import fpl.sd.backend.entity.*;
 import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
 import fpl.sd.backend.mapper.UserMapper;
@@ -16,6 +16,10 @@ import fpl.sd.backend.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -155,6 +159,74 @@ public class UserService {
 
     }
 
+    public List<UserResponse> getUserByIsActive(boolean isActive) {
+        List<User> users = userRepository.findByIsActive(isActive);
+        return users.stream()
+                .map(userMapper::toUserResponse)
+                .toList();
+    }
+
+    public List<UserResponse> getUserByRole(String roleName) {
+        Role role = roleRepository.findByRoles(roleName)
+                .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
+
+        List<User> users = userRepository.findByRole(role);
+        return users.stream()
+                .map(userMapper::toUserResponse)
+                .toList();
+    }
+
+
+    public PageResponse<UserResponse> getUserPaging(
+            String username,
+            String roleName,  // Thay roleId bằng roleName
+            Boolean isActive,
+            int page,
+            int size,
+            String sortOrder
+    ) {
+        Sort sort = createSort(sortOrder);
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
+
+        // Gọi phương thức findUserByFilters với roleName
+        Page<User> userData;
+        if (isActive == null) {
+            userData = userRepository.findUserByFilters(username, roleName, null, pageable);  // Truyền roleName
+        } else {
+            userData = userRepository.findUserByFilters(username, roleName, isActive, pageable); // Truyền roleName
+        }
+
+        var userList = userData.getContent()
+                .stream()
+                .map(userMapper::toUserResponse)
+                .toList();
+
+        return PageResponse.<UserResponse>builder()
+                .currentPage(page)
+                .pageSize(userData.getSize())
+                .totalPages(userData.getTotalPages())
+                .totalElements(userData.getTotalElements())
+                .data(userList)
+                .build();
+    }
+
+
+
+
+    private Sort createSort(String sortOrder) {
+
+        String date = "createdAt";
+        if (sortOrder == null) {
+            return Sort.by(Sort.Direction.ASC, date);
+        }
+
+        return switch (sortOrder.toLowerCase()) {
+            case "updesc" -> Sort.by(Sort.Direction.DESC, "updatedAt");
+            case "upasc" -> Sort.by(Sort.Direction.ASC, "updatedAt");
+            case "date_asc" -> Sort.by(Sort.Direction.ASC, date);
+            default -> Sort.by(Sort.Direction.DESC, date);
+        };
+    }
 
 }
 

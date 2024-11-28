@@ -7,24 +7,25 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import api from "@/config/axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
+import api from "@/config/axios";
 
 const schema = z.object({
-
   username: z.string().min(2, { message: "Yêu cầu nhập tên người dùng" }),
   isActive: z.boolean(),
-
 });
 
-export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
+export default function UpdateMemberForm({ userId }) {
   const {
     register,
     handleSubmit,
@@ -38,57 +39,69 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
   const [user, setUser] = useState({});
   const [isActive, setIsActive] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await api.get(`users/${userId}`);
-      setUser(data.result);
-
-      // setActive(data.result.active); // Sync isActive with the user data from DB
-      // reset(data.result);
-      // setValue("active", data.result.active); // Initialize Switch value
-
-    };
-    fetchUser();
-  }, [userId, reset, setValue]);
+    if (dialogOpen) {
+      const fetchUser = async () => {
+        try {
+          const { data } = await api.get(`users/${userId}`);
+          setUser(data.result);
+          setIsActive(data.result.active);
+          reset(data.result);
+          setValue("isActive", data.result.active);
+        } catch (error) {
+          console.error("Lỗi khi tải thông tin người dùng:", error);
+          toast.error("Không thể tải thông tin người dùng.");
+        }
+      };
+      fetchUser();
+    }
+  }, [userId, reset, setValue, dialogOpen]);
 
   const handleSwitchChange = (checked) => {
-
-    setIsActive(checked); 
-    setValue("isActive", checked); // Sync value with react-hook-form
-    setIsChanged(checked !== user.isActive); // Detect change in active status
+    setIsActive(checked);
+    setValue("isActive", checked);
+    setIsChanged(checked !== user.active);
   };
-
-  // const onSubmit = async (formData) => {
-  //   const updateData = { ...formData, active };
-  //   console.log("Data to update:", updateData);
-
-  //   setIsActive(checked);
-  //   setValue("isActive", checked); // Đồng bộ giá trị với react-hook-form
-  //   setIsChanged(checked !== user.active); // Kiểm tra sự thay đổi trạng thái hoạt động
-  // };
 
   const onSubmit = async (formData) => {
     const updateData = { ...formData, isActive };
-    console.log("Dữ liệu cần cập nhật:", updateData);
+    const toastId = toast.loading("Đang cập nhật...");
 
     try {
       const response = await api.put(`users/${userId}`, updateData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
-      console.log("Phản hồi đầy đủ sau khi cập nhật:", response); // Log phản hồi đầy đủ
-      onSuccess();
-      onClose();
+
+      if (response.status === 200) {
+        toast.update(toastId, {
+          render: "Cập nhật thành công!",
+          type: "success",
+          isLoading: false,
+          autoClose: 2000,
+        });
+        setDialogOpen(false);
+      } else {
+        throw new Error(response.data.message || "Cập nhật thất bại");
+      }
     } catch (error) {
-      console.error("Lỗi khi cập nhật người dùng", error);
+      console.error("Lỗi khi cập nhật người dùng:", error);
+      toast.update(toastId, {
+        render: "Lỗi trong quá trình cập nhật.",
+        type: "error",
+        isLoading: false,
+        autoClose: 2000,
+      });
     }
   };
 
-
   return (
-    <Dialog open={true} onOpenChange={onClose} className="min-h-screen">
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <ToastContainer position="top-right" autoClose={2000} />
+      <DialogTrigger asChild>
+        <Button variant="outline">Chỉnh sửa</Button>
+      </DialogTrigger>
       <DialogContent className="w-full max-w-2xl mx-auto">
         <DialogHeader>
           <DialogTitle>Chỉnh sửa thông tin thành viên</DialogTitle>
@@ -114,16 +127,18 @@ export default function UpdateMemberForm({ userId, onClose, onSuccess }) {
               <Switch
                 id="isActive"
                 checked={isActive}
-                onCheckedChange={handleSwitchChange} // Thay đổi sự kiện để cập nhật trạng thái
+                onCheckedChange={handleSwitchChange}
               />
               <Label htmlFor="isActive">Trạng thái hoạt động</Label>
-
             </div>
           </div>
 
           <Separator className="my-4" />
 
           <DialogFooter>
+            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+              Hủy
+            </Button>
             <Button type="submit" disabled={!isChanged}>
               Lưu thay đổi
             </Button>

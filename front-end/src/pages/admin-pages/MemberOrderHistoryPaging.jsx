@@ -156,7 +156,8 @@ const MemberOrderHistoryPaging   = () => {
             <SelectValue placeholder="chọn mục để sắp xếp" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="date">Ngày đặt</SelectItem>
+            <SelectItem value="date">Ngày đặt: Mới Tới Cũ</SelectItem>
+            <SelectItem value="date-asc">Ngày đặt: Cũ Tới Mới</SelectItem>
             <SelectItem value="desc">Giá tổng cuối cùng: Cao tới thấp</SelectItem>
             <SelectItem value="asc">Giá tổng cuối cùng: thấp tới Cao</SelectItem>
           </SelectContent>

@@ -122,7 +122,8 @@ const DiscountPaging = () => {
             <SelectValue placeholder="Sort Order" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="date">Ngày Hết Hạn</SelectItem>
+            <SelectItem value="date">Ngày Hết Hạn: Gần → Xa</SelectItem>
+            <SelectItem value="date_desc">Ngày Hết Hạn: Xa → Gần</SelectItem>
             <SelectItem value="pcdesc">Percentage: Cao → Thấp</SelectItem>
             <SelectItem value="pcasc">Percentage: Thấp → Cao</SelectItem>
             <SelectItem value="fadesc">Fixed Amount: Cao → Thấp</SelectItem>

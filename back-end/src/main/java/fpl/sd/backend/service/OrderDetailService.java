@@ -197,8 +197,8 @@ public class OrderDetailService {
         return switch (sortOrder.toLowerCase()) {
             case "desc" -> Sort.by(Sort.Direction.DESC, "finalTotal");
             case "asc" -> Sort.by(Sort.Direction.ASC, "finalTotal");
-            case "date_desc" -> Sort.by(Sort.Direction.DESC, date);
-            default -> Sort.by(Sort.Direction.ASC, date);
+            case "date_asc" -> Sort.by(Sort.Direction.ASC, date);
+            default -> Sort.by(Sort.Direction.DESC, date);
         };
     }
 

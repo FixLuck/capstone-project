@@ -35,9 +35,13 @@ import MemberOrderHistoryDetail from "./pages/admin-pages/MemberOrderHistoryDeta
 import MemberOrderHistoryPaging from "./pages/admin-pages/MemberOrderHistoryPaging";
 import DiscountPaging from "./pages/admin-pages/DiscountPaging";
 import RevenuePage from "./pages/admin-pages/RevenuePage";
+
 import ForgotPassword from "./pages/shop-pages/ForgotPassword";
 import VerifyCode from "./pages/shop-pages/VerifyCode";
 import ResetPassword from "./pages/shop-pages/ResetPassword";
+
+
+import MemberManagemantPaging from "./pages/admin-pages/MemberManagemantPaging";
 
 
 const router = createBrowserRouter([
@@ -76,7 +80,7 @@ const router = createBrowserRouter([
       { path: "discount-management/new", element: <AddDiscountPage /> },
       { path: "member-order-history", element: <MemberOrderHistoryPaging /> },
       { path: "member-order-history/detail/:orderId/:userId", element: <MemberOrderHistoryDetail /> },
-      { path: "account-management", element: <MemberManagemant /> },
+      { path: "account-management", element: <MemberManagemantPaging /> },
       { path: "revenue-stats", element: <RevenuePage /> },
       { path: "manage-shoes", element: <ShoePaging /> },
       { path: "manage-shoes/new", element: <AddShoePage /> },

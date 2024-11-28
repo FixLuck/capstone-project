@@ -117,7 +117,7 @@ function UserLogin() {
                       </label>
                     </div>
                     <a
-                      href="#"
+                      href="/forgot-password"
                       className="underline text-black hover:text-yellow-500 transition-colors duration-200"
                     >
                       Quên mật khẩu?

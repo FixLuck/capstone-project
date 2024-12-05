@@ -96,10 +96,10 @@ export function WelcomeAdmin() {
   }
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6 bg-black min-h-screen">
+    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6 bg-slate-100 min-h-screen">
       <div className="flex items-center justify-between space-y-2">
         <div className="flex items-center space-x-4">
-          <h2 className="text-3xl font-bold tracking-tight text-white">
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-900">
             Dasboard
           </h2>
         </div>
@@ -111,15 +111,15 @@ export function WelcomeAdmin() {
         </TabsList>
         <TabsContent value="overview" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-400">
+                <CardTitle className="text-sm font-medium text-zinc-90">
                   Tổng doanh thu
                 </CardTitle>
-                <DollarSign className="h-4 w-4 text-zinc-400" />
+                <DollarSign className="h-4 w-4 text-zinc-900" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white">
+                <div className="text-2xl font-bold text-zinc-900">
                   {formatterToVND.format(
                     dailyReport.reduce(
                       (total, item) => total + item.totalRevenue,
@@ -130,27 +130,27 @@ export function WelcomeAdmin() {
                 <p className="text-xs text-zinc-500">trong tuần vừa qua</p>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-400">
+                <CardTitle className="text-sm font-medium text-zinc-900">
                   Subscriptions
                 </CardTitle>
-                <Users className="h-4 w-4 text-zinc-400" />
+                <Users className="h-4 w-4 text-zinc-900" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white">+2350</div>
+                <div className="text-2xl font-bold text-zinc-900">+2350</div>
                 <p className="text-xs text-zinc-500">+180.1% from last month</p>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-400">
+                <CardTitle className="text-sm font-medium text-zinc-900">
                   Đơn đã thanh toán
                 </CardTitle>
-                <CreditCard className="h-4 w-4 text-zinc-400" />
+                <CreditCard className="h-4 w-4 text-zinc-900" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white">
+                <div className="text-2xl font-bold text-zinc-900">
                   {dailyReport.reduce(
                     (total, item) => total + item.totalOrders,
                     0
@@ -159,23 +159,23 @@ export function WelcomeAdmin() {
                 <p className="text-xs text-zinc-500">trong tuần vừa qua</p>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-400">
+                <CardTitle className="text-sm font-medium text-zinc-900">
                   Active Now
                 </CardTitle>
-                <Activity className="h-4 w-4 text-zinc-400" />
+                <Activity className="h-4 w-4 text-zinc-900" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white">+573</div>
+                <div className="text-2xl font-bold text-zinc-900">+573</div>
                 <p className="text-xs text-zinc-500">+201 since last hour</p>
               </CardContent>
             </Card>
           </div>
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-7">
-            <Card className="col-span-4 bg-zinc-950 border-zinc-800">
+            <Card className="col-span-4 bg-white border-zinc-800">
               <CardHeader>
-                <CardTitle className="text-white">Overview</CardTitle>
+                <CardTitle className="text-zinc-900">Overview</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
                 <ResponsiveContainer height={350}>
@@ -199,15 +199,15 @@ export function WelcomeAdmin() {
                       dataKey="totalRevenue"
                       fill="currentColor"
                       radius={[4, 4, 0, 0]}
-                      className="fill-white"
+                      className="fill-black"
                     />  
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
-            <Card className="col-span-3 bg-zinc-950 border-zinc-800">
+            <Card className="col-span-3 bg-white border-zinc-800">
               <CardHeader>
-                <CardTitle className="text-white">
+                <CardTitle className="text-zinc-900">
                   Khách hàng thân thiết
                 </CardTitle>
                 <p className="text-sm text-zinc-500">
@@ -229,14 +229,14 @@ export function WelcomeAdmin() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="ml-4 space-y-1">
-                        <p className="text-sm font-medium leading-none text-white">
+                        <p className="text-sm font-medium leading-none text-zinc-900">
                           {customer.fullName}
                         </p>
                         <p className="text-sm text-zinc-500">
                           Tổng số đơn hàng: {customer.totalOrders}
                         </p>
                       </div>
-                      <div className="ml-auto font-medium text-white">
+                      <div className="ml-auto font-medium text-zinc-900">
                         + {formatterToVND.format(customer.totalSpent)}
                       </div>
                     </div>
@@ -250,10 +250,10 @@ export function WelcomeAdmin() {
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
             <Card className="bg-slate-100 border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-400">
+                <CardTitle className="text-sm font-medium text-zinc-900">
                   Inventory status
                 </CardTitle>
-                <Activity className="h-4 w-4 text-zinc-400" />
+                <Activity className="h-4 w-4 text-zinc-900" />
               </CardHeader>
               <CardContent>
                 <Table>
@@ -288,10 +288,10 @@ export function WelcomeAdmin() {
             </Card>
             <Card className="bg-slate-100 border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-400">
+                <CardTitle className="text-sm font-medium text-zinc-900">
                   Doanh thu
                 </CardTitle>
-                <Users className="h-4 w-4 text-zinc-400" />
+                <Users className="h-4 w-4 text-zinc-900" />
               </CardHeader>
               <CardContent>
                 <Table>

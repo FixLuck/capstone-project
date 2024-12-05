@@ -190,7 +190,8 @@ public class ShoeService {
                                                     String categoryString,
                                                     int page,
                                                     int size,
-                                                    String sortOrder
+                                                    String sortOrder,
+                                                    Boolean status
                                                     ) {
 
         Sort sort = createSort(sortOrder);
@@ -201,7 +202,7 @@ public class ShoeService {
         ShoeConstants.Gender genderEnum = ShoeConstants.getGenderFromString(genderString);
         ShoeConstants.Category categoryEnum = ShoeConstants.getCategoryFromString(categoryString);
 
-        Page<Shoe> shoeData = shoeRepository.findShoesByFilters(name, minPrice, maxPrice, brandId, genderEnum, categoryEnum, pageable);
+        Page<Shoe> shoeData = shoeRepository.findShoesByFilters(name, minPrice, maxPrice, brandId, genderEnum, categoryEnum, status, pageable);
 
         var shoeList = shoeData.getContent()
                 .stream()

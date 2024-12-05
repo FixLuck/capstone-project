@@ -16,5 +16,6 @@ public class EmailRequest {
     Sender sender;
     List<Recipient> to;
     String subject;
+    Headers headers;
     String htmlContent;
 }

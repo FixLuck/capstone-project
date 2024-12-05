@@ -58,7 +58,7 @@ function SignUp() {
     const toastId = toast.loading("Đang tạo tài khoản...");
 
     try {
-      const response = await api.post("/users", {
+      const response = await api.post("/users/register", {
         username: data.username,
         email: data.email,
         password: data.password,

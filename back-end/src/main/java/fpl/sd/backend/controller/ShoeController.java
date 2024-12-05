@@ -133,6 +133,7 @@ public class ShoeController {
             @RequestParam(required = false) Integer brandId,  // Changed default to 0
             @RequestParam(required = false) String gender,
             @RequestParam(required = false) String category,
+            @RequestParam(required = false) Boolean status,
             @RequestParam(defaultValue = "date") String sortOrder,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "8") int size
@@ -140,7 +141,7 @@ public class ShoeController {
         return ApiResponse.<PageResponse<ShoeResponse>>builder()
                 .flag(true)
                 .message("OK")
-                .result(shoeService.getShoePaging(name, minPrice, maxPrice, brandId, gender, category, page, size, sortOrder))
+                .result(shoeService.getShoePaging(name, minPrice, maxPrice, brandId, gender, category, page, size, sortOrder, status))
                 .build();
     }
 

@@ -46,6 +46,24 @@ public class DBInitialize {
                 userRepository.save(user);
                 log.warn("Default admin user has been created with password admin123");
             }
+
+            if (userRepository.findByUsername("manager").isEmpty()) {
+                Role managerRole = roleRepository.findById(2)
+                        .orElseThrow(() -> new RuntimeException("Manager Role not found"));
+
+                User manager = User.builder()
+                        .username("manager")
+                        .password(passwordEncoder.encode("manager123"))
+                        .createdAt(Instant.now())
+                        .email("manager123@yopmail.com")
+                        .address("789 Main St, Springfield")
+                        .phone("0987654321")
+                        .role(managerRole)
+                        .build();
+
+                userRepository.save(manager);
+                log.warn("Default manager user has been created with password manager123");
+            }
         };
     }
 }

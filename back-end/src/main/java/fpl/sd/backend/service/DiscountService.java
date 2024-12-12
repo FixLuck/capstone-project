@@ -120,14 +120,18 @@ public class DiscountService {
         if (request.getDescription() != null) {
             discount.setDescription(request.getDescription());
         }
-        if (request.getStartDate() != null) {
-            discount.setStartDate(request.getStartDate());
-        }
+//        if (request.getStartDate() != null) {
+//            discount.setStartDate(request.getStartDate());
+//        }
         if (request.getMinimumOrderAmount() != null) {
             discount.setMinimumOrderAmount(request.getMinimumOrderAmount());
         }
-        if (request.getEndDate() != null) {
-            discount.setEndDate(request.getEndDate());
+//        if (request.getEndDate() != null) {
+//            discount.setEndDate(request.getEndDate());
+//        }
+        // Kiểm tra ngày hợp lệ
+        if (request.getStartDate().isAfter(request.getEndDate())) {
+            throw new AppException(ErrorCode.INVALID_DATE_RANGE);
         }
         if (request.getDiscountType() != null) {
             discount.setDiscountType(request.getDiscountType());

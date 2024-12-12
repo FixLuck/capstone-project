@@ -10,38 +10,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import api from "@/config/axios";
 import "react-toastify/dist/ReactToastify.css";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, User, Mail, Phone, Home, ShoppingCart, Tag } from "lucide-react";
 
-
-// // Schema cập nhật
-// const schema = z.object({
-//   code: z.string().min(2, { message: "Code is required" }),
-//   discountType: z.string(),
-//   percentage: z
-//     .number()
-//     .nullable()
-//     .optional()
-//     .or(z.literal("")), // Chấp nhận giá trị rỗng
-//   fixedAmount: z
-//     .number()
-//     .nullable()
-//     .optional()
-//     .or(z.literal("")), // Chấp nhận giá trị rỗng
-//   minimumOrderAmount: z.number().default(0),
-//   description: z.string().min(5, { message: "Description must be at least 5 characters" }),
-
-//   startDate: z.string().refine((value) => !isNaN(Date.parse(value)), {
-//     message: "Start date must be a valid date",
-//   }),
-
-//   endDate: z.string().refine((value) => !isNaN(Date.parse(value)), {
-//     message: "End date must be a valid date",
-//   }),
-
-//   active: z.enum(["true", "false"], {
-//     invalid_type_error: "Status must be a boolean",
-//     required_error: "Status is required",
-//   }),
-// });
 const schema = z.object({
   code: z.string().min(2),
   description: z.string().min(5),
@@ -89,72 +60,6 @@ export default function AddDiscountForm() {
     }
   }, [watch("discountType")]); // Theo dõi sự thay đổi của discountType
 
-  // const onSubmit = async (data) => {
-  //   setIsLoading(true);
-  //   const toastId = toast.loading("Adding discount...");
-  //   try {
-  //     console.log("Form data submitted:", data);
-
-  //     // Xử lý giá trị rỗng thành null
-  //     const formattedData = {
-  //       ...data,
-  //       percentage: data.percentage === "" ? null : data.percentage,
-  //       fixedAmount: data.fixedAmount === "" ? null : data.fixedAmount,
-  //       minimumOrderAmount: data.minimumOrderAmount === "" ? 0 : data.minimumOrderAmount, // Nếu trống, set là 0
-  //       startDate: new Date(data.startDate).toISOString(),
-  //       endDate: new Date(data.endDate).toISOString(),
-  //     };
-
-  //     // const formattedData = {
-  //     //   ...data,
-  //     //   percentage:
-  //     //     data.discountType === "PERCENTAGE"
-  //     //       ? parseFloat(data.percentage || 0)
-  //     //       : null, // Chỉ gửi khi discountType là PERCENTAGE
-  //     //   fixedAmount:
-  //     //     data.discountType === "FIXED_AMOUNT"
-  //     //       ? parseFloat(data.fixedAmount || 0)
-  //     //       : null, // Chỉ gửi khi discountType là FIXED_AMOUNT
-  //     //   minimumOrderAmount:
-  //     //     data.discountType === "PERCENTAGE"
-  //     //       ? null
-  //     //       : parseFloat(data.minimumOrderAmount || 0), // Bỏ qua nếu discountType là PERCENTAGE
-  //     //       startDate: formatISO(new Date(data.startDate)),
-  //     //       endDate: formatISO(new Date(data.endDate)),
-  //     //       active: data.active === "true", // Chuyển đổi thành boolean
-  //     // };
-      
-
-  //     const response = await api.post("/discounts", formattedData);
-
-  //     if (response.status === 200 && response.data.flag) {
-  //       toast.update(toastId, {
-  //         render: "Discount added successfully!",
-  //         type: "success",
-  //         isLoading: false,
-  //         autoClose: 2000,
-  //       });
-  //       setTimeout(() => navigate("/admin"), 2000);
-  //     } else {
-  //       toast.update(toastId, {
-  //         render: response.data.message || "Failed to add discount.",
-  //         type: "error",
-  //         isLoading: false,
-  //         autoClose: 2000,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error("Error adding discount:", error);
-  //     toast.update(toastId, {
-  //       render: "An error occurred while adding the discount.",
-  //       type: "error",
-  //       isLoading: false,
-  //       autoClose: 2000,
-  //     });
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
 
   const onSubmit = async (data) => {
@@ -216,7 +121,7 @@ export default function AddDiscountForm() {
   
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white shadow-md rounded-lg">
+    <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md">
       <ToastContainer 
         position="top-right" 
         hideProgressBar={false} 
@@ -227,6 +132,16 @@ export default function AddDiscountForm() {
         draggable 
         pauseOnHover 
         theme="light" />
+         <div className="flex items-center justify-between mb-4">
+      <Link to={"/admin/discount-management"}>
+        <Button variant="ghost" className="flex items-center gap-2">
+          <ArrowLeft className="h-4 w-4" />
+          Back
+        </Button>
+        </Link>
+        <h1 className="text-4xl font-bold">Chi tiết đơn hàng</h1>
+        <div className="w-24" /> {/* Spacer for alignment */}
+      </div>
       
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">Add New Discount</h2>
       
@@ -355,13 +270,13 @@ export default function AddDiscountForm() {
         </div>
 
         <div className="flex justify-end space-x-4 mt-6">
-          <Button 
+          {/* <Button 
             variant="outline"
             onClick={() => reset()}
             className="px-4 py-2 bg-gray-200 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-300"
           >
             Cancel
-          </Button>
+          </Button> */}
           <Button 
             type="submit"
             disabled={isLoading}

@@ -195,9 +195,9 @@ export default function UpdateMemberOrderHistory ({ orderId }) {
 
 
           <DialogFooter>
-            <Button variant="outline" onClick={() => reset()}>
+            {/* <Button variant="outline" onClick={() => reset()}>
               Cancel
-            </Button>
+            </Button> */}
             <Button type="submit" disabled={isLoading} className="bg-blue-600 text-white hover:bg-blue-700">
               Save Changes
             </Button>

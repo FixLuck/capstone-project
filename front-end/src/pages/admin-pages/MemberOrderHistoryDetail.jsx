@@ -48,13 +48,15 @@ export default function MemberOrderHistoryDetail() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="container mx-auto p-4 space-y-6 bg-gray-50 rounded-md shadow-md">
+    <div className="container mx-auto p-4 space-y-6 h-screen bg-gray-50 rounded-md shadow-md">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-4">
+      <Link to={"/admin/member-order-history"}>
         <Button variant="ghost" className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
-          <Link to={"/admin/member-order-history"}>Back</Link>
+          Back
         </Button>
+        </Link>
         <h1 className="text-4xl font-bold">Chi tiết đơn hàng</h1>
         <div className="w-24" /> {/* Spacer for alignment */}
       </div>

@@ -73,7 +73,7 @@ export default function RevenueTabs() {
   }, [startDate, endDate, selectedYear]);
 
   return (
-    <Tabs defaultValue="date-range" className="w-full max-w-5xl">
+    <Tabs defaultValue="date-range" className="max-w-full h-screen mx-auto">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="date-range">Revenue by Date Range</TabsTrigger>
         <TabsTrigger value="monthly">Monthly Revenue</TabsTrigger>

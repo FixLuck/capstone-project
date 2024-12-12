@@ -13,7 +13,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
-
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, User, Mail, Phone, Home, ShoppingCart, Tag } from "lucide-react";
 const schema = z.object({
   name: z.string().min(2, { message: "Required" }),
   price: z.number().min(10, { message: "Required" }),
@@ -159,7 +160,7 @@ export default function RunningShoeForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md">
       <ToastContainer
         position="top-right"
         hideProgressBar={false}
@@ -172,6 +173,16 @@ export default function RunningShoeForm() {
         theme="light"
         transition="Bounce"
       />
+      <div className="flex items-center justify-between mb-4">
+      <Link to={"/admin/manage-shoes"}>
+        <Button variant="ghost" className="flex items-center gap-2">
+          <ArrowLeft className="h-4 w-4" />
+          Back
+        </Button>
+        </Link>
+        <h1 className="text-4xl font-bold">Chi tiết đơn hàng</h1>
+        <div className="w-24" /> {/* Spacer for alignment */}
+      </div>
       <h1 className="text-2xl font-bold mb-4">Running Shoes Product Form</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
         <div className="space-y-2">
@@ -191,7 +202,7 @@ export default function RunningShoeForm() {
           <Input
             label="Giá"
             type="number"
-            placeholder="Giá"
+            placeholder="Giá "
             {...register("price", { valueAsNumber: true })}
           />
           {errors.price?.message && (
@@ -199,6 +210,7 @@ export default function RunningShoeForm() {
           )}
         </div>
         <div className="space-y-2">
+          
           <Label htmlFor="description">Mô tả</Label>
           <Input
             label="Mô tả"
@@ -225,7 +237,7 @@ export default function RunningShoeForm() {
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="fakePrice">Giá</Label> {/* Thay "Giá ảo" thành "Giá" */}
+          <Label htmlFor="fakePrice">Giá niêm yết</Label> {/* Thay "Giá ảo" thành "Giá" */}
           <Input
             label="Giá"
             type="number"

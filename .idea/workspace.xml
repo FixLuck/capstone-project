@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/back-end/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/system/DBInitialize.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/system/DBInitialize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
@@ -77,7 +77,9 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.BackEndApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.back-end-0.0.1-SNAPSHOT.jar.executor&quot;: &quot;Run&quot;,
     &quot;Maven.back-end [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.back-end [package].executor&quot;: &quot;Run&quot;,
     &quot;Maven.back-end [validate].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -87,6 +89,7 @@
     &quot;Spring Boot.BackEndApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;man-branch&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/caube/OneDrive/Desktop/Workspace/CodeJava/capstone-project/back-end/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -97,16 +100,26 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\caube\OneDrive\Desktop\Workspace\CodeJava\capstone-project\back-end\src\main\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="fpl.sd.backend.entity.report" />
       <recent name="fpl.sd.backend.dto.response" />
       <recent name="fpl.sd.backend.dto.request" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackEndApplication">
+  <component name="RunManager" selected="Application.BackEndApplication">
     <configuration name="BackEndApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DBMS_CONNECTION" value="jdbc:mysql://localhost:3306/shop_shoe_superteam?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=UTC" />
+        <env name="JWT_SIGNERKEY" value="1cLc5GX0Em888Eol5qUD7MmqprRtdyV7mFEBWftpuHDlmdbSZdXrTa74uv5q9/rD" />
+        <env name="DBMS_USERNAME" value="root" />
+        <env name="DBMS_PASSWORD" value="root" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="fpl.sd.backend.BackEndApplication" />
       <module name="back-end" />
+      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=production" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="fpl.sd.backend.*" />
@@ -133,6 +146,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="back-end-0.0.1-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/back-end/target/back-end-0.0.1-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
     <configuration name="BackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="back-end" />
@@ -141,9 +158,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.BackEndApplication" />
+      <item itemvalue="JAR Application.back-end-0.0.1-SNAPSHOT.jar" />
+      <item itemvalue="JUnit.BackEndApplicationTests.hash" />
+      <item itemvalue="Spring Boot.BackEndApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.BackEndApplication" />
+        <item itemvalue="JAR Application.back-end-0.0.1-SNAPSHOT.jar" />
         <item itemvalue="JUnit.BackEndApplicationTests.hash" />
       </list>
     </recent_temporary>
@@ -236,6 +260,8 @@
       <workItem from="1733409093688" duration="749000" />
       <workItem from="1733752168188" duration="3037000" />
       <workItem from="1733887824976" duration="2906000" />
+      <workItem from="1733921194787" duration="16032000" />
+      <workItem from="1733972873049" duration="3780000" />
     </task>
     <servers />
   </component>

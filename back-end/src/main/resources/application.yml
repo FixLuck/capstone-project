@@ -37,4 +37,4 @@ vnPay:
   return-url: "http://localhost:5173/checkout/payment-callback"
 
 mail:
-  apiKey: "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"
+  apiKey: ""

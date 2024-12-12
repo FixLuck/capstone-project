@@ -96,7 +96,7 @@ export function WelcomeAdmin() {
   }
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6 bg-slate-100 min-h-screen">
+    <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md">
       <div className="flex items-center justify-between space-y-2">
         <div className="flex items-center space-x-4">
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900">
@@ -130,7 +130,7 @@ export function WelcomeAdmin() {
                 <p className="text-xs text-zinc-500">trong tuần vừa qua</p>
               </CardContent>
             </Card>
-            <Card className="bg-white border-zinc-800">
+            {/* <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-900">
                   Subscriptions
@@ -141,7 +141,7 @@ export function WelcomeAdmin() {
                 <div className="text-2xl font-bold text-zinc-900">+2350</div>
                 <p className="text-xs text-zinc-500">+180.1% from last month</p>
               </CardContent>
-            </Card>
+            </Card> */}
             <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-900">
@@ -159,7 +159,7 @@ export function WelcomeAdmin() {
                 <p className="text-xs text-zinc-500">trong tuần vừa qua</p>
               </CardContent>
             </Card>
-            <Card className="bg-white border-zinc-800">
+            {/* <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-900">
                   Active Now
@@ -170,7 +170,7 @@ export function WelcomeAdmin() {
                 <div className="text-2xl font-bold text-zinc-900">+573</div>
                 <p className="text-xs text-zinc-500">+201 since last hour</p>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-7">
             <Card className="col-span-4 bg-white border-zinc-800">
@@ -248,7 +248,7 @@ export function WelcomeAdmin() {
         </TabsContent>
         <TabsContent value="other">
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-            <Card className="bg-slate-100 border-zinc-800">
+            <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-900">
                   Inventory status
@@ -286,7 +286,7 @@ export function WelcomeAdmin() {
                 </Table>
               </CardContent>
             </Card>
-            <Card className="bg-slate-100 border-zinc-800">
+            <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-900">
                   Doanh thu

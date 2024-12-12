@@ -95,7 +95,7 @@ const MemberOrderHistoryPaging   = () => {
 
   return (
     // <div className="container mx-auto p-6 space-y-6 max-w-7xl">
-    <div className="mt-10 p-5">
+    <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md">
     <h1 className="text-2xl font-bold mb-4 text-center">Lịch Sử Đơn Hàng</h1>
 
     <div className="flex items-center space-x-4 mb-6 p-10">

@@ -150,10 +150,10 @@ const ShoeManagement = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 space-y-6 max-w-7xl">
+    <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md ">
       <h1 className="text-3xl font-bold mb-6">Shoe Management</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-3">
         <Input
           placeholder="Search by name"
           value={name}
@@ -233,7 +233,7 @@ const ShoeManagement = () => {
       <Button onClick={handleSearch} className="w-full md:w-auto">
         Search
       </Button>
-      <Button variant="outline" className="hover:bg-green-600 hover:text-white">
+      <Button variant="outline" className="hover:bg-green-600 hover:text-white ms-3">
         <Link
           to={"/admin/manage-shoes/new"}
           className="flex p-4 align-items-center"
@@ -327,6 +327,7 @@ const ShoeManagement = () => {
           </Button>
         </div>
       </div>
+      
     </div>
   );
 };

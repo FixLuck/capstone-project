@@ -135,7 +135,7 @@ const DiscountPaging = () => {
       <Button onClick={handleSearch} className="w-full md:w-auto">
         Search
       </Button>
-      <Button variant="outline" className="hover:bg-green-600 hover:text-white">
+      <Button variant="outline" className="hover:bg-green-600 hover:text-white ms-3">
         <Link to={"/admin/discount-management/new"} className="flex p-4 align-items-center">
           <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
           <span>Add</span>

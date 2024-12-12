@@ -136,9 +136,9 @@ export default function UpdateMemberForm({ userId }) {
           <Separator className="my-4" />
 
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+            {/* <Button variant="outline" onClick={() => setDialogOpen(false)}>
               Hủy
-            </Button>
+            </Button> */}
             <Button type="submit" disabled={!isChanged}>
               Lưu thay đổi
             </Button>

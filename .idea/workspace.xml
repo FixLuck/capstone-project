@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +113,7 @@
         <env name="DBMS_PASSWORD" value="root" />
         <env name="DBMS_USERNAME" value="root" />
         <env name="JWT_SIGNERKEY" value="1cLc5GX0Em888Eol5qUD7MmqprRtdyV7mFEBWftpuHDlmdbSZdXrTa74uv5q9/rD" />
-        <env name="MAIL_APIKEY" value="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" />
+        <env name="MAIL_APIKEY" value="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" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="fpl.sd.backend.BackEndApplication" />
       <module name="back-end" />
@@ -262,7 +260,7 @@
       <workItem from="1733887824976" duration="2906000" />
       <workItem from="1733921194787" duration="16032000" />
       <workItem from="1733972873049" duration="3780000" />
-      <workItem from="1734016184154" duration="248000" />
+      <workItem from="1734016184154" duration="837000" />
     </task>
     <servers />
   </component>

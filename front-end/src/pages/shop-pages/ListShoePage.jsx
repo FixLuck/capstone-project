@@ -38,6 +38,17 @@ import { ToastContainer, toast } from "react-toastify";
 import { formatterToVND } from "../../utils/formatter";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+import { FaHome } from "react-icons/fa";
+
 export default function ListShoePage() {
   const [shoes, setShoes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -157,9 +168,22 @@ export default function ListShoePage() {
         theme="light"
         transition:Bounce
       />
+      <div className="px-4 py-2">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/"><FaHome /></BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/shoes">Sản phẩm</BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <div className="flex p-4">
         <div className="w-1/3 me-4">
-          <Accordion type="single"collapsible>
+          <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>Hãng giày</AccordionTrigger>
               {brands.map((brand, index) => (

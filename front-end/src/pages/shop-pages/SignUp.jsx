@@ -231,12 +231,6 @@ function SignUp() {
                   >
                     Bạn đã có tài khoản? Đăng nhập
                   </Link>
-                  <Button className="w-full bg-blue-500 text-white rounded p-2 hover:bg-gray-500">
-                    Đăng nhập với Facebook
-                  </Button>
-                  <Button className="w-full bg-yellow-500 text-white rounded p-2 hover:bg-gray-500">
-                    Đăng nhập với Google
-                  </Button>
                 </div>
               </CardFooter>
             </Card>

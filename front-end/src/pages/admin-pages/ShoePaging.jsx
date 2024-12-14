@@ -215,9 +215,10 @@ const ShoeManagement = () => {
             <SelectValue placeholder="Thứ tự sắp xếp" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="date">Theo ngày tạo</SelectItem>
-            <SelectItem value="desc">Giá: Cao tới thấo</SelectItem>
-            <SelectItem value="asc">Giá: Thấp tới cao</SelectItem>
+            <SelectItem value="date">Cũ - Mới</SelectItem>
+            <SelectItem value="date_desc">Mới - Cũ</SelectItem>
+            <SelectItem value="desc">Price: High to Low</SelectItem>
+            <SelectItem value="asc">Price: Low to High</SelectItem>
           </SelectContent>
         </Select>
         <Select value={status} onValueChange={setStatus}>

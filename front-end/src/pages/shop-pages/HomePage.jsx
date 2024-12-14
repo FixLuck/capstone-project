@@ -4,7 +4,10 @@ import ListBrand from "../../components/shop/ListBrand";
 import HotShoeList from "../../components/shop/HotShoeList";
 import api from "@/config/axios";
 import { useState } from "react";
-import { set } from "date-fns";
+
+
+
+
 
 export default function HomePage() {
   const [newArrivals, setNewArrivals] = useState([]);
@@ -56,7 +59,7 @@ export default function HomePage() {
   console.log(cheapeastShoes);
   console.log(topSellers);
 
-
+ 
 
   return (
     <div className="container mx-auto justify-center ">
@@ -64,7 +67,8 @@ export default function HomePage() {
       <ListBrand />
       <HotShoeList shoes={newArrivals} titlte={"Hàng mới về"} />
       <HotShoeList shoes={cheapeastShoes} titlte={"Hàng rẻ nhất"} />
-      <HotShoeList shoes={topSellers} titlte={"Hàng bán chạy"}/>
+      <HotShoeList shoes={topSellers} titlte={"Hàng bán chạy"} />
+      
     </div>
   );
 }

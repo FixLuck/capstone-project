@@ -1,6 +1,12 @@
 package fpl.sd.backend.service;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fpl.sd.backend.ai.chat.ChatClient;
+import fpl.sd.backend.ai.chat.dto.ChatRequest;
+import fpl.sd.backend.ai.chat.dto.ChatResponse;
+import fpl.sd.backend.ai.chat.dto.Message;
 import fpl.sd.backend.constant.DiscountConstants;
 
 import fpl.sd.backend.dto.PageResponse;
@@ -15,6 +21,7 @@ import fpl.sd.backend.exception.AppException;
 import fpl.sd.backend.exception.ErrorCode;
 import fpl.sd.backend.mapper.DiscountMapper;
 import fpl.sd.backend.repository.DiscountRepository;
+import fpl.sd.backend.utils.MessageUtil;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -33,6 +40,8 @@ import java.util.List;
 public class DiscountService {
     DiscountRepository discountRepository;
     DiscountMapper discountMapper;
+    ObjectMapper objectMapper;
+    ChatClient chatClient;
 
     public List<DiscountResponse> getAllDiscounts() {
         List<Discount> discounts = discountRepository.findAll();
@@ -260,6 +269,16 @@ public PageResponse<DiscountResponse> getDiscountPaging(
             case "date_desc" -> Sort.by(Sort.Direction.DESC, date);
             default -> Sort.by(Sort.Direction.ASC, date);
         };
+    }
+
+    public String discountData(String messageContent) throws JsonProcessingException {
+        String jsonArray = objectMapper.writeValueAsString(this.getAllDiscounts());
+        List<Message> messages = MessageUtil.createMessages("You are a helpful assistant " + messageContent, jsonArray);
+
+        ChatRequest chatRequest = new ChatRequest("gpt-4o-mini", messages);
+        ChatResponse chatResponse = this.chatClient.generate(chatRequest);
+
+        return chatResponse.getChoices().getFirst().getMessage().getContent();
     }
 
 }

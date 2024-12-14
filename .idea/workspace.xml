@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/ChatClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/OpenAIChatClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/RestClientBuilderConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/dto/ChatRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/dto/ChatResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/dto/Choice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/dto/ContentMessageRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/ai/chat/dto/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/ChatController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/utils/MessageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back-end/src/test/java/fpl/sd/backend/ai/chat/OpenAIChatClientTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/configuration/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/controller/BrandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/CartItemRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/CartItemRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/DiscountCreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/BrandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/BrandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/DiscountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,9 +123,6 @@
         <env name="DBMS_PASSWORD" value="root" />
         <env name="DBMS_USERNAME" value="root" />
         <env name="JWT_SIGNERKEY" value="1cLc5GX0Em888Eol5qUD7MmqprRtdyV7mFEBWftpuHDlmdbSZdXrTa74uv5q9/rD" />
-        <env name="MAIL_APIKEY" value="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" />
-        <env name="AI_OPENAI_ENDPOINT" value="https://api.openai.com/v1/chat/completions" />
-        <env name="AI_OPENAI_APIKEY" value="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" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="fpl.sd.backend.BackEndApplication" />
       <module name="back-end" />

@@ -75,21 +75,21 @@ export default function RevenueTabs() {
   return (
     <Tabs defaultValue="date-range" className="max-w-full h-screen mx-auto">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="date-range">Revenue by Date Range</TabsTrigger>
-        <TabsTrigger value="monthly">Monthly Revenue</TabsTrigger>
+        <TabsTrigger value="date-range">Doanh Thu Theo Khoảng Thời Gian</TabsTrigger>
+        <TabsTrigger value="monthly">Theo tháng</TabsTrigger>
       </TabsList>
       <TabsContent value="date-range">
         <Card>
           <CardHeader>
-            <CardTitle>Revenue by Date Range</CardTitle>
+            <CardTitle>Doanh thu theo khoảng thời gian</CardTitle>
             <CardDescription>
-              View revenue for a specific date range
+              Xem doanh thu theo khoảng thời gian cụ thể
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="start-date">Start Date</Label>
+                <Label htmlFor="start-date">Ngày bắt đầu</Label>
                 <Input
                   id="start-date"
                   type="date"
@@ -98,7 +98,7 @@ export default function RevenueTabs() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="end-date">End Date</Label>
+                <Label htmlFor="end-date">Ngày kết thúc</Label>
                 <Input
                   id="end-date"
                   type="date"
@@ -126,14 +126,14 @@ export default function RevenueTabs() {
       <TabsContent value="monthly">
         <Card>
           <CardHeader>
-            <CardTitle>Monthly Revenue</CardTitle>
+            <CardTitle>Doanh thu hằng tháng</CardTitle>
             <CardDescription>
-              View monthly revenue for a specific year
+              Xem doanh thu theo năm cụ thể
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="w-[200px]">
-              <Label htmlFor="year-select">Select Year</Label>
+              <Label htmlFor="year-select">Chọn năm</Label>
               <Select value={selectedYear} onValueChange={setSelectedYear}>
                 <SelectTrigger id="year-select">
                   <SelectValue placeholder="Select year" />

@@ -94,7 +94,7 @@ const DiscountPaging = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <Input
-          placeholder="Search by code"
+          placeholder="Tìm kiếm theo mã giảm giá"
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
@@ -104,8 +104,8 @@ const DiscountPaging = () => {
             <SelectValue placeholder="Chọn Loại Giảm Giá" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="PERCENTAGE">Percentage</SelectItem>
-            <SelectItem value="FIXED_AMOUNT">Fixed Amount</SelectItem>
+            <SelectItem value="PERCENTAGE">Phần trăm </SelectItem>
+            <SelectItem value="FIXED_AMOUNT">Số tiền cố định</SelectItem>
           </SelectContent>
         </Select>
         <Select value={isActive} onValueChange={setIsActive}>
@@ -124,36 +124,36 @@ const DiscountPaging = () => {
           <SelectContent>
             <SelectItem value="date">Ngày Hết Hạn: Gần → Xa</SelectItem>
             <SelectItem value="date_desc">Ngày Hết Hạn: Xa → Gần</SelectItem>
-            <SelectItem value="pcdesc">Percentage: Cao → Thấp</SelectItem>
-            <SelectItem value="pcasc">Percentage: Thấp → Cao</SelectItem>
-            <SelectItem value="fadesc">Fixed Amount: Cao → Thấp</SelectItem>
-            <SelectItem value="faasc">Fixed Amount: Thấp → Cao</SelectItem>
+            <SelectItem value="pcdesc">Phần trăm: Cao → Thấp</SelectItem>
+            <SelectItem value="pcasc">Phần trăm: Thấp → Cao</SelectItem>
+            <SelectItem value="fadesc">Số tiền cố định: Cao → Thấp</SelectItem>
+            <SelectItem value="faasc">Số tiền cố định: Thấp → Cao</SelectItem>
           </SelectContent>
         </Select>
       </div>
       <div className="mt-5">
       <Button onClick={handleSearch} className="w-full md:w-auto">
-        Search
+        Tìm kiếm
       </Button>
       <Button variant="outline" className="hover:bg-green-600 hover:text-white ms-3">
         <Link to={"/admin/discount-management/new"} className="flex p-4 align-items-center">
           <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
-          <span>Add</span>
+          <span>Thêm</span>
         </Link>
       </Button>
       </div>
       {/* Danh sách mã giảm giá */}
       <div className="mt-10">
         <Table className="w-full">
-          <TableCaption className="text-gray-500">A list of your recent discounts.</TableCaption>
+          <TableCaption className="text-gray-500">Danh sách mã giảm giá gần đây.</TableCaption>
           <TableHeader className="bg-gray-100">
             <TableRow>
-              <TableCell className="p-3 font-semibold">Edit</TableCell>
-              <TableCell className="p-3 font-semibold">Code</TableCell>
-              <TableCell className="p-3 font-semibold">Discount Type</TableCell>
-              <TableCell className="p-3 font-semibold">Start Day</TableCell>
-              <TableCell className="p-3 font-semibold">End Day</TableCell>
-              <TableCell className="p-3 font-semibold">Active</TableCell>
+              <TableCell className="p-3 font-semibold">Chỉnh sửa</TableCell>
+              <TableCell className="p-3 font-semibold">Tên mã</TableCell>
+              <TableCell className="p-3 font-semibold">Loại giảm giá</TableCell>
+              <TableCell className="p-3 font-semibold">Ngày bắt đầu</TableCell>
+              <TableCell className="p-3 font-semibold">Ngày kết thúc</TableCell>
+              <TableCell className="p-3 font-semibold">Trạng thái</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -171,9 +171,9 @@ const DiscountPaging = () => {
                   <TableCell className="p-3">{new Date(discount.endDate).toLocaleString()}</TableCell>
                   <TableCell className="p-3">
                     {discount.active ? (
-                      <span className="text-green-500" value="true">Active</span>
+                      <span className="text-green-500" value="true">Hoạt động </span>
                     ) : (
-                      <span className="text-red-500"value="false">Inactive</span>
+                      <span className="text-red-500"value="false">Tắt</span>
                     )}
                   </TableCell>
                 </TableRow>
@@ -184,8 +184,8 @@ const DiscountPaging = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center mt-4 space-y-4 sm:space-y-0">
         <div className="text-sm text-muted-foreground">
-          Showing page {discountData.currentPage} of {discountData.totalPages} (Total
-          items: {discountData.totalElements})
+          Hiện trang {discountData.currentPage} trên {discountData.totalPages} (Tổng cộng
+          số mã giảm: {discountData.totalElements})
         </div>
         <div className="flex space-x-2">
           <Button

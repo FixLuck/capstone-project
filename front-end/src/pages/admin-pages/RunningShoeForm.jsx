@@ -177,13 +177,13 @@ export default function RunningShoeForm() {
       <Link to={"/admin/manage-shoes"}>
         <Button variant="ghost" className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
-          Back
+          Quay lại
         </Button>
         </Link>
         <h1 className="text-4xl font-bold">Chi tiết đơn hàng</h1>
         <div className="w-24" /> {/* Spacer for alignment */}
       </div>
-      <h1 className="text-2xl font-bold mb-4">Running Shoes Product Form</h1>
+      <h1 className="text-2xl font-bold mb-4">Thêm Sản phẩm</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
         <div className="space-y-2">
           <Label htmlFor="name">Tên sản phẩm</Label>

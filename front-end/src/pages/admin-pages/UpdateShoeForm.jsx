@@ -138,19 +138,19 @@ export default function UpdateShoeForm({ shoeId }) {
           variant="outline"
           className="hover:bg-slate-950 hover:text-white"
         >
-          Edit
+          Chỉnh sửa
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-2xl mx-auto">
         <DialogHeader>
-          <DialogTitle>Edit Shoe Detail</DialogTitle>
+          <DialogTitle>Chỉnh sửa thông tin giày</DialogTitle>
           <DialogDescription>
-            Make changes to your shoe here. Click save when you're done.
+           Thay đổi thôn tin giày ở đây. Lưu thay đổi khi bạn nhập xong.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">Tên</Label>
             <Input
               id="name"
               name="name"
@@ -163,7 +163,7 @@ export default function UpdateShoeForm({ shoeId }) {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="price">Price</Label>
+              <Label htmlFor="price">Giá</Label>
               <Input
                 id="price"
                 name="price"
@@ -177,7 +177,7 @@ export default function UpdateShoeForm({ shoeId }) {
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="fakePrice">Fake Price</Label>
+              <Label htmlFor="fakePrice">Giá niêm yết</Label>
               <Input
                 id="fakePrice"
                 name="fakePrice"
@@ -192,7 +192,7 @@ export default function UpdateShoeForm({ shoeId }) {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">Mô tả</Label>
             <Input
               id="description"
               name="description"
@@ -202,29 +202,29 @@ export default function UpdateShoeForm({ shoeId }) {
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="gender">Gender</Label>
+              <Label htmlFor="gender">Giới tính</Label>
               <select
                 {...register("gender")}
                 className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
               >
-                <option value="WOMEN">WOMEN</option>
-                <option value="MAN">MAN</option>
+                <option value="WOMEN">Nữ</option>
+                <option value="MAN">Nam</option>
                 <option value="UNISEX">UNISEX</option>
               </select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="category">Category</Label>
+              <Label htmlFor="category">Thể loại</Label>
               <select
                 {...register("category")}
                 className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
               >
-                <option value="RUNNING">RUNNING</option>
-                <option value="SPORT">SPORT</option>
-                <option value="CASUAL">CASUAL</option>
+                <option value="RUNNING">Chạy bộ</option>
+                <option value="SPORT">Thể thao</option>
+                <option value="CASUAL">Thời trang</option>
               </select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="brandId">Brand:</Label>
+              <Label htmlFor="brandId">Nhãn hiệu:</Label>
               <select
                 {...register("brandId", { valueAsNumber: true })}
                 className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
@@ -237,14 +237,14 @@ export default function UpdateShoeForm({ shoeId }) {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="status">Status:</Label>
+            <Label htmlFor="status">Trạng thái:</Label>
             <select
               {...register("status")}
               className="block w-1/3 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base"
             >
-              <option value="">Select status</option>
-              <option value="true">Active</option>
-              <option value="false">Inactive</option>
+              <option value="">Chọn trạng thái</option>
+              <option value="true">Hoạt động</option>
+              <option value="false">Tắt</option>
             </select>
             {errors.status?.message && (
               <p className="text-red-600">{errors.status?.message}</p>

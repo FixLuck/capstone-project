@@ -111,10 +111,10 @@ export default function Cart() {
   if (!items.length) {
     return (
       <div className="container mx-auto p-6 bg-white rounded-md">
-        <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
-        <p className="text-gray-600">Your cart is currently empty.</p>
+        <h1 className="text-2xl font-bold mb-6">Giỏ Hàng Của Bạn</h1>
+        <p className="text-gray-600">Giỏ hàng của bạn đang trống.</p>
         <Link to="/">
-          <Button className="mt-6">Continue Shopping</Button>
+          <Button className="mt-6">Tiếp tục mua sắm</Button>
         </Link>
       </div>
     );
@@ -156,7 +156,7 @@ export default function Cart() {
                 </BreadcrumbList>
               </Breadcrumb>
             </div>
-      <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
+      <h1 className="text-2xl font-bold mb-6">Giỏ Hàng</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           {items.map((item, index) => (
@@ -180,7 +180,7 @@ export default function Cart() {
                         className="text-red-500 hover:text-red-700 flex items-center gap-1"
                       >
                         <X className="w-4 h-4" />
-                        <span className="text-sm">Remove</span>
+                        <span className="text-sm">Xóa</span>
                       </button>
                     </div>
                   </div>
@@ -214,18 +214,18 @@ export default function Cart() {
         <div className="lg:col-span-1">
           <Card>
             <CardContent className="p-4">
-              <h2 className="text-xl font-bold mb-4">Order summary</h2>
+              <h2 className="text-xl font-bold mb-4">Tổng quan giỏ hàng</h2>
 
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Original price</span>
+                  <span className="text-gray-600">Tổng giá niêm yết</span>
                   <span>{formatterToVND.format(totals.originalPrice)}</span>
                 </div>
 
                 {totals.discountAmount > 0 && (
                   <div className="flex justify-between text-green-600">
                     <span>
-                      Discount{" "}
+                      Giảm giá{" "}
                       {totals.appliedCoupon && `(${totals.appliedCoupon})`}
                       {totals.discountType === "PERCENTAGE" &&
                         ` ${discountInfo.percentage}%`}
@@ -237,26 +237,26 @@ export default function Cart() {
                 {discountInfo &&
                   totals.originalPrice < totals.minimumOrderAmount && (
                     <div className="text-red-500 text-sm">
-                      Add{" "}
+                      Thêm{" "}
                       {formatterToVND.format(
                         totals.minimumOrderAmount - totals.originalPrice
                       )}{" "}
-                      more to apply this coupon
+                      khi áp dụng mã này
                     </div>
                   )}
 
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Store Pickup</span>
+                  <span className="text-gray-600">Nhận hàng tại cửa hàng</span>
                   <span>{formatterToVND.format(totals.storePickup)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Tax</span>
+                  <span className="text-gray-600">Thuế</span>
                   <span>{formatterToVND.format(totals.tax)}</span>
                 </div>
 
                 <div className="pt-4 border-t mt-4">
                   <div className="flex justify-between font-bold">
-                    <span>Total</span>
+                    <span>Tổng cộng</span>
                     <span>{formatterToVND.format(totals.total)}</span>
                   </div>
                 </div>
@@ -266,31 +266,31 @@ export default function Cart() {
                 onClick={handleCheckout}
                 className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white"
               >
-                Proceed to Checkout
+                Tiến hành thanh toán
               </Button>
 
               <div className="text-center mt-4">
-                <span className="text-gray-600">or</span>
+                <span className="text-gray-600">hoặc</span>
                 <Link to="/">
                   <button className="ml-2 text-blue-600 hover:underline">
-                    Continue Shopping
+                    Tiếp tục mua sắm
                   </button>
                 </Link>
               </div>
 
               <div className="mt-6">
                 <h3 className="text-sm font-medium mb-2">
-                  Do you have a voucher or gift card?
+                 Bạn có mã giảm giá hay thẻ quà tặng không ?
                 </h3>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     className="flex-grow px-3 py-2 border rounded-md"
-                    placeholder="Enter code"
+                    placeholder="Nhập mã giảm vào đây"
                     ref={couponCode}
                   />
                   <Button variant="outline" onClick={handleApplyCode}>
-                    Apply Code
+                    Áp dụng mã giảm giá
                   </Button>
                 </div>
               </div>

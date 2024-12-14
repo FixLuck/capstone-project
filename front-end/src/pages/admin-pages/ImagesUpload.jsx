@@ -24,7 +24,7 @@ export default function ImagesUpload({ onImagesSelect }) {
   return (
     <div>
       <div className="p-5 max-w-lg">
-        <h2 className="text-2xl font-bold mb-4">Select Images</h2>
+        <h2 className="text-2xl font-bold mb-4">Chọn các ảnh</h2>
         <input
           type="file"
           multiple

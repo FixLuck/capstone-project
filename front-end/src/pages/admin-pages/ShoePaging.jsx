@@ -151,11 +151,11 @@ const ShoeManagement = () => {
 
   return (
     <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md ">
-      <h1 className="text-3xl font-bold mb-6">Shoe Management</h1>
+      <h1 className="text-3xl font-bold mb-6">Quản Lý Giày</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-3">
         <Input
-          placeholder="Search by name"
+          placeholder="Tìm kiếm theo tên giày"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -163,7 +163,7 @@ const ShoeManagement = () => {
           <div className="flex space-x-2">
             <Input
               type="number"
-              placeholder="Min Price"
+              placeholder="Giá thấp nhất"
               value={minPrice}
               onChange={(e) =>
                 setMinPrice(e.target.value ? Number(e.target.value) : null)
@@ -171,7 +171,7 @@ const ShoeManagement = () => {
             />
             <Input
               type="number"
-              placeholder="Max Price"
+              placeholder="Giá cao nhất"
               value={maxPrice}
               onChange={(e) =>
                 setMaxPrice(e.target.value ? Number(e.target.value) : null)
@@ -181,7 +181,7 @@ const ShoeManagement = () => {
         </div>
         <Select value={gender} onValueChange={setGender}>
           <SelectTrigger>
-            <SelectValue placeholder="Select Gender" />
+            <SelectValue placeholder="Chọn giới tính" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="MAN">Nam</SelectItem>
@@ -191,17 +191,17 @@ const ShoeManagement = () => {
         </Select>
         <Select value={category} onValueChange={setCategory}>
           <SelectTrigger>
-            <SelectValue placeholder="Select Category" />
+            <SelectValue placeholder="Chọn thể loại" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="SPORT">SPORT</SelectItem>
-            <SelectItem value="RUNNING">RUNNING</SelectItem>
-            <SelectItem value="CASUAL">CASUAL</SelectItem>
+            <SelectItem value="SPORT">Thể thao</SelectItem>
+            <SelectItem value="RUNNING">Chạy bộ</SelectItem>
+            <SelectItem value="CASUAL">Thời trang</SelectItem>
           </SelectContent>
         </Select>
         <Select value={brandId} onValueChange={setBrandId}>
           <SelectTrigger>
-            <SelectValue placeholder="Select Brand" />
+            <SelectValue placeholder="Chọn nhãn hiệu" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="1">Nike</SelectItem>
@@ -212,7 +212,7 @@ const ShoeManagement = () => {
         </Select>
         <Select value={sortOrder} onValueChange={setSortOrder}>
           <SelectTrigger>
-            <SelectValue placeholder="Sort Order" />
+            <SelectValue placeholder="Thứ tự sắp xếp" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="date">Cũ - Mới</SelectItem>
@@ -226,13 +226,13 @@ const ShoeManagement = () => {
             <SelectValue placeholder="Tất cả" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="true">Active</SelectItem>
-            <SelectItem value="false">Inactive</SelectItem>
+            <SelectItem value="true">Hoạt động</SelectItem>
+            <SelectItem value="false">Tắt</SelectItem>
           </SelectContent>
         </Select>
       </div>
       <Button onClick={handleSearch} className="w-full md:w-auto">
-        Search
+        Tìm kiếm
       </Button>
       <Button variant="outline" className="hover:bg-green-600 hover:text-white ms-3">
         <Link
@@ -240,7 +240,7 @@ const ShoeManagement = () => {
           className="flex p-4 align-items-center"
         >
           <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
-          <span>Add</span>
+          <span>Thêm</span>
         </Link>
       </Button>
 
@@ -248,11 +248,11 @@ const ShoeManagement = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Image</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead>Control</TableHead>
+              <TableHead>Tên giày</TableHead>
+              <TableHead>Hình</TableHead>
+              <TableHead>Giá</TableHead>
+              <TableHead>Số lượng</TableHead>
+              <TableHead>Chỉnh sửa</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -281,7 +281,7 @@ const ShoeManagement = () => {
                       handleDelete(shoe.id);
                     }}
                   >
-                    Delete
+                    Xóa
                   </Button>
                 </TableCell>
               </TableRow>
@@ -292,8 +292,7 @@ const ShoeManagement = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center mt-4 space-y-4 sm:space-y-0">
         <div className="text-sm text-muted-foreground">
-          Showing page {shoeData.currentPage} of {shoeData.totalPages} (Total
-          items: {shoeData.totalElements})
+          Hiện số trang {shoeData.currentPage} trên {shoeData.totalPages} (tổng số giày: {shoeData.totalElements})
         </div>
         <div className="flex space-x-2">
           <Button

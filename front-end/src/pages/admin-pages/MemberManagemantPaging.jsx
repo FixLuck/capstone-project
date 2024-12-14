@@ -93,7 +93,7 @@ const MemberManagemantPaging = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols- gap-4">
         <Input
-          placeholder="Search by username"
+          placeholder="Tìm kiếm theo username"
           value={username}
           onChange={(e) => setUserName(e.target.value)}
         />
@@ -134,7 +134,7 @@ const MemberManagemantPaging = () => {
 
       <div className="mt-5">
         <Button onClick={handleSearch} className="w-full md:w-auto">
-          Search
+          Tìm Kiếm
         </Button>
       </div>
 
@@ -144,12 +144,12 @@ const MemberManagemantPaging = () => {
           <TableCaption className="text-gray-500">Danh sách người dùng</TableCaption>
           <TableHeader className="bg-gray-100">
             <TableRow>
-              <TableCell className="p-3 font-semibold">Edit</TableCell>
+              <TableCell className="p-3 font-semibold">Chỉnh sửa</TableCell>
               <TableCell className="p-3 font-semibold">UserName</TableCell>
-              <TableCell className="p-3 font-semibold">Phone</TableCell>
+              <TableCell className="p-3 font-semibold">Số điện thoại</TableCell>
               <TableCell className="p-3 font-semibold">Email</TableCell>
-              <TableCell className="p-3 font-semibold">Role</TableCell>
-              <TableCell className="p-3 font-semibold">Active</TableCell>
+              <TableCell className="p-3 font-semibold">Vai trò</TableCell>
+              <TableCell className="p-3 font-semibold">Trạng thái</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -164,9 +164,9 @@ const MemberManagemantPaging = () => {
                 <TableCell className="p-3">{user.roleName}</TableCell>
                 <TableCell className="p-3">
                   {user.active ? (
-                    <span className="text-green-500">Active</span>
+                    <span className="text-green-500">Hoạt động</span>
                   ) : (
-                    <span className="text-red-500">Inactive</span>
+                    <span className="text-red-500">Tắt</span>
                   )}
                 </TableCell>
               </TableRow>
@@ -177,7 +177,7 @@ const MemberManagemantPaging = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center mt-4 space-y-4 sm:space-y-0">
         <div className="text-sm text-muted-foreground">
-          Showing page {userData.currentPage} of {userData.totalPages} (Total items: {userData.totalElements})
+          Hiện trang {userData.currentPage} trên {userData.totalPages} (Tổng cộng số tài khoản: {userData.totalElements})
         </div>
         <div className="flex space-x-2">
           <Button

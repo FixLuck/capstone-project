@@ -35,19 +35,19 @@ export default function ShoeList() {
       <Button variant="outline" className="hover:bg-green-600 hover:text-white">
         <Link to={"/admin/manage-shoes/new"} className="flex p-4 align-items-center">
           <IoIosAddCircleOutline className="mr-2 h-10 w-10" />
-          <span>Add</span>
+          <span>Thêm</span>
         </Link>
       </Button>
 
       <Table>
-        <TableCaption>A list of your recent shoes.</TableCaption>
+        <TableCaption>Danh sách giày gần đây.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Shoe ID</TableHead>
-            <TableHead>Name</TableHead>
+            <TableHead className="w-[100px]">ID giày</TableHead>
+            <TableHead>Tên</TableHead>
             <TableHead></TableHead>
-            <TableHead>Price</TableHead>
-            <TableHead className="text-right">Edit</TableHead>
+            <TableHead>Giá</TableHead>
+            <TableHead className="text-right">Chỉnh sửa</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -61,7 +61,7 @@ export default function ShoeList() {
               <TableCell>{formatterToVND.format(shoe.price)}</TableCell>
               <TableCell className="text-right space-x-2">
                 <UpdateShoeForm shoeId={shoe.id} />
-                <Button variant="destructive">Delete</Button>
+                <Button variant="destructive">Xóa</Button>
               </TableCell>
             </TableRow>
           ))}

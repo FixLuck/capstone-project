@@ -20,6 +20,16 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { formatterToVND } from "../../utils/formatter";
 import { cartActions } from "@/store";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+import { FaHome } from "react-icons/fa";
 
 function CheckOut() {
   const items = useSelector(selectItems);
@@ -88,7 +98,7 @@ function CheckOut() {
           isLoading: false,
           autoClose: 3000,
         });
-        
+
         setTimeout(() => {
           navigate("/order-history");
           dispatch(cartActions.clearCart());
@@ -142,10 +152,6 @@ function CheckOut() {
       }
       await createOrder();
       setLoading(false);
-      
-      
-
-
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -161,7 +167,7 @@ function CheckOut() {
       }
 
       const orderData = await createOrder();
-    
+
       await initializeVNPayment(orderData.orderId);
 
       // navigate("/checkout/payment-callback");
@@ -186,7 +192,21 @@ function CheckOut() {
         theme="light"
         transition:Bounce
       />
-      <h1 className="text-2xl font-bold mb-6">Thanh Toán</h1>
+      <div className="px-4 py-2">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">
+                <FaHome />
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/checkout">Thanh toán</BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="space-y-6">
           <Card>

@@ -42,6 +42,7 @@ public class SecurityConfig {
             "/auth/email/send",
             "/auth/verify-otp",
             "/auth/reset-password",
+            "/chat/**",
 
     };
 

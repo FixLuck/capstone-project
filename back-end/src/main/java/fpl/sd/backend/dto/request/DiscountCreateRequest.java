@@ -1,6 +1,7 @@
 package fpl.sd.backend.dto.request;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import fpl.sd.backend.constant.DiscountConstants;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -14,6 +15,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DiscountCreateRequest {
     @DecimalMin(value = "0.0",inclusive = false, message = "Percentage must be greater than 0")
     @DecimalMax(value = "100.0", message = "Percentage cannot exceed 100")
@@ -29,9 +31,6 @@ public class DiscountCreateRequest {
 
     @NotBlank(message = "Discount code is mandatory")
     String code;
-
-
-
 
     Double minimumOrderAmount;  // Giữ giá trị mặc định là 0
 

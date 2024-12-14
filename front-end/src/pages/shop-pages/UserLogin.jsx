@@ -134,16 +134,6 @@ function UserLogin() {
                     {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
                   </Button>
                   {error && <p>{error}</p>}
-                  <div className="flex justify-between">
-                    <Button className="w-full bg-yellow-500 text-white rounded p-2 hover:bg-gray-500">
-                      <FontAwesomeIcon icon={faGoogle} className="mr-2" />
-                      Google
-                    </Button>
-                    <Button className="ml-2 w-full bg-blue-500 text-white rounded p-2 hover:bg-gray-500">
-                      <FontAwesomeIcon icon={faFacebook} className="mr-2" />
-                      Facebook
-                    </Button>
-                  </div>
                   <a
                     href="/register"
                     className="text-center text-black hover:text-green-500 transition-colors duration-200 p-2"

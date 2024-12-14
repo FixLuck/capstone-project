@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus } from "lucide-react";
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useParams } from "react-router-dom";
@@ -10,6 +10,16 @@ import { ToastContainer, toast } from "react-toastify";
 import { selectItems } from "@/store/cart-slice";
 import { formatter, formatterToVND } from "../../utils/formatter";
 import { useNavigate } from "react-router-dom";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+import { FaHome } from "react-icons/fa";
 
 export default function DetailShoePage() {
   const params = useParams();
@@ -60,12 +70,12 @@ export default function DetailShoePage() {
       imageUrl: shoe.images[0].url,
       quantity: quantity,
       variantId: selectedVariant.id,
-      size: selectedVariant.sku.split('-').pop(),
-      totalPrice: shoe.price * quantity
+      size: selectedVariant.sku.split("-").pop(),
+      totalPrice: shoe.price * quantity,
     };
     dispatch(cartActions.addItemToCart(cartItem));
     navigate("/cart");
-  }
+  };
 
   const handleAddToCart = () => {
     if (!selectedVariant) {
@@ -82,32 +92,35 @@ export default function DetailShoePage() {
       imageUrl: shoe.images[0].url,
       quantity: quantity,
       variantId: selectedVariant.id,
-      size: selectedVariant.sku.split('-').pop(),
-      totalPrice: shoe.price * quantity
+      size: selectedVariant.sku.split("-").pop(),
+      totalPrice: shoe.price * quantity,
     };
 
     dispatch(cartActions.addItemToCart(cartItem));
     toast.success("Đã thêm vào giỏ hàng", {
       autoClose: 2000,
-    })
+    });
   };
 
   const handleQuantityChange = (type) => {
     if (type === "increment") {
       const maxAllowed = selectedVariant ? selectedVariant.stockQuantity : 1;
-      
+
       // Kiểm tra số lượng hiện có trong giỏ hàng cho biến thể này
       const existingCartItem = cartItems.find(
-        item => item.id === shoe.id && item.variantId === selectedVariant?.id
+        (item) => item.id === shoe.id && item.variantId === selectedVariant?.id
       );
       const currentInCart = existingCartItem ? existingCartItem.quantity : 0;
-      
+
       if (quantity + currentInCart < maxAllowed) {
         setQuantity((prev) => prev + 1);
       } else {
-        toast.error(`Không thể thêm quá ${maxAllowed} sản phẩm cho kích thước này`, {
-          autoClose: 2000
-        });
+        toast.error(
+          `Không thể thêm quá ${maxAllowed} sản phẩm cho kích thước này`,
+          {
+            autoClose: 2000,
+          }
+        );
       }
     } else if (type === "decrement" && quantity > 1) {
       setQuantity((prev) => prev - 1);
@@ -118,7 +131,7 @@ export default function DetailShoePage() {
     setSelectedVariant(variant);
     // Kiểm tra xem đã có biến thể này trong giỏ hàng chưa
     const existingCartItem = cartItems.find(
-      item => item.id === shoe.id && item.variantId === variant.id
+      (item) => item.id === shoe.id && item.variantId === variant.id
     );
     // Đặt lại số lượng về 1 khi thay đổi biến thể
     setQuantity(1);
@@ -129,7 +142,7 @@ export default function DetailShoePage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-2">
       <ToastContainer
         position="top-right"
         hideProgressBar={false}
@@ -142,6 +155,25 @@ export default function DetailShoePage() {
         theme="light"
         transition:Bounce
       />
+      <div className="px-4 py-2">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">
+                <FaHome />
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/shoes">Sản phẩm</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{shoe.name}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image section */}
         <div className="space-y-4">
@@ -178,8 +210,12 @@ export default function DetailShoePage() {
           <div>
             <h1 className="text-2xl font-bold capitalize">{shoe.name}</h1>
             <p className="text-gray-500">{shoe.description}</p>
-            <p className="text-xl font-semibold mt-2 line-through">{formatterToVND.format(shoe.fakePrice)}</p>
-            <p className="text-5xl font-semibold mt-2">{formatterToVND.format(shoe.price)}</p>
+            <p className="text-xl font-semibold mt-2 line-through">
+              {formatterToVND.format(shoe.fakePrice)}
+            </p>
+            <p className="text-5xl font-semibold mt-2">
+              {formatterToVND.format(shoe.price)}
+            </p>
           </div>
           <Card>
             <CardContent className="space-y-4 p-4">
@@ -228,7 +264,11 @@ export default function DetailShoePage() {
                 >
                   Thêm vào giỏ hàng
                 </Button>
-                <Button variant="destructive" className="flex-1 ">
+                <Button
+                  variant="destructive"
+                  className="flex-1"
+                  onClick={() => handleBuyNow(shoe)}
+                >
                   Mua ngay
                 </Button>
               </div>

@@ -149,23 +149,23 @@ function Profile() {
       <div className="w-full p-6 bg-white rounded-lg shadow-md grid grid-cols-3 gap-4 border h-screen">
         <div className="col-span-1 border-r flex justify-center">
           <div className="w-60 flex flex-col space-y-4">
-            <Button className="bg-green-500">My Profile</Button>
-            <Button className="bg-yellow-500">Security</Button>
+            <Button className="bg-green-500">Hồ sơ của bạn</Button>
+            <Button className="bg-yellow-500">An ninh</Button>
           </div>
         </div>
         <div className="col-span-2 p-4">
-          <h1 className="text-lg font-bold text-black">My Profile</h1>
+          <h1 className="text-lg font-bold text-black">Hồ sơ của bạn</h1>
           <div className="mt-1">
             <Card className="w-full border-0">
               <CardHeader>
                 <CardDescription className="font-bold text-center">
-                  Show and edit your profile
+                  Hiện thông tin và chỉnh sửa hồ sơ.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
                   <div className="grid gap-2">
-                    <Label>FullName</Label>
+                    <Label>Họ và tên</Label>
                     <Input
                       id="fullName"
                       type="text"
@@ -184,7 +184,7 @@ function Profile() {
                       className="border rounded-md p-2 w-full"
                     />
                   </div>
-                  <div className="grid gap-2">
+                  {/* <div className="grid gap-2">
                     <Label>Full Name</Label>
                     <Input
                       id="fullName"
@@ -193,7 +193,7 @@ function Profile() {
                       onChange={(e) => setFullName(e.target.value)}
                       className="border rounded-md p-2 w-full"
                     />
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="grid w-full gap-6 border rounded-sm p-4">
@@ -210,7 +210,7 @@ function Profile() {
                     </div>
 
                     <div className="grid gap-2">
-                      <Label>Phone</Label>
+                      <Label>Số điện thoại</Label>
                       <Input
                         id="phone"
                         type="text"
@@ -221,7 +221,7 @@ function Profile() {
                     </div>
                   </div>
                   <div className="grid gap-2">
-                    <Label>Current Address</Label>
+                    <Label>Địa chỉ hiện tại</Label>
                     <Input
                       id="address"
                       type="text"
@@ -231,7 +231,7 @@ function Profile() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <Label>Street</Label>
+                    <Label>Đường</Label>
                     <Input
                       id="street"
                       type="text"
@@ -250,7 +250,7 @@ function Profile() {
                     onClick={handleUpdate}
                     disabled={loading}
                   >
-                    Save Changes
+                    Lưu thay đổi
                   </Button>
                 </CardFooter>
               </CardContent>

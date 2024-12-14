@@ -42,6 +42,22 @@ const MemberOrderHistoryPaging   = () => {
 
   const [size, setSize] = useState(5);
 
+  const statusCounts = orderData?.additionalData?.statusCounts || {
+    ALL: 0,
+    PENDING: 0,
+    PAID: 0,
+    CANCELED: 0,
+    RECEIVED: 0,
+    SHIPPED: 0,
+    PAYMENT_FAILED: 0,
+  };
+  const calculateTotalOrders = () => {
+    if (orderData && orderData.additionalData && orderData.additionalData.statusCounts) {
+      return Object.values(orderData.additionalData.statusCounts).reduce((total, count) => total + count, 0);
+    }
+    return 0;
+  };
+
   const fetchOrderData = useCallback(async () => {
     try {
       const params = {
@@ -52,8 +68,17 @@ const MemberOrderHistoryPaging   = () => {
       };
 
       const response = await api.get("order-details/list-order", { params });
-      setOrderData(response.data.result);
-      console.log(response.data.result);
+      const result = response.data.result;
+    const additionalData = response.data.additionalData;
+    console.log(orderData?.additionalData?.statusCounts);
+
+    setOrderData({
+      ...result,
+      additionalData, // Gộp thêm additionalData
+    });
+      // setOrderData(response.data.result);
+      // console.log("Response data:", response.data);
+      // console.log(response.data.result);
     } catch (error) {
       console.error("Error fetching order data:", error);
     }
@@ -91,64 +116,59 @@ const MemberOrderHistoryPaging   = () => {
       </div>
     );
   }
-
+  const totalOrders = calculateTotalOrders();
 
   return (
-    // <div className="container mx-auto p-6 space-y-6 max-w-7xl">
+
     <div className="p-6 max-w-full h-screen mx-auto bg-white rounded-lg shadow-md">
     <h1 className="text-2xl font-bold mb-4 text-center">Lịch Sử Đơn Hàng</h1>
 
     <div className="flex items-center space-x-4 mb-6 p-10">
-    <div className="flex space-x-2">
-  <button
-    onClick={() => handleStatusChange("")}
-    className={`font-medium ${orderStatus === "" ? "text-blue-700" : "text-blue-500"}`}
-  >
-    Tất cả Đơn Hàng({orderData?.data?.length || 0})
-  </button>
-  <button
-    onClick={() => handleStatusChange("PENDING")}
-    className={`font-medium ${orderStatus === "PENDING" ? "text-yellow-700" : "text-yellow-500"}`}
-  >
-    Chờ xử lý(
-    {orderData?.data?.filter((order) => order.orderStatus === "PENDING").length || 0})
-  </button>
-  <button
-    onClick={() => handleStatusChange("PAID")}
-    className={`font-medium ${orderStatus === "PAID" ? "text-green-700" : "text-green-500"}`}
-  >
-    Thanh toán thành công(
-    {orderData?.data?.filter((order) => order.orderStatus === "PAID").length || 0})
-  </button>
-  <button
-    onClick={() => handleStatusChange("CANCELED")}
-    className={`font-medium ${orderStatus === "CANCELED" ? "text-red-700" : "text-red-500"}`}
-  >
-    Đã hủy(
-    {orderData?.data?.filter((order) => order.orderStatus === "CANCELED").length || 0})
-  </button>
-  <button
-    onClick={() => handleStatusChange("RECEIVED")}
-    className={`font-medium ${orderStatus === "RECEIVED" ? "text-purple-700" : "text-purple-500"}`}
-  >
-    Đã nhận(
-    {orderData?.data?.filter((order) => order.orderStatus === "RECEIVED").length || 0})
-  </button>
-  <button
-    onClick={() => handleStatusChange("SHIPPED")}
-    className={`font-medium ${orderStatus === "SHIPPED" ? "text-orange-700" : "text-orange-500"}`}
-  >
-    Đã giao(
-    {orderData?.data?.filter((order) => order.orderStatus === "SHIPPED").length || 0})
-  </button>
-  <button
-    onClick={() => handleStatusChange("PAYMENT_FAILED")}
-    className={`font-medium ${orderStatus === "PAYMENT_FAILED" ? "text-amber-700" : "text-amber-900"}`}
-  >
-    Thanh toán thất bại(
-    {orderData?.data?.filter((order) => order.orderStatus === "PAYMENT_FAILED").length || 0})
-  </button>
-</div>
+      <div className="flex space-x-2">
+      <button
+        onClick={() => handleStatusChange("")}
+        className={`font-medium ${orderStatus === "" ? "text-blue-700" : "text-blue-500"}`}
+      >
+        Tất cả Đơn Hàng ({totalOrders || 0})
+      </button>
+      <button
+        onClick={() => handleStatusChange("PENDING")}
+        className={`font-medium ${orderStatus === "PENDING" ? "text-yellow-700" : "text-yellow-500"}`}
+      >
+        Chờ xử lý ({orderData?.additionalData?.statusCounts?.PENDING || 0})
+      </button>
+      <button
+        onClick={() => handleStatusChange("PAID")}
+        className={`font-medium ${orderStatus === "PAID" ? "text-green-700" : "text-green-500"}`}
+      >
+        Thanh toán thành công ({orderData?.additionalData?.statusCounts?.PAID || 0})
+      </button>
+      <button
+        onClick={() => handleStatusChange("CANCELED")}
+        className={`font-medium ${orderStatus === "CANCELED" ? "text-red-700" : "text-red-500"}`}
+      >
+        Đã hủy ({orderData?.additionalData?.statusCounts?.CANCELED || 0})
+      </button>
+      <button
+        onClick={() => handleStatusChange("RECEIVED")}
+        className={`font-medium ${orderStatus === "RECEIVED" ? "text-purple-700" : "text-purple-500"}`}
+      >
+        Đã nhận ({statusCounts.RECEIVED || 0})
+      </button>
+      <button
+        onClick={() => handleStatusChange("SHIPPED")}
+        className={`font-medium ${orderStatus === "SHIPPED" ? "text-orange-700" : "text-orange-500"}`}
+      >
+        Đã giao ({orderData?.additionalData?.statusCounts?.SHIPPED || 0})
+      </button>
+      <button
+        onClick={() => handleStatusChange("PAYMENT_FAILED")}
+        className={`font-medium ${orderStatus === "PAYMENT_FAILED" ? "text-amber-700" : "text-amber-900"}`}
+      >
+        Thanh toán thất bại ({orderData?.additionalData?.statusCounts?.PAYMENT_FAILED || 0})
+      </button>
+    </div>
+
 
     <div className="flex items-center space-x-2" >
         <Select value={sortOrder} onValueChange={setSortOrder} className="flex items-center space-x-2">
@@ -165,15 +185,7 @@ const MemberOrderHistoryPaging   = () => {
         </div>
       </div>
 
-      {/* <div className="flex items-center space-x-4 mb-6 p-5">
-      <Input placeholder="Tìm kiếm..." className="w-full max-w-xs" />
-           
-      
-      </div> */}
-{/* 
-      <Button onClick={handleSearch} className="w-full md:w-auto">
-        Search
-      </Button> */}
+
 
 
       <div className="mt-10">
@@ -223,8 +235,8 @@ const MemberOrderHistoryPaging   = () => {
 
       <div className="flex flex-col sm:flex-row justify-between items-center mt-4 space-y-4 sm:space-y-0">
         <div className="text-sm text-muted-foreground">
-          Showing page {orderData.currentPage} of {orderData.totalPages} (Total
-          items: {orderData.totalElements})
+          Hiện trang {orderData.currentPage} trên {orderData.totalPages}
+           {/* (tổng số đơn hàng: {orderData.totalElements}) */}
         </div>
         <div className="flex space-x-2">
           <Button

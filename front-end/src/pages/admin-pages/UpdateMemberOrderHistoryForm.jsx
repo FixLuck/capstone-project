@@ -134,14 +134,14 @@ export default function UpdateMemberOrderHistory ({ orderId }) {
       </DialogTrigger>
       <DialogContent className="w-full max-w-2xl mx-auto">
         <DialogHeader>
-          <DialogTitle>Edit Order Details</DialogTitle>
+          <DialogTitle>Chỉnh sửa thông tin đơn hàng chi tiết</DialogTitle>
           <DialogDescription>
-            Make changes to member Order here. Click save when you're done.
+            Thay đổi trạng thái đơn hàng ở đây. Lưu thay đổi khi bạn hoàn thành.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="username">Tên người dùng</Label>
             <Input
               id="username"
               name="username"
@@ -157,7 +157,7 @@ export default function UpdateMemberOrderHistory ({ orderId }) {
 
 
           <div className="space-y-2">
-            <Label htmlFor="finalTotal">Total</Label>
+            <Label htmlFor="finalTotal">Tổng cộng</Label>
             <Input
               id="finalTotal"
               name="finalTotal"
@@ -170,7 +170,7 @@ export default function UpdateMemberOrderHistory ({ orderId }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="orderDate">Order Date</Label>
+            <Label htmlFor="orderDate">Ngày đặt hàng</Label>
             <Input
               id="orderDate"
               type="datetime-local"
@@ -199,7 +199,7 @@ export default function UpdateMemberOrderHistory ({ orderId }) {
               Cancel
             </Button> */}
             <Button type="submit" disabled={isLoading} className="bg-blue-600 text-white hover:bg-blue-700">
-              Save Changes
+              Lưu thay đổi
             </Button>
           </DialogFooter>
         </form>

@@ -87,11 +87,11 @@ export function WelcomeAdmin() {
 
   function StockStatus({ stock }) {
     if (stock > 50) {
-      return <Badge className="bg-green-500">In Stock</Badge>;
+      return <Badge className="bg-green-500">Còn trong kho</Badge>;
     } else if (stock > 20) {
-      return <Badge className="bg-yellow-500">Limited</Badge>;
+      return <Badge className="bg-yellow-500">Giới hạn</Badge>;
     } else {
-      return <Badge className="bg-red-500">Low Stock</Badge>;
+      return <Badge className="bg-red-500">Sắp hết hàng</Badge>;
     }
   }
 
@@ -100,14 +100,14 @@ export function WelcomeAdmin() {
       <div className="flex items-center justify-between space-y-2">
         <div className="flex items-center space-x-4">
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900">
-            Dasboard
+            Bảng quản lý
           </h2>
         </div>
       </div>
       <Tabs defaultValue="overview">
         <TabsList className="grid grid-cols-2 w-72">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="other">Other</TabsTrigger>
+          <TabsTrigger value="overview">Tổng quan</TabsTrigger>
+          <TabsTrigger value="other">Khác</TabsTrigger>
         </TabsList>
         <TabsContent value="overview" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -175,7 +175,7 @@ export function WelcomeAdmin() {
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-7">
             <Card className="col-span-4 bg-white border-zinc-800">
               <CardHeader>
-                <CardTitle className="text-zinc-900">Overview</CardTitle>
+                <CardTitle className="text-zinc-900">Tổng quan</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
                 <ResponsiveContainer height={350}>
@@ -251,22 +251,22 @@ export function WelcomeAdmin() {
             <Card className="bg-white border-zinc-800">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-zinc-900">
-                  Inventory status
+                  Trạn thái kho hàng
                 </CardTitle>
                 <Activity className="h-4 w-4 text-zinc-900" />
               </CardHeader>
               <CardContent>
                 <Table>
                   <TableCaption>
-                    Current inventory status as of{" "}
+                    Trạng thái kho hiện tại tính tới{" "}
                     {new Date().toLocaleDateString()}
                   </TableCaption>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-[200px]">Name</TableHead>
+                      <TableHead className="w-[200px]">Tên</TableHead>
                       <TableHead>Size</TableHead>
-                      <TableHead>Current Stock</TableHead>
-                      <TableHead className="text-right">Status</TableHead>
+                      <TableHead>Số lượng hiện tại</TableHead>
+                      <TableHead className="text-right">Trạng thái</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -296,14 +296,14 @@ export function WelcomeAdmin() {
               <CardContent>
                 <Table>
                   <TableCaption>
-                    Top 5 shoes by total revenue
+                    Top 5 sản phẩm theo tổng doanh thu
                   </TableCaption>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-[200px]">Name</TableHead>
-                      <TableHead>Total Orders</TableHead>
-                      <TableHead>Total Units Sold</TableHead>
-                      <TableHead className="text-right">Status</TableHead>
+                      <TableHead className="w-[200px]">Tên</TableHead>
+                      <TableHead>Tổng số đơn hàng</TableHead>
+                      <TableHead>Tổng số đơn vị đã bán</TableHead>
+                      <TableHead className="text-right">Trạng thái</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>

@@ -148,8 +148,8 @@ export default function ProfileUser() {
         <div className="col-span-1 border-r flex justify-center">
           <Tabs defaultValue="profile" className="w-full">
             <TabsList className='bg-slate-100'>
-              <TabsTrigger value="profile">Your profile</TabsTrigger>
-              <TabsTrigger value="change-password">Change Password</TabsTrigger>
+              <TabsTrigger value="profile">Hồ Sơ Của Bạn</TabsTrigger>
+              <TabsTrigger value="change-password">Thay đổi mật khẩu</TabsTrigger>
             </TabsList>
             <TabsContent value="profile">
               <div className="col-span-2 p-4">
@@ -157,13 +157,13 @@ export default function ProfileUser() {
                   <Card className="w-full border-0">
                     <CardHeader>
                       <CardDescription className="font-bold text-center">
-                        Show and edit your profile
+                        Hiện và chỉnh sửa thông tin hồ sơ của bạn
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="grid w-full gap-6 border rounded-sm p-4 mb-4">
                         <div className="grid gap-2">
-                          <Label>FullName</Label>
+                          <Label>Họ và tên</Label>
                           <Input
                             id="fullName"
                             type="text"
@@ -197,7 +197,7 @@ export default function ProfileUser() {
                           </div>
 
                           <div className="grid gap-2">
-                            <Label>Phone</Label>
+                            <Label>Số điện thoại</Label>
                             <Input
                               id="phone"
                               type="text"
@@ -208,7 +208,7 @@ export default function ProfileUser() {
                           </div>
                         </div>
                         <div className="grid gap-2">
-                          <Label>Current Address</Label>
+                          <Label>Địa chỉ hiện tại</Label>
                           <Input
                             id="address"
                             type="text"
@@ -218,7 +218,7 @@ export default function ProfileUser() {
                           />
                         </div>
                         <div className="grid gap-2">
-                          <Label>Street</Label>
+                          <Label>Đường</Label>
                           <Input
                             id="street"
                             type="text"
@@ -239,7 +239,7 @@ export default function ProfileUser() {
                           onClick={handleUpdate}
                           disabled={loading}
                         >
-                          Save Changes
+                          Lưu thay đổi
                         </Button>
                       </CardFooter>
                     </CardContent>

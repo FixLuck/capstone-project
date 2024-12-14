@@ -27,6 +27,8 @@ api.interceptors.request.use((config) => {
     "/brands",
     "/shoes",
     "/orders/apply-discount",
+    "/chat/shoe-data",
+    "chat/discount-data",
   ];
 
   const isPublicPath = publicPaths.some(path => 

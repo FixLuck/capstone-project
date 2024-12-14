@@ -14,6 +14,16 @@ import api from "@/config/axios";
 import { useNavigate } from "react-router-dom";
 import { selectUser } from "@/store/auth";
 import { cartTotalActions } from "@/store";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+import { FaHome } from "react-icons/fa";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -133,6 +143,19 @@ export default function Cart() {
         theme="light"
         transition:Bounce
       />
+      <div className="px-4 py-2">
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/"><FaHome /></BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/cart">Giỏ hàng</BreadcrumbLink>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
       <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">

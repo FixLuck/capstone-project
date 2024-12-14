@@ -215,7 +215,8 @@ const ShoeManagement = () => {
             <SelectValue placeholder="Sort Order" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="date">Date</SelectItem>
+            <SelectItem value="date">Cũ - Mới</SelectItem>
+            <SelectItem value="date_desc">Mới - Cũ</SelectItem>
             <SelectItem value="desc">Price: High to Low</SelectItem>
             <SelectItem value="asc">Price: Low to High</SelectItem>
           </SelectContent>

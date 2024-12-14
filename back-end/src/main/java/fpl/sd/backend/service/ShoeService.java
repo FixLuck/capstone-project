@@ -1,5 +1,11 @@
 package fpl.sd.backend.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fpl.sd.backend.ai.chat.ChatClient;
+import fpl.sd.backend.ai.chat.dto.ChatRequest;
+import fpl.sd.backend.ai.chat.dto.ChatResponse;
+import fpl.sd.backend.ai.chat.dto.Message;
 import fpl.sd.backend.constant.ShoeConstants;
 import fpl.sd.backend.dto.PageResponse;
 import fpl.sd.backend.dto.request.ShoeCreateRequest;
@@ -14,6 +20,7 @@ import fpl.sd.backend.mapper.ShoeImageMapper;
 import fpl.sd.backend.mapper.ShoeMapper;
 import fpl.sd.backend.mapper.ShoeVariantMapper;
 import fpl.sd.backend.repository.*;
+import fpl.sd.backend.utils.MessageUtil;
 import fpl.sd.backend.utils.SKUGenerators;
 import fpl.sd.backend.utils.ShoeHelper;
 import lombok.AccessLevel;
@@ -49,6 +56,8 @@ public class ShoeService {
     ShoeImageMapper imageMapper;
     ShoeVariantMapper shoeVariantMapper;
     ShoeHelper shoeHelper;
+    ChatClient chatClient;
+    ObjectMapper objectMapper;
 
     public List<ShoeResponse> getAllShoes() {
         List<Shoe> shoes = shoeRepository.findAll();
@@ -234,6 +243,19 @@ public class ShoeService {
             default -> Sort.by(Sort.Direction.ASC, date);
         };
     }
+
+    public String shoeData(String messageContent) throws JsonProcessingException {
+
+        String jsonArray = objectMapper.writeValueAsString(this.getAllShoes());
+
+        List<Message> messages = MessageUtil.createMessages("You are a helpful assistant " + messageContent, jsonArray);
+
+        ChatRequest chatRequest = new ChatRequest("gpt-4o-mini", messages);
+        ChatResponse chatResponse = this.chatClient.generate(chatRequest);
+
+        return chatResponse.getChoices().getFirst().getMessage().getContent();
+    }
+
 
 
 

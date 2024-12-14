@@ -1,5 +1,8 @@
 package fpl.sd.backend.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import fpl.sd.backend.ai.chat.dto.ChatResponse;
+import fpl.sd.backend.ai.chat.dto.ContentMessageRequest;
 import fpl.sd.backend.dto.ApiResponse;
 import fpl.sd.backend.dto.request.BrandCreateRequest;
 import fpl.sd.backend.dto.response.BrandResponse;
@@ -8,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,5 +52,17 @@ public class BrandController {
                 .message("Successfully retrieved brand")
                 .result(brandService.getBrandById(id))
                 .build();
+    }
+
+    @GetMapping("/summary")
+    public ApiResponse<String> summarizeBrands(@RequestBody ContentMessageRequest contentMessageRequest) throws JsonProcessingException {
+        List<BrandResponse> brands = brandService.getBrands();
+        String brandsSummary = this.brandService.summarize(brands, contentMessageRequest.getContent());
+        return ApiResponse.<String>builder()
+                .flag(true)
+                .message("OK")
+                .result(brandsSummary)
+                .build();
+
     }
 }

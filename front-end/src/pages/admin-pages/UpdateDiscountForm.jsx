@@ -139,19 +139,19 @@ export default function UpdateDiscountForm({ discountId }) {
       theme="light" />
       <DialogTrigger asChild>
         <Button variant="outline" className="hover:bg-slate-950 hover:text-white">
-          Edit
+          Chỉnh Sửa
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-2xl mx-auto">
         <DialogHeader>
-          <DialogTitle>Edit Discount Details</DialogTitle>
+          <DialogTitle>Chỉnh sửa thông tin mã giảm chi tiết</DialogTitle>
           <DialogDescription>
-            Make changes to your discount here. Click save when you're done.
+            Thay đổi thông tin giảm giá ở đây. Nhấn Lưu khi bạn đã nhập xong các thay đổi.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="code">Code</Label>
+            <Label htmlFor="code">Tên mã</Label>
             <Input
               id="code"
               name="code"
@@ -162,7 +162,7 @@ export default function UpdateDiscountForm({ discountId }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">Mô tả</Label>
             <Input
               id="description"
               name="description"
@@ -174,24 +174,24 @@ export default function UpdateDiscountForm({ discountId }) {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="active">Status:</Label>
+              <Label htmlFor="active">Trạng thái:</Label>
               <select {...register("active")} className="block w-2/3 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base">
-                <option value="true">Active</option>
-                <option value="false">Inactive</option>
+                <option value="true">Hoạt động</option>
+                <option value="false">Tắt</option>
               </select>
               {errors.active?.message && <p className="text-red-600">{errors.active?.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="discountType">Discount Type</Label>
+              <Label htmlFor="discountType">Loại giảm giá</Label>
               <select {...register("discountType")} className="block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 pl-3 pr-10 py-2 text-base">
-                <option value="FIXED_AMOUNT">FIXED_AMOUNT</option>
-                <option value="PERCENTAGE">PERCENTAGE</option>
+                <option value="FIXED_AMOUNT">Số tiền cố định</option>
+                <option value="PERCENTAGE">Phần trăm</option>
               </select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="percentage">Percentage</Label>
+            <Label htmlFor="percentage">Phần trăm</Label>
             <Input
               id="percentage"
               name="percentage"
@@ -203,7 +203,7 @@ export default function UpdateDiscountForm({ discountId }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="fixedAmount">Fixed Amount</Label>
+            <Label htmlFor="fixedAmount">Số tiền cố định</Label>
             <Input
               id="fixedAmount"
               name="fixedAmount"
@@ -215,7 +215,7 @@ export default function UpdateDiscountForm({ discountId }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="minimumOrderAmount">Minimum Order Amount</Label>
+            <Label htmlFor="minimumOrderAmount">Số tiền đơn hàng tối thiểu</Label>
             <Input
               id="minimumOrderAmount"
               name="minimumOrderAmount"
@@ -227,7 +227,7 @@ export default function UpdateDiscountForm({ discountId }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="startDate">Start Date</Label>
+            <Label htmlFor="startDate">Ngày bắt đầu</Label>
             <Input
               id="startDate"
               type="datetime-local"
@@ -237,7 +237,7 @@ export default function UpdateDiscountForm({ discountId }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="endDate">End Date</Label>
+            <Label htmlFor="endDate">Ngày kết thúc</Label>
             <Input
               id="endDate"
               type="datetime-local"
@@ -247,11 +247,11 @@ export default function UpdateDiscountForm({ discountId }) {
           </div>
 
           <DialogFooter>
-            <Button variant="outline" onClick={() => reset()}>
+            {/* <Button variant="outline" onClick={() => reset()}>
               Cancel
-            </Button>
+            </Button> */}
             <Button type="submit" disabled={isLoading} className="bg-blue-600 text-white hover:bg-blue-700">
-              Save Changes
+              Lưu thay đổi
             </Button>
           </DialogFooter>
         </form>

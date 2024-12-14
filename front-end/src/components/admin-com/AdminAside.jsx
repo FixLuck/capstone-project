@@ -42,7 +42,7 @@ export function AdminAside() {
       <Card className="w-full h-full max-w-sm mx-auto bg-white p-6 shadow-md border border-gray-200 focus:outline-none rounded-none">
         <CardContent>
           {/* Logo and Title */}
-          <Link to={"/admin"}>
+          <Link to={"/"}>
             <div className="text-center mt-8 mb-4">
               <h1 className="text-red-600 text-4xl font-semibold tracking-wide transition-transform transform hover:scale-105">
                 SuperTeam

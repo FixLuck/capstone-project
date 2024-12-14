@@ -136,22 +136,22 @@ export default function AddDiscountForm() {
       <Link to={"/admin/discount-management"}>
         <Button variant="ghost" className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
-          Back
+          Quay Lại
         </Button>
         </Link>
         <h1 className="text-4xl font-bold">Chi tiết đơn hàng</h1>
         <div className="w-24" /> {/* Spacer for alignment */}
       </div>
       
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Add New Discount</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Thêm Mã Giảm Giá</h2>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="code" className="block text-gray-700">Code</Label>
+          <Label htmlFor="code" className="block text-gray-700">Tên mã</Label>
           <Input
             id="code"
             name="code"
-            placeholder="Enter discount code"
+            placeholder="Nhập tên mã"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             {...register("code")}
           />
@@ -159,11 +159,11 @@ export default function AddDiscountForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="description" className="block text-gray-700">Description</Label>
+          <Label htmlFor="description" className="block text-gray-700">Mô tả</Label>
           <Input
             id="description"
             name="description"
-            placeholder="Enter discount description"
+            placeholder="Nhập mô tả"
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             {...register("description")}
           />
@@ -172,31 +172,31 @@ export default function AddDiscountForm() {
 
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="active" className="block text-gray-700">Active</Label>
+            <Label htmlFor="active" className="block text-gray-700">Trạng thái</Label>
             <select
               {...register("active")}
               className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="true">Active</option>
-              <option value="false">Inactive</option>
+              <option value="true">Hoạt động</option>
+              <option value="false">Tắt</option>
             </select>
             {errors.active?.message && <p className="text-red-600 text-sm">{errors.active?.message}</p>}
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="discountType" className="block text-gray-700">Discount Type</Label>
+            <Label htmlFor="discountType" className="block text-gray-700">Loại giảm giá</Label>
             <select
               {...register("discountType")}
               className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="FIXED_AMOUNT">Fixed Amount</option>
-              <option value="PERCENTAGE">Percentage</option>
+              <option value="FIXED_AMOUNT">Số tiền cố định</option>
+              <option value="PERCENTAGE">Phần trăm</option>
             </select>
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="percentage" className="block text-gray-700">Percentage</Label>
+          <Label htmlFor="percentage" className="block text-gray-700">Phần trăm</Label>
           <Input
             id="percentage"
             name="percentage"
@@ -210,7 +210,7 @@ export default function AddDiscountForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="fixedAmount" className="block text-gray-700">Fixed Amount</Label>
+          <Label htmlFor="fixedAmount" className="block text-gray-700">Số tiền cố định</Label>
           <Input
             id="fixedAmount"
             name="fixedAmount"
@@ -225,7 +225,7 @@ export default function AddDiscountForm() {
 
 
         <div className="space-y-2">
-          <Label htmlFor="minimumOrderAmount" className="block text-gray-700">Minimum Order Amount</Label>
+          <Label htmlFor="minimumOrderAmount" className="block text-gray-700">Số tiền đơn hàng tối thiểu</Label>
           <Input
   type="number"
   name="minimumOrderAmount"
@@ -241,7 +241,7 @@ export default function AddDiscountForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="startDate" className="block text-gray-700">Start Date</Label>
+          <Label htmlFor="startDate" className="block text-gray-700">Ngày bắt đầu</Label>
           <Input
             id="startDate"
             type="datetime-local"
@@ -255,7 +255,7 @@ export default function AddDiscountForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="endDate" className="block text-gray-700">End Date</Label>
+          <Label htmlFor="endDate" className="block text-gray-700">Ngày kết thúc</Label>
           <Input
             id="endDate"
             type="datetime-local"

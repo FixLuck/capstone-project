@@ -209,10 +209,10 @@ export default function ListShoePage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="max-w-sm"
-                placeholder="Search shoes..."
+                placeholder="Tìm kiếm..."
               />
             </div>
-            <div>
+            {/* <div>
               <Select value={sortOrder} onValueChange={setSortOrder}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Sort by price" />
@@ -222,7 +222,7 @@ export default function ListShoePage() {
                   <SelectItem value="desc">Price: High to Low</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {currentShoes.map((shoe) => (
@@ -263,9 +263,9 @@ export default function ListShoePage() {
           </div>
           <div className="flex justify-between items-center my-4">
             <div>
-              Showing {indexOfFirstShoe + 1} to{" "}
-              {Math.min(indexOfLastShoe, sortedShoes.length)} of{" "}
-              {sortedShoes.length} shoes
+              Hiện trang {indexOfFirstShoe + 1} trên{" "}
+              {Math.min(indexOfLastShoe, sortedShoes.length)} từ{" "}
+              {sortedShoes.length} giày
             </div>
             <div className="flex spacex-x-2">
               <Button

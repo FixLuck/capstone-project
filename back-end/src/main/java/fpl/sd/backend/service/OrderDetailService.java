@@ -27,9 +27,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import fpl.sd.backend.dto.PageResponse;
+
+
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +43,8 @@ public class OrderDetailService {
     CustomerOrderRepository orderRepository;
     OrderDetailRepository orderDetailRepository;
     OrderMapper orderMapper;
+
+
 
     public List<OrderDetailResponse> getAllOrderDetails() {
         List<CustomerOrder> orders = orderRepository.findAll();
@@ -155,39 +161,74 @@ public class OrderDetailService {
     }
 
 
-    public PageResponse<OrderDetailResponse> getOrderPaging(
-                                                    String orderStatusString,
-                                                    int page,
-                                                    int size,
-                                                    String sortOrder
-    ) {
+//    public PageResponse<OrderDetailResponse> getOrderPaging(
+//            String orderStatusString,
+//            int page,
+//            int size,
+//            String sortOrder
+//    ) {
+//        Sort sort = createSort(sortOrder);
+//        Pageable pageable = PageRequest.of(page - 1, size, sort);
+//
+//        // Lấy Enum từ orderStatusString
+//        OrderConstants.OrderStatus orderStatusEnum = OrderConstants.getOrderStatusFromString(orderStatusString);
+//
+//        // Tìm các đơn hàng theo bộ lọc
+//        Page<CustomerOrder> orderData = orderRepository.findCustomerOrderByFilters(orderStatusEnum, pageable);
+//
+//        // Chuyển đổi dữ liệu đơn hàng thành DTO
+//        var orderList = orderData.getContent()
+//                .stream()
+//                .map(this::mapToOrderDetailResponse)
+//                .toList();
+//
+////        // Tổng số lượng đơn hàng từ tất cả các trang
+////        long totalOrderCount = orderData.getTotalElements();
+//
+//
+//
+//        return PageResponse.<OrderDetailResponse>builder()
+//                .currentPage(page)
+//                .pageSize(orderData.getSize())
+//                .totalPages(orderData.getTotalPages())
+////                .totalElements(totalOrderCount) // Tổng số lượng đơn hàng từ tất cả các trang
+////                .additionalData(Map.of("statusCounts", statusCounts))
+//                .data(orderList)
+//                .build();
+//    }
+public PageResponse<OrderDetailResponse> getOrderPaging(
+        String orderStatusString,
+        int page,
+        int size,
+        String sortOrder
+) {
+    Sort sort = createSort(sortOrder);
+    Pageable pageable = PageRequest.of(page - 1, size, sort);
 
-        Sort sort = createSort(sortOrder);
+    OrderConstants.OrderStatus orderStatusEnum = OrderConstants.getOrderStatusFromString(orderStatusString);
+    Page<CustomerOrder> orderData = orderRepository.findCustomerOrderByFilters(orderStatusEnum, pageable);
 
+    List<OrderDetailResponse> orderList = orderData.getContent()
+            .stream()
+            .map(this::mapToOrderDetailResponse)
+            .toList();
 
-        Pageable pageable = PageRequest.of(page - 1, size, sort);
+    return PageResponse.<OrderDetailResponse>builder()
+            .currentPage(page)
+            .pageSize(orderData.getSize())
+            .totalPages(orderData.getTotalPages())
+            .data(orderList)
+            .build();
+}
 
-        OrderConstants.OrderStatus orderStatusEnum = OrderConstants.getOrderStatusFromString(orderStatusString);
-
-        Page<CustomerOrder> orderData = orderRepository.findCustomerOrderByFilters(orderStatusEnum, pageable);
-
-        var  orderList= orderData.getContent()
-                .stream()
-                .map(this::mapToOrderDetailResponse)
-                .toList();
-
-        return PageResponse.<OrderDetailResponse>builder()
-                .currentPage(page)
-                .pageSize(orderData.getSize())
-                .totalPages(orderData.getTotalPages())
-                .totalElements(orderData.getTotalElements())
-                .data(orderList)
-                .build();
-
-
+    public Map<OrderConstants.OrderStatus, Long> getOrderStatusCounts() {
+        List<CustomerOrder> allOrders = orderRepository.findAll();
+        return allOrders.stream()
+                .collect(Collectors.groupingBy(CustomerOrder::getOrderStatus, Collectors.counting()));
     }
 
-    private Sort createSort(String sortOrder) {
+
+        private Sort createSort(String sortOrder) {
 
         String date = "orderDate";
         if (sortOrder == null) {

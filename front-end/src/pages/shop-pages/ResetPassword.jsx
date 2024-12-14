@@ -61,12 +61,12 @@ export default function ResetPassword() {
     <div className="min-h-80 flex items-center justify-center">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Change Password
+          Thay Đổi Mật Khẩu
         </h2>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label htmlFor="password" className="sr-only">
-              New Password
+              Mật khẩu mới
             </label>
             <input
               id="password"
@@ -74,7 +74,7 @@ export default function ResetPassword() {
               type="password"
               required
               className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="New Password"
+              placeholder="Mật khẩu mới"
               {...register("newPassword")}
             />
             {errors.newPassword && (
@@ -85,7 +85,7 @@ export default function ResetPassword() {
           </div>
           <div>
             <label htmlFor="confirmPassword" className="sr-only">
-              Confirm New Password
+              Xác nhận mật khẩu mới
             </label>
             <input
               id="confirmPassword"
@@ -93,7 +93,7 @@ export default function ResetPassword() {
               type="password"
               required
               className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Confirm New Password"
+              placeholder="Xác nhận mật khẩu mới"
               {...register("confirmPassword")}
             />
             {errors.confirmPassword && (
@@ -107,7 +107,7 @@ export default function ResetPassword() {
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Change Password
+              Thay đổi mật khẩu
             </button>
           </div>
         </form>

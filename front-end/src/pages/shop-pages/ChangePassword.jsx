@@ -63,10 +63,10 @@ export default function ChangePassword() {
 
   return (
     <div className="max-w-md mx-auto mt-8 bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-4">Change Password</h2>
+      <h2 className="text-2xl font-bold mb-4">Đổi Mật Khẩu</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <Label htmlFor="currentPassword">Current Password</Label>
+          <Label htmlFor="currentPassword">Mật khẩu hiện tại</Label>
           <Input
             id="currentPassword"
             type="password"
@@ -79,7 +79,7 @@ export default function ChangePassword() {
           )}
         </div>
         <div>
-          <Label htmlFor="newPassword">New Password</Label>
+          <Label htmlFor="newPassword">Mật khẩu mới</Label>
           <Input
             id="newPassword"
             type="password"
@@ -92,7 +92,7 @@ export default function ChangePassword() {
           )}
         </div>
         <div>
-          <Label htmlFor="confirmPassword">Confirm New Password</Label>
+          <Label htmlFor="confirmPassword">Xác nhận mật khẩu mới</Label>
           <Input
             id="confirmPassword"
             type="password"
@@ -105,22 +105,22 @@ export default function ChangePassword() {
           )}
         </div>
         <Button type="submit" className="w-full">
-          Change Password
+          Đổi mật khẩu
         </Button>
       </form>
       {isSuccess && (
         <Alert className="mt-4" variant="default">
-          <AlertTitle>Success</AlertTitle>
+          <AlertTitle>Thành công</AlertTitle>
           <AlertDescription>
-            Your password has been successfully changed.
+            Mật khẩu của bạn đã thay đổi thành công.
           </AlertDescription>
         </Alert>
       )}
       {isError && (
         <Alert className="mt-4" variant="destructive">
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>LỖI</AlertTitle>
           <AlertDescription>
-            There was an error changing your password. Please try again.
+            Đã có lỗi trong lúc thay đổi mật khẩu của bạn. Xin vui lòng kiểm tra lại.
           </AlertDescription>
         </Alert>
       )}

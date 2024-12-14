@@ -19,6 +19,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/order-details")
@@ -102,10 +103,14 @@ public class OrderDetailController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "8") int size
     ) {
+        PageResponse<OrderDetailResponse> pageResponse = orderDetailService.getOrderPaging(orderStatus, page, size, sortOrder);
+        Map<OrderConstants.OrderStatus, Long> orderStatusCount = orderDetailService.getOrderStatusCounts();
+
         return ApiResponse.<PageResponse<OrderDetailResponse>>builder()
                 .flag(true)
                 .message("OK")
-                .result(orderDetailService.getOrderPaging( orderStatus, page, size, sortOrder))
+                .result(pageResponse)
+                .additionalData(Map.of("statusCounts", orderStatusCount))
                 .build();
     }
 }

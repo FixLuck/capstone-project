@@ -186,16 +186,16 @@ function CheckOut() {
         theme="light"
         transition:Bounce
       />
-      <h1 className="text-2xl font-bold mb-6">Checkout</h1>
+      <h1 className="text-2xl font-bold mb-6">Thanh Toán</h1>
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Customer Information</CardTitle>
+              <CardTitle>Thông tin khách hàng</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="fullname">Full Name</Label>
+                <Label htmlFor="fullname">Họ và tên</Label>
                 <Input id="fullname" placeholder={userData.fullName} readOnly />
               </div>
               <div className="space-y-2">
@@ -208,7 +208,7 @@ function CheckOut() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="phone">Số điện thoại</Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -217,7 +217,7 @@ function CheckOut() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="address">Delivery Address</Label>
+                <Label htmlFor="address">Địa chỉ giao hàng</Label>
                 <Input id="address" placeholder={userData.address} readOnly />
               </div>
             </CardContent>
@@ -225,7 +225,7 @@ function CheckOut() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Payment Method</CardTitle>
+              <CardTitle>Phương thức thanh toán</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
@@ -252,10 +252,10 @@ function CheckOut() {
         <div>
           <Card>
             <CardHeader>
-              <CardTitle>Order Details</CardTitle>
+              <CardTitle>Chi tiết đơn hàng</CardTitle>
             </CardHeader>
             <CardContent>
-              <h3 className="font-semibold">Cart Items</h3>
+              <h3 className="font-semibold">Các sản phẩm trong giỏ hàng</h3>
               <ScrollArea className="h-72 p-4">
                 {items.map((item) => (
                   <div
@@ -268,7 +268,7 @@ function CheckOut() {
                     <div className="flex-1 space-y-1">
                       <h4 className="font-medium">{item.name}</h4>
                       <p className="text-sm text-muted-foreground">
-                        Quantity: {item.quantity}
+                        Số lượng: {item.quantity}
                       </p>
                       <p className="font-medium">
                         {formatterToVND.format(item.price)}
@@ -283,31 +283,31 @@ function CheckOut() {
 
             <CardContent>
               <div className="space-y-4 my-4">
-                <h3 className="font-semibold">Order Summary</h3>
+                <h3 className="font-semibold">Tổng quan đơn hàng</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">
-                      Original Total:
+                      Tổng giá niêm yết:
                     </span>
                     <span>{formatterToVND.format(originalPrice)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tax (10%):</span>
+                    <span className="text-muted-foreground">Thuế (10%):</span>
                     <span>{formatterToVND.format(tax)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Shipping:</span>
+                    <span className="text-muted-foreground">Phí giao hàng:</span>
                     <span>{formatterToVND.format(storePickup)}</span>
                   </div>
                   {discountAmount > 0 && (
                     <div className="flex justify-between text-green-700">
-                      <span className="text-muted-foreground">Discount:</span>
+                      <span className="text-muted-foreground">Giảm giá:</span>
                       <span>-{formatterToVND.format(discountAmount)}</span>
                     </div>
                   )}
                   <Separator />
                   <div className="flex justify-between font-bold text-lg">
-                    <span>Final Total:</span>
+                    <span>Tổng cộng:</span>
                     <span>{formatterToVND.format(total)}</span>
                   </div>
                 </div>

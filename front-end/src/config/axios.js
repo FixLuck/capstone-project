@@ -10,7 +10,7 @@ import { authActions } from "../store/index";
 // api.defaults.baseURL = baseUrl;
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/api/v1",
+  baseURL: "http://52.77.237.12:8080/api/v1",
   headers: {
     "Content-Type": "application/json",
   },

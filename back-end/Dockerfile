@@ -8,7 +8,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Build source code with maven
-RUN mvn package -DskipTests -Dspring.profiles.active=production
+RUN mvn package -DskipTests
 
 #Stage 2: create image
 # Start with Amazon Correto JDK 21
@@ -22,4 +22,4 @@ COPY --from=build /app/target/*.jar app.jar
 ENV SPRING_PROFILES_ACTIVE=production
 
 # Command to run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=production", "app.jar"]

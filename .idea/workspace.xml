@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/test/java/fpl/sd/backend/BackEndApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/test/java/fpl/sd/backend/ai/chat/OpenAIChatClientTest.java" beforeDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -294,6 +299,12 @@
       <workItem from="1734157427762" duration="109000" />
       <workItem from="1734158402391" duration="5532000" />
       <workItem from="1734178892021" duration="1175000" />
+      <workItem from="1734194219123" duration="625000" />
+      <workItem from="1734231392139" duration="4112000" />
+      <workItem from="1734235579625" duration="8000" />
+      <workItem from="1734235816544" duration="186000" />
+      <workItem from="1734236064607" duration="1022000" />
+      <workItem from="1734238715659" duration="31000" />
     </task>
     <servers />
   </component>

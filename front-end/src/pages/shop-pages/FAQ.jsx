@@ -24,7 +24,7 @@ export function FAQ() {
                     <CardContent>
                         <div className="grid w-full gap-6">
                             <div className="grid gap-2">
-                                <p className="text-[20px]">
+                                <div className="text-[20px]">
 
                                     <strong>Làm thế nào để thực hiện mua hàng?</strong><br/>
                                     Mua sắm tại cửa hàng trực tuyến SuperTeam rất dễ dàng và đơn giản. Hãy duyệt qua nền tảng thân thiện của chúng tôi. Khi bạn tìm thấy món đồ muốn mua, nhấn vào món hàng và chọn các tùy chọn như kích cỡ và màu sắc, sau đó nhấn "THÊM VÀO GIỎ" hoặc "MUA NGAY". Một cửa sổ pop-up sẽ xuất hiện trên màn hình của bạn với chi tiết đơn hàng và tùy chọn "THANH TOÁN". Từ đó, bạn sẽ được chuyển đến trang THANH TOÁN BẢO MẬT, điền đầy đủ thông tin cần thiết để hoàn tất và đặt đơn hàng của bạn.
@@ -105,7 +105,7 @@ export function FAQ() {
                                     <strong>8. Liên hệ</strong><br/>
                                     Nếu bạn có bất kỳ câu hỏi nào liên quan đến Chính sách bảo mật này, vui lòng liên hệ với chúng tôi qua email hoặc số điện thoại được liệt kê trên website của chúng tôi.
 
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </CardContent>

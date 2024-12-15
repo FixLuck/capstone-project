@@ -246,7 +246,7 @@ export default function Cart() {
                   )}
 
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Nhận hàng tại cửa hàng</span>
+                  <span className="text-gray-600">Phí vận chuyển</span>
                   <span>{formatterToVND.format(totals.storePickup)}</span>
                 </div>
                 <div className="flex justify-between">

@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/config/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/config/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/ShoeUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/dto/request/ShoeUpdateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
@@ -304,6 +305,8 @@
       <workItem from="1734238715659" duration="31000" />
       <workItem from="1734247967758" duration="62000" />
       <workItem from="1734266132103" duration="2726000" />
+      <workItem from="1734270778938" duration="1839000" />
+      <workItem from="1734275720602" duration="3594000" />
     </task>
     <servers />
   </component>

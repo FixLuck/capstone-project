@@ -48,7 +48,7 @@ export default function RunningShoeForm() {
   };
 
   const uploadImages = async (files) => {
-    const uploadPreset = "unsigned_preset";
+    const uploadPreset = "capstone-preset";
     const cloudName = "dgdxkeu53";
     const images = [];
 

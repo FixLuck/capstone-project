@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/test/java/fpl/sd/backend/BackEndApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/test/java/fpl/sd/backend/ai/chat/OpenAIChatClientTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/config/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/config/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -305,6 +302,8 @@
       <workItem from="1734235816544" duration="186000" />
       <workItem from="1734236064607" duration="1022000" />
       <workItem from="1734238715659" duration="31000" />
+      <workItem from="1734247967758" duration="62000" />
+      <workItem from="1734266132103" duration="2726000" />
     </task>
     <servers />
   </component>

@@ -108,15 +108,29 @@ public class ShoeService {
 
 
     public ShoeResponse createShoe(ShoeCreateRequest request) {
+        // Validate images
+        if (request.getImages() == null || request.getImages().isEmpty()) {
+            throw new AppException(ErrorCode.INVALID_KEY); // Ensure no Shoe is saved
+        }
+
+        // Validate variants
+        if (request.getVariants() == null || request.getVariants().isEmpty()) {
+            throw new AppException(ErrorCode.INVALID_KEY); // Ensure no Shoe is saved
+        }
+
+        // Create and map Shoe
         Shoe newShoe = shoeMapper.toShoe(request);
         newShoe.setCreatedAt(Instant.now());
 
+        // Retrieve Brand
         Brand brand = brandRepository.findById(request.getBrandId())
                 .orElseThrow(() -> new AppException(ErrorCode.BRAND_NOT_FOUND));
         newShoe.setBrand(brand);
 
+        // Persist Shoe entity
         shoeRepository.save(newShoe);
 
+        // Map and save Shoe Images
         List<ShoeImage> images = request.getImages().stream()
                 .map(imgRequest -> {
                     ShoeImage shoeImage = imageMapper.toShoeImage(imgRequest);
@@ -124,9 +138,9 @@ public class ShoeService {
                     shoeImage.setCreatedAt(Instant.now());
                     return shoeImage;
                 }).toList();
-
         shoeImageRepository.saveAll(images);
 
+        // Map and save Shoe Variants
         List<ShoeVariant> variants = request.getVariants().stream()
                 .map(variant -> {
                     ShoeVariant shoeVariant = shoeVariantMapper.toShoeVariant(variant);
@@ -136,6 +150,7 @@ public class ShoeService {
                             .orElseThrow(() -> new AppException(ErrorCode.INVALID_KEY));
                     shoeVariant.setCreatedAt(Instant.now());
                     shoeVariant.setSizeChart(size);
+
                     String sku = skuGenerators.generateSKU(brand.getBrandName(),
                             request.getName(),
                             size.getSizeNumber());
@@ -146,13 +161,13 @@ public class ShoeService {
                     shoeVariant.setShoe(newShoe);
                     shoeVariant.setSku(sku);
                     return shoeVariant;
-                })
-                .toList();
-
+                }).toList();
         shoeVariantRepository.saveAll(variants);
-        return shoeMapper.toShoeResponse(newShoe);
 
+        // Return ShoeResponse
+        return shoeMapper.toShoeResponse(newShoe);
     }
+
 
     public List<ShoeResponse> getShoesByName(String name) {
         List<Shoe> shoes = shoeRepository.findShoesByNameContainingIgnoreCase(name);

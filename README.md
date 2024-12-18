@@ -17,8 +17,8 @@ This capstone project is a comprehensive web application for managing an online 
     - Generate sales reports for analytics.
 
 ## Technology Stack:
-    - **Back-end**: Spring Boot, Spring Data JPA, Spring Security, JWT for authentication.
-    - **Front-end**: ReactJS, Redux Toolkit for state management, Axios for API integration.
-    - **Database**: MySQL for data persistence.
-    - **Deployment**: Docker for containerization and AWS for back-end hosting.
+    - **Back-end** : Spring Boot, Spring Data JPA, Spring Security, JWT for authentication.
+    - **Front-end** : ReactJS, Redux Toolkit for state management, Axios for API integration.
+    - **Database** : MySQL for data persistence.
+    - **Deployment** : Docker for containerization and AWS for back-end hosting.
 

@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a7cbf83e-cfbf-44fc-b6de-67ec0680f8cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/java/fpl/sd/backend/service/ShoeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main/resources/application-production.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderHistoryPaging.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/MemberOrderHistoryPaging.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/admin-pages/RunningShoeForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/Cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/pages/shop-pages/FAQ.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/pages/shop-pages/FAQ.jsx" afterDir="false" />
     </list>
     <list id="59fcfdfd-a396-4f5f-a79e-9e1a3ef77cdb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -312,6 +313,7 @@
       <workItem from="1734354819669" duration="6245000" />
       <workItem from="1734366772525" duration="642000" />
       <workItem from="1734368791884" duration="747000" />
+      <workItem from="1734404463860" duration="993000" />
     </task>
     <servers />
   </component>

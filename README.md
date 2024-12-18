@@ -4,17 +4,19 @@ This capstone project is a comprehensive web application for managing an online 
 
 ## Features
 ### Customer Features:
-    - Browse and search for shoes by brand, category, or size.
-    - View detailed product information, including images, descriptions, price, and availability.
-    - Add products to the cart and manage the cart items.
-    - Secure user authentication and profile management.
-    - Online payment integration for seamless checkout.
+
+- Browse and search for shoes by brand, category, or size.
+- View detailed product information, including images, descriptions, price, and availability.
+- Add products to the cart and manage the cart items.
+- Secure user authentication and profile management.
+- Online payment integration for seamless checkout.
 
 ### Admin Features:
-    - CRUD operations for products, brands, and categories.
-    - Upload and manage product images.
-    - Handle orders and track order statuses (e.g., Pending, Paid, Shipped).
-    - Generate sales reports for analytics.
+
+- CRUD operations for products, brands, and categories.
+- Upload and manage product images.
+- Handle orders and track order statuses (e.g., Pending, Paid, Shipped).
+- Generate sales reports for analytics.
 
 ## Technology Stack:
 
